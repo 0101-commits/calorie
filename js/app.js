@@ -510,10 +510,15 @@ function createProductCardElement(p, highlightMetric = 'ppr') {
   const chLabelMap = { cvs: '편의점', mart: '마트', online: '식단몰', fr: '외식' };
   const chLabel = chLabelMap[p.channel] || '기타';
 
+  const photoHtml = p.image_url
+    ? `<img src="${p.image_url}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+       <span class="fallback-emoji" style="display:none;">${icon}</span>`
+    : `<span class="fallback-emoji">${icon}</span>`;
+
   card.innerHTML = `
     <div class="card-row">
       <div class="card-photo">
-        <span>${icon}</span>
+        ${photoHtml}
       </div>
       <div class="card-info">
         <div class="card-title">${p.name}</div>
@@ -542,6 +547,12 @@ function openDetailModal(p) {
   const chLabelMap = { cvs: '편의점', mart: '대형마트/식품', online: '식단/온라인몰', fr: '외식/카페' };
   const chLabel = chLabelMap[p.channel] || '기타';
 
+  const heroImageHtml = p.image_url
+    ? `<div class="detail-hero-photo">
+         <img src="${p.image_url}" alt="${p.name}" referrerpolicy="no-referrer" onerror="this.parentElement.style.display='none';">
+       </div>`
+    : '';
+
   // 영양성분 1일 기준치 대비 %
   const pPct = Math.round((p.protein_g / 55) * 100);
   const naPct = Math.round((p.sodium_mg / 2000) * 100);
@@ -562,6 +573,7 @@ function openDetailModal(p) {
   }
 
   el.sheetDetailContent.innerHTML = `
+    ${heroImageHtml}
     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
       <div>
         <div style="font-size:var(--t2); color:var(--ink-3);">${p.brand} · ${chLabel} · ${p.category}</div>
