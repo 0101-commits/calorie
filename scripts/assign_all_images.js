@@ -76,36 +76,11 @@ async function findImageForItem(item) {
     queries.push(simplerName);
   }
 
-  // 브랜드/제품별 최적화 쿼리
-  if (rawName.includes('백종원')) queries.push('CU 백종원 반반 도시락', '백종원 매콤돈까스', 'CU 백종원 도시락');
-  if (rawName.includes('힘을내요 미트볼')) queries.push('이마트24 미트볼 도시락');
-  if (rawName.includes('그릭 요거트')) queries.push('스타벅스 오가닉 프로틴 그릭 요거트');
-  if (rawName.includes('쿠우키')) queries.push('단백질 쿠우키');
-  if (rawName.includes('프로뮨 단백질쌀쿠키')) queries.push('단백질 쌀쿠키');
-  if (rawName.includes('언리미트')) queries.push('언리미트 식물성 육포');
-  if (rawName.includes('비그레인')) queries.push('식물성 육포');
-  if (rawName.includes('미니 단백질바')) queries.push('미니 단백질바');
-  if (rawName.includes('생치킨텐더까스')) queries.push('치킨텐더까스');
-  if (rawName.includes('혜성더단백한마카로니')) queries.push('마카로니 과자');
-  if (rawName.includes('닥터랩노쉬')) queries.push('닥터랩노쉬 구미');
-  if (rawName.includes('감동란')) queries.push('송사부 감동란 고로케');
-  if (rawName.includes('킹크래미 피자')) queries.push('난타5000 킹크래미');
-  if (rawName.includes('두부바')) queries.push('풀무원 지구식단 두부바');
-  if (rawName.includes('구운란')) queries.push('노브랜드 구운란');
-  if (rawName.includes('12곡 식빵')) queries.push('파리바게뜨 고단백 식빵');
-  if (rawName.includes('직화 닭가슴살')) queries.push('풀무원 지구식단 직화 닭가슴살');
-  if (rawName.includes('검은콩두유')) queries.push('풀무원 프로틴 검은콩두유');
-  if (rawName.includes('들깨두부 칼국수')) queries.push('풀무원 들깨두부 칼국수');
-  if (rawName.includes('두부볼')) queries.push('풀무원 지구식단 두부볼');
-  if (rawName.includes('연두부')) queries.push('풀무원 연두부');
-  if (rawName.includes('탄두리 치킨')) queries.push('하림 탄두리 치킨');
-  if (rawName.includes('용가리')) queries.push('하림 용가리 고단백 너겟');
-  if (rawName.includes('부침두부')) queries.push('종가집 부침두부');
-  if (rawName.includes('쉐푸드')) queries.push('롯데 쉐푸드 닭가슴살 스테이크');
-  if (rawName.includes('미각제빵소')) queries.push('미각제빵소 고단백');
-  if (rawName.includes('동그랑땡')) queries.push('바르닭 닭가슴살 동그랑땡');
-  if (rawName.includes('순수두유')) queries.push('노브랜드 순수두유');
-  if (rawName.includes('혜자로운')) queries.push('혜자로운 닭다리살 도시락');
+  // 정밀 최적화 쿼리 (특정 품목 전용)
+  if (rawName === '힘을내요 미트볼 도시락') queries.push('이마트24 미트볼 도시락');
+  if (rawName === '송사부 감동란 고로케') queries.push('송사부 감동란 고로케');
+  if (rawName.includes('킹크래미 피자')) queries.push('난타5000 킹크래미 피자');
+  if (rawName === '종가집 부침두부') queries.push('종가집 부침두부');
   // 신규 품목 전용 최적화
   if (rawName.includes('로티세리 치킨')) queries.push('코스트코 로티세리 치킨');
   if (rawName.includes('커클랜드') && rawName.includes('그릭요거트')) queries.push('커클랜드 그릭요거트', '코스트코 커클랜드 그릭요거트');
@@ -151,8 +126,6 @@ async function findImageForItem(item) {
   if (rawName.includes('메가바이트')) queries.push('노브랜드버거 메가바이트');
   if (rawName.includes('그릴드 불고기')) queries.push('노브랜드버거 그릴드 불고기');
   if (rawName.includes('크런치 윙')) queries.push('노브랜드버거 크런치 윙');
-  if (rawName.includes('프랭크버거')) queries.push('프랭크버거 치즈버거', '프랭크버거');
-  if (rawName.includes('JG버거')) queries.push('프랭크버거 JG버거');
   if (rawName.includes('치킨마요')) queries.push('한솥 치킨마요');
   if (rawName.includes('빅치킨마요')) queries.push('한솥 빅치킨마요');
   if (rawName.includes('돈까스도련님')) queries.push('한솥 돈까스도련님');
@@ -161,8 +134,7 @@ async function findImageForItem(item) {
   if (rawName.includes('숯불직화구이 덮밥')) queries.push('한솥 숯불직화구이 덮밥');
   if (rawName.includes('키토 크림치즈')) queries.push('바르다김선생 키토 크림치즈');
   if (rawName.includes('바른 김밥')) queries.push('바르다김선생 바른김밥');
-  if (rawName.includes('부리또 볼')) queries.push('쿠차라 부리또 볼');
-  if (rawName.includes('치아바타')) queries.push('스타벅스 바비큐 치킨 치즈 치아바타');
+  if (rawName.includes('바비큐 치킨 치즈 치아바타')) queries.push('스타벅스 바비큐 치킨 치즈 치아바타');
   if (rawName.includes('루꼴라 올리브')) queries.push('스타벅스 햄 루꼴라 올리브 샌드위치');
   if (rawName.includes('잉글리쉬 머핀')) queries.push('스타벅스 브렉퍼스트 잉글리쉬 머핀');
   if (rawName.includes('치킨 베이컨 랩')) queries.push('스타벅스 치킨 베이컨 랩');
