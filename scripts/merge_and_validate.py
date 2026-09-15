@@ -8,6 +8,7 @@ import os
 import csv
 import subprocess
 from fetch_public_data import run_pipeline
+from cvs_real_products import REAL_CVS_PRODUCTS
 
 def validate_item_py(item, existing_ids):
     kcal = float(item.get('kcal', 0))
@@ -61,54 +62,79 @@ def main():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     seed_path = os.path.join(root, 'data', 'seed.json')
     
+    # 1. 기존 데이터에서 mockup 데이터 제거 (공공데이터 실데이터 T1만 보존)
     with open(seed_path, 'r', encoding='utf-8') as f:
-        existing_items = json.load(f)
-    print(f"기존 시드 데이터: {len(existing_items)}건")
+        loaded_items = json.load(f)
+        
+    t1_items = [x for x in loaded_items if x.get('source_type') == 'T1']
+    print(f"🗑️ Mockup 데이터 {len(loaded_items) - len(t1_items)}건 영구 삭제 완료.")
+    print(f"📦 식약처 공공DB 검증 데이터 보존: {len(t1_items)}건")
     
-    # 공공데이터 수집
+    final_items = []
+    existing_names = set()
+    existing_ids = set()
+    
+    # 2. 편의점 실제품 온라인 수치화 데이터 추가
+    cvs_added = 0
+    for it in REAL_CVS_PRODUCTS:
+        if it['name'] in existing_names or it['menu_id'] in existing_ids:
+            continue
+        valid, reason = validate_item_py(it, existing_ids)
+        if not valid:
+            print(f"⚠️ [CVS 수치화 QA 제외] {it['name']}: {reason}")
+            continue
+        final_items.append(it)
+        existing_names.add(it['name'])
+        existing_ids.add(it['menu_id'])
+        cvs_added += 1
+    print(f"✅ 편의점 실제품 온라인 수치화 데이터 {cvs_added}건 추가 완료.")
+    
+    # 3. 식약처 공공DB 기존 검증 데이터 병합
+    for it in t1_items:
+        if it['name'] in existing_names or it['menu_id'] in existing_ids:
+            continue
+        valid, reason = validate_item_py(it, existing_ids)
+        if valid:
+            final_items.append(it)
+            existing_names.add(it['name'])
+            existing_ids.add(it['menu_id'])
+            
+    # 4. 공공DB 신규 파이프라인 수집 (브랜드 포함 확장)
     new_items = run_pipeline()
-    
-    existing_names = set(x['name'] for x in existing_items)
-    existing_ids = set(x['menu_id'] for x in existing_items)
-    
-    added_count = 0
-    skipped_count = 0
-    
+    api_added = 0
     for it in new_items:
         if it['name'] in existing_names or it['menu_id'] in existing_ids:
             continue
-        
         valid, reason = validate_item_py(it, existing_ids)
         if not valid:
-            skipped_count += 1
             continue
-            
-        existing_items.append(it)
+        final_items.append(it)
         existing_names.add(it['name'])
         existing_ids.add(it['menu_id'])
-        added_count += 1
+        api_added += 1
         
-    print(f"새로 병합된 공공DB 데이터: {added_count}건 (QA 제외: {skipped_count}건, 총 {len(existing_items)}건)")
+    print(f"✅ 신규 공공DB 추가 병합: {api_added}건 (최종 실데이터: 총 {len(final_items)}건)")
     
     # 저장
     with open(seed_path, 'w', encoding='utf-8') as f:
-        json.dump(existing_items, f, ensure_ascii=False, indent=2)
+        json.dump(final_items, f, ensure_ascii=False, indent=2)
         
     csv_path = os.path.join(root, 'data', 'seed.csv')
-    if existing_items:
-        keys = list(existing_items[0].keys())
-        for x in existing_items:
+    if final_items:
+        keys = list(final_items[0].keys())
+        for x in final_items:
             for k in x.keys():
                 if k not in keys:
                     keys.append(k)
         with open(csv_path, 'w', encoding='utf-8-sig', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()
-            for x in existing_items:
+            for x in final_items:
                 writer.writerow(x)
                 
-    print(f"✅ data/seed.json 및 data/seed.csv 갱신 완료 ({len(existing_items)}건).")
+    print(f"💾 data/seed.json 및 data/seed.csv 갱신 완료 ({len(final_items)}건 100% 실데이터).")
 
 if __name__ == '__main__':
     main()
+
 

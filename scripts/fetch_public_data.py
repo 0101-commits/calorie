@@ -26,8 +26,10 @@ API_KEY = os.environ.get('DATA_GO_KR_API_KEY', '4c7cbb03054471d46c639089e97a78b7
 BASE_URL = 'http://apis.data.go.kr/1471000/FoodNtrCpntDbInfo02/getFoodNtrCpntDbInq02'
 
 SEARCH_QUERIES = [
-    '닭가슴살', '프로틴', '단백질', '그릭요거트', '두유', '소시지', '육포', '훈제란', '단백질바', '치킨텐더'
+    '닭가슴살', '프로틴', '단백질', '그릭요거트', '두유', '소시지', '육포', '훈제란', '단백질바', '치킨텐더',
+    '더단백', '셀렉스', '하이뮨', '테이크핏', '랩노쉬', '마이밀', '닥터유', '베지밀', '하림 닭가슴살', '굽네', '감동란', '크래미'
 ]
+
 
 def fetch_items_by_query(query, max_rows=15):
     enc_q = urllib.parse.quote(query)
