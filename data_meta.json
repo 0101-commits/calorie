@@ -1,18 +1,18 @@
 {
-  "total_count": 480,
-  "generated_at": "2026-09-15T06:59:29.288Z",
+  "total_count": 517,
+  "generated_at": "2026-09-15T07:05:55.398Z",
   "rule_version": "v1.0",
-  "file_size_kb": 553.2,
+  "file_size_kb": 594.4,
   "grades": {
     "A": 105,
-    "B": 145,
-    "C": 170,
-    "D": 60
+    "B": 146,
+    "C": 190,
+    "D": 76
   },
   "washing": {
     "verified": 207,
-    "conditional": 24,
-    "washing": 36,
-    "none": 213
+    "conditional": 26,
+    "washing": 39,
+    "none": 245
   }
 }
