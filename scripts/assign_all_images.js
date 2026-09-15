@@ -24,8 +24,9 @@ function cleanItemName(name) {
   if (!name) return '';
   return name
     .replace(/^[가-힣a-zA-Z0-9\(\)]+_/g, '')
-    .replace(/\([^\)]*(?:기준|공장|KUKY|XL|80g|2알)[^\)]*\)/g, '')
+    .replace(/\([^\)]*(?:기준|공장|KUKY|XL|80g|2알|1마리|1팩)[^\)]*\)/g, '')
     .replace(/\s*\d+(?:\.\d+)?(?:g|mL|ml|입|개|팩|캔|쪽)\b/g, '')
+    .replace(/\s*단품\b/g, '')
     .trim();
 }
 
@@ -104,6 +105,28 @@ async function findImageForItem(item) {
   if (rawName.includes('동그랑땡')) queries.push('바르닭 닭가슴살 동그랑땡');
   if (rawName.includes('순수두유')) queries.push('노브랜드 순수두유');
   if (rawName.includes('혜자로운')) queries.push('혜자로운 닭다리살 도시락');
+  // 신규 품목 전용 최적화
+  if (rawName.includes('로티세리 치킨')) queries.push('코스트코 로티세리 치킨');
+  if (rawName.includes('커클랜드') && rawName.includes('그릭요거트')) queries.push('커클랜드 그릭요거트', '코스트코 커클랜드 그릭요거트');
+  if (rawName.includes('수지스')) queries.push('수지스 그릴드 닭가슴살', '수지스 닭가슴살');
+  if (rawName.includes('커클랜드') && rawName.includes('프로틴바')) queries.push('커클랜드 프로틴바');
+  if (rawName.includes('고등어구이')) queries.push('비비고 순살 고등어구이', '비비고 고등어구이');
+  if (rawName.includes('삼치구이')) queries.push('비비고 순살 삼치구이', '비비고 삼치구이');
+  if (rawName.includes('가자미구이')) queries.push('비비고 순살 가자미구이', '비비고 가자미구이');
+  if (rawName.includes('연어구이')) queries.push('비비고 순살 연어구이', '비비고 연어구이');
+  if (rawName.includes('크랩스')) queries.push('동원 리얼 크랩스');
+  if (rawName.includes('크래미')) queries.push('한성 크래미');
+  if (rawName.includes('두부면')) queries.push('풀무원 두부면');
+  if (rawName.includes('롤유부초밥')) queries.push('풀무원 롤유부초밥');
+  if (rawName.includes('미트리') && rawName.includes('볶음밥')) queries.push('미트리 닭가슴살 볶음밥', '미트리 볶음밥');
+  if (rawName.includes('맛있닭') && rawName.includes('만두')) queries.push('맛있닭 닭가슴살 만두', '맛있닭 만두');
+  if (rawName.includes('맛있닭') && rawName.includes('브리또')) queries.push('맛있닭 브리또');
+  if (rawName.includes('몸짱이 될 닭')) queries.push('바디나인 내가 몸짱이 될 닭');
+  if (rawName.includes('로드닭')) queries.push('굽네몰 로드닭');
+  if (rawName.includes('소맛닭')) queries.push('굽네몰 소맛닭');
+  if (rawName.includes('그릭데이')) queries.push('그릭데이 시그니처', '그릭데이');
+  if (rawName.includes('요즘 플레인')) queries.push('요즘 그릭요거트');
+  if (rawName.includes('매일두유 고단백')) queries.push('매일두유 고단백');
 
   for (const q of queries) {
     const img = await searchDaumImage(q);
