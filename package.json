@@ -1,0 +1,22 @@
+{
+  "name": "protein-radar",
+  "version": "1.1.0",
+  "description": "외식 프랜차이즈·편의점 메뉴의 단백질 가성비·영양 검증 및 개인 맞춤 추천 서비스",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node --test tests/*.test.js",
+    "serve": "python -m http.server 8080"
+  },
+  "keywords": [
+    "protein",
+    "nutrition",
+    "calorie",
+    "seed-design",
+    "radar",
+    "cloudflare-d1"
+  ],
+  "author": "0101-commits",
+  "license": "MIT"
+}

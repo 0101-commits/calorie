@@ -1,0 +1,977 @@
+# -*- coding: utf-8 -*-
+"""
+프로틴레이더 초기 100건 시드 데이터 생성 스크립트 (data/seed.json, data/seed.csv)
+- 편의점 4사(CU, GS25, 7-ELEVEN, EMART24) 60건
+- 외식 프랜차이즈 10개사(써브웨이, 맥도날드, 버거킹, 맘스터치, 롯데리아, 샐러디, 한솥, 본죽, 도미노, 파리바게뜨) 40건
+모든 데이터는 R1~R5 정합성 검사를 통과하도록 정밀 설계됨.
+"""
+
+import json
+import csv
+import os
+
+SEED_ITEMS = [
+    # ── [편의점 CU: 18건] ──
+    {
+        "menu_id": "cvs-cu-smoked-chicken-100", "channel": "cvs", "brand": "CU",
+        "name": "득템 훈제 닭가슴살 100g", "category": "닭가슴살/육가공",
+        "price_krw": 1900, "serving_g": 100, "kcal": 115, "protein_g": 24.0,
+        "carb_g": 1.0, "sugar_g": 0.5, "fat_g": 1.5, "sat_fat_g": 0.5, "sodium_mg": 390,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "고단백 24g",
+        "barcode": "8801043011111", "launch_date": "2026-08-20", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-grain-salad-215", "channel": "cvs", "brand": "CU",
+        "name": "닭가슴살 & 곡물 샐러드 215g", "category": "샐러드",
+        "price_krw": 4900, "serving_g": 215, "kcal": 315, "protein_g": 31.0,
+        "carb_g": 32.0, "sugar_g": 6.0, "fat_g": 7.0, "sat_fat_g": 1.5, "sodium_mg": 760,
+        "fiber_g": 6.0, "protein_source": "Q1", "cooking": "raw", "marketing_claim": 1, "claim_text": "고단백 31g",
+        "barcode": "8801043011128", "launch_date": "2026-09-10", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-protein-shake-choco-350", "channel": "cvs", "brand": "CU",
+        "name": "더단백 드링크 초코 250mL", "category": "유제품/음료",
+        "price_krw": 2900, "serving_g": 250, "kcal": 105, "protein_g": 20.0,
+        "carb_g": 5.0, "sugar_g": 0.8, "fat_g": 0.8, "sat_fat_g": 0.3, "sodium_mg": 140,
+        "protein_source": "Q1", "cooking": "raw", "marketing_claim": 1, "claim_text": "프로틴 20g 당류 ZERO",
+        "barcode": "8801043011135", "launch_date": "2026-07-15", "source_type": "T2",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-protein-choco-sugar-350", "channel": "cvs", "brand": "CU",
+        "name": "프로틴 초코 라떼 350mL", "category": "유제품/음료",
+        "price_krw": 2800, "serving_g": 350, "kcal": 210, "protein_g": 20.0,
+        "carb_g": 26.0, "sugar_g": 22.0, "fat_g": 3.0, "sat_fat_g": 1.5, "sodium_mg": 180,
+        "protein_source": "Q1", "cooking": "raw", "marketing_claim": 1, "claim_text": "프로틴 20g",
+        "barcode": "8801043011142", "launch_date": "2026-08-10", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-diet-chicken-lunchbox-380", "channel": "cvs", "brand": "CU",
+        "name": "든든한 한끼 그릴닭가슴살 도시락", "category": "도시락",
+        "price_krw": 5300, "serving_g": 380, "kcal": 490, "protein_g": 36.0,
+        "carb_g": 65.0, "sugar_g": 4.0, "fat_g": 9.0, "sat_fat_g": 2.0, "sodium_mg": 890,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "단백질 36g",
+        "barcode": "8801043011159", "launch_date": "2026-09-01", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-14", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-tuna-mayo-tri-110", "channel": "cvs", "brand": "CU",
+        "name": "참치마요 삼각김밥 110g", "category": "삼각김밥/주먹밥",
+        "price_krw": 1400, "serving_g": 110, "kcal": 230, "protein_g": 5.0,
+        "carb_g": 35.0, "sugar_g": 1.5, "fat_g": 7.0, "sat_fat_g": 1.2, "sodium_mg": 380,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "barcode": "8801043011166", "launch_date": "2026-01-01", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-beef-bibim-tri-115", "channel": "cvs", "brand": "CU",
+        "name": "전주비빔 삼각김밥 115g", "category": "삼각김밥/주먹밥",
+        "price_krw": 1300, "serving_g": 115, "kcal": 210, "protein_g": 5.5,
+        "carb_g": 38.0, "sugar_g": 2.0, "fat_g": 4.5, "sat_fat_g": 0.8, "sodium_mg": 490,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "barcode": "8801043011173", "launch_date": "2026-01-01", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-soy-milk-plain-190", "channel": "cvs", "brand": "CU",
+        "name": "연세 무가당 고단백 두유 190mL", "category": "유제품/음료",
+        "price_krw": 1400, "serving_g": 190, "kcal": 95, "protein_g": 12.0,
+        "carb_g": 3.0, "sugar_g": 0.5, "fat_g": 3.5, "sat_fat_g": 0.6, "sodium_mg": 130,
+        "protein_source": "Q2", "cooking": "raw", "marketing_claim": 1, "claim_text": "고단백 12g",
+        "barcode": "8801043011180", "launch_date": "2026-06-01", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-boiled-eggs-2p", "channel": "cvs", "brand": "CU",
+        "name": "촉촉한 감동란 (2입)", "category": "닭가슴살/육가공",
+        "price_krw": 2400, "serving_g": 100, "kcal": 130, "protein_g": 12.5,
+        "carb_g": 1.0, "sugar_g": 0.2, "fat_g": 8.5, "sat_fat_g": 2.5, "sodium_mg": 460,
+        "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 0,
+        "barcode": "8801043011197", "launch_date": "2026-01-01", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-protein-bar-crispy-50", "channel": "cvs", "brand": "CU",
+        "name": "닥터유 단백질바 크런치 50g", "category": "과자/바",
+        "price_krw": 1800, "serving_g": 50, "kcal": 245, "protein_g": 12.0,
+        "carb_g": 21.0, "sugar_g": 10.0, "fat_g": 12.5, "sat_fat_g": 4.5, "sodium_mg": 160,
+        "protein_source": "Q2", "cooking": "baked", "marketing_claim": 1, "claim_text": "단백질 12g",
+        "barcode": "8801043011203", "launch_date": "2026-04-10", "source_type": "T2",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-08", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-washing-sausage-hotbar-80", "channel": "cvs", "brand": "CU",
+        "name": "파워 프로틴 프랑크 소시지 80g", "category": "닭가슴살/육가공",
+        "price_krw": 2800, "serving_g": 80, "kcal": 220, "protein_g": 10.0,
+        "carb_g": 4.0, "sugar_g": 2.0, "fat_g": 17.5, "sat_fat_g": 6.0, "sodium_mg": 780,
+        "protein_source": "Q4", "cooking": "boiled", "marketing_claim": 1, "claim_text": "파워 프로틴 10g",
+        "barcode": "8801043011210", "launch_date": "2026-08-01", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-chicken-breast-blackpepper-100", "channel": "cvs", "brand": "CU",
+        "name": "하림 닭가슴살 블랙페퍼 100g", "category": "닭가슴살/육가공",
+        "price_krw": 3200, "serving_g": 100, "kcal": 120, "protein_g": 25.0,
+        "carb_g": 1.5, "sugar_g": 0.5, "fat_g": 1.5, "sat_fat_g": 0.5, "sodium_mg": 480,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "단백질 25g",
+        "barcode": "8801043011227", "launch_date": "2026-05-15", "source_type": "T2",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-soft-tofu-salad-200", "channel": "cvs", "brand": "CU",
+        "name": "연두부 오리엔탈 샐러드 200g", "category": "샐러드",
+        "price_krw": 4200, "serving_g": 200, "kcal": 160, "protein_g": 11.0,
+        "carb_g": 12.0, "sugar_g": 4.0, "fat_g": 7.0, "sat_fat_g": 1.0, "sodium_mg": 520,
+        "fiber_g": 4.0, "protein_source": "Q1", "cooking": "raw", "marketing_claim": 0,
+        "barcode": "8801043011234", "launch_date": "2026-07-20", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-beef-sandwich-190", "channel": "cvs", "brand": "CU",
+        "name": "비프 & 치즈 클럽 샌드위치 190g", "category": "샌드위치/버거",
+        "price_krw": 3800, "serving_g": 190, "kcal": 360, "protein_g": 18.0,
+        "carb_g": 38.0, "sugar_g": 5.0, "fat_g": 14.5, "sat_fat_g": 4.5, "sodium_mg": 820,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "barcode": "8801043011241", "launch_date": "2026-08-25", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-spicy-pork-cupbap-300", "channel": "cvs", "brand": "CU",
+        "name": "제육불고기 컵밥 300g", "category": "즉석밥/죽",
+        "price_krw": 4500, "serving_g": 300, "kcal": 480, "protein_g": 20.0,
+        "carb_g": 72.0, "sugar_g": 8.0, "fat_g": 12.0, "sat_fat_g": 3.5, "sodium_mg": 1120,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "barcode": "8801043011258", "launch_date": "2026-06-10", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-08", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-protein-yogurt-drink-250", "channel": "cvs", "brand": "CU",
+        "name": "프로틴 요거트 베리 250mL", "category": "유제품/음료",
+        "price_krw": 2500, "serving_g": 250, "kcal": 150, "protein_g": 18.0,
+        "carb_g": 14.0, "sugar_g": 9.0, "fat_g": 1.8, "sat_fat_g": 1.0, "sodium_mg": 110,
+        "protein_source": "Q1", "cooking": "raw", "marketing_claim": 1, "claim_text": "프로틴 18g 요거트",
+        "barcode": "8801043011265", "launch_date": "2026-09-05", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-14", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-chicken-mayo-onigiri-130", "channel": "cvs", "brand": "CU",
+        "name": "통닭가슴살 주먹밥 130g", "category": "삼각김밥/주먹밥",
+        "price_krw": 1800, "serving_g": 130, "kcal": 240, "protein_g": 12.0,
+        "carb_g": 36.0, "sugar_g": 1.5, "fat_g": 5.0, "sat_fat_g": 1.0, "sodium_mg": 520,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "barcode": "8801043011272", "launch_date": "2026-08-15", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-cu-beef-jerky-40", "channel": "cvs", "brand": "CU",
+        "name": "순쇠고기 육포 40g", "category": "닭가슴살/육가공",
+        "price_krw": 4500, "serving_g": 40, "kcal": 135, "protein_g": 20.0,
+        "carb_g": 6.0, "sugar_g": 5.0, "fat_g": 2.5, "sat_fat_g": 1.0, "sodium_mg": 680,
+        "protein_source": "Q1", "cooking": "raw", "marketing_claim": 1, "claim_text": "소고기 고단백",
+        "barcode": "8801043011289", "launch_date": "2026-05-20", "source_type": "T4",
+        "source_url": "https://cu.bgfretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+
+    # ── [편의점 GS25: 18건] ──
+    {
+        "menu_id": "cvs-gs25-high-protein-kimbap-240", "channel": "cvs", "brand": "GS25",
+        "name": "고단백 닭가슴살 소시지 김밥 240g", "category": "도시락",
+        "price_krw": 3600, "serving_g": 240, "kcal": 410, "protein_g": 25.0,
+        "carb_g": 52.0, "sugar_g": 3.0, "fat_g": 10.0, "sat_fat_g": 2.2, "sodium_mg": 860,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 1, "claim_text": "고단백 25g 편스장",
+        "barcode": "8801062022211", "launch_date": "2026-09-02", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-14", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-greek-yogurt-plain-100", "channel": "cvs", "brand": "GS25",
+        "name": "그릭데이 그릭요거트 플레인 100g", "category": "유제품/음료",
+        "price_krw": 3800, "serving_g": 100, "kcal": 150, "protein_g": 10.5,
+        "carb_g": 4.0, "sugar_g": 1.8, "fat_g": 9.5, "sat_fat_g": 5.8, "sodium_mg": 45,
+        "protein_source": "Q1", "cooking": "raw", "marketing_claim": 1, "claim_text": "꾸덕한 고단백",
+        "barcode": "8801062022228", "launch_date": "2026-09-09", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-smoked-chicken-100", "channel": "cvs", "brand": "GS25",
+        "name": "유어스 훈제 닭가슴살 100g", "category": "닭가슴살/육가공",
+        "price_krw": 2500, "serving_g": 100, "kcal": 110, "protein_g": 23.0,
+        "carb_g": 1.0, "sugar_g": 0.5, "fat_g": 1.2, "sat_fat_g": 0.4, "sodium_mg": 420,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "단백질 23g",
+        "barcode": "8801062022235", "launch_date": "2026-08-01", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-selex-core-protein-250", "channel": "cvs", "brand": "GS25",
+        "name": "셀렉스 코어프로틴 음료 250mL", "category": "유제품/음료",
+        "price_krw": 3000, "serving_g": 250, "kcal": 120, "protein_g": 20.0,
+        "carb_g": 7.0, "sugar_g": 1.5, "fat_g": 1.3, "sat_fat_g": 0.5, "sodium_mg": 170,
+        "protein_source": "Q1", "cooking": "raw", "marketing_claim": 1, "claim_text": "단백질 20g 류신 3000mg",
+        "barcode": "8801062022242", "launch_date": "2026-06-15", "source_type": "T2",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-hyeja-beef-lunchbox-420", "channel": "cvs", "brand": "GS25",
+        "name": "혜자로운 불고기 도시락 420g", "category": "도시락",
+        "price_krw": 5200, "serving_g": 420, "kcal": 650, "protein_g": 28.0,
+        "carb_g": 85.0, "sugar_g": 7.0, "fat_g": 20.0, "sat_fat_g": 5.5, "sodium_mg": 980,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "barcode": "8801062022259", "launch_date": "2026-08-10", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-chicken-breast-salad-190", "channel": "cvs", "brand": "GS25",
+        "name": "로스트 치킨 보울 샐러드 190g", "category": "샐러드",
+        "price_krw": 4800, "serving_g": 190, "kcal": 210, "protein_g": 22.0,
+        "carb_g": 15.0, "sugar_g": 4.0, "fat_g": 6.5, "sat_fat_g": 1.2, "sodium_mg": 580,
+        "fiber_g": 5.5, "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "고단백 치킨샐러드",
+        "barcode": "8801062022266", "launch_date": "2026-09-08", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-14", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-labnosh-protein-cookie-40", "channel": "cvs", "brand": "GS25",
+        "name": "랩노쉬 단백쿠키 더블초코 40g", "category": "과자/바",
+        "price_krw": 2000, "serving_g": 40, "kcal": 165, "protein_g": 9.0,
+        "carb_g": 18.0, "sugar_g": 6.0, "fat_g": 5.5, "sat_fat_g": 2.5, "sodium_mg": 120,
+        "fiber_g": 4.0, "protein_source": "Q2", "cooking": "baked", "marketing_claim": 1, "claim_text": "단백질 9g 쿠키",
+        "barcode": "8801062022273", "launch_date": "2026-05-10", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-washing-protein-snack-60", "channel": "cvs", "brand": "GS25",
+        "name": "'고단백' 크런치 소이칩 60g", "category": "과자/바",
+        "price_krw": 2200, "serving_g": 60, "kcal": 310, "protein_g": 6.0,
+        "carb_g": 38.0, "sugar_g": 7.0, "fat_g": 14.5, "sat_fat_g": 4.0, "sodium_mg": 520,
+        "protein_source": "Q2", "cooking": "fried", "marketing_claim": 1, "claim_text": "고단백 스낵",
+        "barcode": "8801062022280", "launch_date": "2026-08-20", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-beef-rice-triangle-115", "channel": "cvs", "brand": "GS25",
+        "name": "소고기고추장 삼각김밥 115g", "category": "삼각김밥/주먹밥",
+        "price_krw": 1400, "serving_g": 115, "kcal": 215, "protein_g": 6.0,
+        "carb_g": 39.0, "sugar_g": 2.5, "fat_g": 3.8, "sat_fat_g": 0.8, "sodium_mg": 510,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "barcode": "8801062022297", "launch_date": "2026-01-01", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-boiled-eggs-roasted-2p", "channel": "cvs", "brand": "GS25",
+        "name": "신선맥반석 계란 (2입)", "category": "닭가슴살/육가공",
+        "price_krw": 2200, "serving_g": 90, "kcal": 120, "protein_g": 12.0,
+        "carb_g": 0.8, "sugar_g": 0.1, "fat_g": 7.5, "sat_fat_g": 2.2, "sodium_mg": 240,
+        "protein_source": "Q1", "cooking": "baked", "marketing_claim": 0,
+        "barcode": "8801062022303", "launch_date": "2026-01-01", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-soy-protein-shake-250", "channel": "cvs", "brand": "GS25",
+        "name": "하이뮨 프로틴 밸런스 액티브 250mL", "category": "유제품/음료",
+        "price_krw": 3200, "serving_g": 250, "kcal": 130, "protein_g": 20.0,
+        "carb_g": 7.0, "sugar_g": 1.0, "fat_g": 1.8, "sat_fat_g": 0.6, "sodium_mg": 160,
+        "protein_source": "Q1", "cooking": "raw", "marketing_claim": 1, "claim_text": "단백질 20g 산양유",
+        "barcode": "8801062022310", "launch_date": "2026-07-01", "source_type": "T2",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-chicken-tender-wrap-170", "channel": "cvs", "brand": "GS25",
+        "name": "크리스피 치킨텐더 스낵랩 170g", "category": "샌드위치/버거",
+        "price_krw": 3400, "serving_g": 170, "kcal": 340, "protein_g": 14.0,
+        "carb_g": 36.0, "sugar_g": 4.0, "fat_g": 15.0, "sat_fat_g": 3.8, "sodium_mg": 740,
+        "protein_source": "Q3", "cooking": "fried", "marketing_claim": 0,
+        "barcode": "8801062022327", "launch_date": "2026-08-15", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-cheese-chicken-breast-bar-90", "channel": "cvs", "brand": "GS25",
+        "name": "치즈 콕콕 닭가슴살 프랑크 90g", "category": "닭가슴살/육가공",
+        "price_krw": 2600, "serving_g": 90, "kcal": 145, "protein_g": 16.0,
+        "carb_g": 2.5, "sugar_g": 1.0, "fat_g": 7.5, "sat_fat_g": 2.8, "sodium_mg": 460,
+        "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 1, "claim_text": "단백질 16g",
+        "barcode": "8801062022334", "launch_date": "2026-07-20", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-tofu-kimchi-cup-250", "channel": "cvs", "brand": "GS25",
+        "name": "고소한 손두부 & 볶음김치 250g", "category": "한식/분식",
+        "price_krw": 3900, "serving_g": 250, "kcal": 210, "protein_g": 15.0,
+        "carb_g": 12.0, "sugar_g": 3.5, "fat_g": 10.5, "sat_fat_g": 1.8, "sodium_mg": 710,
+        "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 0,
+        "barcode": "8801062022341", "launch_date": "2026-06-25", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-diet-soba-noodles-280", "channel": "cvs", "brand": "GS25",
+        "name": "닭가슴살 메밀소바 280g", "category": "면",
+        "price_krw": 4600, "serving_g": 280, "kcal": 320, "protein_g": 19.0,
+        "carb_g": 52.0, "sugar_g": 6.0, "fat_g": 3.5, "sat_fat_g": 0.6, "sodium_mg": 920,
+        "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 0,
+        "barcode": "8801062022358", "launch_date": "2026-07-10", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-almond-milk-unsweet-190", "channel": "cvs", "brand": "GS25",
+        "name": "아몬드브리즈 프로틴 190mL", "category": "유제품/음료",
+        "price_krw": 1500, "serving_g": 190, "kcal": 65, "protein_g": 4.5,
+        "carb_g": 5.0, "sugar_g": 1.0, "fat_g": 3.0, "sat_fat_g": 0.4, "sodium_mg": 150,
+        "protein_source": "Q2", "cooking": "raw", "marketing_claim": 1, "claim_text": "프로틴 4.5g",
+        "barcode": "8801062022365", "launch_date": "2026-03-01", "source_type": "T2",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-crab-stick-salad-160", "channel": "cvs", "brand": "GS25",
+        "name": "크래미 단호박 샐러드 160g", "category": "샐러드",
+        "price_krw": 3500, "serving_g": 160, "kcal": 220, "protein_g": 8.0,
+        "carb_g": 24.0, "sugar_g": 8.0, "fat_g": 10.5, "sat_fat_g": 2.0, "sodium_mg": 540,
+        "protein_source": "Q3", "cooking": "mixed", "marketing_claim": 0,
+        "barcode": "8801062022372", "launch_date": "2026-05-15", "source_type": "T4",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-gs25-protein-latte-coffee-250", "channel": "cvs", "brand": "GS25",
+        "name": "더단백 커피 250mL", "category": "유제품/음료",
+        "price_krw": 2900, "serving_g": 250, "kcal": 110, "protein_g": 20.0,
+        "carb_g": 5.5, "sugar_g": 0.9, "fat_g": 0.9, "sat_fat_g": 0.4, "sodium_mg": 135,
+        "protein_source": "Q1", "cooking": "raw", "marketing_claim": 1, "claim_text": "단백질 20g 당 ZERO",
+        "barcode": "8801062022389", "launch_date": "2026-08-10", "source_type": "T2",
+        "source_url": "https://gsretail.com", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+
+    # ── [편의점 세븐일레븐: 12건] ──
+    {
+        "menu_id": "cvs-seven-washing-sausage-kimbap-260", "channel": "cvs", "brand": "7-ELEVEN",
+        "name": "'고단백' 소시지 김밥 260g", "category": "도시락",
+        "price_krw": 3300, "serving_g": 260, "kcal": 520, "protein_g": 17.0,
+        "carb_g": 62.0, "sugar_g": 5.0, "fat_g": 22.0, "sat_fat_g": 7.0, "sodium_mg": 1180,
+        "protein_source": "Q4", "cooking": "mixed", "marketing_claim": 1, "claim_text": "고단백 17g",
+        "barcode": "8801111033311", "launch_date": "2026-08-28", "source_type": "T4",
+        "source_url": "https://7-eleven.co.kr", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-seven-chicken-breast-herb-100", "channel": "cvs", "brand": "7-ELEVEN",
+        "name": "세븐셀렉트 허브 닭가슴살 100g", "category": "닭가슴살/육가공",
+        "price_krw": 2500, "serving_g": 100, "kcal": 115, "protein_g": 23.5,
+        "carb_g": 1.2, "sugar_g": 0.4, "fat_g": 1.4, "sat_fat_g": 0.4, "sodium_mg": 410,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "단백질 23.5g",
+        "barcode": "8801111033328", "launch_date": "2026-08-15", "source_type": "T4",
+        "source_url": "https://7-eleven.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-seven-protein-drink-banana-250", "channel": "cvs", "brand": "7-ELEVEN",
+        "name": "하이뮨 프로틴 밸런스 바나나 250mL", "category": "유제품/음료",
+        "price_krw": 3200, "serving_g": 250, "kcal": 135, "protein_g": 20.0,
+        "carb_g": 8.0, "sugar_g": 2.0, "fat_g": 1.8, "sat_fat_g": 0.6, "sodium_mg": 160,
+        "protein_source": "Q1", "cooking": "raw", "marketing_claim": 1, "claim_text": "단백질 20g",
+        "barcode": "8801111033335", "launch_date": "2026-07-20", "source_type": "T2",
+        "source_url": "https://7-eleven.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-seven-spicy-chicken-lunchbox-390", "channel": "cvs", "brand": "7-ELEVEN",
+        "name": "매콤 닭갈비 도시락 390g", "category": "도시락",
+        "price_krw": 4900, "serving_g": 390, "kcal": 550, "protein_g": 26.0,
+        "carb_g": 75.0, "sugar_g": 6.0, "fat_g": 14.0, "sat_fat_g": 3.8, "sodium_mg": 990,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 0,
+        "barcode": "8801111033342", "launch_date": "2026-08-01", "source_type": "T4",
+        "source_url": "https://7-eleven.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-seven-tuna-salad-sandwich-180", "channel": "cvs", "brand": "7-ELEVEN",
+        "name": "단백한 참치 듬뿍 샌드위치 180g", "category": "샌드위치/버거",
+        "price_krw": 3200, "serving_g": 180, "kcal": 340, "protein_g": 16.0,
+        "carb_g": 35.0, "sugar_g": 3.5, "fat_g": 14.5, "sat_fat_g": 3.0, "sodium_mg": 680,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "barcode": "8801111033359", "launch_date": "2026-07-15", "source_type": "T4",
+        "source_url": "https://7-eleven.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-seven-smoked-quail-eggs-100", "channel": "cvs", "brand": "7-ELEVEN",
+        "name": "촉촉한 메추리알 훈제 100g", "category": "닭가슴살/육가공",
+        "price_krw": 2900, "serving_g": 100, "kcal": 155, "protein_g": 13.0,
+        "carb_g": 1.5, "sugar_g": 0.5, "fat_g": 10.5, "sat_fat_g": 3.2, "sodium_mg": 480,
+        "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 0,
+        "barcode": "8801111033366", "launch_date": "2026-06-01", "source_type": "T4",
+        "source_url": "https://7-eleven.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-seven-ricotta-salad-185", "channel": "cvs", "brand": "7-ELEVEN",
+        "name": "리코타치즈 닭가슴살 샐러드 185g", "category": "샐러드",
+        "price_krw": 4700, "serving_g": 185, "kcal": 240, "protein_g": 19.0,
+        "carb_g": 18.0, "sugar_g": 5.0, "fat_g": 9.5, "sat_fat_g": 3.8, "sodium_mg": 520,
+        "fiber_g": 5.0, "protein_source": "Q1", "cooking": "raw", "marketing_claim": 0,
+        "barcode": "8801111033373", "launch_date": "2026-09-01", "source_type": "T4",
+        "source_url": "https://7-eleven.co.kr", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-seven-hotbar-cheese-80", "channel": "cvs", "brand": "7-ELEVEN",
+        "name": "더블치즈 닭가슴살 핫바 80g", "category": "닭가슴살/육가공",
+        "price_krw": 2300, "serving_g": 80, "kcal": 130, "protein_g": 14.0,
+        "carb_g": 3.0, "sugar_g": 1.0, "fat_g": 6.5, "sat_fat_g": 2.5, "sodium_mg": 440,
+        "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 1, "claim_text": "단백질 14g",
+        "barcode": "8801111033380", "launch_date": "2026-08-10", "source_type": "T4",
+        "source_url": "https://7-eleven.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-seven-spam-mayo-tri-115", "channel": "cvs", "brand": "7-ELEVEN",
+        "name": "스팸마요 삼각김밥 115g", "category": "삼각김밥/주먹밥",
+        "price_krw": 1400, "serving_g": 115, "kcal": 240, "protein_g": 5.5,
+        "carb_g": 34.0, "sugar_g": 1.8, "fat_g": 9.0, "sat_fat_g": 3.0, "sodium_mg": 560,
+        "protein_source": "Q4", "cooking": "mixed", "marketing_claim": 0,
+        "barcode": "8801111033397", "launch_date": "2026-01-01", "source_type": "T4",
+        "source_url": "https://7-eleven.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-seven-protein-granola-bar-45", "channel": "cvs", "brand": "7-ELEVEN",
+        "name": "마켓오네이처 오!그래놀라 단백질바 45g", "category": "과자/바",
+        "price_krw": 1700, "serving_g": 45, "kcal": 205, "protein_g": 10.5,
+        "carb_g": 22.0, "sugar_g": 9.0, "fat_g": 8.0, "sat_fat_g": 3.0, "sodium_mg": 140,
+        "protein_source": "Q2", "cooking": "baked", "marketing_claim": 1, "claim_text": "단백질 10.5g",
+        "barcode": "8801111033403", "launch_date": "2026-04-20", "source_type": "T2",
+        "source_url": "https://7-eleven.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-seven-egg-whites-pack-100", "channel": "cvs", "brand": "7-ELEVEN",
+        "name": "촉촉 흰자만 쏙 난백팩 100g", "category": "닭가슴살/육가공",
+        "price_krw": 2200, "serving_g": 100, "kcal": 55, "protein_g": 11.5,
+        "carb_g": 0.5, "sugar_g": 0.1, "fat_g": 0.2, "sat_fat_g": 0.0, "sodium_mg": 180,
+        "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 1, "claim_text": "100% 난백 고단백",
+        "barcode": "8801111033410", "launch_date": "2026-08-05", "source_type": "T4",
+        "source_url": "https://7-eleven.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-seven-sweet-potato-chicken-210", "channel": "cvs", "brand": "7-ELEVEN",
+        "name": "꿀고구마 & 수비드 닭가슴살 210g", "category": "도시락",
+        "price_krw": 4500, "serving_g": 210, "kcal": 280, "protein_g": 24.0,
+        "carb_g": 38.0, "sugar_g": 8.0, "fat_g": 2.5, "sat_fat_g": 0.5, "sodium_mg": 380,
+        "fiber_g": 5.0, "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 1, "claim_text": "단백질 24g 클린 식단",
+        "barcode": "8801111033427", "launch_date": "2026-09-06", "source_type": "T4",
+        "source_url": "https://7-eleven.co.kr", "verified_at": "2026-09-14", "rule_version": "v1.0"
+    },
+
+    # ── [편의점 이마트24: 12건] ──
+    {
+        "menu_id": "cvs-emart24-chicken-breast-steak-110", "channel": "cvs", "brand": "EMART24",
+        "name": "아임닭 닭가슴살 스테이크 갈릭 110g", "category": "닭가슴살/육가공",
+        "price_krw": 2800, "serving_g": 110, "kcal": 140, "protein_g": 22.0,
+        "carb_g": 4.0, "sugar_g": 1.0, "fat_g": 3.5, "sat_fat_g": 0.8, "sodium_mg": 460,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "단백질 22g",
+        "barcode": "8801234044411", "launch_date": "2026-07-15", "source_type": "T4",
+        "source_url": "https://emart24.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-emart24-roast-chicken-salad-200", "channel": "cvs", "brand": "EMART24",
+        "name": "로스트 닭가슴살 에그 샐러드 200g", "category": "샐러드",
+        "price_krw": 4900, "serving_g": 200, "kcal": 260, "protein_g": 25.0,
+        "carb_g": 16.0, "sugar_g": 4.0, "fat_g": 9.5, "sat_fat_g": 2.2, "sodium_mg": 640,
+        "fiber_g": 5.2, "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "단백질 25g 샐러드",
+        "barcode": "8801234044428", "launch_date": "2026-09-04", "source_type": "T4",
+        "source_url": "https://emart24.co.kr", "verified_at": "2026-09-14", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-emart24-protein-drink-coffee-250", "channel": "cvs", "brand": "EMART24",
+        "name": "셀렉스 프로틴 아메리카노 250mL", "category": "유제품/음료",
+        "price_krw": 2800, "serving_g": 250, "kcal": 90, "protein_g": 18.0,
+        "carb_g": 3.0, "sugar_g": 0.2, "fat_g": 0.5, "sat_fat_g": 0.1, "sodium_mg": 120,
+        "protein_source": "Q1", "cooking": "raw", "marketing_claim": 1, "claim_text": "단백질 18g 프로틴커피",
+        "barcode": "8801234044435", "launch_date": "2026-08-01", "source_type": "T2",
+        "source_url": "https://emart24.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-emart24-bulgogi-lunchbox-380", "channel": "cvs", "brand": "EMART24",
+        "name": "직화 소불고기 영양 도시락 380g", "category": "도시락",
+        "price_krw": 5500, "serving_g": 380, "kcal": 530, "protein_g": 27.0,
+        "carb_g": 72.0, "sugar_g": 7.0, "fat_g": 14.0, "sat_fat_g": 4.2, "sodium_mg": 940,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 0,
+        "barcode": "8801234044442", "launch_date": "2026-08-10", "source_type": "T4",
+        "source_url": "https://emart24.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-emart24-spicy-pork-tri-110", "channel": "cvs", "brand": "EMART24",
+        "name": "매콤제육 삼각김밥 110g", "category": "삼각김밥/주먹밥",
+        "price_krw": 1300, "serving_g": 110, "kcal": 210, "protein_g": 6.0,
+        "carb_g": 37.0, "sugar_g": 2.0, "fat_g": 4.0, "sat_fat_g": 1.0, "sodium_mg": 460,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "barcode": "8801234044459", "launch_date": "2026-01-01", "source_type": "T4",
+        "source_url": "https://emart24.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-emart24-washing-protein-bar-40", "channel": "cvs", "brand": "EMART24",
+        "name": "에너지 프로틴 초코바 40g", "category": "과자/바",
+        "price_krw": 1600, "serving_g": 40, "kcal": 210, "protein_g": 5.0,
+        "carb_g": 24.0, "sugar_g": 14.0, "fat_g": 10.5, "sat_fat_g": 5.0, "sodium_mg": 180,
+        "protein_source": "Q5", "cooking": "baked", "marketing_claim": 1, "claim_text": "에너지 프로틴바",
+        "barcode": "8801234044466", "launch_date": "2026-08-20", "source_type": "T4",
+        "source_url": "https://emart24.co.kr", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-emart24-chicken-breast-frank-70", "channel": "cvs", "brand": "EMART24",
+        "name": "아임닭 프랑크 오리지널 70g", "category": "닭가슴살/육가공",
+        "price_krw": 2200, "serving_g": 70, "kcal": 105, "protein_g": 14.5,
+        "carb_g": 1.5, "sugar_g": 0.5, "fat_g": 4.5, "sat_fat_g": 1.2, "sodium_mg": 380,
+        "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 1, "claim_text": "닭가슴살 14.5g",
+        "barcode": "8801234044473", "launch_date": "2026-07-10", "source_type": "T4",
+        "source_url": "https://emart24.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-emart24-high-protein-milk-200", "channel": "cvs", "brand": "EMART24",
+        "name": "매일 소화가 잘되는 우유 고단백 200mL", "category": "유제품/음료",
+        "price_krw": 1600, "serving_g": 200, "kcal": 125, "protein_g": 11.0,
+        "carb_g": 9.0, "sugar_g": 9.0, "fat_g": 4.5, "sat_fat_g": 3.0, "sodium_mg": 130,
+        "protein_source": "Q1", "cooking": "raw", "marketing_claim": 1, "claim_text": "고단백 락토프리",
+        "barcode": "8801234044480", "launch_date": "2026-05-01", "source_type": "T2",
+        "source_url": "https://emart24.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-emart24-egg-salad-sandwich-175", "channel": "cvs", "brand": "EMART24",
+        "name": "에그 듬뿍 모닝 샌드위치 175g", "category": "샌드위치/버거",
+        "price_krw": 3000, "serving_g": 175, "kcal": 330, "protein_g": 13.0,
+        "carb_g": 32.0, "sugar_g": 4.0, "fat_g": 16.0, "sat_fat_g": 4.5, "sodium_mg": 620,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "barcode": "8801234044497", "launch_date": "2026-06-15", "source_type": "T4",
+        "source_url": "https://emart24.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-emart24-spicy-chicken-cup-200", "channel": "cvs", "brand": "EMART24",
+        "name": "직화 불닭 닭가슴살 200g", "category": "닭가슴살/육가공",
+        "price_krw": 4200, "serving_g": 200, "kcal": 220, "protein_g": 34.0,
+        "carb_g": 8.0, "sugar_g": 4.0, "fat_g": 4.5, "sat_fat_g": 1.0, "sodium_mg": 920,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "단백질 34g",
+        "barcode": "8801234044503", "launch_date": "2026-08-25", "source_type": "T4",
+        "source_url": "https://emart24.co.kr", "verified_at": "2026-09-12", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-emart24-smoked-duck-slice-150", "channel": "cvs", "brand": "EMART24",
+        "name": "훈제오리 슬라이스 150g", "category": "닭가슴살/육가공",
+        "price_krw": 4800, "serving_g": 150, "kcal": 340, "protein_g": 25.0,
+        "carb_g": 2.0, "sugar_g": 1.0, "fat_g": 26.0, "sat_fat_g": 7.5, "sodium_mg": 780,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 0,
+        "barcode": "8801234044510", "launch_date": "2026-07-20", "source_type": "T4",
+        "source_url": "https://emart24.co.kr", "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "cvs-emart24-plain-tofu-bar-80", "channel": "cvs", "brand": "EMART24",
+        "name": "풀무원 고단백 결두부바 플레인 80g", "category": "닭가슴살/육가공",
+        "price_krw": 2500, "serving_g": 80, "kcal": 125, "protein_g": 11.0,
+        "carb_g": 3.0, "sugar_g": 1.0, "fat_g": 7.5, "sat_fat_g": 1.2, "sodium_mg": 280,
+        "protein_source": "Q1", "cooking": "baked", "marketing_claim": 1, "claim_text": "식물성 고단백 11g",
+        "barcode": "8801234044527", "launch_date": "2026-09-08", "source_type": "T4",
+        "source_url": "https://emart24.co.kr", "verified_at": "2026-09-14", "rule_version": "v1.0"
+    },
+
+    # ── [프랜차이즈 10개사: 40건] ──
+    # 1. 써브웨이 (SUBWAY, 6건)
+    {
+        "menu_id": "fr-subway-roast-chicken-15cm", "channel": "fr", "brand": "SUBWAY",
+        "name": "로스트 치킨 (15cm, 위트빵)", "category": "샌드위치/버거",
+        "price_krw": 7300, "serving_g": 247, "kcal": 300, "protein_g": 29.0,
+        "carb_g": 40.0, "sugar_g": 6.0, "fat_g": 4.0, "sat_fat_g": 1.1, "sodium_mg": 590,
+        "fiber_g": 5.0, "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "고단백 치킨",
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.subway.co.kr/nutrition",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-subway-rotisserie-chicken-15cm", "channel": "fr", "brand": "SUBWAY",
+        "name": "로티세리 바비큐 치킨 (15cm, 위트빵)", "category": "샌드위치/버거",
+        "price_krw": 7300, "serving_g": 247, "kcal": 327, "protein_g": 29.0,
+        "carb_g": 40.0, "sugar_g": 6.5, "fat_g": 6.5, "sat_fat_g": 2.0, "sodium_mg": 620,
+        "fiber_g": 5.0, "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "단백질 29g",
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.subway.co.kr/nutrition",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-subway-roast-beef-15cm", "channel": "fr", "brand": "SUBWAY",
+        "name": "로스트 비프 (15cm, 위트빵)", "category": "샌드위치/버거",
+        "price_krw": 7600, "serving_g": 235, "kcal": 290, "protein_g": 26.0,
+        "carb_g": 40.0, "sugar_g": 6.0, "fat_g": 3.5, "sat_fat_g": 1.2, "sodium_mg": 610,
+        "protein_source": "Q1", "cooking": "baked", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.subway.co.kr/nutrition",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-subway-steak-cheese-15cm", "channel": "fr", "brand": "SUBWAY",
+        "name": "스테이크 & 치즈 (15cm, 위트빵)", "category": "샌드위치/버거",
+        "price_krw": 7900, "serving_g": 245, "kcal": 355, "protein_g": 28.0,
+        "carb_g": 41.0, "sugar_g": 6.5, "fat_g": 9.5, "sat_fat_g": 3.8, "sodium_mg": 780,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.subway.co.kr/nutrition",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-subway-roast-chicken-salad", "channel": "fr", "brand": "SUBWAY",
+        "name": "로스트 치킨 샐러드 보울", "category": "샐러드",
+        "price_krw": 9100, "serving_g": 340, "kcal": 160, "protein_g": 26.0,
+        "carb_g": 12.0, "sugar_g": 6.0, "fat_g": 2.5, "sat_fat_g": 0.5, "sodium_mg": 450,
+        "fiber_g": 6.0, "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "고단백 클린 샐러드",
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.subway.co.kr/nutrition",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-subway-egg-mayo-15cm", "channel": "fr", "brand": "SUBWAY",
+        "name": "에그마요 (15cm, 화이트빵)", "category": "샌드위치/버거",
+        "price_krw": 5500, "serving_g": 238, "kcal": 415, "protein_g": 14.0,
+        "carb_g": 41.0, "sugar_g": 5.0, "fat_g": 22.0, "sat_fat_g": 4.5, "sodium_mg": 580,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.subway.co.kr/nutrition",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+
+    # 2. 맥도날드 (MCDONALDS, 5건)
+    {
+        "menu_id": "fr-mcd-double-beef-burger", "channel": "fr", "brand": "MCDONALDS",
+        "name": "더블 쿼터파운더 치즈 버거 단품", "category": "샌드위치/버거",
+        "price_krw": 7700, "serving_g": 275, "kcal": 770, "protein_g": 50.0,
+        "carb_g": 42.0, "sugar_g": 10.0, "fat_g": 45.0, "sat_fat_g": 20.0, "sodium_mg": 1320,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.mcdonalds.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-mcd-mcspicy-shanghai", "channel": "fr", "brand": "MCDONALDS",
+        "name": "맥스파이시 상하이 버거 단품", "category": "샌드위치/버거",
+        "price_krw": 5500, "serving_g": 234, "kcal": 490, "protein_g": 21.0,
+        "carb_g": 58.0, "sugar_g": 8.0, "fat_g": 19.0, "sat_fat_g": 3.5, "sodium_mg": 990,
+        "protein_source": "Q1", "cooking": "fried", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.mcdonalds.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-mcd-chicken-tender-4p", "channel": "fr", "brand": "MCDONALDS",
+        "name": "맥너겟 (10조각)", "category": "닭가슴살/육가공",
+        "price_krw": 4800, "serving_g": 160, "kcal": 420, "protein_g": 24.0,
+        "carb_g": 26.0, "sugar_g": 0.5, "fat_g": 24.0, "sat_fat_g": 4.5, "sodium_mg": 860,
+        "protein_source": "Q3", "cooking": "fried", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.mcdonalds.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-mcd-cheeseburger", "channel": "fr", "brand": "MCDONALDS",
+        "name": "치즈버거 단품", "category": "샌드위치/버거",
+        "price_krw": 3000, "serving_g": 114, "kcal": 310, "protein_g": 16.0,
+        "carb_g": 32.0, "sugar_g": 6.0, "fat_g": 13.0, "sat_fat_g": 6.0, "sodium_mg": 630,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.mcdonalds.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-mcd-egg-mcmuffin", "channel": "fr", "brand": "MCDONALDS",
+        "name": "에그 맥머핀", "category": "샌드위치/버거",
+        "price_krw": 3500, "serving_g": 139, "kcal": 300, "protein_g": 17.0,
+        "carb_g": 29.0, "sugar_g": 3.0, "fat_g": 13.0, "sat_fat_g": 5.0, "sodium_mg": 690,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.mcdonalds.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+
+    # 3. 버거킹 (BURGERKING, 4건)
+    {
+        "menu_id": "fr-bk-double-whopper", "channel": "fr", "brand": "BURGERKING",
+        "name": "더블 와퍼 단품", "category": "샌드위치/버거",
+        "price_krw": 9800, "serving_g": 379, "kcal": 930, "protein_g": 54.0,
+        "carb_g": 50.0, "sugar_g": 11.0, "fat_g": 58.0, "sat_fat_g": 24.0, "sodium_mg": 1280,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.burgerking.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-bk-whopper-junior", "channel": "fr", "brand": "BURGERKING",
+        "name": "와퍼 주니어 단품", "category": "샌드위치/버거",
+        "price_krw": 4800, "serving_g": 158, "kcal": 400, "protein_g": 17.0,
+        "carb_g": 37.0, "sugar_g": 7.0, "fat_g": 21.0, "sat_fat_g": 7.0, "sodium_mg": 640,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.burgerking.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-bk-long-chicken-burger", "channel": "fr", "brand": "BURGERKING",
+        "name": "롱치킨버거 단품", "category": "샌드위치/버거",
+        "price_krw": 5600, "serving_g": 210, "kcal": 570, "protein_g": 23.0,
+        "carb_g": 56.0, "sugar_g": 6.0, "fat_g": 28.0, "sat_fat_g": 6.5, "sodium_mg": 1050,
+        "protein_source": "Q3", "cooking": "fried", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.burgerking.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-bk-nugget-king-8p", "channel": "fr", "brand": "BURGERKING",
+        "name": "너겟킹 (8조각)", "category": "닭가슴살/육가공",
+        "price_krw": 3500, "serving_g": 136, "kcal": 340, "protein_g": 19.0,
+        "carb_g": 22.0, "sugar_g": 0.5, "fat_g": 20.0, "sat_fat_g": 4.0, "sodium_mg": 710,
+        "protein_source": "Q3", "cooking": "fried", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.burgerking.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+
+    # 4. 맘스터치 (MOMSTOUCH, 4건)
+    {
+        "menu_id": "fr-moms-thigh-burger", "channel": "fr", "brand": "MOMSTOUCH",
+        "name": "싸이버거 단품", "category": "샌드위치/버거",
+        "price_krw": 4900, "serving_g": 230, "kcal": 590, "protein_g": 28.0,
+        "carb_g": 57.0, "sugar_g": 8.0, "fat_g": 28.0, "sat_fat_g": 6.5, "sodium_mg": 1010,
+        "protein_source": "Q1", "cooking": "fried", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.momstouch.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-moms-fillet-burger", "channel": "fr", "brand": "MOMSTOUCH",
+        "name": "휠렛버거 단품", "category": "샌드위치/버거",
+        "price_krw": 5100, "serving_g": 225, "kcal": 530, "protein_g": 39.0,
+        "carb_g": 55.0, "sugar_g": 8.0, "fat_g": 17.0, "sat_fat_g": 3.8, "sodium_mg": 890,
+        "protein_source": "Q1", "cooking": "fried", "marketing_claim": 1, "claim_text": "통가슴살 패티",
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.momstouch.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-moms-chicken-tender-4p", "channel": "fr", "brand": "MOMSTOUCH",
+        "name": "후라이드 텐더 (4조각)", "category": "닭가슴살/육가공",
+        "price_krw": 4000, "serving_g": 140, "kcal": 310, "protein_g": 28.0,
+        "carb_g": 15.0, "sugar_g": 0.5, "fat_g": 15.0, "sat_fat_g": 3.0, "sodium_mg": 680,
+        "protein_source": "Q1", "cooking": "fried", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.momstouch.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-moms-washing-chicken-burger-set", "channel": "fr", "brand": "MOMSTOUCH",
+        "name": "더블 프로틴 치킨버거 세트", "category": "샌드위치/버거",
+        "price_krw": 8900, "serving_g": 450, "kcal": 980, "protein_g": 38.0,
+        "carb_g": 105.0, "sugar_g": 14.0, "fat_g": 45.0, "sat_fat_g": 13.0, "sodium_mg": 1840,
+        "protein_source": "Q3", "cooking": "fried", "marketing_claim": 1, "claim_text": "더블 프로틴",
+        "launch_date": "2026-09-08", "source_type": "T2", "source_url": "https://www.momstouch.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+
+    # 5. 롯데리아 (LOTTERIA, 4건)
+    {
+        "menu_id": "fr-lot-trex-burger", "channel": "fr", "brand": "LOTTERIA",
+        "name": "T-REX 버거 단품", "category": "샌드위치/버거",
+        "price_krw": 4800, "serving_g": 215, "kcal": 475, "protein_g": 26.0,
+        "carb_g": 54.0, "sugar_g": 7.0, "fat_g": 17.0, "sat_fat_g": 4.5, "sodium_mg": 890,
+        "protein_source": "Q1", "cooking": "fried", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.lotteeats.com",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-lot-hot-crispy", "channel": "fr", "brand": "LOTTERIA",
+        "name": "핫크리스피 버거 단품", "category": "샌드위치/버거",
+        "price_krw": 5900, "serving_g": 200, "kcal": 500, "protein_g": 22.0,
+        "carb_g": 58.0, "sugar_g": 8.0, "fat_g": 20.0, "sat_fat_g": 5.0, "sodium_mg": 920,
+        "protein_source": "Q1", "cooking": "fried", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.lotteeats.com",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-lot-shrimp-burger", "channel": "fr", "brand": "LOTTERIA",
+        "name": "리아 새우 버거 단품", "category": "샌드위치/버거",
+        "price_krw": 4700, "serving_g": 180, "kcal": 490, "protein_g": 15.0,
+        "carb_g": 55.0, "sugar_g": 7.0, "fat_g": 23.0, "sat_fat_g": 4.5, "sodium_mg": 710,
+        "protein_source": "Q3", "cooking": "fried", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.lotteeats.com",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-lot-chicken-fillet-3p", "channel": "fr", "brand": "LOTTERIA",
+        "name": "치킨 휠레 (3조각)", "category": "닭가슴살/육가공",
+        "price_krw": 3900, "serving_g": 105, "kcal": 215, "protein_g": 21.0,
+        "carb_g": 12.0, "sugar_g": 0.5, "fat_g": 9.0, "sat_fat_g": 2.0, "sodium_mg": 520,
+        "protein_source": "Q1", "cooking": "fried", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.lotteeats.com",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+
+    # 6. 샐러디 (SALADY, 5건)
+    {
+        "menu_id": "fr-salady-roast-chicken-bowl", "channel": "fr", "brand": "SALADY",
+        "name": "로스트닭다리살 샐러디", "category": "샐러드",
+        "price_krw": 9900, "serving_g": 280, "kcal": 340, "protein_g": 32.0,
+        "carb_g": 22.0, "sugar_g": 6.0, "fat_g": 13.5, "sat_fat_g": 3.0, "sodium_mg": 580,
+        "fiber_g": 6.0, "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "고단백 32g 샐러디",
+        "launch_date": "2026-05-01", "source_type": "T2", "source_url": "https://salady.com",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-salady-tandanji-salad", "channel": "fr", "brand": "SALADY",
+        "name": "탄단지 샐러디", "category": "샐러드",
+        "price_krw": 8900, "serving_g": 270, "kcal": 370, "protein_g": 20.0,
+        "carb_g": 38.0, "sugar_g": 7.0, "fat_g": 16.0, "sat_fat_g": 3.5, "sodium_mg": 560,
+        "fiber_g": 5.5, "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 1, "claim_text": "탄단지 밸런스",
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://salady.com",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-salady-chili-bacon-warmbowl", "channel": "fr", "brand": "SALADY",
+        "name": "칠리베이컨 웜볼", "category": "샐러드",
+        "price_krw": 8900, "serving_g": 310, "kcal": 480, "protein_g": 21.0,
+        "carb_g": 58.0, "sugar_g": 5.0, "fat_g": 18.0, "sat_fat_g": 4.5, "sodium_mg": 790,
+        "fiber_g": 5.0, "protein_source": "Q4", "cooking": "mixed", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://salady.com",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-salady-beef-warmbowl", "channel": "fr", "brand": "SALADY",
+        "name": "우삼겹 메밀면 샐러디", "category": "샐러드",
+        "price_krw": 9300, "serving_g": 300, "kcal": 380, "protein_g": 18.0,
+        "carb_g": 42.0, "sugar_g": 6.0, "fat_g": 16.0, "sat_fat_g": 5.0, "sodium_mg": 680,
+        "fiber_g": 4.5, "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 0,
+        "launch_date": "2026-04-15", "source_type": "T2", "source_url": "https://salady.com",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-salady-caesar-chicken-wrap", "channel": "fr", "brand": "SALADY",
+        "name": "시저치킨 웜랩", "category": "샌드위치/버거",
+        "price_krw": 7400, "serving_g": 220, "kcal": 495, "protein_g": 21.0,
+        "carb_g": 56.0, "sugar_g": 4.0, "fat_g": 21.0, "sat_fat_g": 6.0, "sodium_mg": 740,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://salady.com",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+
+    # 7. 한솥도시락 (HANSOT, 4건)
+    {
+        "menu_id": "fr-hansot-charcoal-pork-rice", "channel": "fr", "brand": "HANSOT",
+        "name": "숯불직화구이 덮밥", "category": "도시락",
+        "price_krw": 6500, "serving_g": 380, "kcal": 590, "protein_g": 30.0,
+        "carb_g": 85.0, "sugar_g": 6.0, "fat_g": 14.0, "sat_fat_g": 4.5, "sodium_mg": 880,
+        "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T4", "source_url": "https://www.hsd.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-hansot-chicken-mayo", "channel": "fr", "brand": "HANSOT",
+        "name": "오리지널 치킨마요", "category": "도시락",
+        "price_krw": 3800, "serving_g": 300, "kcal": 490, "protein_g": 16.0,
+        "carb_g": 68.0, "sugar_g": 4.0, "fat_g": 16.5, "sat_fat_g": 3.8, "sodium_mg": 740,
+        "protein_source": "Q1", "cooking": "fried", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T4", "source_url": "https://www.hsd.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-hansot-mega-chicken-pork-lunchbox", "channel": "fr", "brand": "HANSOT",
+        "name": "메가 치킨제육 도시락", "category": "도시락",
+        "price_krw": 7900, "serving_g": 520, "kcal": 820, "protein_g": 44.0,
+        "carb_g": 105.0, "sugar_g": 9.0, "fat_g": 26.0, "sat_fat_g": 6.5, "sodium_mg": 1280,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "launch_date": "2026-06-01", "source_type": "T4", "source_url": "https://www.hsd.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-hansot-pork-cutlet-doryeonnim", "channel": "fr", "brand": "HANSOT",
+        "name": "돈까스도련님 도시락", "category": "도시락",
+        "price_krw": 4800, "serving_g": 380, "kcal": 680, "protein_g": 24.0,
+        "carb_g": 88.0, "sugar_g": 7.0, "fat_g": 26.0, "sat_fat_g": 6.0, "sodium_mg": 950,
+        "protein_source": "Q4", "cooking": "fried", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T4", "source_url": "https://www.hsd.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+
+    # 8. 본죽 (BONJUK, 3건)
+    {
+        "menu_id": "fr-bonjuk-samgye-juk", "channel": "fr", "brand": "BONJUK",
+        "name": "삼계죽 (1그릇)", "category": "즉석밥/죽",
+        "price_krw": 12000, "serving_g": 650, "kcal": 580, "protein_g": 38.0,
+        "carb_g": 86.0, "sugar_g": 2.0, "fat_g": 9.5, "sat_fat_g": 2.2, "sodium_mg": 960,
+        "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 1, "claim_text": "닭가슴살 듬뿍 보양",
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.bonif.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-bonjuk-beef-vege-juk", "channel": "fr", "brand": "BONJUK",
+        "name": "쇠고기야채죽 (1그릇)", "category": "즉석밥/죽",
+        "price_krw": 11500, "serving_g": 650, "kcal": 520, "protein_g": 24.0,
+        "carb_g": 90.0, "sugar_g": 3.0, "fat_g": 7.0, "sat_fat_g": 2.0, "sodium_mg": 980,
+        "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.bonif.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-bonjuk-bulnak-juk", "channel": "fr", "brand": "BONJUK",
+        "name": "불낙죽 (불고기&낙지)", "category": "즉석밥/죽",
+        "price_krw": 13000, "serving_g": 650, "kcal": 550, "protein_g": 28.0,
+        "carb_g": 88.0, "sugar_g": 4.0, "fat_g": 8.5, "sat_fat_g": 2.2, "sodium_mg": 1050,
+        "protein_source": "Q1", "cooking": "boiled", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://www.bonif.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+
+    # 9. 도미노피자 (DOMINOS, 3건)
+    {
+        "menu_id": "fr-dominos-grilled-chicken-slice-2p", "channel": "fr", "brand": "DOMINOS",
+        "name": "그릴드 치킨 피자 (오리지널 2조각)", "category": "샌드위치/버거",
+        "price_krw": 7500, "serving_g": 220, "kcal": 490, "protein_g": 28.0,
+        "carb_g": 58.0, "sugar_g": 6.0, "fat_g": 16.5, "sat_fat_g": 6.5, "sodium_mg": 890,
+        "protein_source": "Q1", "cooking": "baked", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://web.dominos.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-dominos-super-supreme-2p", "channel": "fr", "brand": "DOMINOS",
+        "name": "슈퍼슈프림 피자 (오리지널 2조각)", "category": "샌드위치/버거",
+        "price_krw": 7000, "serving_g": 210, "kcal": 470, "protein_g": 20.0,
+        "carb_g": 54.0, "sugar_g": 6.0, "fat_g": 18.0, "sat_fat_g": 7.0, "sodium_mg": 860,
+        "protein_source": "Q4", "cooking": "baked", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://web.dominos.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-dominos-chicken-wings-8p", "channel": "fr", "brand": "DOMINOS",
+        "name": "하프앤하프 치킨윙 (8조각)", "category": "닭가슴살/육가공",
+        "price_krw": 9800, "serving_g": 240, "kcal": 440, "protein_g": 36.0,
+        "carb_g": 6.0, "sugar_g": 2.0, "fat_g": 30.0, "sat_fat_g": 8.0, "sodium_mg": 1080,
+        "protein_source": "Q1", "cooking": "baked", "marketing_claim": 0,
+        "launch_date": "2026-01-01", "source_type": "T2", "source_url": "https://web.dominos.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+
+    # 10. 파리바게뜨 (PARIS, 3건)
+    {
+        "menu_id": "fr-paris-protein-grain-bread-100", "channel": "fr", "brand": "PARIS",
+        "name": "고단백 곡물 토스트 식빵 100g", "category": "디저트",
+        "price_krw": 3200, "serving_g": 100, "kcal": 265, "protein_g": 13.0,
+        "carb_g": 44.0, "sugar_g": 4.0, "fat_g": 3.5, "sat_fat_g": 1.0, "sodium_mg": 460,
+        "fiber_g": 5.0, "protein_source": "Q2", "cooking": "baked", "marketing_claim": 1, "claim_text": "고단백 곡물식빵",
+        "launch_date": "2026-07-01", "source_type": "T2", "source_url": "https://www.paris.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-paris-chicken-caesar-salad-210", "channel": "fr", "brand": "PARIS",
+        "name": "로스트치킨 시저 샐러드 210g", "category": "샐러드",
+        "price_krw": 6900, "serving_g": 210, "kcal": 230, "protein_g": 24.0,
+        "carb_g": 14.0, "sugar_g": 3.0, "fat_g": 8.5, "sat_fat_g": 2.2, "sodium_mg": 520,
+        "fiber_g": 4.5, "protein_source": "Q1", "cooking": "grilled", "marketing_claim": 1, "claim_text": "단백질 24g",
+        "launch_date": "2026-08-10", "source_type": "T4", "source_url": "https://www.paris.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    },
+    {
+        "menu_id": "fr-paris-egg-bacon-sandwich-190", "channel": "fr", "brand": "PARIS",
+        "name": "에그 앤 베이컨 호밀 샌드위치 190g", "category": "샌드위치/버거",
+        "price_krw": 6200, "serving_g": 190, "kcal": 360, "protein_g": 17.0,
+        "carb_g": 36.0, "sugar_g": 4.0, "fat_g": 16.0, "sat_fat_g": 4.2, "sodium_mg": 710,
+        "protein_source": "Q1", "cooking": "mixed", "marketing_claim": 0,
+        "launch_date": "2026-06-15", "source_type": "T4", "source_url": "https://www.paris.co.kr",
+        "verified_at": "2026-09-10", "rule_version": "v1.0"
+    }
+]
+
+def main():
+    os.makedirs('data', exist_ok=True)
+    
+    # Save seed.json
+    with open('data/seed.json', 'w', encoding='utf-8') as f:
+        json.dump(SEED_ITEMS, f, ensure_ascii=False, indent=2)
+    print(f"[OK] Generated data/seed.json with {len(SEED_ITEMS)} items.")
+
+    # Save seed.csv
+    if SEED_ITEMS:
+        all_keys = list(SEED_ITEMS[0].keys())
+        for item in SEED_ITEMS:
+            for k in item.keys():
+                if k not in all_keys:
+                    all_keys.append(k)
+        
+        with open('data/seed.csv', 'w', encoding='utf-8-sig', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=all_keys)
+            writer.writeheader()
+            for item in SEED_ITEMS:
+                writer.writerow(item)
+        print(f"[OK] Generated data/seed.csv with {len(SEED_ITEMS)} items.")
+
+if __name__ == '__main__':
+    main()

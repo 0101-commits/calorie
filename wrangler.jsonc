@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "protein-radar-api",
+  "main": "worker/worker.js",
+  "compatibility_date": "2026-09-15",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "protein-radar-d1",
+      "database_id": "protein-radar-d1"
+    }
+  ]
+}
