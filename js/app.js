@@ -509,6 +509,8 @@ function createProductCardElement(p, highlightMetric = 'ppr') {
   else if (p.category === '샐러드') icon = '🥗';
   else if (p.category === '닭가슴살/육가공') icon = '🍗';
   else if (p.category === '과자/바') icon = '🍫';
+  else if (p.category === '아이스크림') icon = '🍦';
+  else if (p.category === '라면/면류') icon = '🍜';
   else if (p.category === '삼각김밥/주먹밥') icon = '🍙';
   else if (p.category === '샌드위치/버거') icon = '🥪';
   else if (p.channel === 'mart') icon = '🛒';

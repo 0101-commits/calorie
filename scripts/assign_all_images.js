@@ -256,6 +256,95 @@ async function findImageForItem(item) {
   if (rawName.includes('리얼불고기 씬')) queries.push('도미노피자 리얼불고기 피자');
   if (rawName.includes('립스테이크 바이트')) queries.push('피자헛 립스테이크 바이트');
 
+  // 편의점 4차 (라면, 아이스크림, 과자/스낵, 도시락, 간편식) 최적화
+  if (rawName.includes('컵누들 매콤한맛')) queries.push('오뚜기 컵누들 매콤한맛');
+  if (rawName.includes('컵누들 우동맛')) queries.push('오뚜기 컵누들 우동맛');
+  if (rawName.includes('컵누들 매콤찜닭맛')) queries.push('오뚜기 컵누들 매콤찜닭맛');
+  if (rawName.includes('컵누들 짜장맛')) queries.push('오뚜기 컵누들 짜장맛');
+  if (rawName.includes('컵누들 마라탕맛')) queries.push('오뚜기 컵누들 마라탕맛');
+  if (rawName.includes('컵누들 베트남쌀국수')) queries.push('오뚜기 컵누들 베트남쌀국수');
+  if (rawName.includes('신라면 건면')) queries.push('농심 신라면 건면');
+  if (rawName.includes('신라면 큰사발면')) queries.push('신라면 큰사발');
+  if (rawName.includes('신라면 툼바')) queries.push('신라면 툼바 큰사발', '신라면 툼바');
+  if (rawName.includes('불닭볶음면 큰컵')) queries.push('불닭볶음면 큰컵');
+  if (rawName.includes('까르보불닭볶음면 큰컵')) queries.push('까르보불닭볶음면 큰컵');
+  if (rawName.includes('로제불닭볶음면 큰컵')) queries.push('로제불닭볶음면 큰컵');
+  if (rawName.includes('육개장 사발면')) queries.push('농심 육개장 사발면');
+  if (rawName.includes('튀김우동 큰사발면')) queries.push('농심 튀김우동 큰사발면');
+  if (rawName.includes('짜파게티 큰사발면')) queries.push('농심 짜파게티 큰사발면');
+  if (rawName.includes('진라면 매운맛 큰컵')) queries.push('오뚜기 진라면 매운맛 큰컵', '진라면 매운맛 컵');
+  if (rawName.includes('팔도 비빔면 컵')) queries.push('팔도 비빔면 컵');
+  if (rawName.includes('장인라면 얼큰한맛')) queries.push('하림 The미식 장인라면 얼큰한맛 컵', '장인라면 얼큰한맛 컵');
+
+  if (rawName.includes('라라스윗 바닐라 초코바')) queries.push('라라스윗 바닐라 초코바');
+  if (rawName.includes('라라스윗 초콜릿 초코바')) queries.push('라라스윗 초콜릿 초코바');
+  if (rawName.includes('라라스윗 말차 초코바')) queries.push('라라스윗 말차 초코바');
+  if (rawName.includes('라라스윗 바닐라 모나카')) queries.push('라라스윗 바닐라 모나카');
+  if (rawName.includes('라라스윗 옥수수 모나카')) queries.push('라라스윗 옥수수 모나카');
+  if (rawName.includes('라라스윗 초콜릿 파인트')) queries.push('라라스윗 초콜릿 파인트');
+  if (rawName.includes('스키니피그 더블초코')) queries.push('스키니피그 더블초코바', '스키니피그 더블초코');
+  if (rawName.includes('스키니피그 바닐라 모나카')) queries.push('스키니피그 바닐라 모나카');
+  if (rawName.includes('제로 밀크 모나카')) queries.push('롯데 제로 밀크 모나카');
+  if (rawName.includes('제로 밀크 초콜릿 바')) queries.push('롯데 제로 초콜릿바', '롯데 제로 아이스크림 바');
+  if (rawName.includes('투게더 미니어처 바닐라')) queries.push('빙그레 투게더 미니어처');
+  if (rawName.includes('메로나 75mL')) queries.push('빙그레 메로나');
+  if (rawName.includes('참붕어싸만코')) queries.push('빙그레 참붕어싸만코');
+  if (rawName.includes('부라보콘 바닐라')) queries.push('해태 부라보콘');
+
+  if (rawName.includes('단백질칩 칠리살사')) queries.push('오리온 닥터유 단백질칩 칠리살사');
+  if (rawName.includes('단백질칩 버터솔트')) queries.push('오리온 닥터유 단백질칩 버터솔트');
+  if (rawName.includes('닥터유 단백질볼')) queries.push('오리온 닥터유 단백질볼');
+  if (rawName.includes('꼬북칩 초코츄러스')) queries.push('꼬북칩 초코츄러스');
+  if (rawName.includes('포카칩 오리지널')) queries.push('오리온 포카칩 오리지널');
+  if (rawName.includes('태양의맛 썬')) queries.push('태양의맛 썬 핫스파이시');
+  if (rawName.includes('먹태깡 청양마요')) queries.push('농심 먹태깡 청양마요');
+  if (rawName.includes('새우깡 90g')) queries.push('농심 새우깡');
+  if (rawName.includes('매운 새우깡')) queries.push('농심 매운 새우깡');
+  if (rawName.includes('포테토칩 오리지널')) queries.push('농심 포테토칩 오리지널');
+  if (rawName.includes('제로 카카오 케이크')) queries.push('롯데 제로 카카오 케이크');
+  if (rawName.includes('제로 크런치 초코볼')) queries.push('롯데 제로 크런치 초코볼');
+  if (rawName.includes('허니버터칩')) queries.push('해태 허니버터칩');
+  if (rawName.includes('C콘chip')) queries.push('크라운 콘칩');
+  if (rawName.includes('갈릭버터 베이글칩')) queries.push('딜라이트 프로젝트 갈릭버터 베이글칩');
+  if (rawName.includes('단백질 베이글칩')) queries.push('딜라이트 프로젝트 단백질 베이글칩');
+  if (rawName.includes('블랙쿠키') && brand === '랩노쉬') queries.push('랩노쉬 프로틴 쿠키바 블랙쿠키');
+  if (rawName.includes('마이밀 프로틴 바')) queries.push('마이밀 프로틴 바 너츠');
+  if (rawName.includes('츄앤크리스피 완두')) queries.push('청정원 츄앤크리스피 완두');
+
+  if (rawName.includes('혜자로운 집밥 7첩반상')) queries.push('GS25 혜자로운 집밥 7첩반상');
+  if (rawName.includes('혜자로운 집밥 통통쏘야')) queries.push('GS25 혜자로운 집밥 통통쏘야');
+  if (rawName.includes('혜자로운 집밥 에그함박')) queries.push('GS25 혜자로운 집밥 에그함박');
+  if (rawName.includes('혜자로운 집밥 닭가슴살소시지')) queries.push('GS25 혜자로운 집밥 닭가슴살소시지');
+  if (rawName.includes('백종원 한판 도시락')) queries.push('CU 백종원 한판 도시락');
+  if (rawName.includes('백종원 매콤 불고기')) queries.push('CU 백종원 매콤 불고기 도시락');
+  if (rawName.includes('백종원 바싹 불고기')) queries.push('CU 백종원 바싹 불고기');
+  if (rawName.includes('백종원 7첩 한판')) queries.push('CU 백종원 7첩 한판 도시락');
+  if (rawName.includes('백종원 트리플 돈까스')) queries.push('CU 백종원 트리플 돈까스 도시락');
+  if (rawName.includes('맛장우 전주비빔밥')) queries.push('세븐일레븐 맛장우 전주비빔밥');
+  if (rawName.includes('맛장우 매콤제육')) queries.push('세븐일레븐 맛장우 매콤제육');
+  if (rawName.includes('맛장우 든든한불백')) queries.push('세븐일레븐 맛장우 든든한불백');
+  if (rawName.includes('바싹불고기&소시지 도시락')) queries.push('이마트24 바싹불고기 도시락');
+  if (rawName.includes('훈제오리&채소 도시락')) queries.push('이마트24 훈제오리 도시락');
+  if (rawName.includes('참치마요덮밥 247g')) queries.push('CJ 햇반컵반 참치마요덮밥');
+
+  if (rawName.includes('바삭통소시지 김밥')) queries.push('GS25 바삭통소시지 김밥', 'GS25 통소시지 김밥', 'GS25 소시지 김밥', '통소시지 김밥');
+  if (rawName.includes('더큰 닭다리 즉석조리')) queries.push('GS25 더큰 닭다리');
+  if (rawName.includes('바삭통다리 치킨')) queries.push('GS25 바삭통다리 치킨');
+  if (rawName.includes('참치마요 삼각김밥 110g')) queries.push('CU 참치마요 삼각김밥');
+  if (rawName.includes('전주비빔 삼각김밥 110g')) queries.push('CU 전주비빔 삼각김밥');
+  if (rawName.includes('매콤제육 김밥 235g')) queries.push('CU 백종원 매콤제육 김밥');
+  if (rawName.includes('자이언트 핫바 매콤한맛')) queries.push('CU 자이언트 핫바 매콤한맛');
+  if (rawName.includes('더커진 참치마요 삼각김밥')) queries.push('세븐일레븐 더커진 참치마요 삼각김밥');
+  if (rawName.includes('통닭다리구이 160g')) queries.push('세븐일레븐 통닭다리구이');
+  if (rawName.includes('맥스봉 치즈소시지')) queries.push('CJ 맥스봉 치즈');
+  if (rawName.includes('삼호어묵 오뎅한그릇')) queries.push('CJ 삼호어묵 오뎅한그릇');
+  if (rawName.includes('천하장사 오리지널')) queries.push('진주햄 천하장사 오리지널 50g', '진주햄 천하장사');
+  if (rawName.includes('숯불구이맛 핫바')) queries.push('사조 대림선 숯불구이맛 핫바');
+  if (rawName.includes('휠터치 핫바')) queries.push('사조 대림선 휠터치');
+  if (rawName.includes('닭가슴살 핫바 갈릭')) queries.push('하림 닭가슴살 핫바 갈릭');
+  if (rawName.includes('닭가슴살 핫바 훈제')) queries.push('하림 닭가슴살 핫바 훈제');
+  if (rawName.includes('치즈팡팡 핫도그')) queries.push('삼립 치즈팡팡 핫도그');
+
 
   for (const q of queries) {
     const img = await searchDaumImage(q);
