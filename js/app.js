@@ -225,11 +225,25 @@ function setupEventListeners() {
     });
   });
 
-  // 9. 모달 닫기 버튼들
+  // 9. 모달 닫기 버튼들 및 외부 클릭(백드롭) 닫기
   el.btnCloseDetail.addEventListener('click', () => el.sheetDetail.close());
   el.btnCloseCompare.addEventListener('click', () => el.sheetCompare.close());
   el.btnClosePolicy.addEventListener('click', () => el.sheetPolicy.close());
   el.btnCloseReport.addEventListener('click', () => el.sheetReport.close());
+
+  [el.sheetDetail, el.sheetCompare, el.sheetScanner, el.sheetPolicy, el.sheetReport].forEach(dlg => {
+    if (!dlg) return;
+    dlg.addEventListener('click', (e) => {
+      const rect = dlg.getBoundingClientRect();
+      const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height
+        && rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+      if (!isInDialog) {
+        if (dlg === el.sheetScanner && scannerInstance) scannerInstance.stopCamera();
+        dlg.close();
+      }
+    });
+  });
+
   el.btnOpenPolicy.addEventListener('click', (e) => {
     e.preventDefault();
     el.sheetPolicy.showModal();
@@ -626,47 +640,48 @@ function openCompareModal() {
   if (items.length === 0) return;
 
   el.sheetCompareContent.innerHTML = `
-    <h3 style="margin-top:0;">메뉴 영양·가성비 한눈에 비교</h3>
-    <div style="overflow-x:auto;">
-      <table style="width:100%; border-collapse:collapse; font-size:var(--t3); text-align:center;">
+    <h3 style="margin-top:0; font-size:18px; color:var(--ink);">메뉴 영양·가성비 한눈에 비교</h3>
+    <p style="font-size:12px; color:var(--ink-2); margin-bottom:12px;">좌우로 스크롤하여 최대 3개 상품의 지표를 비교하세요.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
         <thead>
-          <tr style="border-bottom:2px solid var(--ink);">
-            <th style="padding:6px; text-align:left;">구분</th>
-            ${items.map(m => `<th style="padding:6px; max-width:90px; font-weight:bold;">${m.name}</th>`).join('')}
+          <tr>
+            <th>구분</th>
+            ${items.map(m => `<th><div style="font-size:11px; color:var(--ink-2);">${m.brand}</div><div style="font-size:13px; font-weight:700; color:var(--ink); margin-top:2px;">${m.name}</div></th>`).join('')}
           </tr>
         </thead>
         <tbody>
-          <tr style="border-bottom:1px solid var(--line);">
-            <td style="padding:6px; text-align:left; font-weight:bold;">종합 등급</td>
-            ${items.map(m => `<td style="padding:6px;"><span class="grade-stamp grade-${m.grade}" style="width:28px; height:28px; margin:0 auto; font-size:14px;">${m.grade}</span></td>`).join('')}
+          <tr>
+            <td>종합 등급</td>
+            ${items.map(m => `<td><span class="grade-stamp grade-${m.grade}" style="width:28px; height:28px; margin:0 auto; font-size:14px;">${m.grade}</span></td>`).join('')}
           </tr>
-          <tr style="border-bottom:1px solid var(--line);">
-            <td style="padding:6px; text-align:left;">가격</td>
-            ${items.map(m => `<td style="padding:6px;">${m.price_krw.toLocaleString()}원</td>`).join('')}
+          <tr>
+            <td>가격</td>
+            ${items.map(m => `<td><strong>${m.price_krw.toLocaleString()}원</strong></td>`).join('')}
           </tr>
-          <tr style="border-bottom:1px solid var(--line);">
-            <td style="padding:6px; text-align:left; font-weight:bold; color:var(--brand);">PPR (가성비)</td>
-            ${items.map(m => `<td style="padding:6px; font-weight:bold; color:var(--brand);">${m.ppr}</td>`).join('')}
+          <tr>
+            <td>PPR (가성비)</td>
+            ${items.map(m => `<td style="font-weight:800; color:var(--brand);">${m.ppr}</td>`).join('')}
           </tr>
-          <tr style="border-bottom:1px solid var(--line);">
-            <td style="padding:6px; text-align:left;">CPD (밀도)</td>
-            ${items.map(m => `<td style="padding:6px;">${m.cpd}</td>`).join('')}
+          <tr>
+            <td>CPD (밀도)</td>
+            ${items.map(m => `<td>${m.cpd}</td>`).join('')}
           </tr>
-          <tr style="border-bottom:1px solid var(--line);">
-            <td style="padding:6px; text-align:left;">NPI (실질g)</td>
-            ${items.map(m => `<td style="padding:6px;">${m.npi}</td>`).join('')}
+          <tr>
+            <td>NPI (실질g)</td>
+            ${items.map(m => `<td>${m.npi}</td>`).join('')}
           </tr>
-          <tr style="border-bottom:1px solid var(--line);">
-            <td style="padding:6px; text-align:left;">단백질</td>
-            ${items.map(m => `<td style="padding:6px; font-weight:bold;">${m.protein_g}g</td>`).join('')}
+          <tr>
+            <td>단백질</td>
+            ${items.map(m => `<td><strong>${m.protein_g}g</strong></td>`).join('')}
           </tr>
-          <tr style="border-bottom:1px solid var(--line);">
-            <td style="padding:6px; text-align:left;">열량</td>
-            ${items.map(m => `<td style="padding:6px;">${m.kcal}kcal</td>`).join('')}
+          <tr>
+            <td>열량</td>
+            ${items.map(m => `<td>${m.kcal}kcal</td>`).join('')}
           </tr>
-          <tr style="border-bottom:1px solid var(--line);">
-            <td style="padding:6px; text-align:left;">나트륨</td>
-            ${items.map(m => `<td style="padding:6px;">${m.sodium_mg}mg</td>`).join('')}
+          <tr>
+            <td>나트륨</td>
+            ${items.map(m => `<td>${m.sodium_mg}mg</td>`).join('')}
           </tr>
         </tbody>
       </table>
