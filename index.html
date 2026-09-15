@@ -808,7 +808,7 @@
         <span>⚡ 프로틴레이더</span>
       </a>
       <div class="channel-badges">
-        CU · GS25 · 7-ELEVEN · 이마트24
+        편의점 · 마트(CJ/풀무원) · 식단몰
       </div>
     </header>
 
@@ -816,7 +816,7 @@
     <main id="tab-home" class="tab-content active">
       <!-- 검색창 -->
       <div class="search-box">
-        <input type="text" id="home-search-input" class="search-input" placeholder="브랜드나 제품명 검색 (초성 'ㄷㄱㅅㅅ' 도 지원)">
+        <input type="text" id="home-search-input" class="search-input" placeholder="브랜드나 제품명 검색 (CJ, 풀무원, 닭가슴살, 'ㄷㄱㅅㅅ')">
         <button class="scan-trigger-btn" id="home-scan-btn" title="바코드 또는 사진 스캔">📷</button>
       </div>
 
@@ -840,7 +840,7 @@
 
       <!-- 추천 하이라이트 -->
       <div class="section-head">
-        <span class="section-title">지금 편의점 주목 메뉴</span>
+        <span class="section-title">지금 주목할 고단백 식품</span>
         <span class="section-sub">실시간 랭킹 기준</span>
       </div>
       <div id="home-recommend-container">
@@ -880,7 +880,9 @@
       <div class="chip-scroll" id="ranking-filter-chips">
         <button class="chip active" data-filter="all">전체</button>
         <button class="chip" data-filter="cvs">편의점 4사</button>
-        <button class="chip" data-filter="fr">프랜차이즈</button>
+        <button class="chip" data-filter="mart">대형마트/식품 (CJ·풀무원)</button>
+        <button class="chip" data-filter="online">식단/온라인몰</button>
+        <button class="chip" data-filter="fr">외식/카페</button>
         <button class="chip" data-filter="under5k">5천원 이하</button>
         <button class="chip" data-filter="verified">검증 고단백만</button>
       </div>

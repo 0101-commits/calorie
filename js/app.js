@@ -340,6 +340,10 @@ function renderRankingList() {
   // 필터 칩
   if (state.rankingFilter === 'cvs') {
     list = list.filter(p => p.channel === 'cvs');
+  } else if (state.rankingFilter === 'mart') {
+    list = list.filter(p => p.channel === 'mart');
+  } else if (state.rankingFilter === 'online') {
+    list = list.filter(p => p.channel === 'online');
   } else if (state.rankingFilter === 'fr') {
     list = list.filter(p => p.channel === 'fr');
   } else if (state.rankingFilter === 'under5k') {
@@ -493,14 +497,27 @@ function createProductCardElement(p, highlightMetric = 'ppr') {
     tagsHtml += `<span class="tag tag-penalty">${p.penalties[0].label}</span>`;
   }
 
+  // 카테고리/채널별 아이콘 매핑
+  let icon = '🍱';
+  if (p.category === '유제품/음료') icon = '🥛';
+  else if (p.category === '샐러드') icon = '🥗';
+  else if (p.category === '닭가슴살/육가공') icon = '🍗';
+  else if (p.category === '과자/바') icon = '🍫';
+  else if (p.category === '삼각김밥/주먹밥') icon = '🍙';
+  else if (p.category === '샌드위치/버거') icon = '🥪';
+  else if (p.channel === 'mart') icon = '🛒';
+
+  const chLabelMap = { cvs: '편의점', mart: '마트', online: '식단몰', fr: '외식' };
+  const chLabel = chLabelMap[p.channel] || '기타';
+
   card.innerHTML = `
     <div class="card-row">
       <div class="card-photo">
-        <span>${p.category === '유제품/음료' ? '🥛' : (p.category === '샐러드' ? '🥗' : '🍱')}</span>
+        <span>${icon}</span>
       </div>
       <div class="card-info">
         <div class="card-title">${p.name}</div>
-        <div class="card-meta">${p.brand} · ${p.serving_g}g · ${p.price_krw.toLocaleString()}원</div>
+        <div class="card-meta">${p.brand} · ${chLabel} · ${p.serving_g}g · ${p.price_krw.toLocaleString()}원</div>
         <div class="card-metrics">
           <span class="metric-item ${pprClass}">PPR ${p.ppr}</span>
           <span class="metric-item ${cpdClass}">CPD ${p.cpd}</span>
@@ -522,6 +539,8 @@ function createProductCardElement(p, highlightMetric = 'ppr') {
 function openDetailModal(p) {
   state.activeProduct = p;
   const isComparing = state.compareList.includes(p.menu_id);
+  const chLabelMap = { cvs: '편의점', mart: '대형마트/식품', online: '식단/온라인몰', fr: '외식/카페' };
+  const chLabel = chLabelMap[p.channel] || '기타';
 
   // 영양성분 1일 기준치 대비 %
   const pPct = Math.round((p.protein_g / 55) * 100);
@@ -545,7 +564,7 @@ function openDetailModal(p) {
   el.sheetDetailContent.innerHTML = `
     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
       <div>
-        <div style="font-size:var(--t2); color:var(--ink-3);">${p.brand} · ${p.category}</div>
+        <div style="font-size:var(--t2); color:var(--ink-3);">${p.brand} · ${chLabel} · ${p.category}</div>
         <h2 style="margin:2px 0 6px 0; font-size:var(--t6); color:var(--ink);">${p.name}</h2>
         <div style="font-size:var(--t4); font-weight:bold; color:var(--brand);">${p.price_krw.toLocaleString()}원</div>
       </div>
