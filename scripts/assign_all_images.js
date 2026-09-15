@@ -24,9 +24,10 @@ function cleanItemName(name) {
   if (!name) return '';
   return name
     .replace(/^[가-힣a-zA-Z0-9\(\)]+_/g, '')
-    .replace(/\([^\)]*(?:기준|공장|KUKY|XL|80g|2알|1마리|1팩)[^\)]*\)/g, '')
-    .replace(/\s*\d+(?:\.\d+)?(?:g|mL|ml|입|개|팩|캔|쪽)\b/g, '')
+    .replace(/\([^\)]*\)/g, '')
+    .replace(/\s*\d+(?:\.\d+)?(?:g|mL|ml|입|개|팩|캔|쪽|cm)\b/g, '')
     .replace(/\s*단품\b/g, '')
+    .replace(/\s+R\b/g, '')
     .trim();
 }
 
@@ -167,6 +168,93 @@ async function findImageForItem(item) {
   if (rawName.includes('치킨 베이컨 랩')) queries.push('스타벅스 치킨 베이컨 랩');
   if (rawName.includes('멕시칸 파니니')) queries.push('투썸플레이스 멕시칸 파니니');
   if (rawName.includes('페스토 햄치즈')) queries.push('투썸플레이스 페스토 햄치즈 파니니');
+
+  // 외식 3차 결측 확장 품목 전용 최적화
+  if (rawName.includes('이탈리안 비엠티')) queries.push('써브웨이 이탈리안 비엠티');
+  if (rawName.includes('스파이시 이탈리안')) queries.push('써브웨이 스파이시 이탈리안');
+  if (rawName.includes('참치 15cm')) queries.push('써브웨이 참치 샌드위치', '써브웨이 참치');
+  if (rawName.includes('치킨 베이컨 아보카도')) queries.push('써브웨이 치킨 베이컨 아보카도');
+  if (rawName.includes('로티세리 바비큐 치킨 샐러드')) queries.push('써브웨이 로티세리 바비큐 치킨 샐러드', '써브웨이 로티세리 샐러드');
+  if (rawName.includes('시저치킨 샐러디')) queries.push('샐러디 시저치킨 샐러디');
+  if (rawName.includes('연어 샐러디')) queries.push('샐러디 연어 샐러디');
+  if (rawName.includes('우삼겹 웜볼')) queries.push('샐러디 우삼겹 웜볼');
+  if (rawName.includes('에그베이컨 샌드')) queries.push('샐러디 에그베이컨 샌드');
+  if (rawName.includes('멕시칸 랩')) queries.push('샐러디 멕시칸 랩');
+  if (rawName.includes('언빌리버블 버거')) queries.push('맘스터치 언빌리버블버거');
+  if (rawName.includes('인크레더블 버거')) queries.push('맘스터치 인크레더블버거');
+  if (rawName.includes('골든맥앤치즈')) queries.push('맘스터치 골든맥앤치즈 치킨버거');
+  if (rawName.includes('바삭크림치즈')) queries.push('맘스터치 바삭크림치즈조각', '맘스터치 치즈조각');
+  if (rawName.includes('통새우버거')) queries.push('맘스터치 통새우버거');
+  if (rawName.includes('베이컨 토마토 디럭스')) queries.push('맥도날드 베이컨 토마토 디럭스');
+  if (rawName.includes('1955 버거')) queries.push('맥도날드 1955 버거');
+  if (rawName.includes('맥도날드') && rawName.includes('치즈버거')) queries.push('맥도날드 치즈버거');
+  if (rawName.includes('더블 치즈버거')) queries.push('맥도날드 더블 치즈버거');
+  if (rawName.includes('맥스파이시 치킨텐더')) queries.push('맥도날드 맥스파이시 치킨텐더', '맥도날드 치킨텐더');
+  if (rawName.includes('에그 맥머핀')) queries.push('맥도날드 에그 맥머핀');
+  if (rawName.includes('소시지 에그 맥머핀')) queries.push('맥도날드 소시지 에그 맥머핀');
+  if (rawName.includes('통새우와퍼')) queries.push('버거킹 통새우와퍼');
+  if (rawName.includes('콰트로치즈와퍼')) queries.push('버거킹 콰트로치즈와퍼');
+  if (rawName.includes('치즈와퍼')) queries.push('버거킹 치즈와퍼');
+  if (rawName.includes('와퍼주니어')) queries.push('버거킹 와퍼주니어');
+  if (rawName.includes('갈릭불고기와퍼')) queries.push('버거킹 갈릭불고기와퍼');
+  if (rawName.includes('바삭킹')) queries.push('버거킹 바삭킹');
+  if (rawName.includes('타워버거')) queries.push('KFC 타워버거');
+  if (rawName.includes('징거BLT')) queries.push('KFC 징거BLT 버거', 'KFC 징거버거');
+  if (rawName.includes('갓양념 치킨')) queries.push('KFC 갓양념 치킨', 'KFC 양념치킨');
+  if (rawName.includes('핫치즈징거')) queries.push('KFC 핫치즈징거버거');
+  if (rawName.includes('닭껍질튀김')) queries.push('KFC 닭껍질튀김');
+  if (rawName.includes('불고기 버거') && brand === '롯데리아') queries.push('롯데리아 불고기 버거');
+  if (rawName.includes('새우버거') && brand === '롯데리아') queries.push('롯데리아 새우버거');
+  if (rawName.includes('더블 한우불고기')) queries.push('롯데리아 더블 한우불고기 버거');
+  if (rawName.includes('리아미라클')) queries.push('롯데리아 리아미라클 버거');
+  if (rawName.includes('화이어윙')) queries.push('롯데리아 화이어윙');
+  if (rawName.includes('미트 마니아')) queries.push('노브랜드버거 미트 마니아');
+  if (rawName.includes('더블치즈앤베이컨')) queries.push('노브랜드버거 더블치즈앤베이컨');
+  if (rawName.includes('산체스 버거')) queries.push('노브랜드버거 산체스 버거');
+  if (rawName.includes('스모키 살사')) queries.push('노브랜드버거 스모키 살사');
+  if (rawName.includes('치킨 시저 샐러드')) queries.push('노브랜드버거 치킨 시저 샐러드');
+  if (rawName.includes('SG불고기')) queries.push('프랭크버거 SG불고기버거');
+  if (rawName.includes('베이컨치즈버거') && brand === '프랭크버거') queries.push('프랭크버거 베이컨치즈버거');
+  if (rawName.includes('쉬림프버거') && brand === '프랭크버거') queries.push('프랭크버거 쉬림프버거');
+  if (rawName.includes('K불고기')) queries.push('프랭크버거 K불고기버거');
+  if (rawName.includes('진달래 도시락')) queries.push('한솥 진달래 도시락');
+  if (rawName.includes('개나리 도시락')) queries.push('한솥 개나리 도시락');
+  if (rawName.includes('소불고기 도시락')) queries.push('한솥 소불고기 도시락');
+  if (rawName.includes('스팸김치볶음밥')) queries.push('한솥 스팸김치볶음밥');
+  if (rawName.includes('소불고기 비빔밥')) queries.push('한솥 소불고기 비빔밥');
+  if (rawName.includes('참치야채 비빔밥')) queries.push('한솥 참치야채 비빔밥');
+  if (rawName.includes('김치제육덮밥')) queries.push('한솥 김치제육덮밥');
+  if (rawName.includes('갈비천왕')) queries.push('굽네 갈비천왕');
+  if (rawName.includes('오븐바사삭')) queries.push('굽네 오븐바사삭');
+  if (rawName.includes('교촌 반반')) queries.push('교촌 반반 순살', '교촌 반반치킨');
+  if (rawName.includes('살살후라이드')) queries.push('교촌 살살후라이드', '교촌 살살치킨');
+  if (rawName.includes('속안심')) queries.push('BBQ 황금올리브 속안심', 'BBQ 황금올리브치킨 속안심');
+  if (rawName.includes('극한왕갈비')) queries.push('BBQ 극한왕갈비치킨');
+  if (rawName.includes('뿌링클')) queries.push('BHC 뿌링클 순살', 'BHC 뿌링클');
+  if (rawName.includes('골드킹')) queries.push('BHC 골드킹 순살', 'BHC 골드킹');
+  if (rawName.includes('블랙알리오')) queries.push('푸라닭 블랙알리오 순살', '푸라닭 블랙알리오');
+  if (rawName.includes('고추마요') && brand === '푸라닭') queries.push('푸라닭 고추마요 순살', '푸라닭 고추마요');
+  if (rawName.includes('오리지널 순살') && brand === '푸라닭') queries.push('푸라닭 오리지널 순살', '푸라닭 푸라닭치킨');
+  if (rawName.includes('슈프림양념')) queries.push('처갓집 슈프림양념치킨 순살', '처갓집 슈프림양념치킨');
+  if (rawName.includes('양념 치킨 순살') && brand === '처갓집양념치킨') queries.push('처갓집 양념치킨 순살', '처갓집 양념치킨');
+  if (rawName.includes('스파이시 참치 포케')) queries.push('슬로우캘리 스파이시 참치 포케');
+  if (rawName.includes('스파이시 연어 포케')) queries.push('슬로우캘리 스파이시 연어 포케');
+  if (rawName.includes('와사비 렌치 연어')) queries.push('슬로우캘리 와사비 렌치 연어 포케');
+  if (rawName.includes('하와이안 갈릭 쉬림프')) queries.push('슬로우캘리 하와이안 갈릭 쉬림프');
+  if (rawName.includes('프로틴 연어 포케')) queries.push('포케올데이 프로틴 연어 포케', '포케올데이 연어 포케');
+  if (rawName.includes('우삼겹 메밀면 포케')) queries.push('포케올데이 우삼겹 메밀면 포케', '포케올데이 우삼겹 포케');
+  if (rawName.includes('육회 프로틴 포케')) queries.push('포케올데이 육회 프로틴 포케', '포케올데이 육회 포케');
+  if (rawName.includes('베이컨 치즈 토스트')) queries.push('스타벅스 베이컨 치즈 토스트');
+  if (rawName.includes('단호박 에그 샌드위치')) queries.push('스타벅스 단호박 에그 샌드위치');
+  if (rawName.includes('치킨 토마토 치즈')) queries.push('스타벅스 치킨 토마토 치즈 샌드위치');
+  if (rawName.includes('콥 샐러드 밀박스')) queries.push('스타벅스 콥 샐러드 밀박스');
+  if (rawName.includes('올데이 비프 파니니')) queries.push('투썸플레이스 올데이 비프 파니니');
+  if (rawName.includes('바베큐 치킨 파니니')) queries.push('투썸플레이스 바베큐 치킨 파니니');
+  if (rawName.includes('쉬림프 에그 샐러드')) queries.push('투썸플레이스 쉬림프 에그 샐러드');
+  if (rawName.includes('블랙타이거 슈림프')) queries.push('도미노피자 블랙타이거 슈림프');
+  if (rawName.includes('포테이토 씬')) queries.push('도미노피자 포테이토 피자');
+  if (rawName.includes('리얼불고기 씬')) queries.push('도미노피자 리얼불고기 피자');
+  if (rawName.includes('립스테이크 바이트')) queries.push('피자헛 립스테이크 바이트');
 
 
   for (const q of queries) {
