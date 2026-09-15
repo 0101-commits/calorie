@@ -23,6 +23,7 @@
     "source_url": "https://www.bing.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/6LKvNlImfnU",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 19,
@@ -37,7 +38,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.780Z"
+    "computed_at": "2026-09-15T05:53:10.457Z"
   },
   {
     "menu_id": "cvs-binggrae-the-danbaek-caramel-250",
@@ -63,6 +64,7 @@
     "source_url": "https://www.bing.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/IaYAEOMdqBl",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 19,
@@ -77,7 +79,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.458Z"
   },
   {
     "menu_id": "cvs-binggrae-the-danbaek-coffee-250",
@@ -103,6 +105,7 @@
     "source_url": "https://www.bing.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/IO972n1EMi",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 19,
@@ -117,7 +120,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.458Z"
   },
   {
     "menu_id": "cvs-ildong-himmune-active-choco-250",
@@ -143,6 +146,7 @@
     "source_url": "https://www.foodis.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/JtHrpCtfs2K",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 15.4,
@@ -157,7 +161,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.458Z"
   },
   {
     "menu_id": "cvs-ildong-himmune-active-milk-250",
@@ -183,6 +187,7 @@
     "source_url": "https://www.foodis.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/45rgMem6I9U",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 15.4,
@@ -197,7 +202,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-maeil-selex-profit-choco-330",
@@ -223,6 +228,7 @@
     "source_url": "https://www.maeil.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/QvmJgC9g2k",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 20.2,
@@ -237,7 +243,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-maeil-selex-profit-peach-330",
@@ -263,6 +269,7 @@
     "source_url": "https://www.maeil.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/EdxTAX9yAwQ",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 22.2,
@@ -277,7 +284,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-maeil-selex-original-190",
@@ -303,6 +310,7 @@
     "source_url": "https://www.maeil.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/HOfVipMaAaA",
     "ppr": 5.5,
     "ppr_grade": "B",
     "cpd": 8.3,
@@ -323,7 +331,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-namyang-takefit-max-choco-250",
@@ -349,6 +357,7 @@
     "source_url": "https://www.namyangi.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/6cA8mWC0mQu",
     "ppr": 8.3,
     "ppr_grade": "A",
     "cpd": 22.6,
@@ -363,7 +372,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-namyang-takefit-max-banana-250",
@@ -389,6 +398,7 @@
     "source_url": "https://www.namyangi.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/Ji811X9AhWM",
     "ppr": 8.3,
     "ppr_grade": "A",
     "cpd": 22.6,
@@ -403,7 +413,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-labnosh-protein-choco-350",
@@ -429,6 +439,7 @@
     "source_url": "https://labnosh.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/LwrBeXtwz4l",
     "ppr": 8.4,
     "ppr_grade": "A",
     "cpd": 16.4,
@@ -443,7 +454,7 @@
     "grade_avg": 4,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-labnosh-protein-banana-350",
@@ -469,6 +480,7 @@
     "source_url": "https://labnosh.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/DcspUAKCrte",
     "ppr": 8.4,
     "ppr_grade": "A",
     "cpd": 16.9,
@@ -483,7 +495,7 @@
     "grade_avg": 4,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-orion-dryou-pro-choco-350",
@@ -509,6 +521,7 @@
     "source_url": "https://www.orionworld.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/HkEiFjZ9jGA",
     "ppr": 10.5,
     "ppr_grade": "A",
     "cpd": 19,
@@ -523,7 +536,7 @@
     "grade_avg": 4,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-orion-dryou-pro-choco-250",
@@ -549,6 +562,7 @@
     "source_url": "https://www.orionworld.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/BbDzAe4O4hK",
     "ppr": 8.3,
     "ppr_grade": "A",
     "cpd": 15.5,
@@ -563,7 +577,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-vegemil-high-protein-blackbean-190",
@@ -589,6 +603,7 @@
     "source_url": "https://www.vegemil.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/CDTgr9hgEZu",
     "ppr": 7.5,
     "ppr_grade": "B",
     "cpd": 8.9,
@@ -603,7 +618,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-yonsei-high-protein-lowsugar-190",
@@ -629,6 +644,7 @@
     "source_url": "https://www.yonseidairy.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/9X1f9CoqDuI",
     "ppr": 6.7,
     "ppr_grade": "B",
     "cpd": 10.5,
@@ -649,7 +665,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-seoul-milk-protein-choco-260",
@@ -675,6 +691,7 @@
     "source_url": "https://www.seoulmilk.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/3jchPUXnAGt",
     "ppr": 9.5,
     "ppr_grade": "A",
     "cpd": 15,
@@ -689,7 +706,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-daesang-mymeal-newprotein-choco-250",
@@ -715,6 +732,7 @@
     "source_url": "https://www.daesangwellife.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/642wcwVIYFA",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 12.5,
@@ -729,7 +747,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-greekday-signature-100",
@@ -755,6 +773,7 @@
     "source_url": "https://greekday.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/EbXnEzOQ1hT",
     "ppr": 2.9,
     "ppr_grade": "D",
     "cpd": 7.1,
@@ -775,7 +794,7 @@
     "grade_avg": 1.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-pulmuone-danone-greek-plain-90",
@@ -801,6 +820,7 @@
     "source_url": "https://www.danone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/KLDOQXWRhZW",
     "ppr": 4.4,
     "ppr_grade": "C",
     "cpd": 7.4,
@@ -822,7 +842,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-harim-chicken-original-100",
@@ -848,6 +868,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/GiQMWHSug3N",
     "ppr": 8.9,
     "ppr_grade": "A",
     "cpd": 21.7,
@@ -862,7 +883,7 @@
     "grade_avg": 4,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-harim-chicken-blackpepper-100",
@@ -888,6 +909,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/ApTdSud1K9h",
     "ppr": 8.6,
     "ppr_grade": "A",
     "cpd": 20.9,
@@ -902,7 +924,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-harim-chicken-smoked-100",
@@ -928,6 +950,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/LEXdCXy56eg",
     "ppr": 8.6,
     "ppr_grade": "A",
     "cpd": 20,
@@ -942,7 +965,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-harim-sausage-original-100",
@@ -968,6 +991,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/6aEchwkdPAf",
     "ppr": 7.2,
     "ppr_grade": "B",
     "cpd": 11.6,
@@ -988,7 +1012,7 @@
     "grade_avg": 3,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-goobne-sausage-garlic-120",
@@ -1014,6 +1038,7 @@
     "source_url": "https://www.goobnemall.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/KEdz17ll9OJ",
     "ppr": 8.5,
     "ppr_grade": "A",
     "cpd": 10.5,
@@ -1028,7 +1053,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.459Z"
   },
   {
     "menu_id": "cvs-goobne-chicken-smoked-100",
@@ -1054,6 +1079,7 @@
     "source_url": "https://www.goobnemall.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/KofXyFTi8B9",
     "ppr": 8.9,
     "ppr_grade": "A",
     "cpd": 21.7,
@@ -1068,7 +1094,7 @@
     "grade_avg": 4,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-cj-maxbon-protein-55",
@@ -1094,6 +1120,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/2PG1ZPPCu9x",
     "ppr": 4.4,
     "ppr_grade": "C",
     "cpd": 8.4,
@@ -1114,7 +1141,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-hanseong-crami-90",
@@ -1140,6 +1167,7 @@
     "source_url": "https://www.hsd.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/L1NknVYRCod",
     "ppr": 3.7,
     "ppr_grade": "C",
     "cpd": 10.9,
@@ -1154,7 +1182,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-gamdongran-100",
@@ -1180,6 +1208,7 @@
     "source_url": "https://marukane.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/IrIIMGPACXT",
     "ppr": 5.9,
     "ppr_grade": "B",
     "cpd": 9.4,
@@ -1194,7 +1223,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-smoked-eggs-2p-100",
@@ -1220,6 +1249,7 @@
     "source_url": "https://morningegg.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/G0gppLjkfHO",
     "ppr": 6.8,
     "ppr_grade": "B",
     "cpd": 9.6,
@@ -1234,7 +1264,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-jiller-beef-jerky-60",
@@ -1260,6 +1290,7 @@
     "source_url": "https://www.sempio.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/3Mq4kpqEluw",
     "ppr": 5,
     "ppr_grade": "B",
     "cpd": 13,
@@ -1280,7 +1311,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-cu-deuktem-chicken-100",
@@ -1306,6 +1337,7 @@
     "source_url": "https://cu.bgfretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/Lo16u565De0",
     "ppr": 12.6,
     "ppr_grade": "A",
     "cpd": 20.9,
@@ -1320,7 +1352,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-gs25-youus-smoked-chicken-100",
@@ -1346,6 +1378,7 @@
     "source_url": "http://gs25.gsretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/7S2fWZ51jR5",
     "ppr": 10.4,
     "ppr_grade": "A",
     "cpd": 20.9,
@@ -1360,7 +1393,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-orion-dryou-bar-50",
@@ -1386,6 +1419,7 @@
     "source_url": "https://www.orionworld.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/JJF3q6XQO20",
     "ppr": 7.1,
     "ppr_grade": "B",
     "cpd": 4.8,
@@ -1418,7 +1452,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-orion-dryou-pro-bar-70",
@@ -1444,6 +1478,7 @@
     "source_url": "https://www.orionworld.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/5Jgr4uKz7y6",
     "ppr": 9.6,
     "ppr_grade": "A",
     "cpd": 8.1,
@@ -1464,7 +1499,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-binggrae-the-danbaek-bar-choco-40",
@@ -1490,6 +1525,7 @@
     "source_url": "https://www.bing.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/Au2tdBkDjvc",
     "ppr": 7.5,
     "ppr_grade": "B",
     "cpd": 9.7,
@@ -1510,7 +1546,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-labnosh-foodbar-choco-55",
@@ -1536,6 +1572,7 @@
     "source_url": "https://labnosh.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/H4hPGUYytrU",
     "ppr": 6.8,
     "ppr_grade": "B",
     "cpd": 7.1,
@@ -1556,7 +1593,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-kellogg-protein-bar-50",
@@ -1582,6 +1619,7 @@
     "source_url": "https://www.kelloggs.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/4X58V6feApT",
     "ppr": 5.6,
     "ppr_grade": "B",
     "cpd": 4.9,
@@ -1602,7 +1640,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-gs25-hyeja-jeyuk-430",
@@ -1628,6 +1666,7 @@
     "source_url": "http://gs25.gsretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/5qnXnuK7UKE",
     "ppr": 6.2,
     "ppr_grade": "B",
     "cpd": 3.9,
@@ -1649,7 +1688,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-gs25-hyeja-neobiani-420",
@@ -1675,6 +1714,7 @@
     "source_url": "http://gs25.gsretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/HVTGMkXgS8E",
     "ppr": 5.3,
     "ppr_grade": "B",
     "cpd": 3.5,
@@ -1696,7 +1736,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-gs25-chicken-tender-cobb-200",
@@ -1722,6 +1762,7 @@
     "source_url": "http://gs25.gsretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/GDw0XJ4qYYD",
     "ppr": 4,
     "ppr_grade": "C",
     "cpd": 8.4,
@@ -1748,7 +1789,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-gs25-tuna-mayo-tri-110",
@@ -1774,6 +1815,7 @@
     "source_url": "http://gs25.gsretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/CslOsscq0vm",
     "ppr": 4,
     "ppr_grade": "C",
     "cpd": 2.4,
@@ -1788,7 +1830,7 @@
     "grade_avg": 1.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-gs25-chicken-cutlet-sand-190",
@@ -1814,6 +1856,7 @@
     "source_url": "http://gs25.gsretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/At1dXTdMdGL",
     "ppr": 4.7,
     "ppr_grade": "C",
     "cpd": 3.8,
@@ -1834,7 +1877,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-cu-baekjongwon-plate-440",
@@ -1860,6 +1903,7 @@
     "source_url": "https://cu.bgfretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/8DmtxATwQMf",
     "ppr": 7.1,
     "ppr_grade": "B",
     "cpd": 4,
@@ -1874,7 +1918,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.782Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-cu-baekjongwon-doublepork-450",
@@ -1900,6 +1944,7 @@
     "source_url": "https://cu.bgfretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/4vRSyqYXioa",
     "ppr": 5.8,
     "ppr_grade": "B",
     "cpd": 3.5,
@@ -1926,7 +1971,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-cu-grilled-chicken-salad-210",
@@ -1952,6 +1997,7 @@
     "source_url": "https://cu.bgfretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/GPG44vMjL09",
     "ppr": 4.6,
     "ppr_grade": "C",
     "cpd": 9.6,
@@ -1966,7 +2012,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-cu-cajun-chicken-sand-185",
@@ -1992,6 +2038,7 @@
     "source_url": "https://cu.bgfretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/Ar0jvCALdwU",
     "ppr": 4.7,
     "ppr_grade": "C",
     "cpd": 3.8,
@@ -2012,7 +2059,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-seven-matjangwoo-bibim-410",
@@ -2038,6 +2085,7 @@
     "source_url": "https://www.7-eleven.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/Bye0bRmAA0x",
     "ppr": 4.6,
     "ppr_grade": "C",
     "cpd": 3.2,
@@ -2052,7 +2100,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-seven-chicken-egg-salad-200",
@@ -2078,6 +2126,7 @@
     "source_url": "https://www.7-eleven.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/CI9yr3144NC",
     "ppr": 4.3,
     "ppr_grade": "C",
     "cpd": 9.5,
@@ -2092,7 +2141,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-seven-protein-washing-kimbap-260",
@@ -2118,6 +2167,7 @@
     "source_url": "https://www.7-eleven.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/7WrTaXjZRZC",
     "ppr": 4.5,
     "ppr_grade": "C",
     "cpd": 3.5,
@@ -2150,7 +2200,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-emart24-meatball-lunch-420",
@@ -2176,6 +2226,7 @@
     "source_url": "https://emart24.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/GZZMrKiIkSI",
     "ppr": 4.9,
     "ppr_grade": "C",
     "cpd": 3.4,
@@ -2197,7 +2248,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-emart24-tofu-steak-salad-220",
@@ -2223,6 +2274,7 @@
     "source_url": "https://emart24.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/KHL5gUy235v",
     "ppr": 4,
     "ppr_grade": "C",
     "cpd": 7.9,
@@ -2237,7 +2289,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d1020960600000001-100",
@@ -2262,6 +2314,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/7OomGQzkI02",
     "ppr": 2.7,
     "ppr_grade": "D",
     "cpd": 5.1,
@@ -2276,7 +2329,7 @@
     "grade_avg": 1.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d1104621552000001-100",
@@ -2301,6 +2354,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/2jYXuAHbhwv",
     "ppr": 5.7,
     "ppr_grade": "B",
     "cpd": 13.4,
@@ -2315,7 +2369,7 @@
     "grade_avg": 3,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2020960600000001-100",
@@ -2340,6 +2394,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/IdlIUbjB9f6",
     "ppr": 2,
     "ppr_grade": "D",
     "cpd": 17.6,
@@ -2354,7 +2409,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d3125490700000001-100",
@@ -2379,6 +2434,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/1j4zU8kUGSq",
     "ppr": 7.2,
     "ppr_grade": "B",
     "cpd": 8.3,
@@ -2399,7 +2455,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011040001000042-109",
@@ -2424,6 +2480,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/FXxtHOl50xO",
     "ppr": 9.1,
     "ppr_grade": "A",
     "cpd": 6.8,
@@ -2438,7 +2495,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001002148-105",
@@ -2463,6 +2520,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/9m3osI6Mj9Y",
     "ppr": 6.6,
     "ppr_grade": "B",
     "cpd": 3.6,
@@ -2495,7 +2553,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1014050004000626-100",
@@ -2520,6 +2578,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/4R7JDDlIXOd",
     "ppr": 3.7,
     "ppr_grade": "C",
     "cpd": 4.5,
@@ -2534,7 +2593,7 @@
     "grade_avg": 1.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1014150004000062-100",
@@ -2559,6 +2618,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/L7SlhNeX8U",
     "ppr": 4.7,
     "ppr_grade": "C",
     "cpd": 8,
@@ -2573,7 +2633,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1014150004000121-100",
@@ -2598,6 +2658,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/2r7ckBtlXLZ",
     "ppr": 8.6,
     "ppr_grade": "A",
     "cpd": 13.1,
@@ -2612,7 +2673,7 @@
     "grade_avg": 4,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1014150004000122-100",
@@ -2637,6 +2698,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/2r7ckBtlXLZ",
     "ppr": 4.8,
     "ppr_grade": "C",
     "cpd": 8.8,
@@ -2651,7 +2713,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2021200000004408-100",
@@ -2676,6 +2738,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/Gfm6HYxzPjo",
     "ppr": 4,
     "ppr_grade": "C",
     "cpd": 21.9,
@@ -2696,7 +2759,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2021200000004429-100",
@@ -2721,6 +2784,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/DMxIiPtn1ig",
     "ppr": 3.6,
     "ppr_grade": "C",
     "cpd": 19.9,
@@ -2741,7 +2805,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2021203400000117-100",
@@ -2766,6 +2830,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/2AtjwN8v6FG",
     "ppr": 4.2,
     "ppr_grade": "C",
     "cpd": 20.4,
@@ -2780,7 +2845,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2197130000000003-100",
@@ -2805,6 +2870,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/JZza95o2Ei0",
     "ppr": 3.9,
     "ppr_grade": "C",
     "cpd": 11.2,
@@ -2837,7 +2903,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001000063-100",
@@ -2862,6 +2928,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/48JUetcyXe4",
     "ppr": 5.7,
     "ppr_grade": "B",
     "cpd": 4.9,
@@ -2889,7 +2956,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001000064-100",
@@ -2914,6 +2981,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/48JUetcyXe4",
     "ppr": 6.4,
     "ppr_grade": "B",
     "cpd": 5.1,
@@ -2952,7 +3020,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001000065-118",
@@ -2977,6 +3045,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/2RxMMaPirBD",
     "ppr": 10,
     "ppr_grade": "A",
     "cpd": 6.9,
@@ -3015,7 +3084,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001000066-106",
@@ -3040,6 +3109,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/57nTIE7Fstj",
     "ppr": 8.8,
     "ppr_grade": "A",
     "cpd": 3.7,
@@ -3072,7 +3142,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001000299-107",
@@ -3097,6 +3167,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/EZHb32qgFzt",
     "ppr": 11.3,
     "ppr_grade": "A",
     "cpd": 4.7,
@@ -3124,7 +3195,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001000300-109",
@@ -3149,6 +3220,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/EZHb32qgFzt",
     "ppr": 12.9,
     "ppr_grade": "A",
     "cpd": 5.2,
@@ -3170,7 +3242,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001000352-111",
@@ -3195,6 +3267,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/Ci52K2cGyQ6",
     "ppr": 14,
     "ppr_grade": "A",
     "cpd": 5.3,
@@ -3228,7 +3301,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001000353-110",
@@ -3253,6 +3326,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/JT2h9ZLOCJV",
     "ppr": 13.8,
     "ppr_grade": "A",
     "cpd": 5.2,
@@ -3286,7 +3360,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001000561-103",
@@ -3311,6 +3385,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/HICg7M8exuE",
     "ppr": 8.8,
     "ppr_grade": "A",
     "cpd": 3.9,
@@ -3331,7 +3406,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001000855-106",
@@ -3356,6 +3431,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/GLymlB5JhRq",
     "ppr": 11.5,
     "ppr_grade": "A",
     "cpd": 4.8,
@@ -3383,7 +3459,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001001982-111",
@@ -3408,6 +3484,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/Fa7iqrMUNWq",
     "ppr": 14.9,
     "ppr_grade": "A",
     "cpd": 6.9,
@@ -3422,7 +3499,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001005660-104",
@@ -3447,6 +3524,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/F5bEaMab9Ho",
     "ppr": 9.8,
     "ppr_grade": "A",
     "cpd": 4,
@@ -3490,7 +3568,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030004000237-101",
@@ -3515,6 +3593,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/FXhgPMAjRll",
     "ppr": 5,
     "ppr_grade": "B",
     "cpd": 2,
@@ -3563,7 +3642,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030004000238-111",
@@ -3588,6 +3667,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/DSu6h32Ljnc",
     "ppr": 10,
     "ppr_grade": "A",
     "cpd": 4,
@@ -3626,7 +3706,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2021100000000544-100",
@@ -3651,6 +3731,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/7BEnaWBe01y",
     "ppr": 6,
     "ppr_grade": "B",
     "cpd": 19.5,
@@ -3665,7 +3746,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2197110000000238-100",
@@ -3690,6 +3771,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/KF1PzkpDqw0",
     "ppr": 8.4,
     "ppr_grade": "A",
     "cpd": 14.4,
@@ -3704,7 +3786,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2197110000000244-100",
@@ -3729,6 +3811,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/KF1PzkpDqw0",
     "ppr": 6.6,
     "ppr_grade": "B",
     "cpd": 10.7,
@@ -3750,7 +3833,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2197110000000290-100",
@@ -3775,6 +3858,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/KF1PzkpDqw0",
     "ppr": 11.3,
     "ppr_grade": "A",
     "cpd": 11.1,
@@ -3796,7 +3880,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d1104820000000001-100",
@@ -3821,6 +3905,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/HmlYqJuj6aI",
     "ppr": 4.1,
     "ppr_grade": "C",
     "cpd": 4.3,
@@ -3835,7 +3920,7 @@
     "grade_avg": 1.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2020830000000006-100",
@@ -3860,6 +3945,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/4DAeM0VOfSq",
     "ppr": 5.7,
     "ppr_grade": "B",
     "cpd": 22.7,
@@ -3874,7 +3960,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2020870000000044-124",
@@ -3899,6 +3985,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/G7X7jysaQm9",
     "ppr": 4,
     "ppr_grade": "C",
     "cpd": 1.7,
@@ -3932,7 +4019,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2020950000000079-100",
@@ -3957,6 +4044,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/7tLfWW1MSx7",
     "ppr": 4.5,
     "ppr_grade": "C",
     "cpd": 21.9,
@@ -3971,7 +4059,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2020950000000094-100",
@@ -3996,6 +4084,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/9EEfdCpdpUt",
     "ppr": 4.3,
     "ppr_grade": "C",
     "cpd": 4.4,
@@ -4010,7 +4099,7 @@
     "grade_avg": 1.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2020960000000070-100",
@@ -4035,6 +4124,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/AyEevlXSoxe",
     "ppr": 2.4,
     "ppr_grade": "D",
     "cpd": 20.3,
@@ -4049,7 +4139,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2020980000000002-100",
@@ -4074,6 +4164,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/gZKPfEBm6Y",
     "ppr": 4.4,
     "ppr_grade": "C",
     "cpd": 21.1,
@@ -4088,7 +4179,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2020980000000003-100",
@@ -4113,6 +4204,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/BYxZbUkuhUC",
     "ppr": 3,
     "ppr_grade": "C",
     "cpd": 15.6,
@@ -4127,7 +4219,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2020980000000004-100",
@@ -4152,6 +4244,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/ByWYyNXZfP2",
     "ppr": 5.1,
     "ppr_grade": "B",
     "cpd": 20,
@@ -4166,7 +4259,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2020980000000007-100",
@@ -4191,6 +4284,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/2Go79XMLnE1",
     "ppr": 4,
     "ppr_grade": "C",
     "cpd": 17.2,
@@ -4205,7 +4299,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2020980000000008-100",
@@ -4230,6 +4324,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/DYl8L3XRqjZ",
     "ppr": 3.4,
     "ppr_grade": "C",
     "cpd": 3.1,
@@ -4244,7 +4339,7 @@
     "grade_avg": 1.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011040001000360-100",
@@ -4269,6 +4364,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/CE7kA0SXsxG",
     "ppr": 7.3,
     "ppr_grade": "B",
     "cpd": 4.6,
@@ -4283,7 +4379,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1120100014000003-100",
@@ -4308,6 +4404,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/Ii41lXlCMs3",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 13.3,
@@ -4322,7 +4419,7 @@
     "grade_avg": 3,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1167030703000001-100",
@@ -4347,6 +4444,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/2zHpao9z54w",
     "ppr": 12.1,
     "ppr_grade": "A",
     "cpd": 10.8,
@@ -4368,7 +4466,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1167030703000002-100",
@@ -4393,6 +4491,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/2zHpao9z54w",
     "ppr": 12.5,
     "ppr_grade": "A",
     "cpd": 11.1,
@@ -4414,7 +4513,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1167030703000048-100",
@@ -4439,6 +4538,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/IxFh9LkLqua",
     "ppr": 11.2,
     "ppr_grade": "A",
     "cpd": 10,
@@ -4466,7 +4566,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1167030703000049-100",
@@ -4491,6 +4591,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/HAn3dST8bg5",
     "ppr": 10.3,
     "ppr_grade": "A",
     "cpd": 9.2,
@@ -4524,7 +4625,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1167030703000050-100",
@@ -4549,6 +4650,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/IxFh9LkLqua",
     "ppr": 10.3,
     "ppr_grade": "A",
     "cpd": 8.6,
@@ -4582,7 +4684,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1167030703000051-100",
@@ -4607,6 +4709,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/1VBydaSpVAU",
     "ppr": 9.5,
     "ppr_grade": "A",
     "cpd": 8.6,
@@ -4634,7 +4737,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1167030703000052-100",
@@ -4659,6 +4762,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/HAn3dST8bg5",
     "ppr": 10.3,
     "ppr_grade": "A",
     "cpd": 9.2,
@@ -4686,7 +4790,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1167030703000134-100",
@@ -4711,6 +4815,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/HAn3dST8bg5",
     "ppr": 10.4,
     "ppr_grade": "A",
     "cpd": 9.4,
@@ -4738,7 +4843,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1167030703000206-100",
@@ -4763,6 +4868,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/4SYqfejcWjd",
     "ppr": 12.1,
     "ppr_grade": "A",
     "cpd": 11.8,
@@ -4784,7 +4890,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1167030703000207-100",
@@ -4809,6 +4915,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/4SYqfejcWjd",
     "ppr": 12.8,
     "ppr_grade": "A",
     "cpd": 11.5,
@@ -4830,7 +4937,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1167030703000208-100",
@@ -4855,6 +4962,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/4SYqfejcWjd",
     "ppr": 13.1,
     "ppr_grade": "A",
     "cpd": 12.1,
@@ -4876,7 +4984,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1181000107000034-100",
@@ -4901,6 +5009,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/4i2r8nimP0k",
     "ppr": 4.9,
     "ppr_grade": "C",
     "cpd": 10.2,
@@ -4915,7 +5024,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1181000107000105-100",
@@ -4940,6 +5049,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/EVSJYRhUQha",
     "ppr": 5.5,
     "ppr_grade": "B",
     "cpd": 10.3,
@@ -4954,7 +5064,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1181000107000149-100",
@@ -4979,6 +5089,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/6JocjuHuOyU",
     "ppr": 4.5,
     "ppr_grade": "C",
     "cpd": 10.2,
@@ -4993,7 +5104,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1182000107000065-100",
@@ -5018,6 +5129,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/88dsnSnJXhk",
     "ppr": 5.5,
     "ppr_grade": "B",
     "cpd": 10.5,
@@ -5032,7 +5144,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001000038-104",
@@ -5057,6 +5169,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/8WmrYYlKC0a",
     "ppr": 11.3,
     "ppr_grade": "A",
     "cpd": 4.5,
@@ -5084,7 +5197,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001000386-108",
@@ -5109,6 +5222,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/62eJSu1Lewj",
     "ppr": 12.5,
     "ppr_grade": "A",
     "cpd": 4.9,
@@ -5130,7 +5244,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001001706-101",
@@ -5155,6 +5269,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/1YKf23Z49Kq",
     "ppr": 11.5,
     "ppr_grade": "A",
     "cpd": 4.8,
@@ -5169,7 +5284,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001002454-100",
@@ -5194,6 +5309,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/GReEKJ72Haw",
     "ppr": 16.7,
     "ppr_grade": "A",
     "cpd": 10.2,
@@ -5208,7 +5324,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001002860-100",
@@ -5233,6 +5349,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/BFrYbW8sJyV",
     "ppr": 11.1,
     "ppr_grade": "A",
     "cpd": 6,
@@ -5247,7 +5364,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001002861-100",
@@ -5272,6 +5389,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/1LPrgwMhkNn",
     "ppr": 10.9,
     "ppr_grade": "A",
     "cpd": 6,
@@ -5286,7 +5404,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001002907-104",
@@ -5311,6 +5429,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/HGb0Asgc8Y6",
     "ppr": 18,
     "ppr_grade": "A",
     "cpd": 8.1,
@@ -5325,7 +5444,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001003147-110",
@@ -5350,6 +5469,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/5ym1XeBPgOv",
     "ppr": 11.7,
     "ppr_grade": "A",
     "cpd": 4.1,
@@ -5371,7 +5491,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001003388-100",
@@ -5396,6 +5516,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/BMeHUNzFZLh",
     "ppr": 10.9,
     "ppr_grade": "A",
     "cpd": 6,
@@ -5410,7 +5531,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001003389-100",
@@ -5435,6 +5556,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/DJxxWSq3xN8",
     "ppr": 11.1,
     "ppr_grade": "A",
     "cpd": 6,
@@ -5449,7 +5571,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001003446-101",
@@ -5474,6 +5596,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/o7iYVLnhhA",
     "ppr": 17.9,
     "ppr_grade": "A",
     "cpd": 7.5,
@@ -5501,7 +5624,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001003669-102",
@@ -5526,6 +5649,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/18Y5p4J7dQ8",
     "ppr": 20.1,
     "ppr_grade": "A",
     "cpd": 9.5,
@@ -5552,7 +5676,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001006156-104",
@@ -5577,6 +5701,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/tqfEwZ9uMq",
     "ppr": 17.2,
     "ppr_grade": "A",
     "cpd": 7.7,
@@ -5591,7 +5716,7 @@
     "grade_avg": 3,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001006172-101",
@@ -5616,6 +5741,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/EEzEMmZO1FC",
     "ppr": 12.5,
     "ppr_grade": "A",
     "cpd": 5.4,
@@ -5630,7 +5756,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2021200000001362-100",
@@ -5655,6 +5781,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/HZKIN4BsgVO",
     "ppr": 3.7,
     "ppr_grade": "C",
     "cpd": 19.2,
@@ -5675,7 +5802,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2021200000001363-100",
@@ -5700,6 +5827,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/HT2m77AqnE5",
     "ppr": 3.7,
     "ppr_grade": "C",
     "cpd": 19.2,
@@ -5720,7 +5848,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2125490000000166-100",
@@ -5745,6 +5873,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/CtZcm8Lhc1a",
     "ppr": 5.3,
     "ppr_grade": "B",
     "cpd": 23.5,
@@ -5765,7 +5894,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2125490000000167-100",
@@ -5790,6 +5919,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/DA5Qm77CifO",
     "ppr": 5.7,
     "ppr_grade": "B",
     "cpd": 24.4,
@@ -5810,7 +5940,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2125490000000168-100",
@@ -5835,6 +5965,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/5TtcfcHBaIe",
     "ppr": 5.4,
     "ppr_grade": "B",
     "cpd": 24.4,
@@ -5855,7 +5986,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-d2146400000000042-100",
@@ -5880,6 +6011,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/FyEU3c0rIwA",
     "ppr": 1.7,
     "ppr_grade": "D",
     "cpd": 18.2,
@@ -5900,7 +6032,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p117100050200f065001-100",
@@ -5925,6 +6057,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/GkvPuUlCSVA",
     "ppr": 4.3,
     "ppr_grade": "C",
     "cpd": 7.5,
@@ -5945,7 +6078,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1175010501000379-100",
@@ -5970,6 +6103,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/JUQ7UDP0Ku",
     "ppr": 5.1,
     "ppr_grade": "B",
     "cpd": 8.8,
@@ -5990,7 +6124,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1175010501000948-100",
@@ -6015,6 +6149,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/nhbRxfGfa3",
     "ppr": 7,
     "ppr_grade": "B",
     "cpd": 7.4,
@@ -6035,7 +6170,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1175010501001149-100",
@@ -6060,6 +6195,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/BteW9UG3PW6",
     "ppr": 4.5,
     "ppr_grade": "C",
     "cpd": 11.3,
@@ -6080,7 +6216,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1175010501001631-100",
@@ -6105,6 +6241,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/XqPv0bJnXy",
     "ppr": 5.3,
     "ppr_grade": "B",
     "cpd": 10.8,
@@ -6125,7 +6262,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1175010501003278-100",
@@ -6150,6 +6287,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/GwscxwzqhBp",
     "ppr": 3.7,
     "ppr_grade": "C",
     "cpd": 5.5,
@@ -6170,7 +6308,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1175010501003556-100",
@@ -6195,6 +6333,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/9Th4FoGR87L",
     "ppr": 5.5,
     "ppr_grade": "B",
     "cpd": 7,
@@ -6215,7 +6354,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011040001000513-113",
@@ -6240,6 +6379,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/JlK8ZgbJZBs",
     "ppr": 8,
     "ppr_grade": "A",
     "cpd": 3.4,
@@ -6261,7 +6401,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011040001000514-108",
@@ -6286,6 +6426,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/2KqweyhTPb0",
     "ppr": 8,
     "ppr_grade": "A",
     "cpd": 3.4,
@@ -6300,7 +6441,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001003372-118",
@@ -6325,6 +6466,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/HMci6om0und",
     "ppr": 3.7,
     "ppr_grade": "C",
     "cpd": 2.6,
@@ -6339,7 +6481,7 @@
     "grade_avg": 1.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1021030103000836-100",
@@ -6364,6 +6506,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/9r5w7hRDlpi",
     "ppr": 5.2,
     "ppr_grade": "B",
     "cpd": 5.9,
@@ -6378,7 +6521,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1021030103001179-100",
@@ -6403,6 +6546,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/9r5w7hRDlpi",
     "ppr": 4.7,
     "ppr_grade": "C",
     "cpd": 5.4,
@@ -6417,7 +6561,7 @@
     "grade_avg": 1.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1031020205000375-107",
@@ -6442,6 +6586,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/9bRAdNkxoS6",
     "ppr": 18.8,
     "ppr_grade": "A",
     "cpd": 8.1,
@@ -6456,7 +6601,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1031020205000883-107",
@@ -6481,6 +6626,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/7Tc4IhuqmzG",
     "ppr": 13.6,
     "ppr_grade": "A",
     "cpd": 5.9,
@@ -6502,7 +6648,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1092010200001167-100",
@@ -6527,6 +6673,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/Ff6E10ImcWV",
     "ppr": 4.4,
     "ppr_grade": "C",
     "cpd": 18.2,
@@ -6541,7 +6688,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801000270-100",
@@ -6566,6 +6713,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/EAEDrtxeMse",
     "ppr": 4.4,
     "ppr_grade": "C",
     "cpd": 18.2,
@@ -6580,7 +6728,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001001006-108",
@@ -6605,6 +6753,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/3vovg7NwkPy",
     "ppr": 10.5,
     "ppr_grade": "A",
     "cpd": 4.7,
@@ -6632,7 +6781,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001001007-101",
@@ -6657,6 +6806,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/3QgbtPikxb3",
     "ppr": 12,
     "ppr_grade": "A",
     "cpd": 4.9,
@@ -6671,7 +6821,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001001008-107",
@@ -6696,6 +6846,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/6zKaeOFMlxo",
     "ppr": 10,
     "ppr_grade": "A",
     "cpd": 4.6,
@@ -6723,7 +6874,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001003585-101",
@@ -6748,6 +6899,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/1YGE4rN8D8P",
     "ppr": 12,
     "ppr_grade": "A",
     "cpd": 4.9,
@@ -6762,7 +6914,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1012070002001231-100",
@@ -6787,6 +6939,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/CN5j83utPus",
     "ppr": 2.9,
     "ppr_grade": "D",
     "cpd": 3.6,
@@ -6801,7 +6954,7 @@
     "grade_avg": 1,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1092010200001490-100",
@@ -6826,6 +6979,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/FUFEHTBgpLt",
     "ppr": 2.3,
     "ppr_grade": "D",
     "cpd": 15.4,
@@ -6846,7 +7000,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801002024-100",
@@ -6871,6 +7025,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/JtHrpCtfs2K",
     "ppr": 2.3,
     "ppr_grade": "D",
     "cpd": 15.4,
@@ -6891,7 +7046,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801002386-100",
@@ -6916,6 +7071,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/XV6vO9XXUV",
     "ppr": 2.9,
     "ppr_grade": "D",
     "cpd": 14.7,
@@ -6936,7 +7092,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801002388-100",
@@ -6961,6 +7117,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/KicjqccdEHK",
     "ppr": 2.7,
     "ppr_grade": "D",
     "cpd": 14,
@@ -6981,7 +7138,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801002389-100",
@@ -7006,6 +7163,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/Ly2oY2Q8UuR",
     "ppr": 4,
     "ppr_grade": "C",
     "cpd": 14.3,
@@ -7026,7 +7184,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801002786-100",
@@ -7051,6 +7209,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/JtHrpCtfs2K",
     "ppr": 2.3,
     "ppr_grade": "D",
     "cpd": 14.8,
@@ -7071,7 +7230,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801002787-100",
@@ -7096,6 +7255,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/HZjDGqzeBy0",
     "ppr": 2.3,
     "ppr_grade": "D",
     "cpd": 14.3,
@@ -7116,7 +7276,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801001448-100",
@@ -7141,6 +7301,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/3AYrREph2TN",
     "ppr": 2.7,
     "ppr_grade": "D",
     "cpd": 22.9,
@@ -7155,7 +7316,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801001449-100",
@@ -7180,6 +7341,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/2olbEc70LS8",
     "ppr": 2.4,
     "ppr_grade": "D",
     "cpd": 21,
@@ -7194,7 +7356,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801001987-100",
@@ -7219,6 +7381,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/8hCJwH7YBhT",
     "ppr": 2.3,
     "ppr_grade": "D",
     "cpd": 10.5,
@@ -7233,7 +7396,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801003121-100",
@@ -7258,6 +7421,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/DCaeyGfj9kG",
     "ppr": 4.8,
     "ppr_grade": "C",
     "cpd": 22.9,
@@ -7272,7 +7436,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801003123-100",
@@ -7297,6 +7461,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/E6YvjmWl58q",
     "ppr": 2.7,
     "ppr_grade": "D",
     "cpd": 22.9,
@@ -7311,7 +7476,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801003510-100",
@@ -7336,6 +7501,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/Knpo6dUqoSw",
     "ppr": 6.5,
     "ppr_grade": "B",
     "cpd": 23,
@@ -7350,7 +7516,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001001992-100",
@@ -7375,6 +7541,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/FuY4WIhzHHa",
     "ppr": 4,
     "ppr_grade": "C",
     "cpd": 4.2,
@@ -7396,7 +7563,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001001993-100",
@@ -7421,6 +7588,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/Cm6V0IkdpYo",
     "ppr": 4,
     "ppr_grade": "C",
     "cpd": 4.5,
@@ -7442,7 +7610,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011030001001994-100",
@@ -7467,6 +7635,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/GpH3c28I56F",
     "ppr": 4,
     "ppr_grade": "C",
     "cpd": 4.2,
@@ -7494,7 +7663,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011040001000909-100",
@@ -7519,6 +7688,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/ICziyLAi8gp",
     "ppr": 4,
     "ppr_grade": "C",
     "cpd": 4.1,
@@ -7540,7 +7710,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1012050002001431-100",
@@ -7565,6 +7735,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/6LJ3408seoj",
     "ppr": 2.3,
     "ppr_grade": "D",
     "cpd": 3.1,
@@ -7579,7 +7750,7 @@
     "grade_avg": 1,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1012050002001434-100",
@@ -7604,6 +7775,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/6LJ3408seoj",
     "ppr": 7,
     "ppr_grade": "B",
     "cpd": 10.8,
@@ -7625,7 +7797,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1012050002001712-100",
@@ -7650,6 +7822,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/LaqlM5e2Vgl",
     "ppr": 2.3,
     "ppr_grade": "D",
     "cpd": 3,
@@ -7671,7 +7844,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1014010004000859-100",
@@ -7696,6 +7869,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/6eS5dPmoCdJ",
     "ppr": 3.5,
     "ppr_grade": "C",
     "cpd": 3.6,
@@ -7734,7 +7908,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1014010004000860-100",
@@ -7759,6 +7933,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/ILy0d2j3nVI",
     "ppr": 3.5,
     "ppr_grade": "C",
     "cpd": 3.7,
@@ -7797,7 +7972,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801002139-100",
@@ -7822,6 +7997,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/H29arcfkh8S",
     "ppr": 2.3,
     "ppr_grade": "D",
     "cpd": 15.4,
@@ -7836,7 +8012,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801005844-100",
@@ -7861,6 +8037,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/8xwTTJG458w",
     "ppr": 2.3,
     "ppr_grade": "D",
     "cpd": 15.4,
@@ -7875,7 +8052,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801005845-100",
@@ -7900,6 +8077,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/Kd2X6VCUMxl",
     "ppr": 2.3,
     "ppr_grade": "D",
     "cpd": 15.4,
@@ -7914,7 +8092,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1163020302001605-104",
@@ -7939,6 +8117,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/AopgDWwQHsp",
     "ppr": 5,
     "ppr_grade": "B",
     "cpd": 2.3,
@@ -7976,7 +8155,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1163030302000621-118",
@@ -8001,6 +8180,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/H8DRyAGIRBh",
     "ppr": 6,
     "ppr_grade": "B",
     "cpd": 2.3,
@@ -8038,7 +8218,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1232190202000240-107",
@@ -8063,6 +8243,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/FKTnJdk6LVw",
     "ppr": 4.1,
     "ppr_grade": "C",
     "cpd": 3.3,
@@ -8083,7 +8264,7 @@
     "grade_avg": 1.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001006288-107",
@@ -8108,6 +8289,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/IKojIqLpwB7",
     "ppr": 17.2,
     "ppr_grade": "A",
     "cpd": 6.8,
@@ -8135,7 +8317,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001007056-104",
@@ -8160,6 +8342,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/H1UbL8KPIXn",
     "ppr": 17.2,
     "ppr_grade": "A",
     "cpd": 8.4,
@@ -8174,7 +8357,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1011060001007057-107",
@@ -8199,6 +8382,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/86sXWQnGpWa",
     "ppr": 17.2,
     "ppr_grade": "A",
     "cpd": 6.8,
@@ -8226,7 +8410,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801000254-100",
@@ -8251,6 +8435,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/LNsRvY5XUGB",
     "ppr": 3.9,
     "ppr_grade": "C",
     "cpd": 15.7,
@@ -8271,7 +8456,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801002471-100",
@@ -8296,6 +8481,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/DwvasnyT0fO",
     "ppr": 4.1,
     "ppr_grade": "C",
     "cpd": 13,
@@ -8316,7 +8502,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801002472-100",
@@ -8341,6 +8527,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/Ln6cgmldxg5",
     "ppr": 3.4,
     "ppr_grade": "C",
     "cpd": 16.8,
@@ -8361,7 +8548,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801003644-100",
@@ -8386,6 +8573,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/JbwkkYWBAtZ",
     "ppr": 4.1,
     "ppr_grade": "C",
     "cpd": 16.3,
@@ -8406,7 +8594,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801003645-100",
@@ -8431,6 +8619,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/DWyMqm2BfIl",
     "ppr": 3.4,
     "ppr_grade": "C",
     "cpd": 18.1,
@@ -8451,7 +8640,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1105000500000381-101",
@@ -8476,6 +8665,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/HeQOo7UkJSk",
     "ppr": 16.3,
     "ppr_grade": "A",
     "cpd": 15.9,
@@ -8490,7 +8680,7 @@
     "grade_avg": 4,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1098010801005785-100",
@@ -8515,6 +8705,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/IqAtKb1Taw5",
     "ppr": 3,
     "ppr_grade": "C",
     "cpd": 17.6,
@@ -8535,7 +8726,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1171000101002046-100",
@@ -8560,6 +8751,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/63xPj5fj8y4",
     "ppr": 8.3,
     "ppr_grade": "A",
     "cpd": 20.9,
@@ -8574,7 +8766,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1172010201000599-100",
@@ -8599,6 +8791,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/K29qvjkdbx",
     "ppr": 6,
     "ppr_grade": "B",
     "cpd": 13.2,
@@ -8613,7 +8806,7 @@
     "grade_avg": 3,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.461Z"
   },
   {
     "menu_id": "cvs-p1172010201000600-100",
@@ -8638,6 +8831,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/DGJp87kYRwa",
     "ppr": 6.6,
     "ppr_grade": "B",
     "cpd": 14.4,
@@ -8652,7 +8846,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-p1172010201000601-100",
@@ -8677,6 +8871,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/CgGUGIasT3W",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 14.5,
@@ -8691,7 +8886,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-p1014050004002790-100",
@@ -8716,6 +8911,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/2QCY97p08tm",
     "ppr": 2.2,
     "ppr_grade": "D",
     "cpd": 4.1,
@@ -8730,7 +8926,7 @@
     "grade_avg": 1,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-p1014050004002791-100",
@@ -8755,6 +8951,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/2QCY97p08tm",
     "ppr": 2.5,
     "ppr_grade": "D",
     "cpd": 3.5,
@@ -8776,7 +8973,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-d2021120000000034-100",
@@ -8801,6 +8998,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/JPnWO6WfCNd",
     "ppr": 2.6,
     "ppr_grade": "D",
     "cpd": 18.8,
@@ -8815,7 +9013,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-p1181000107000012-100",
@@ -8840,6 +9038,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/34gNBbGwBzI",
     "ppr": 3.7,
     "ppr_grade": "C",
     "cpd": 9.4,
@@ -8854,7 +9053,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-p1232260202000057-100",
@@ -8879,6 +9078,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/BrZ8d2l4gm3",
     "ppr": 1.7,
     "ppr_grade": "D",
     "cpd": 8.5,
@@ -8893,7 +9093,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-d2021200000001468-100",
@@ -8918,6 +9118,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/AZcuYdfYC0A",
     "ppr": 3.3,
     "ppr_grade": "C",
     "cpd": 19.4,
@@ -8932,7 +9133,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-p1144000201001727-100",
@@ -8957,6 +9158,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/fSrEjoyNPa",
     "ppr": 2.6,
     "ppr_grade": "D",
     "cpd": 6,
@@ -8971,7 +9173,7 @@
     "grade_avg": 1.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-p1201000104000028-100",
@@ -8996,6 +9198,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/3E5uJdAENyQ",
     "ppr": 2.9,
     "ppr_grade": "D",
     "cpd": 11.1,
@@ -9010,7 +9213,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-p1201000104000029-100",
@@ -9035,6 +9238,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/DxrZLZuwwzL",
     "ppr": 3.1,
     "ppr_grade": "C",
     "cpd": 11,
@@ -9049,7 +9253,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-p1201000104000035-100",
@@ -9074,6 +9278,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/HzcYjoohcaq",
     "ppr": 2.6,
     "ppr_grade": "D",
     "cpd": 10.6,
@@ -9088,7 +9293,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-p1201000104000037-100",
@@ -9113,6 +9318,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/95TvxWAOR3z",
     "ppr": 2.9,
     "ppr_grade": "D",
     "cpd": 11.2,
@@ -9127,7 +9333,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-p1201000104000038-100",
@@ -9152,6 +9358,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/KwOStzoq0A6",
     "ppr": 3,
     "ppr_grade": "C",
     "cpd": 9,
@@ -9166,7 +9373,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-p1201000104000054-100",
@@ -9191,6 +9398,7 @@
     "source_url": "https://data.go.kr/data/15127578/openapi.do",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/GF1VCrI1Beh",
     "ppr": 2.9,
     "ppr_grade": "D",
     "cpd": 9.5,
@@ -9205,7 +9413,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-the-healthy-chicken-grilled-100",
@@ -9231,6 +9439,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/KizXaEq0FTm",
     "ppr": 8.3,
     "ppr_grade": "A",
     "cpd": 20.9,
@@ -9245,7 +9454,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-the-healthy-chicken-cube-100",
@@ -9271,6 +9480,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/EBx4clKGSgb",
     "ppr": 7.1,
     "ppr_grade": "B",
     "cpd": 16,
@@ -9291,7 +9501,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-the-healthy-chicken-sausage-100",
@@ -9317,6 +9527,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/Beau8BLCR7a",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 12.4,
@@ -9337,7 +9548,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-the-healthy-chicken-steak-garlic-100",
@@ -9363,6 +9574,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/3zSB2MPo2iS",
     "ppr": 7.5,
     "ppr_grade": "B",
     "cpd": 17.5,
@@ -9383,7 +9595,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-maxbon-protein-bar-40",
@@ -9409,6 +9621,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/JR6nkiuXv5R",
     "ppr": 3.3,
     "ppr_grade": "C",
     "cpd": 9.2,
@@ -9429,7 +9642,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-spam-light-200",
@@ -9455,6 +9668,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/6Reu4f5pvtV",
     "ppr": 5.9,
     "ppr_grade": "B",
     "cpd": 5,
@@ -9469,7 +9683,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-bibigo-protein-dumpling-175",
@@ -9495,6 +9709,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/H4SC8cq9B2E",
     "ppr": 4.7,
     "ppr_grade": "C",
     "cpd": 4.5,
@@ -9515,7 +9730,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-happy-tofu-pan-fried-100",
@@ -9541,6 +9756,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/7S2fWZ51jR5",
     "ppr": 7.5,
     "ppr_grade": "B",
     "cpd": 10.6,
@@ -9555,7 +9771,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-hetbahn-sotban-abalone-200",
@@ -9581,6 +9797,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/5jO2B1qSCIQ",
     "ppr": 2,
     "ppr_grade": "D",
     "cpd": 2.7,
@@ -9595,7 +9812,7 @@
     "grade_avg": 1,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-dadam-tofu-kimchi-stew-200",
@@ -9621,6 +9838,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/FIiXjJbyMUi",
     "ppr": 6.7,
     "ppr_grade": "B",
     "cpd": 8,
@@ -9635,7 +9853,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-wide-tofu-noodle-100",
@@ -9661,6 +9879,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/CfVVslMnBRj",
     "ppr": 5.5,
     "ppr_grade": "B",
     "cpd": 9.7,
@@ -9675,7 +9894,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-thin-tofu-noodle-100",
@@ -9701,6 +9920,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/8ZqX8CBne1z",
     "ppr": 5.2,
     "ppr_grade": "B",
     "cpd": 9.4,
@@ -9715,7 +9935,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-earth-diet-tofu-tender-100",
@@ -9741,6 +9961,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/8l4vJXBzndE",
     "ppr": 6.2,
     "ppr_grade": "B",
     "cpd": 6.2,
@@ -9767,7 +9988,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-earth-diet-chicken-breast-100",
@@ -9793,6 +10014,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/6LoJgbmfWnb",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 19.1,
@@ -9813,7 +10035,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-korean-soy-firm-tofu-100",
@@ -9839,6 +10061,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/A2ZzFw7pqku",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 10,
@@ -9853,7 +10076,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-two-cup-tofu-110",
@@ -9879,6 +10102,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/F22Bq9FcktM",
     "ppr": 5.9,
     "ppr_grade": "B",
     "cpd": 10,
@@ -9893,7 +10117,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-high-protein-soft-tofu-150",
@@ -9919,6 +10143,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/6ran78cLEFV",
     "ppr": 8.8,
     "ppr_grade": "A",
     "cpd": 11.7,
@@ -9933,7 +10158,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-high-protein-soymilk-190",
@@ -9959,6 +10184,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/293YeuWXMzc",
     "ppr": 7.5,
     "ppr_grade": "B",
     "cpd": 9.6,
@@ -9973,7 +10199,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-earth-diet-bulgogi-100",
@@ -9999,6 +10225,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/A0YNJrZpD2B",
     "ppr": 6.1,
     "ppr_grade": "B",
     "cpd": 8.9,
@@ -10013,7 +10240,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-tofu-bar-plain-40",
@@ -10039,6 +10266,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/L75hJxyp2GP",
     "ppr": 3.3,
     "ppr_grade": "C",
     "cpd": 8,
@@ -10059,7 +10287,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-dongwon-tuna-light-100",
@@ -10085,6 +10313,7 @@
     "source_url": "https://www.dongwon.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/5zSj4k1raS9",
     "ppr": 7,
     "ppr_grade": "B",
     "cpd": 9,
@@ -10105,7 +10334,7 @@
     "grade_avg": 3,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-dongwon-tuna-high-protein-100",
@@ -10131,6 +10360,7 @@
     "source_url": "https://www.dongwon.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/TORfdYkf7Y",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 16.9,
@@ -10151,7 +10381,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-dongwon-richam-double-light-100",
@@ -10177,6 +10407,7 @@
     "source_url": "https://www.dongwon.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/I9iTcX5zStl",
     "ppr": 5.7,
     "ppr_grade": "B",
     "cpd": 5.5,
@@ -10191,7 +10422,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-dongwon-chicken-breast-can-135",
@@ -10217,6 +10448,7 @@
     "source_url": "https://www.dongwon.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/217YAGB51AZ",
     "ppr": 7.4,
     "ppr_grade": "B",
     "cpd": 17.9,
@@ -10237,7 +10469,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-harim-chicken-original-100",
@@ -10263,6 +10495,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/GiQMWHSug3N",
     "ppr": 8.2,
     "ppr_grade": "A",
     "cpd": 20.9,
@@ -10277,7 +10510,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-harim-chicken-black-pepper-100",
@@ -10303,6 +10536,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/ApTdSud1K9h",
     "ppr": 8.2,
     "ppr_grade": "A",
     "cpd": 20,
@@ -10317,7 +10551,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-harim-tenderloin-sousvide-100",
@@ -10343,6 +10577,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/7XoNVTQzLQK",
     "ppr": 8.3,
     "ppr_grade": "A",
     "cpd": 22.9,
@@ -10357,7 +10592,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-harim-chicken-sausage-smoked-100",
@@ -10383,6 +10618,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/6aEchwkdPAf",
     "ppr": 7.2,
     "ppr_grade": "B",
     "cpd": 12.9,
@@ -10403,7 +10639,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-harim-chicken-steak-100",
@@ -10429,6 +10665,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/v4zmZw2fV2",
     "ppr": 7.8,
     "ppr_grade": "B",
     "cpd": 16.2,
@@ -10449,7 +10686,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-ottogi-chicken-breast-can-135",
@@ -10475,6 +10712,7 @@
     "source_url": "https://www.ottogi.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/3b2U6byqcuT",
     "ppr": 7.3,
     "ppr_grade": "B",
     "cpd": 17.1,
@@ -10495,7 +10733,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-nobrand-frozen-chicken-breast-100",
@@ -10521,6 +10759,7 @@
     "source_url": "https://emart.ssg.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/2rAJRehuBjJ",
     "ppr": 25.6,
     "ppr_grade": "A",
     "cpd": 20.9,
@@ -10535,7 +10774,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-nobrand-baked-eggs-80",
@@ -10561,6 +10800,7 @@
     "source_url": "https://emart.ssg.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/EN2sA4GT39j",
     "ppr": 12.2,
     "ppr_grade": "A",
     "cpd": 9.2,
@@ -10575,7 +10815,7 @@
     "grade_avg": 3,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-nobrand-tuna-light-100",
@@ -10601,6 +10841,7 @@
     "source_url": "https://emart.ssg.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/TxLTzKAlAY",
     "ppr": 12.2,
     "ppr_grade": "A",
     "cpd": 9.2,
@@ -10615,7 +10856,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-nobrand-fresh-tofu-100",
@@ -10641,6 +10882,7 @@
     "source_url": "https://emart.ssg.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/Ez6Ud9jKLiU",
     "ppr": 13.1,
     "ppr_grade": "A",
     "cpd": 10.6,
@@ -10655,7 +10897,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-homeplus-signature-chicken-cube-100",
@@ -10681,6 +10923,7 @@
     "source_url": "https://www.homeplus.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/5lWpmYeEKsg",
     "ppr": 13.3,
     "ppr_grade": "A",
     "cpd": 16,
@@ -10695,7 +10938,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-lotte-uiseong-garlic-chicken-frank-70",
@@ -10721,6 +10964,7 @@
     "source_url": "https://www.lottewellfood.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/EsdXG7nlWxW",
     "ppr": 5.9,
     "ppr_grade": "B",
     "cpd": 11.8,
@@ -10741,7 +10985,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-masitdak-chicken-steak-original-100",
@@ -10767,6 +11011,7 @@
     "source_url": "https://www.rankingdak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/D8ut3KL8Xq1",
     "ppr": 12.2,
     "ppr_grade": "A",
     "cpd": 15.7,
@@ -10781,7 +11026,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-eatmate-smoked-chicken-100",
@@ -10807,6 +11052,7 @@
     "source_url": "https://www.rankingdak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/4bYkxgJcUwz",
     "ppr": 16.7,
     "ppr_grade": "A",
     "cpd": 21.7,
@@ -10821,7 +11067,7 @@
     "grade_avg": 4,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-eatmate-chicken-sausage-100",
@@ -10847,6 +11093,7 @@
     "source_url": "https://www.rankingdak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/D1eNurNTwyy",
     "ppr": 11.9,
     "ppr_grade": "A",
     "cpd": 14.1,
@@ -10861,7 +11108,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-goobne-road-dak-oven-grilled-100",
@@ -10887,6 +11134,7 @@
     "source_url": "https://www.goobnemall.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/9twApiLdqF2",
     "ppr": 12.6,
     "ppr_grade": "A",
     "cpd": 20,
@@ -10901,7 +11149,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-heodak-steam-chicken-garlic-100",
@@ -10927,6 +11175,7 @@
     "source_url": "https://www.heodak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/10NZo7zSIni",
     "ppr": 14.4,
     "ppr_grade": "A",
     "cpd": 20,
@@ -10941,7 +11190,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-doctor-you-pro-drink-choco-250",
@@ -10967,6 +11216,7 @@
     "source_url": "https://www.orion-world.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/GQdcwyJJYuC",
     "ppr": 8.9,
     "ppr_grade": "A",
     "cpd": 15.5,
@@ -10981,7 +11231,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-takefit-max-choco-250",
@@ -11007,6 +11257,7 @@
     "source_url": "https://www.namyang.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/1wK841KsgV4",
     "ppr": 7.5,
     "ppr_grade": "B",
     "cpd": 20,
@@ -11021,7 +11272,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-mymeal-new-protein-lowsugar-190",
@@ -11047,6 +11298,7 @@
     "source_url": "https://www.daesangwellife.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/5vX3ChSPf8B",
     "ppr": 5,
     "ppr_grade": "B",
     "cpd": 9,
@@ -11067,7 +11319,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-labnosh-protein-banana-350",
@@ -11093,6 +11345,7 @@
     "source_url": "https://labnosh.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/DcspUAKCrte",
     "ppr": 8.4,
     "ppr_grade": "A",
     "cpd": 16.9,
@@ -11107,7 +11360,7 @@
     "grade_avg": 4,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-quest-protein-bar-chocolate-chip-60",
@@ -11134,6 +11387,7 @@
     "source_url": "https://www.questnutrition.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/HwKRGreslbr",
     "ppr": 6.2,
     "ppr_grade": "B",
     "cpd": 10.5,
@@ -11158,7 +11412,7 @@
       "label": "식이섬유 14g",
       "bonus": 1
     },
-    "computed_at": "2026-09-15T05:28:43.783Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-optimum-gold-standard-whey-single-30",
@@ -11184,6 +11438,7 @@
     "source_url": "https://www.optimumnutrition.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/7SLzywjrjpi",
     "ppr": 12.6,
     "ppr_grade": "A",
     "cpd": 20,
@@ -11198,7 +11453,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-starbucks-protein-black-tofu-salad-180",
@@ -11224,6 +11479,7 @@
     "source_url": "https://www.starbucks.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/6PnQhW62PbE",
     "ppr": 3.2,
     "ppr_grade": "C",
     "cpd": 8.8,
@@ -11244,7 +11500,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-starbucks-greek-yogurt-plain-100",
@@ -11270,6 +11526,7 @@
     "source_url": "https://www.starbucks.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/G8rutgPwrZE",
     "ppr": 2.1,
     "ppr_grade": "D",
     "cpd": 8.6,
@@ -11290,7 +11547,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-paris-baguette-protein-bread-100",
@@ -11316,6 +11573,7 @@
     "source_url": "https://www.paris.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/4CsBUhtQtBP",
     "ppr": 6.4,
     "ppr_grade": "B",
     "cpd": 5.4,
@@ -11330,7 +11588,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-subway-roasted-chicken-salad-300",
@@ -11356,6 +11614,7 @@
     "source_url": "https://www.subway.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/2n09VElbCpe",
     "ppr": 3.4,
     "ppr_grade": "C",
     "cpd": 13.3,
@@ -11387,7 +11646,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-salady-roasted-chicken-warmbowl-320",
@@ -11413,6 +11672,7 @@
     "source_url": "https://www.salady.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/CTKOU0cxO5c",
     "ppr": 3.8,
     "ppr_grade": "C",
     "cpd": 8.3,
@@ -11427,7 +11687,7 @@
     "grade_avg": 3,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-the-healthy-chicken-smoked-100",
@@ -11468,7 +11728,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-the-healthy-chicken-blackpepper-100",
@@ -11494,6 +11754,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/Csfszi1Eue2",
     "ppr": 8.1,
     "ppr_grade": "A",
     "cpd": 20.4,
@@ -11508,7 +11769,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-the-healthy-chicken-cube-cheese-100",
@@ -11534,6 +11795,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/GfPBWzsQHwE",
     "ppr": 6.8,
     "ppr_grade": "B",
     "cpd": 14.1,
@@ -11554,7 +11816,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-bibigo-chicken-dumpling-350",
@@ -11580,6 +11842,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/3O8neA8EvtS",
     "ppr": 5.6,
     "ppr_grade": "B",
     "cpd": 5.9,
@@ -11594,7 +11857,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-spam-single-classic-80",
@@ -11620,6 +11883,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/Jy5OP7SWn9Q",
     "ppr": 6.1,
     "ppr_grade": "B",
     "cpd": 4.4,
@@ -11634,7 +11898,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-hetbahn-sotban-mushroom-beef-200",
@@ -11660,6 +11924,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/4zif5qdDuWC",
     "ppr": 2.1,
     "ppr_grade": "D",
     "cpd": 3.1,
@@ -11674,7 +11939,7 @@
     "grade_avg": 1,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-gourmet-soba-chicken-cutlet-150",
@@ -11700,6 +11965,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/1N0dlvfcAj7",
     "ppr": 6.1,
     "ppr_grade": "B",
     "cpd": 7.2,
@@ -11731,7 +11997,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-happy-tofu-stew-100",
@@ -11757,6 +12023,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/1TbpEKnXPgH",
     "ppr": 7.1,
     "ppr_grade": "B",
     "cpd": 10.6,
@@ -11771,7 +12038,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-bibigo-tofu-kimchi-stew-460",
@@ -11797,6 +12064,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/BPdXHs2L4SC",
     "ppr": 3.4,
     "ppr_grade": "C",
     "cpd": 7.9,
@@ -11811,7 +12079,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-cj-maxbon-cheddar-cheese-sausage-70",
@@ -11837,6 +12105,7 @@
     "source_url": "https://www.cj.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/5Mq8uukb2m7",
     "ppr": 3.6,
     "ppr_grade": "C",
     "cpd": 6.7,
@@ -11851,7 +12120,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-tofu-bar-basil-40",
@@ -11877,6 +12146,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/L75hJxyp2GP",
     "ppr": 3.2,
     "ppr_grade": "C",
     "cpd": 8,
@@ -11897,7 +12167,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-earth-diet-luncheon-100",
@@ -11923,6 +12193,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/HUEMv4KyyYH",
     "ppr": 5.8,
     "ppr_grade": "B",
     "cpd": 6.5,
@@ -11943,7 +12214,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-earth-diet-chicken-pepper-100",
@@ -11969,6 +12240,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/8gv9og3JOR0",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 19.1,
@@ -11989,7 +12261,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-korean-soy-firm-tofu-500",
@@ -12015,6 +12287,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/3m303cLvKsa",
     "ppr": 8.6,
     "ppr_grade": "A",
     "cpd": 10,
@@ -12029,7 +12302,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-roll-yubu-chobap-high-protein-160",
@@ -12055,6 +12328,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/Ci52K2cGyQ6",
     "ppr": 3.6,
     "ppr_grade": "C",
     "cpd": 5.2,
@@ -12080,7 +12354,7 @@
     "grade_avg": 1.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-fresh-soft-tofu-plain-100",
@@ -12106,6 +12380,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/1T3KwimGnHB",
     "ppr": 3.6,
     "ppr_grade": "C",
     "cpd": 8.7,
@@ -12120,7 +12395,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-high-protein-black-soymilk-190",
@@ -12146,6 +12421,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/PBlzjmDhiw",
     "ppr": 7.5,
     "ppr_grade": "B",
     "cpd": 9.2,
@@ -12160,7 +12436,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-earth-diet-kalguksu-tofu-150",
@@ -12186,6 +12462,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/GYVeYUqXiv8",
     "ppr": 4.7,
     "ppr_grade": "C",
     "cpd": 7.5,
@@ -12200,7 +12477,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-crispy-tofu-ball-100",
@@ -12226,6 +12503,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/8YcFR4ZdRbb",
     "ppr": 4.8,
     "ppr_grade": "C",
     "cpd": 5.6,
@@ -12257,7 +12535,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-pulmuone-soft-tofu-snack-pack-200",
@@ -12283,6 +12561,7 @@
     "source_url": "https://www.pulmuone.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/IRdhpxccAVs",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 10,
@@ -12297,7 +12576,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-dongwon-tuna-mild-100",
@@ -12323,6 +12602,7 @@
     "source_url": "https://www.dongwon.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/57sROgNqcHl",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 10,
@@ -12343,7 +12623,7 @@
     "grade_avg": 3,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-dongwon-tuna-pepper-chili-100",
@@ -12369,6 +12649,7 @@
     "source_url": "https://www.dongwon.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/5VV13p9zzv6",
     "ppr": 5,
     "ppr_grade": "B",
     "cpd": 9.3,
@@ -12383,7 +12664,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-dongwon-oven-chicken-breast-100",
@@ -12409,6 +12690,7 @@
     "source_url": "https://www.dongwon.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/Ho9aa45OI70",
     "ppr": 8.9,
     "ppr_grade": "A",
     "cpd": 20,
@@ -12423,7 +12705,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-harim-iff-chicken-cube-garlic-100",
@@ -12449,6 +12731,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/JDUoQun7fiT",
     "ppr": 12.2,
     "ppr_grade": "A",
     "cpd": 18.3,
@@ -12463,7 +12746,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-harim-nature-organic-chicken-smoked-100",
@@ -12489,6 +12772,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/7bbPHCgDWIU",
     "ppr": 7.7,
     "ppr_grade": "B",
     "cpd": 21.8,
@@ -12509,7 +12793,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-harim-tandoori-chicken-tender-100",
@@ -12535,6 +12819,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/A36G2T6FeWw",
     "ppr": 7.9,
     "ppr_grade": "B",
     "cpd": 20,
@@ -12561,7 +12846,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-harim-yongari-protein-nugget-100",
@@ -12587,6 +12872,7 @@
     "source_url": "https://www.harim.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/2Bc5dlUstz6",
     "ppr": 7.3,
     "ppr_grade": "B",
     "cpd": 7,
@@ -12618,7 +12904,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-ottogi-easy-meal-chicken-konjac-rice-200",
@@ -12644,6 +12930,7 @@
     "source_url": "https://www.ottogi.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/2DszIANzk6e",
     "ppr": 5.3,
     "ppr_grade": "B",
     "cpd": 6.3,
@@ -12658,7 +12945,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-ottogi-cup-noodle-high-protein-rose-45",
@@ -12684,6 +12971,7 @@
     "source_url": "https://www.ottogi.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/JZ5gmygi5h8",
     "ppr": 5,
     "ppr_grade": "B",
     "cpd": 5.5,
@@ -12704,7 +12992,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-ottogi-curry-chicken-breast-135",
@@ -12730,6 +13018,7 @@
     "source_url": "https://www.ottogi.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/EiMbYJMH7yp",
     "ppr": 6.5,
     "ppr_grade": "B",
     "cpd": 14.7,
@@ -12750,7 +13039,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-daesang-homings-chicken-fried-rice-210",
@@ -12776,6 +13065,7 @@
     "source_url": "https://www.daesang.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/CLOdzUCgJfX",
     "ppr": 5,
     "ppr_grade": "B",
     "cpd": 4.7,
@@ -12801,7 +13091,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-daesang-jongga-fresh-tofu-100",
@@ -12827,6 +13117,7 @@
     "source_url": "https://www.daesang.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/N7gxWfokRi",
     "ppr": 8.2,
     "ppr_grade": "A",
     "cpd": 10.6,
@@ -12841,7 +13132,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-lotte-chefood-chicken-steak-100",
@@ -12867,6 +13158,7 @@
     "source_url": "https://www.lottewellfood.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/8SU2NF7B4TA",
     "ppr": 8.1,
     "ppr_grade": "A",
     "cpd": 16.2,
@@ -12881,7 +13173,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-samlip-high-protein-plain-bagel-110",
@@ -12907,6 +13199,7 @@
     "source_url": "https://www.spcsamlip.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/Dz5R56LwmoT",
     "ppr": 6.3,
     "ppr_grade": "B",
     "cpd": 5.4,
@@ -12921,7 +13214,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-binggrae-yoplait-greek-plain-100",
@@ -12947,6 +13240,7 @@
     "source_url": "https://www.bing.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/Ht8vl4Ct1ap",
     "ppr": 4.7,
     "ppr_grade": "C",
     "cpd": 8.9,
@@ -12967,7 +13261,7 @@
     "grade_avg": 2,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-masitdak-chicken-ball-cheese-100",
@@ -12993,6 +13287,7 @@
     "source_url": "https://www.rankingdak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/GQaAnJg2znF",
     "ppr": 11.1,
     "ppr_grade": "A",
     "cpd": 14.5,
@@ -13007,7 +13302,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-masitdak-chicken-ball-perilla-100",
@@ -13033,6 +13328,7 @@
     "source_url": "https://www.rankingdak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/GQaAnJg2znF",
     "ppr": 12.2,
     "ppr_grade": "A",
     "cpd": 16.9,
@@ -13047,7 +13343,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-masitdak-soft-chicken-breast-100",
@@ -13073,6 +13369,7 @@
     "source_url": "https://www.rankingdak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/Jgq7WmWUIXq",
     "ppr": 13.3,
     "ppr_grade": "A",
     "cpd": 20.9,
@@ -13087,7 +13384,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-eatmate-soft-tenderloin-garlic-100",
@@ -13113,6 +13410,7 @@
     "source_url": "https://www.rankingdak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/C6QPb4CTMFK",
     "ppr": 15,
     "ppr_grade": "A",
     "cpd": 22.9,
@@ -13127,7 +13425,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-eatmate-low-sodium-chicken-100",
@@ -13153,6 +13451,7 @@
     "source_url": "https://www.rankingdak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/GrSdnofw997",
     "ppr": 16.7,
     "ppr_grade": "A",
     "cpd": 22.7,
@@ -13167,7 +13466,7 @@
     "grade_avg": 4,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-eatmate-monster-sausage-100",
@@ -13193,6 +13492,7 @@
     "source_url": "https://www.rankingdak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/Hb7e6OLbU9z",
     "ppr": 11.8,
     "ppr_grade": "A",
     "cpd": 14.3,
@@ -13207,7 +13507,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-loveat-sauce-chicken-spicy-100",
@@ -13233,6 +13533,7 @@
     "source_url": "https://www.rankingdak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/GfPBWzsQHwE",
     "ppr": 11.6,
     "ppr_grade": "A",
     "cpd": 16.3,
@@ -13247,7 +13548,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-goobne-road-dak-chili-sousvide-100",
@@ -13273,6 +13574,7 @@
     "source_url": "https://www.goobnemall.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/HEatcIQLrgA",
     "ppr": 12.1,
     "ppr_grade": "A",
     "cpd": 18.4,
@@ -13287,7 +13589,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-goobne-chicken-chibap-kimchi-200",
@@ -13313,6 +13615,7 @@
     "source_url": "https://www.goobnemall.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/9jtGtVQ84Wx",
     "ppr": 6.6,
     "ppr_grade": "B",
     "cpd": 5.6,
@@ -13327,7 +13630,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-heodak-slice-chicken-chili-100",
@@ -13353,6 +13656,7 @@
     "source_url": "https://www.heodak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/JuHzfkLc6ln",
     "ppr": 12.9,
     "ppr_grade": "A",
     "cpd": 17.6,
@@ -13367,7 +13671,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-heodak-fried-rice-chicken-konjac-200",
@@ -13393,6 +13697,7 @@
     "source_url": "https://www.heodak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/Dw2b39pC9YA",
     "ppr": 6.5,
     "ppr_grade": "B",
     "cpd": 5.9,
@@ -13407,7 +13712,7 @@
     "grade_avg": 2.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-bardak-direct-sousvide-chicken-100",
@@ -13433,6 +13738,7 @@
     "source_url": "https://www.bardak.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/E3UqrPLAP5l",
     "ppr": 12.6,
     "ppr_grade": "A",
     "cpd": 20.9,
@@ -13447,7 +13753,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-bardak-chicken-donggeurang-100",
@@ -13473,6 +13779,7 @@
     "source_url": "https://www.bardak.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/BfX3To9CG9o",
     "ppr": 8.6,
     "ppr_grade": "A",
     "cpd": 12,
@@ -13487,7 +13794,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-imdak-frank-sausage-herb-100",
@@ -13513,6 +13820,7 @@
     "source_url": "https://www.imdak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/7D9ZtJIbU0m",
     "ppr": 10.6,
     "ppr_grade": "A",
     "cpd": 13.6,
@@ -13527,7 +13835,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-imdak-chicken-jerky-spicy-40",
@@ -13553,6 +13861,7 @@
     "source_url": "https://www.imdak.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/FhtEiEdZjCg",
     "ppr": 6.8,
     "ppr_grade": "B",
     "cpd": 14.3,
@@ -13573,7 +13882,7 @@
     "grade_avg": 3,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-selex-profit-peach-330",
@@ -13599,6 +13908,7 @@
     "source_url": "https://www.selex.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/EdxTAX9yAwQ",
     "ppr": 6.7,
     "ppr_grade": "B",
     "cpd": 22.2,
@@ -13619,7 +13929,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-selex-core-protein-bar-berry-38",
@@ -13645,6 +13955,7 @@
     "source_url": "https://www.selex.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/2A7zJqi0EzE",
     "ppr": 6.7,
     "ppr_grade": "B",
     "cpd": 8,
@@ -13665,7 +13976,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-hymeune-active-banana-250",
@@ -13691,6 +14002,7 @@
     "source_url": "https://www.ildongfoodis.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/IW7n42DI6jN",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 15.4,
@@ -13705,7 +14017,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-the-danbaek-banana-250",
@@ -13731,6 +14043,7 @@
     "source_url": "https://www.bing.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/1bQ740hoGm9",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 19,
@@ -13745,7 +14058,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-the-danbaek-crunch-bar-choco-40",
@@ -13771,6 +14084,7 @@
     "source_url": "https://www.bing.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/Au2tdBkDjvc",
     "ppr": 7.5,
     "ppr_grade": "B",
     "cpd": 10.3,
@@ -13791,7 +14105,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-calobye-perfect-power-shake-choco-250",
@@ -13817,6 +14131,7 @@
     "source_url": "https://www.calobye.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/6XlZHXF5lOU",
     "ppr": 7.1,
     "ppr_grade": "B",
     "cpd": 15.4,
@@ -13831,7 +14146,7 @@
     "grade_avg": 3.33,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-labnosh-protein-cacao-350",
@@ -13857,6 +14172,7 @@
     "source_url": "https://labnosh.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/7SMSg3xgQiS",
     "ppr": 8.4,
     "ppr_grade": "A",
     "cpd": 16.9,
@@ -13871,7 +14187,7 @@
     "grade_avg": 4,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-myprotein-impact-whey-single-25",
@@ -13897,6 +14213,7 @@
     "source_url": "https://www.myprotein.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/AlTlS8DJR1R",
     "ppr": 13.3,
     "ppr_grade": "A",
     "cpd": 20,
@@ -13911,7 +14228,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "online-bsn-syntha6-crisp-bar-vanilla-57",
@@ -13937,6 +14254,7 @@
     "source_url": "https://www.gobsn.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/JlPBCyOjI9k",
     "ppr": 6.3,
     "ppr_grade": "B",
     "cpd": 8.7,
@@ -13968,7 +14286,7 @@
       }
     ],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-nobrand-frozen-tenderloin-100",
@@ -13994,6 +14312,7 @@
     "source_url": "https://emart.ssg.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search1.kakaocdn.net/argon/320x320_85_c/2rAJRehuBjJ",
     "ppr": 25.3,
     "ppr_grade": "A",
     "cpd": 22.9,
@@ -14008,7 +14327,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-nobrand-smoked-duck-slice-100",
@@ -14034,6 +14353,7 @@
     "source_url": "https://emart.ssg.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/8YG6DiHiDkf",
     "ppr": 9.4,
     "ppr_grade": "A",
     "cpd": 6.5,
@@ -14048,7 +14368,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-nobrand-soymilk-unsweetened-190",
@@ -14074,6 +14394,7 @@
     "source_url": "https://emart.ssg.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/DnOLf342ZJp",
     "ppr": 12.7,
     "ppr_grade": "A",
     "cpd": 8.8,
@@ -14088,7 +14409,7 @@
     "grade_avg": 2.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "mart-homeplus-signature-chicken-breast-100",
@@ -14114,6 +14435,7 @@
     "source_url": "https://www.homeplus.co.kr",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search2.kakaocdn.net/argon/320x320_85_c/KGVRShIpcZK",
     "ppr": 15,
     "ppr_grade": "A",
     "cpd": 20.9,
@@ -14128,7 +14450,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-cu-chicken-cube-deuktem-100",
@@ -14154,6 +14476,7 @@
     "source_url": "https://cu.bgfretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search4.kakaocdn.net/argon/320x320_85_c/5PGejE9fU8k",
     "ppr": 11.1,
     "ppr_grade": "A",
     "cpd": 16.8,
@@ -14168,7 +14491,7 @@
     "grade_avg": 3.67,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   },
   {
     "menu_id": "cvs-gs25-hyeja-chicken-lunchbox-420",
@@ -14194,6 +14517,7 @@
     "source_url": "https://gs25.gsretail.com",
     "verified_at": "2026-09-15",
     "rule_version": "v1.0",
+    "image_url": "https://search3.kakaocdn.net/argon/320x320_85_c/Ipxguaoqz4K",
     "ppr": 6.9,
     "ppr_grade": "B",
     "cpd": 6.4,
@@ -14208,6 +14532,6 @@
     "grade_avg": 3,
     "penalties": [],
     "fiber_bonus": null,
-    "computed_at": "2026-09-15T05:28:43.784Z"
+    "computed_at": "2026-09-15T05:53:10.462Z"
   }
 ]

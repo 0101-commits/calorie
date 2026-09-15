@@ -435,12 +435,18 @@ function renderComboRecommendations(combos) {
     card.className = 'combo-card';
 
     const itemNames = c.items.map(m => m.name).join(' + ');
+    const thumbsHtml = c.items.map(m => {
+      return m.image_url
+        ? `<img src="${m.image_url}" alt="${m.name}" title="${m.name}" style="width:38px; height:38px; object-fit:cover; border-radius:6px; border:1px solid var(--line); background:var(--surface-2);" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';">`
+        : '';
+    }).filter(Boolean).join('');
 
     card.innerHTML = `
       <div class="combo-header">
         <span style="font-size:var(--t2); color:var(--ink-3); font-weight:var(--w-bold);">추천 조합 #${idx + 1}</span>
         <span class="combo-score-badge">Fit ${c.score}점</span>
       </div>
+      ${thumbsHtml ? `<div style="display:flex; gap:6px; margin:6px 0 8px 0;">${thumbsHtml}</div>` : ''}
       <div class="combo-title">${itemNames}</div>
       <div class="combo-meta">
         ${c.aggregate.price_krw.toLocaleString()}원 · ${c.aggregate.kcal}kcal · 단백질 ${c.aggregate.protein_g}g · 나트륨 ${c.aggregate.sodium_mg}mg
@@ -678,7 +684,13 @@ function openCompareModal() {
         <thead>
           <tr>
             <th>구분</th>
-            ${items.map(m => `<th><div style="font-size:11px; color:var(--ink-2);">${m.brand}</div><div style="font-size:13px; font-weight:700; color:var(--ink); margin-top:2px;">${m.name}</div></th>`).join('')}
+            ${items.map(m => `
+              <th>
+                ${m.image_url ? `<img src="${m.image_url}" alt="${m.name}" style="width:40px; height:40px; object-fit:cover; border-radius:6px; margin:0 auto 6px auto; display:block; border:1px solid var(--line);" referrerpolicy="no-referrer" onerror="this.style.display='none';">` : ''}
+                <div style="font-size:11px; color:var(--ink-2);">${m.brand}</div>
+                <div style="font-size:13px; font-weight:700; color:var(--ink); margin-top:2px;">${m.name}</div>
+              </th>
+            `).join('')}
           </tr>
         </thead>
         <tbody>
