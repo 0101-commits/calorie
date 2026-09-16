@@ -1,0 +1,22 @@
+// 폐기됨 (2026-09-16, 기획안 v2.0 §2.2)
+// serving_g 를 (단백질+탄수+지방+50)으로 역산해 85건을 덮어쓰던 스크립트.
+// 이 값이 들어가면 R2 질량 정합성 검사가 정의상 항상 통과해 QA 가 무력화된다.
+// 현재는 normalize.js 가 같은 패턴을 탐지해 serving_g_status='estimated' 로 격리하고
+// qa.js 가 해당 건의 R2 검사를 건너뛴다. 실행하지 않는다.
+
+import fs from 'fs';
+let items = JSON.parse(fs.readFileSync('data/seed.json', 'utf-8'));
+items.forEach(item => {
+  const p = item.protein_g || 0;
+  const c = item.carb_g || 0;
+  const f = item.fat_g || 0;
+  const sum = p + c + f;
+  if (item.serving_g < sum * 1.05) {
+    if (item.name.includes('라떼') || item.name.includes('주스') || item.name.includes('에이드') || item.name.includes('아메리카노') || item.name.includes('크림샷') || item.name.includes('카페')) {
+        item.serving_g = 355;
+    } else {
+        item.serving_g = sum + 50;
+    }
+  }
+});
+fs.writeFileSync('data/seed.json', JSON.stringify(items, null, 2), 'utf-8');

@@ -175,9 +175,7 @@
   {
     "brand_code": "daesang",
     "name": "대상",
-    "aliases": [
-      "청정원"
-    ],
+    "aliases": [],
     "channels": [
       "cvs",
       "mart"
@@ -188,9 +186,7 @@
   {
     "brand_code": "daesangwellife",
     "name": "대상웰라이프",
-    "aliases": [
-      "마이밀"
-    ],
+    "aliases": [],
     "channels": [
       "cvs",
       "online"
@@ -251,10 +247,7 @@
   {
     "brand_code": "goobne",
     "name": "굽네치킨",
-    "aliases": [
-      "굽네",
-      "굽네몰"
-    ],
+    "aliases": [],
     "channels": [
       "cvs",
       "fr",
@@ -461,9 +454,7 @@
   {
     "brand_code": "lotte_wellfood",
     "name": "롯데웰푸드",
-    "aliases": [
-      "롯데"
-    ],
+    "aliases": [],
     "channels": [
       "cvs",
       "mart"

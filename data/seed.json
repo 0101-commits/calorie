@@ -1089,7 +1089,7 @@
     "ingredients_raw": "닭가슴살(국내산 96%), 정제수, 천일염(국내산), 마늘분말, 양파분말, 비타민C, 포도당",
     "image_source": null,
     "cooking_status": "measured",
-    "brand_raw": "굽네",
+    "brand_raw": "굽네치킨",
     "brand_code": "goobne",
     "kcal_status": "measured",
     "protein_g_status": "measured",
@@ -1133,7 +1133,7 @@
     "ingredients_raw": "닭가슴살(국내산 93%), 정제수, 천일염, 참나무훈연액, 양파분말, 마늘분말, 효모추출물",
     "image_source": null,
     "cooking_status": "measured",
-    "brand_raw": "굽네",
+    "brand_raw": "굽네치킨",
     "brand_code": "goobne",
     "kcal_status": "measured",
     "protein_g_status": "measured",
@@ -3992,7 +3992,7 @@
     "ingredients_raw": "닭가슴살(국내산 96%), 정제수, 천일염(국내산), 마늘분말, 양파분말, 비타민C, 포도당",
     "image_source": null,
     "cooking_status": "measured",
-    "brand_raw": "굽네몰",
+    "brand_raw": "굽네치킨",
     "brand_code": "goobne",
     "kcal_status": "measured",
     "protein_g_status": "measured",
@@ -5151,7 +5151,7 @@
     "serving_g_status": "measured"
   },
   {
-    "menu_id": "mart-pulmuone-korean-soy-firm-tofu-100-2",
+    "menu_id": "mart-pulmuone-korean-soy-firm-tofu-100-100",
     "channel": "mart",
     "brand": "풀무원",
     "name": "크고 단단한 국산콩 부침두부 (100g 기준)",
@@ -5181,7 +5181,8 @@
     "brand_raw": "풀무원",
     "brand_code": "pulmuone",
     "legacy_ids": [
-      "mart-pulmuone-korean-soy-firm-tofu-500"
+      "mart-pulmuone-korean-soy-firm-tofu-500",
+      "mart-pulmuone-korean-soy-firm-tofu-100-2"
     ],
     "kcal_status": "measured",
     "protein_g_status": "measured",
@@ -6490,7 +6491,7 @@
     "ingredients_raw": "닭가슴살(국내산 96%), 정제수, 천일염(국내산), 마늘분말, 양파분말, 비타민C, 포도당",
     "image_source": null,
     "cooking_status": "measured",
-    "brand_raw": "굽네몰",
+    "brand_raw": "굽네치킨",
     "brand_code": "goobne",
     "kcal_status": "measured",
     "protein_g_status": "measured",
@@ -6534,7 +6535,7 @@
     "ingredients_raw": "쌀(국산), 돼지고기(국산), 계란말이(계란, 식염), 어묵볶음, 볶음김치[배추, 고춧가루, 마늘, 정제염], 식물성유지, 변성전분, L-글루탐산나트륨, 양조간장, 참기름",
     "image_source": null,
     "cooking_status": "measured",
-    "brand_raw": "굽네몰",
+    "brand_raw": "굽네치킨",
     "brand_code": "goobne",
     "kcal_status": "measured",
     "protein_g_status": "measured",
@@ -11091,7 +11092,7 @@
     "image_url": "",
     "ingredients_raw": "닭가슴살(국내산 96%), 정제수, 천일염(국내산), 마늘분말, 양파분말, 비타민C, 포도당",
     "cooking_status": "unknown",
-    "brand_raw": "굽네몰",
+    "brand_raw": "굽네치킨",
     "brand_code": "goobne",
     "kcal_status": "measured",
     "protein_g_status": "measured",
@@ -11134,7 +11135,7 @@
     "image_url": "",
     "ingredients_raw": "닭가슴살(국내산 96%), 정제수, 천일염(국내산), 마늘분말, 양파분말, 비타민C, 포도당",
     "cooking_status": "unknown",
-    "brand_raw": "굽네몰",
+    "brand_raw": "굽네치킨",
     "brand_code": "goobne",
     "kcal_status": "measured",
     "protein_g_status": "measured",
@@ -18109,7 +18110,7 @@
     "image_url": "",
     "ingredients_raw": "정제수, 원유(국산), 유크림, D-알룰로스, 에리스리톨, 효소처리스테비아, 농축유청단백(WPI), 식물성유지, 대두레시틴, 구아검",
     "cooking_status": "unknown",
-    "brand_raw": "롯데",
+    "brand_raw": "롯데웰푸드",
     "brand_code": "lotte_wellfood",
     "legacy_ids": [
       "cvs-lotte-zero-milk-monaka-85"
@@ -18155,7 +18156,7 @@
     "image_url": "",
     "ingredients_raw": "정제수, 원유(국산), 유크림, D-알룰로스, 에리스리톨, 효소처리스테비아, 농축유청단백(WPI), 식물성유지, 대두레시틴, 구아검",
     "cooking_status": "unknown",
-    "brand_raw": "롯데",
+    "brand_raw": "롯데웰푸드",
     "brand_code": "lotte_wellfood",
     "legacy_ids": [
       "cvs-lotte-zero-chocobar-80"
@@ -18863,7 +18864,7 @@
     "image_url": "",
     "ingredients_raw": "분리대두단백너겟(분리대두단백, 전분), 분리유청단백(WPI), 볶음아몬드(미국산), D-알룰로스, 에리스리톨, 효소처리스테비아, 대두레시틴, 아라비아검, 글리세린, 천연바닐라향",
     "cooking_status": "unknown",
-    "brand_raw": "롯데",
+    "brand_raw": "롯데웰푸드",
     "brand_code": "lotte_wellfood",
     "legacy_ids": [
       "cvs-lotte-zero-cacao-cake-56"
@@ -18912,7 +18913,7 @@
     "image_url": "",
     "ingredients_raw": "분리대두단백너겟(분리대두단백, 전분), 분리유청단백(WPI), 볶음아몬드(미국산), D-알룰로스, 에리스리톨, 효소처리스테비아, 준초콜릿(식물성유지, 코코아분말, 유당), 코코아매스, 대두레시틴, 아라비아검, 글리세린, 천연바닐라향",
     "cooking_status": "unknown",
-    "brand_raw": "롯데",
+    "brand_raw": "롯데웰푸드",
     "brand_code": "lotte_wellfood",
     "legacy_ids": [
       "cvs-lotte-zero-crunch-chocoball-34"
@@ -19240,7 +19241,7 @@
     "image_url": "",
     "ingredients_raw": "분리대두단백너겟(분리대두단백, 전분), 분리유청단백(WPI), 볶음아몬드(미국산), 올리고당, D-말티톨시럽, 에리스리톨, 대두레시틴, 아라비아검, 글리세린, 천연바닐라향",
     "cooking_status": "unknown",
-    "brand_raw": "마이밀",
+    "brand_raw": "대상웰라이프",
     "brand_code": "daesangwellife",
     "legacy_ids": [
       "cvs-mymil-protein-bar-nuts-40"
@@ -19289,7 +19290,7 @@
     "image_url": "",
     "ingredients_raw": "분리대두단백너겟(분리대두단백, 전분), 분리유청단백(WPI), 볶음아몬드(미국산), D-알룰로스, 에리스리톨, 효소처리스테비아, 대두레시틴, 아라비아검, 글리세린, 천연바닐라향",
     "cooking_status": "unknown",
-    "brand_raw": "청정원",
+    "brand_raw": "대상",
     "brand_code": "daesang",
     "legacy_ids": [
       "cvs-cheongjungone-chew-pea-35"
