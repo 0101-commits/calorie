@@ -1,0 +1,87 @@
+name: Data refresh
+
+# 기획안 v2.0 §4.6 — 갱신 자동화 크론 3종.
+# 셋 다 산출물을 커밋해야 의미가 있다. test.yml 이 빌드만 하고 커밋하지 않아
+# 결과가 버려지던 문제를 여기서 막는다.
+#
+# 주의: GITHUB_TOKEN 으로 푸시하면 Pages 배포 워크플로가 깨어나지 않는다.
+#       그래서 커밋 후 deploy 워크플로를 workflow_dispatch 로 직접 깨운다.
+
+on:
+  schedule:
+    # 매주 월요일 09:00 KST (UTC 00:00) — 신상 감지 + 신선도 스윕
+    - cron: '0 0 * * 1'
+    # 매월 1일 09:00 KST — 공공DB 재동기화
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+    inputs:
+      job:
+        description: '실행할 작업 (detect | public | stale | all)'
+        required: false
+        default: 'all'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 신상·변경 감지 (주 1회)
+        if: github.event.schedule == '0 0 * * 1' || github.event.inputs.job == 'detect' || github.event.inputs.job == 'all'
+        run: node scripts/detect_new.js
+
+      - name: 공공DB 재동기화 (월 1회)
+        if: github.event.schedule == '0 0 1 * *' || github.event.inputs.job == 'public'
+        env:
+          DATA_GO_KR_API_KEY: ${{ secrets.DATA_GO_KR_API_KEY }}
+        run: |
+          if [ -z "$DATA_GO_KR_API_KEY" ]; then
+            echo "DATA_GO_KR_API_KEY 시크릿이 없습니다. 공공DB 동기화를 건너뜁니다."
+            exit 0
+          fi
+          python scripts/fetch_public_data.py
+
+      - name: 정규화 · 빌드 (게이트 G1·G2·G3·G5)
+        run: |
+          node scripts/normalize.js
+          node scripts/build.js
+
+      - name: 신선도 스윕
+        if: github.event.schedule == '0 0 * * 1' || github.event.inputs.job == 'stale' || github.event.inputs.job == 'all'
+        run: node scripts/stale_sweep.js
+
+      - name: 단위 테스트
+        run: npm test
+
+      - name: 변경분 커밋
+        id: commit
+        run: |
+          git config user.name  "protein-radar-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data.json data_index.json data_meta.json data/ || true
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "변경 없음"
+          else
+            git commit -m "chore(data): 자동 갱신 $(date -u +%Y-%m-%d)"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Pages 배포 깨우기
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run "Deploy to GitHub Pages" --ref "${{ github.ref_name }}"

@@ -65,7 +65,7 @@ function cacheDom() {
     'sheet-scanner', 'btn-close-scanner', 'scanner-video', 'select-demo-barcode', 'btn-test-barcode',
     'sheet-policy', 'btn-open-policy', 'btn-close-policy', 'sheet-report', 'report-target-name',
     'btn-close-report', 'btn-submit-report', 'data-freshness', 'ranking-count', 'ranking-more',
-    'scanner-status', 'new-items-count', 'report-form-status'
+    'scanner-status', 'new-items-count', 'report-form-status', 'input-barcode-photo'
   ];
   for (const id of ids) el[toCamel(id)] = document.getElementById(id);
   el.tabBtns = document.querySelectorAll('.tab-btn');
@@ -280,6 +280,20 @@ function setupEventListeners() {
       }
     });
   });
+
+  // 카메라를 못 쓰는 상황(권한 거부·미지원)의 대체 경로 — 갤러리 사진에서 바코드를 읽는다.
+  if (el.inputBarcodePhoto) {
+    el.inputBarcodePhoto.addEventListener('change', async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      announce(el.scannerStatus, '사진에서 바코드를 찾는 중…');
+      if (!scannerInstance) scannerInstance = new BarcodeScanner({ onStatus: m => announce(el.scannerStatus, m) });
+      const code = await scannerInstance.scanImageFile(file);
+      e.target.value = '';
+      if (code) handleBarcodeScanned(code);
+      else announce(el.scannerStatus, '사진에서 바코드를 찾지 못했습니다. 제품명으로 검색하거나 제보해 주세요.');
+    });
+  }
 
   el.btnOpenPolicy.addEventListener('click', (e) => { e.preventDefault(); el.sheetPolicy.showModal(); });
   el.btnOpenCompare.addEventListener('click', openCompareModal);

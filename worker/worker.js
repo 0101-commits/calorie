@@ -101,6 +101,58 @@ export default {
         return json({ success: true, message: '제보가 접수되었습니다.' }, 200, cors);
       }
 
+      // 3-b. 사진 식별 — 패키지·메뉴판 사진에서 브랜드·제품명 후보를 뽑는다.
+      //      프랜차이즈는 바코드가 없어 이 경로가 유일한 식별 수단이다(기획서 §2.7 ③).
+      //      사진은 식별 후 즉시 버린다. 저장하지 않는다.
+      if (path === '/api/identify' && request.method === 'POST') {
+        if (!env || !env.ANTHROPIC_API_KEY) {
+          return json({ error: 'vision_unavailable', message: '사진 식별이 아직 연결되지 않았습니다.' }, 503, cors);
+        }
+        const body = await request.json();
+        const { image_base64, media_type } = body || {};
+        if (!image_base64) return json({ error: 'image_base64 는 필수입니다.' }, 400, cors);
+
+        const prompt = [
+          '이 사진은 한국 편의점 또는 외식 프랜차이즈 제품의 패키지·메뉴판이다.',
+          '보이는 그대로만 읽어라. 추측하지 마라.',
+          'JSON 하나만 출력한다: {"brand": string|null, "name": string|null, "size": string|null, "confidence": number}',
+          'confidence 는 0~1. 글자가 흐리거나 일부만 보이면 0.6 미만으로 낮춰라.'
+        ].join('\n');
+
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'x-api-key': env.ANTHROPIC_API_KEY,
+            'anthropic-version': '2023-06-01'
+          },
+          body: JSON.stringify({
+            model: 'claude-sonnet-5',
+            max_tokens: 300,
+            messages: [{
+              role: 'user',
+              content: [
+                { type: 'image', source: { type: 'base64', media_type: media_type || 'image/jpeg', data: image_base64 } },
+                { type: 'text', text: prompt }
+              ]
+            }]
+          })
+        });
+
+        if (!res.ok) {
+          return json({ error: 'vision_failed', message: `식별 실패 (HTTP ${res.status})` }, 502, cors);
+        }
+        const data = await res.json();
+        const text = (data.content || []).map(c => c.text || '').join('');
+        let parsed = null;
+        try {
+          parsed = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
+        } catch (e) {
+          return json({ error: 'vision_parse_failed', raw: text.slice(0, 200) }, 502, cors);
+        }
+        return json({ success: true, result: parsed }, 200, cors);
+      }
+
       // 4. 헬스체크 — D1 연결 여부를 그대로 보고한다.
       if (path === '/api/health') {
         return json({ status: 'ok', service: 'protein-radar-worker', version: 'v2.0', db: hasDb }, 200, cors);

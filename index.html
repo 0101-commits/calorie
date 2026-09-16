@@ -287,7 +287,11 @@
             <option value="8809999999999">8809999999999 (미등록 바코드 - 제보 유도 테스트)</option>
           </select>
         </div>
-        <button class="btn btn-brand" id="btn-test-barcode">스캔 확인</button>
+        <button class="btn btn-brand" id="btn-test-barcode" type="button">스캔 확인</button>
+        <div class="form-field" style="margin-top:12px;">
+          <label class="field-label" for="input-barcode-photo">사진에서 바코드 읽기</label>
+          <input type="file" id="input-barcode-photo" class="form-input" accept="image/*" capture="environment">
+        </div>
       </div>
     </dialog>
 

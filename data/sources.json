@@ -1,0 +1,49 @@
+{
+  "_note": "T2/T3 수집 레지스트리. 기획안 v2.0 §4.6 detect-new.yml 이 이 목록을 읽어 공식 페이지의 렌더 해시를 비교한다.",
+  "_gate": "url_verified=false 또는 status!=notified 인 항목은 수집기가 건너뛴다. 아래 url_candidate 는 확인되지 않은 추정 주소이므로 그대로 호출하지 않는다 — 0단계 실사(사람이 직접 열어 확인)에서 url 로 승격시킨 뒤에만 수집한다.",
+  "_guards": [
+    "robots.txt 준수",
+    "브랜드당 20페이지 이하 · 요청 간격 5초 이상 · 2주 1회",
+    "UA 에 서비스명과 연락처 표기",
+    "차단되면 즉시 중단하고 T4(매장 촬영)로 전환",
+    "로그인 뒤 데이터·앱 화면은 어떤 단계에서도 수집하지 않는다"
+  ],
+  "_status_legend": {
+    "pending_survey": "URL·렌더 방식 미확인 — 실사 필요",
+    "pending_notice": "URL 확인됨 · 사전 고지 메일 발송 전 — 수집하지 않는다",
+    "notified": "사전 고지 완료 · 수집 가능",
+    "blocked": "브랜드 요청 또는 robots 차단 — 수집 중단"
+  },
+  "brands": [
+    { "brand_code": "subway", "name": "써브웨이", "tier": "T2", "disclosure_duty": true, "url": null, "url_candidate": "https://www.subway.co.kr", "url_verified": false, "format_note": "2026-09-15 조사 시 HTML 표로 1일 기준치 % 포함 공개 확인", "status": "pending_survey", "last_hash": null, "last_checked_at": null },
+    { "brand_code": "mcdonalds", "name": "맥도날드", "tier": "T2", "disclosure_duty": true, "url": null, "url_candidate": "https://www.mcdonalds.co.kr", "url_verified": false, "format_note": "영양정보 페이지가 동적 로딩 — 렌더 필요", "status": "pending_survey", "last_hash": null, "last_checked_at": null },
+    { "brand_code": "burgerking", "name": "버거킹", "tier": "T2", "disclosure_duty": true, "url": null, "url_candidate": "https://www.burgerking.co.kr", "url_verified": false, "format_note": "JS 렌더링 — 형식 미확인", "status": "pending_survey", "last_hash": null, "last_checked_at": null },
+    { "brand_code": "lotteria", "name": "롯데리아", "tier": "T2", "disclosure_duty": true, "url": null, "url_candidate": "https://www.lotteeatz.com", "url_verified": false, "format_note": "JS 렌더링 — 형식 미확인", "status": "pending_survey", "last_hash": null, "last_checked_at": null },
+    { "brand_code": "momstouch", "name": "맘스터치", "tier": "T2", "disclosure_duty": true, "url": null, "url_candidate": "https://www.momstouch.co.kr", "url_verified": false, "format_note": "메뉴 상세가 이미지(nutrition.jpg) — OCR 필요", "status": "pending_survey", "last_hash": null, "last_checked_at": null },
+    { "brand_code": "nbb", "name": "노브랜드버거", "tier": "T2", "disclosure_duty": true, "url": null, "url_candidate": null, "url_verified": false, "format_note": null, "status": "pending_survey", "last_hash": null, "last_checked_at": null },
+    { "brand_code": "kfc", "name": "KFC", "tier": "T2", "disclosure_duty": true, "url": null, "url_candidate": null, "url_verified": false, "format_note": null, "status": "pending_survey", "last_hash": null, "last_checked_at": null },
+    { "brand_code": "dominos", "name": "도미노피자", "tier": "T2", "disclosure_duty": true, "url": null, "url_candidate": null, "url_verified": false, "format_note": null, "status": "pending_survey", "last_hash": null, "last_checked_at": null },
+    { "brand_code": "pizzahut", "name": "피자헛", "tier": "T2", "disclosure_duty": true, "url": null, "url_candidate": null, "url_verified": false, "format_note": null, "status": "pending_survey", "last_hash": null, "last_checked_at": null },
+    { "brand_code": "paris", "name": "파리바게뜨", "tier": "T2", "disclosure_duty": true, "url": null, "url_candidate": null, "url_verified": false, "format_note": null, "status": "pending_survey", "last_hash": null, "last_checked_at": null },
+    { "brand_code": "hsd", "name": "한솥도시락", "tier": "T2", "disclosure_duty": false, "url": null, "url_candidate": "https://www.hsd.co.kr", "url_verified": false, "format_note": "열량·알레르기·원산지만 공개 · 나트륨·당류 없음 → T4 촬영 병행 필요", "status": "pending_survey", "last_hash": null, "last_checked_at": null },
+    { "brand_code": "salady", "name": "샐러디", "tier": "T2", "disclosure_duty": false, "url": null, "url_candidate": null, "url_verified": false, "format_note": "공개 여부 자체가 미확인", "status": "pending_survey", "last_hash": null, "last_checked_at": null }
+  ],
+  "press": [
+    { "brand_code": "cu", "name": "CU", "tier": "T3", "url": null, "url_candidate": "https://www.bgfretail.com", "url_verified": false, "status": "pending_survey" },
+    { "brand_code": "gs25", "name": "GS25", "tier": "T3", "url": null, "url_candidate": "https://www.gsretail.com", "url_verified": false, "status": "pending_survey" },
+    { "brand_code": "emart24", "name": "이마트24", "tier": "T3", "url": null, "url_candidate": "https://www.emart24.co.kr", "url_verified": false, "status": "pending_survey" }
+  ],
+  "public": [
+    {
+      "id": "mfds_nutrition_api",
+      "name": "식약처 식품영양성분DB정보 API",
+      "tier": "T1",
+      "url": "https://apis.data.go.kr/1471000/FoodNtrCpntDbInfo02/getFoodNtrCpntDbInq02",
+      "url_verified": true,
+      "auth_env": "DATA_GO_KR_API_KEY",
+      "license": "이용허락 제한 없음",
+      "status": "active",
+      "note": "scripts/fetch_public_data.py 가 실제로 호출해 응답을 받은 엔드포인트"
+    }
+  ]
+}
