@@ -1,0 +1,882 @@
+[
+  {
+    "brand_code": "7eleven",
+    "name": "세븐일레븐",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "마루카네",
+    "name": "마루카네",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "bardak",
+    "name": "바르닭",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "bbq",
+    "name": "BBQ",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "bhc",
+    "name": "BHC",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "binggrae",
+    "name": "빙그레",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "mart",
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "bodynine",
+    "name": "바디나인",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "bsn",
+    "name": "BSN",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "burgerking",
+    "name": "버거킹",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "calobye",
+    "name": "칼로바이",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "cheogajip",
+    "name": "처갓집양념치킨",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "cj",
+    "name": "CJ제일제당",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "cocacola",
+    "name": "코카콜라",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "costco",
+    "name": "코스트코",
+    "aliases": [],
+    "channels": [
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "crown",
+    "name": "크라운",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "cu",
+    "name": "CU",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "cuchara",
+    "name": "쿠차라",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "daesang",
+    "name": "대상",
+    "aliases": [
+      "청정원"
+    ],
+    "channels": [
+      "cvs",
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "daesangwellife",
+    "name": "대상웰라이프",
+    "aliases": [
+      "마이밀"
+    ],
+    "channels": [
+      "cvs",
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "delight",
+    "name": "딜라이트프로젝트",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "domino",
+    "name": "도미노피자",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "dongwon",
+    "name": "동원",
+    "aliases": [],
+    "channels": [
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "emart24",
+    "name": "이마트24",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "frankburger",
+    "name": "프랭크버거",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "goobne",
+    "name": "굽네치킨",
+    "aliases": [
+      "굽네",
+      "굽네몰"
+    ],
+    "channels": [
+      "cvs",
+      "fr",
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "greekday",
+    "name": "그릭데이",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "gs25",
+    "name": "GS25",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "haitai",
+    "name": "해태",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "hansot",
+    "name": "한솥도시락",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "hansung",
+    "name": "한성기업",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "harim",
+    "name": "하림",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "hbaf",
+    "name": "바프",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "heodak",
+    "name": "허닭",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "homeplus",
+    "name": "홈플러스",
+    "aliases": [],
+    "channels": [
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "ildong",
+    "name": "일동후디스",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "imdak",
+    "name": "아임닭",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "jiller",
+    "name": "질러",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "jinju",
+    "name": "진주햄",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "kellogg",
+    "name": "켈로그",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "kfc",
+    "name": "KFC",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "kwangdong",
+    "name": "광동제약",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "kyochon",
+    "name": "교촌치킨",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "labnosh",
+    "name": "랩노쉬",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "lalasweet",
+    "name": "라라스윗",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "lotte_wellfood",
+    "name": "롯데웰푸드",
+    "aliases": [
+      "롯데"
+    ],
+    "channels": [
+      "cvs",
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "lottechilsung",
+    "name": "롯데칠성",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "lotteria",
+    "name": "롯데리아",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "maeil",
+    "name": "매일유업",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "mart",
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "masitdak",
+    "name": "맛있닭",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "mcdonalds",
+    "name": "맥도날드",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "metree",
+    "name": "미트리",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "momstouch",
+    "name": "맘스터치",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "morningegg",
+    "name": "아침에계란",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "myprotein",
+    "name": "마이프로틴",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "namyang",
+    "name": "남양유업",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "nbb",
+    "name": "노브랜드버거",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "nobrand",
+    "name": "노브랜드",
+    "aliases": [],
+    "channels": [
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "nongshim",
+    "name": "농심",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "optimum",
+    "name": "옵티멈뉴트리션",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "orion",
+    "name": "오리온",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "ottogi",
+    "name": "오뚜기",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "paldo",
+    "name": "팔도",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "paris",
+    "name": "파리바게뜨",
+    "aliases": [],
+    "channels": [
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "pizzahut",
+    "name": "피자헛",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "pokeallday",
+    "name": "포케올데이",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "pulmuone",
+    "name": "풀무원",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "pulmuone_danone",
+    "name": "풀무원다논",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "puradak",
+    "name": "푸라닭",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "quest",
+    "name": "퀘스트뉴트리션",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "rankingdak",
+    "name": "랭킹닭컴",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "sajo",
+    "name": "사조대림",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "salady",
+    "name": "샐러디",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "samlip",
+    "name": "삼립",
+    "aliases": [],
+    "channels": [
+      "cvs",
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "samyang",
+    "name": "삼양식품",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "seoul",
+    "name": "서울우유",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "skinnypig",
+    "name": "스키니피그",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "slowcali",
+    "name": "슬로우캘리",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "starbucks",
+    "name": "스타벅스",
+    "aliases": [],
+    "channels": [
+      "fr",
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "subway",
+    "name": "써브웨이",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "suzis",
+    "name": "수지스",
+    "aliases": [],
+    "channels": [
+      "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "teacherkim",
+    "name": "바르다김선생",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "twosome",
+    "name": "투썸플레이스",
+    "aliases": [],
+    "channels": [
+      "fr"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "vegemil",
+    "name": "정식품",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "yonsei",
+    "name": "연세유업",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "yozm",
+    "name": "요즘",
+    "aliases": [],
+    "channels": [
+      "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  }
+]

@@ -24,13 +24,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # G7 배포 위생 게이트 — 공개 산출물만 _site/ 로 모은다.
+      # scripts/ · scratch/ · data/ · *.sql · audit_gallery.html 은 배포하지 않는다.
+      - name: Collect public artifacts (whitelist)
+        run: node scripts/collect_site.js
+
+      - name: Verify no secrets in artifact
+        run: node scripts/check_deploy_hygiene.js
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment

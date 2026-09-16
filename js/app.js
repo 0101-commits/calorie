@@ -264,7 +264,7 @@ function setupEventListeners() {
 
   // 10. 신고 제출
   el.btnSubmitReport.addEventListener('click', () => {
-    alert('신고 및 정정 요청이 정상적으로 접수되었습니다. 72시간 이내에 공식 영양표를 재확인하겠습니다.');
+    alert('접수 창구가 아직 연결되지 않았습니다. 준비되는 대로 이 화면에서 바로 접수할 수 있게 됩니다.');
     el.sheetReport.close();
   });
 }

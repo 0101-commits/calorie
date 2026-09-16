@@ -1,0 +1,145 @@
+{
+  "version": "v1.1",
+  "effective_from": "2026-09-16",
+  "changelog": [
+    "D13 확정 — 종합 등급 컷은 3.3/2.3/1.3 유지. 기획서 §1.3 본문은 3.5/2.5/1.5 로 적혀 있으나 같은 기획서 §1.7 벤치마크 6건 중 2건(곡물 샐러드 평균 3.33→A, 참치마요 삼각김밥 1.33→C)이 그 컷과 모순된다. 실측 검증 결과 3.3/2.3/1.3 이 6/6 일치하므로 예시 쪽을 정본으로 채택하고 여기에 고정한다.",
+    "F1 — 튀김 페널티의 제품명 정규식에서 '치킨' 제거. 이름 정규식은 cooking=unknown 일 때의 보조 추정으로만 쓴다.",
+    "F2 — 코드에만 있던 당류 조항 sugar >= protein 을 룰에 명문화(기획서 §1.5).",
+    "F3 — protein_source 미상의 Q 폴백을 Q_unknown 명시 상수로 승격.",
+    "F4 — W1(마케팅 표기 강도) 명시. 표기 없음은 판독 대상 아님, 약한 표기는 W2 20점, 강한 표기는 40점.",
+    "결측 처리 — *_status 가 unknown 인 항목은 페널티 면제가 아니라 판정 보류(grade_eligible=false)."
+  ],
+
+  "daily_standards": {
+    "kcal": 2000,
+    "carb_g": 324,
+    "sugar_g": 100,
+    "fiber_g": 25,
+    "protein_g": 55,
+    "fat_g": 54,
+    "sat_fat_g": 15,
+    "chol_mg": 300,
+    "sodium_mg": 2000
+  },
+
+  "protein_claims": {
+    "source_or_contained": {
+      "solid_g_per_100g": 5.5,
+      "liquid_g_per_100ml": 2.75,
+      "kcal_g_per_100kcal": 2.75
+    },
+    "high_protein": {
+      "solid_g_per_100g": 11.0,
+      "liquid_g_per_100ml": 5.5,
+      "kcal_g_per_100kcal": 5.5
+    }
+  },
+
+  "cutoffs": {
+    "ppr": { "A": 8.0, "B": 5.0, "C": 3.0 },
+    "cpd": { "A": 12.0, "B": 8.0, "C": 5.5 },
+    "npi": { "A": 25.0, "B": 18.0, "C": 12.0 },
+    "total_grade": { "A": 3.3, "B": 2.3, "C": 1.3 }
+  },
+
+  "protein_source_q": {
+    "Q1": 1.0,
+    "Q2": 0.9,
+    "Q3": 0.8,
+    "Q4": 0.7,
+    "Q5": 0.6,
+    "Q_unknown": 0.6,
+    "secondary_low_q_penalty": 0.05,
+    "floor": 0.5
+  },
+
+  "penalties": {
+    "fried": {
+      "deduction": 0.15,
+      "name_regex": "튀김|프라이드|크리스피|튀긴|돈까스|가라아게|탕수",
+      "name_regex_is_estimation_only": true
+    },
+    "sodium": { "threshold_mg": 1000, "deduction": 0.15 },
+    "sat_fat": { "threshold_g": 10, "deduction": 0.15 },
+    "sugar": { "threshold_g": 20, "also_when_sugar_ge_protein": true, "deduction": 0.1 },
+    "trans_fat": { "threshold_g": 0.5, "deduction": 0.1 },
+    "fiber_bonus": { "threshold_g": 5, "bonus_g": 1.0 },
+    "max_total_penalty": 0.5
+  },
+
+  "washing_rules": {
+    "W1": {
+      "strong_claim_regex": "고단백|하이프로틴|프로틴|protein|단백질\\s*\\d+\\s*g|더단백",
+      "weak_claim_regex": "단백질\\s*함유|급원|단백질이\\s*들어",
+      "note": "표기가 없으면 판독 대상이 아니다(PW=null). 약한 표기는 W2 배점을 낮춘다."
+    },
+    "W2_strong_claim_fail": 40,
+    "W2_weak_claim_fail": 20,
+    "W3_sugar_over_protein": 20,
+    "W4_sodium_protein_ratio": 60,
+    "W4_score": 15,
+    "W5_fat_or_fried_score": 15,
+    "W6_below_median_ppr": 10,
+    "tiers": { "verified_max": 24, "conditional_max": 49, "washing_min": 50 }
+  },
+
+  "grade_eligibility": {
+    "required_measured": ["kcal", "protein_g", "price_krw"],
+    "penalty_inputs": ["sodium_mg", "sat_fat_g", "sugar_g"],
+    "max_unknown_penalty_inputs": 1,
+    "note": "필수 3필드가 실측이 아니거나 페널티 입력 3종 중 2개 이상이 unknown 이면 등급을 매기지 않는다."
+  },
+
+  "enums": {
+    "channel": ["cvs", "fr", "mart", "online"],
+    "category": [
+      "도시락",
+      "삼각김밥/주먹밥",
+      "샌드위치/버거",
+      "샐러드",
+      "닭가슴살/육가공",
+      "유제품/음료",
+      "면",
+      "즉석밥/죽",
+      "디저트",
+      "과자/바",
+      "한식/분식",
+      "기타"
+    ],
+    "cooking": ["fried", "grilled", "boiled", "raw", "baked", "mixed", "unknown"],
+    "field_status": ["measured", "estimated", "unknown"]
+  },
+
+  "recommendation": {
+    "pal": {
+      "sedentary": 1.2,
+      "light": 1.375,
+      "moderate": 1.55,
+      "active": 1.725,
+      "very_active": 1.9
+    },
+    "meal_ratios": { "breakfast": 0.25, "lunch": 0.35, "dinner": 0.3, "snack": 0.1 },
+    "goals": {
+      "diet": { "kcal_factor": 0.8, "protein_per_kg": 2.0, "fat_pct": 0.25, "sodium_day_mg": 2000, "sugar_day_g": 50 },
+      "lean_mass": { "kcal_factor": 1.08, "protein_per_kg": 1.8, "fat_pct": 0.25, "sodium_day_mg": 2300, "sugar_day_g": 60 },
+      "bulk_up": { "kcal_factor": 1.15, "protein_per_kg": 1.6, "fat_pct": 0.275, "sodium_day_mg": 2600, "sugar_day_g": 80 }
+    },
+    "meal_protein_clamp": { "min": 20, "max": 45 },
+    "fit_weights": {
+      "diet": { "kcal": 0.3, "protein": 0.3, "carb": 0.05, "fat": 0.1, "sodium": 0.1, "sugar": 0.15 },
+      "lean_mass": { "kcal": 0.25, "protein": 0.35, "carb": 0.15, "fat": 0.1, "sodium": 0.1, "sugar": 0.05 },
+      "bulk_up": { "kcal": 0.3, "protein": 0.3, "carb": 0.2, "fat": 0.1, "sodium": 0.05, "sugar": 0.05 }
+    },
+    "combo": {
+      "max_singles": 30,
+      "kcal_range": [0.7, 1.3],
+      "size_penalty_per_extra_item": 0.5,
+      "jaccard_max_3item": 0.5,
+      "share_forbidden_for_2item": true,
+      "sodium_hard_cap_ratio": 1.5,
+      "duplicate_category_exempt": ["유제품/음료"]
+    }
+  },
+
+  "staleness": { "stale_days": 90, "rank_exclude_days": 180 }
+}

@@ -354,8 +354,9 @@ export function analyzeIngredients(rawText, product = null) {
   const text = (rawText || '').trim();
   
   if (!text) {
-    // 텍스트가 없는 경우 제품 정보를 바탕으로 표준 레시피 추론
-    return analyzeFromProductFallback(product);
+    // 기획안 v2.0 P0-④ — 원재료 텍스트가 없으면 성분을 '추론'하지 않는다.
+    // 근거 없는 성분명 생성은 실존 제품에 대한 허위 표시이므로 빈 상태를 그대로 반환한다.
+    return buildUnavailableReport();
   }
 
   // 1. 괄호 및 쉼표 기반 분해
@@ -470,6 +471,7 @@ function buildAnalysisReport(tokens, product = null) {
   };
 
   return {
+    available: true,
     cleanScore: score,
     tierLabel,
     tierColor,
@@ -658,57 +660,20 @@ function evaluateAdditive(tokens, product) {
 }
 
 /**
- * 원재료 텍스트가 없는 경우 제품 속성을 바탕으로 표준 원재료 프로파일 자동 생성
+ * 원재료 미확보 상태 — 점수를 매기지 않는다.
+ * 화면은 이 상태를 '원재료 미확보 · 제보하기' 빈 상태로 렌더한다.
  */
-function analyzeFromProductFallback(p) {
-  if (!p) {
-    return buildAnalysisReport([], null);
-  }
-
-  const generated = [];
-
-  // 1. 단백질 원천 추정
-  if (p.protein_source === 'Q1' || p.category === '닭가슴살/육가공') {
-    generated.push({ name: '국내산 닭가슴살(원육)', tier: 1, category: 'protein', title: '1등급 순수 원육', desc: '자연식 고품질 닭가슴살' });
-    generated.push({ name: '정제소금(천일염)', tier: 2, category: 'general', title: '일반 원료', desc: '국내산 천일염' });
-    generated.push({ name: '비타민C', tier: 2, category: 'additive', title: '항산화 안심 원료', desc: '표준 비타민C' });
-  } else if (p.category === '유제품/음료') {
-    generated.push({ name: '분리유청단백분말(WPI)', tier: 1, category: 'protein', title: '최고급 분리유청단백', desc: '순도 높은 프리미엄 단백질' });
-    generated.push({ name: '원유(국산)', tier: 1, category: 'protein', title: '신선한 국산 원유', desc: '양질의 우유 단백질' });
-    generated.push({ name: '대두레시틴', tier: 2, category: 'additive', title: '유화제', desc: '천연 유래 유화제' });
-  } else if (p.category === '샐러드') {
-    generated.push({ name: '닭가슴살원육', tier: 1, category: 'protein', title: '1등급 원육', desc: '순수 고단백 원물' });
-    generated.push({ name: '신선채소믹스', tier: 1, category: 'general', title: '자연 채소', desc: '식이섬유 풍부' });
-    generated.push({ name: '올리브유', tier: 1, category: 'fat', title: '좋은 불포화지방', desc: '혈관에 좋은 오일' });
-  } else if (p.protein_source === 'Q4' || p.cooking === 'fried') {
-    generated.push({ name: '분쇄가공육(돼지고기, 닭고기)', tier: 3, category: 'protein', title: '성형 분쇄육', desc: '원육과 전분이 섞인 가공육' });
-    generated.push({ name: '변성전분', tier: 3, category: 'additive', title: '화학 가공 전분', desc: '식감 조절용 전분' });
-    generated.push({ name: '팜유', tier: 3, category: 'fat', title: '포화지방 함유 유지', desc: '튀김 조리용 팜유' });
-    generated.push({ name: 'L-글루탐산나트륨', tier: 3, category: 'additive', title: '향미증진제', desc: '조미용 MSG' });
-  } else {
-    generated.push({ name: '대두단백', tier: 2, category: 'protein', title: '식물성 단백질', desc: '대두 유래 단백질' });
-  }
-
-  // 2. 당류/감미료 추정
-  if (p.sugar_g <= 1.0 && p.marketing_claim) {
-    generated.push({ name: '알룰로스(D-알룰로오스)', tier: 1, category: 'sweetener', title: '혈당 스파이크 제로 대체당', desc: '칼로리 제로 안심 감미료' });
-    generated.push({ name: '수크랄로스', tier: 3, category: 'sweetener', title: '합성 무열량 감미료', desc: '장내 미생물 주의 필요' });
-  } else if (p.sugar_g > 15) {
-    generated.push({ name: '액상과당(고과당)', tier: 4, category: 'sweetener', title: '흡수당 (지방간 주의)', desc: '체지방 축적을 부추기는 당' });
-    generated.push({ name: '백설탕', tier: 4, category: 'sweetener', title: '정제당', desc: '혈당 급상승 단순당' });
-  } else if (p.sugar_g > 5) {
-    generated.push({ name: '정제설탕', tier: 4, category: 'sweetener', title: '단순 정제당', desc: '혈당 상승 단순당' });
-  } else {
-    generated.push({ name: '스테비아', tier: 1, category: 'sweetener', title: '식물성 천연 대체당', desc: '칼로리 제로 천연 감미료' });
-  }
-
-  // 3. 첨가물 추정
-  if (p.pw_tier === 'washing' || (p.penalties && p.penalties.some(pen => pen.type === 'sodium'))) {
-    generated.push({ name: '아질산나트륨', tier: 4, category: 'additive', title: '발색제 (WHO 주의물질)', desc: '가공육 보존 발색제' });
-    generated.push({ name: '폴리인산나트륨', tier: 4, category: 'additive', title: '결착제', desc: '칼슘 흡수 방해 가능' });
-  } else {
-    generated.push({ name: '천연향료', tier: 2, category: 'additive', title: '천연 유래 향료', desc: '안심 천연 향미' });
-  }
-
-  return buildAnalysisReport(generated, p);
+export function buildUnavailableReport() {
+  return {
+    available: false,
+    cleanScore: null,
+    tierLabel: '원재료 미확보',
+    tierColor: 'var(--ink-3)',
+    stats: {
+      goodCount: 0, neutralCount: 0, cautionCount: 0, badCount: 0,
+      totalCount: 0, goodPct: 0, neutralPct: 0, cautionPct: 0, badPct: 0
+    },
+    teardowns: null,
+    tokens: []
+  };
 }

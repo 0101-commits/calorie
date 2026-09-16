@@ -1,0 +1,137 @@
+// ⛔ 폐기됨 (2026-09-16, 기획안 v2.0 결정 D10)
+// FatSecret 한국을 Puppeteer 로 스크레이핑하던 수집기. 다음 이유로 더 이상 쓰지 않는다.
+//   1) 기획서 §3.7 '하지 않는 것' — 경쟁 식단앱 DB 복제에 해당
+//   2) 가격을 제품명으로 추측(guessPrice)해 PPR 의 분모가 허구가 된다
+//   3) 나트륨·당류·포화지방을 리터럴 0 으로 채워 페널티가 전부 면제된다
+// 이 수집기가 만든 59건은 data/quarantine/fatsecret.json 으로 격리했다.
+// 대체 경로: T2 브랜드 공식 영양정보 페이지(scripts/collect_t2.js).
+// 기록 목적으로만 보관하며 실행하지 않는다.
+
+import puppeteer from 'puppeteer';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.join(__dirname, '..');
+
+const BRANDS_TO_SCRAPE = ['맥도날드', '스타벅스', '서브웨이', '맘스터치', '버거킹', '이디야'];
+const dataPath = path.join(rootDir, 'data', 'seed.json');
+
+function guessPrice(name) {
+  if (name.includes('버거')) return 6000;
+  if (name.includes('커피') || name.includes('라떼') || name.includes('프라푸치노')) return 5000;
+  if (name.includes('샌드위치')) return 7000;
+  return 4500;
+}
+
+async function run() {
+  console.log('🚀 Puppeteer 브랜드 크롤러 가동 시작...');
+  let existing = [];
+  if (fs.existsSync(dataPath)) {
+    existing = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+  }
+  const seen = new Set(existing.map(x => x.name.replace(/\s/g, '')));
+  let addedCount = 0;
+
+  let browser;
+  try {
+    browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+  } catch(e) {
+    console.log('Puppeteer 실행 실패 (의존성 부족일 수 있습니다).', e.message);
+    return;
+  }
+  
+  const page = await browser.newPage();
+  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36');
+
+  for (const brand of BRANDS_TO_SCRAPE) {
+    console.log(`\n🔍 [${brand}] FatSecret 검색 중...`);
+    const searchUrl = `https://www.fatsecret.kr/칼로리-영양소/search?q=${encodeURIComponent(brand)}`;
+    
+    try {
+      await page.goto(searchUrl, { waitUntil: 'domcontentloaded', timeout: 15000 });
+      
+      const items = await page.evaluate(() => {
+        const results = [];
+        const links = document.querySelectorAll('a.prominent');
+        links.forEach(link => {
+          const name = link.innerText.trim();
+          let parent = link.closest('td') || link.parentElement;
+          const textContent = parent ? parent.innerText : '';
+          results.push({ name, textContent });
+        });
+        return results;
+      });
+
+      for (const item of items) {
+        const name = `${brand} ${item.name}`.trim();
+        const cleanName = name.replace(/\s/g, '');
+        if (seen.has(cleanName)) continue;
+        
+        const kcalMatch = item.textContent.match(/칼로리:\s*([\d\.]+)kcal/);
+        const fatMatch = item.textContent.match(/지방:\s*([\d\.]+)g/);
+        const carbMatch = item.textContent.match(/탄수화물:\s*([\d\.]+)g/);
+        const proteinMatch = item.textContent.match(/단백질:\s*([\d\.]+)g/);
+        
+        if (kcalMatch && proteinMatch) {
+          const kcal = parseFloat(kcalMatch[1]);
+          const protein = parseFloat(proteinMatch[1]);
+          const fat = fatMatch ? parseFloat(fatMatch[1]) : 0;
+          const carb = carbMatch ? parseFloat(carbMatch[1]) : 0;
+          
+          let serving_g = 150; 
+          const servingMatch = item.textContent.match(/([\d\.]+)g/);
+          if (servingMatch && servingMatch[1]) serving_g = parseFloat(servingMatch[1]);
+          
+          if (protein === 0 && kcal === 0) continue;
+
+          const newItem = {
+            menu_id: `fs-${Date.now()}-${addedCount}`,
+            channel: 'fr',
+            brand: brand,
+            name: name,
+            category: "일반식품",
+            price_krw: guessPrice(name),
+            serving_g: serving_g,
+            kcal: kcal,
+            protein_g: protein,
+            carb_g: carb,
+            sugar_g: 0,
+            fat_g: fat,
+            sat_fat_g: 0,
+            sodium_mg: 0,
+            ingredients_raw: "", 
+            protein_source: "none",
+            cooking: "processed",
+            marketing_claim: 0,
+            image_url: "",
+            source_type: "fatsecret",
+            verified_at: "2026-09-16",
+            rule_version: "v1.0",
+            source_url: searchUrl
+          };
+          
+          existing.push(newItem);
+          seen.add(cleanName);
+          addedCount++;
+          console.log(`  + Added: ${name} (Kcal: ${kcal}, P: ${protein}g)`);
+        }
+      }
+    } catch (e) {
+      console.log(`  - [${brand}] 페이지 크롤링 실패: ${e.message}`);
+    }
+  }
+
+  await browser.close();
+  
+  if (addedCount > 0) {
+    fs.writeFileSync(dataPath, JSON.stringify(existing, null, 2), 'utf-8');
+    console.log(`\n✅ ${addedCount}개의 브랜드 메뉴가 DB에 추가되었습니다!`);
+  } else {
+    console.log('\n⚠️ 새로운 데이터가 없거나 구조가 맞지 않습니다.');
+  }
+}
+
+run();

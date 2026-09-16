@@ -38,7 +38,12 @@ export function validateMenuQA(menu, existingIds = new Set()) {
   }
 
   // R2: 질량 정합성
-  if (serving > 0) {
+  // 기획안 v2.0 §2.2 — serving_g 가 영양성분 합계로 역산된 추정치면 이 검사는 정의상 통과하므로 제외한다.
+  const servingEstimated = menu.serving_g_status === 'estimated';
+  if (servingEstimated) {
+    warnings.push({ rule: 'R2', message: '내용량이 추정치(역산)라 질량 정합성 검사를 건너뛰었습니다.' });
+  }
+  if (serving > 0 && !servingEstimated) {
     if (p > serving) errors.push({ rule: 'R2', message: `단백질(${p}g)이 총 내용량(${serving}g)을 초과합니다.` });
     if (c !== null && c > serving) errors.push({ rule: 'R2', message: `탄수화물(${c}g)이 총 내용량(${serving}g)을 초과합니다.` });
     if (f !== null && f > serving) errors.push({ rule: 'R2', message: `지방(${f}g)이 총 내용량(${serving}g)을 초과합니다.` });
@@ -87,6 +92,10 @@ export function validateMenuQA(menu, existingIds = new Set()) {
   }
   if (!menu.source_url && !menu.image_hash) {
     errors.push({ rule: 'R5', message: '출처 URL(source_url) 또는 이미지 해시(image_hash) 중 하나는 필수입니다.' });
+  }
+  // 재확인 가능한 URL 이어야 출처로서 의미가 있다.
+  if (menu.source_url && !/^https?:\/\/[^\s/]+\.[^\s/]+/.test(menu.source_url)) {
+    errors.push({ rule: 'R5', message: `출처 URL 이 재확인 가능한 형식이 아닙니다(${menu.source_url}).` });
   }
 
   return {

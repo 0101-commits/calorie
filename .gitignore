@@ -7,3 +7,10 @@ Thumbs.db
 .env.local
 __pycache__/
 *.pyc
+
+# 기획안 v2.0 — 배포 산출물·백업
+_site/
+data/seed.json.p0bak
+
+# OMC 런타임 상태
+.omc/

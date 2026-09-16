@@ -1,5 +1,7 @@
 // 프로틴레이더 영양 평가 및 워싱 판독 엔진 (score.js)
-// 규칙 버전: v1.0 (2026-09-15 확정 스펙)
+// 규칙 버전: rules/rule_v1.1.json 이 단일 원천.
+// 아래 DEFAULT_RULES 는 룰 파일을 주입하지 않은 호출(단위 테스트 픽스처)용 기본값이며,
+// 빌드 파이프라인은 반드시 rules 를 주입한다(G5 게이트가 두 값의 불일치를 잡는다).
 
 export const DEFAULT_RULES = {
   cutoffs: {
@@ -8,18 +10,69 @@ export const DEFAULT_RULES = {
     npi: { A: 25.0, B: 18.0, C: 12.0 },
     total_grade: { A: 3.3, B: 2.3, C: 1.3 }
   },
-  q_weights: {
-    Q1: 1.00,
-    Q2: 0.90,
-    Q3: 0.80,
-    Q4: 0.70,
-    Q5: 0.60
+  protein_source_q: {
+    Q1: 1.0, Q2: 0.9, Q3: 0.8, Q4: 0.7, Q5: 0.6,
+    Q_unknown: 0.6, secondary_low_q_penalty: 0.05, floor: 0.5
+  },
+  penalties: {
+    fried: { deduction: 0.15, name_regex: '튀김|프라이드|크리스피|튀긴|돈까스|가라아게|탕수' },
+    sodium: { threshold_mg: 1000, deduction: 0.15 },
+    sat_fat: { threshold_g: 10, deduction: 0.15 },
+    sugar: { threshold_g: 20, also_when_sugar_ge_protein: true, deduction: 0.10 },
+    trans_fat: { threshold_g: 0.5, deduction: 0.10 },
+    fiber_bonus: { threshold_g: 5, bonus_g: 1.0 },
+    max_total_penalty: 0.50
+  },
+  protein_claims: {
+    high_protein: { solid_g_per_100g: 11.0, liquid_g_per_100ml: 5.5, kcal_g_per_100kcal: 5.5 }
+  },
+  washing_rules: {
+    W1: {
+      strong_claim_regex: '고단백|하이프로틴|프로틴|protein|단백질\\s*\\d+\\s*g|더단백',
+      weak_claim_regex: '단백질\\s*함유|급원|단백질이\\s*들어'
+    },
+    W2_strong_claim_fail: 40,
+    W2_weak_claim_fail: 20,
+    W3_sugar_over_protein: 20,
+    W4_sodium_protein_ratio: 60,
+    W4_score: 15,
+    W5_fat_or_fried_score: 15,
+    W6_below_median_ppr: 10,
+    tiers: { verified_max: 24, conditional_max: 49, washing_min: 50 }
+  },
+  grade_eligibility: {
+    required_measured: ['kcal', 'protein_g', 'price_krw'],
+    penalty_inputs: ['sodium_mg', 'sat_fat_g', 'sugar_g'],
+    max_unknown_penalty_inputs: 1
   }
 };
 
+/* ────────────────────────────────────────────────────────────
+   필드 신뢰도 — 기획안 v2.0 §4.2
+   값(value)과 상태(status)를 분리한다. 상태가 unknown 이면 "0"이 아니라
+   "모른다"이며, 페널티 면제가 아니라 판정 보류로 이어진다.
+   ──────────────────────────────────────────────────────────── */
+
+/** 필드의 신뢰도 상태를 읽는다. `${field}_status` 가 없으면 값 존재 여부로 추론. */
+export function fieldStatus(item, field) {
+  const explicit = item[`${field}_status`];
+  if (explicit) return explicit;
+  const v = item[field];
+  if (v === null || v === undefined || v === '') return 'unknown';
+  return 'measured';
+}
+
+/** 계산에 쓸 수 있는 값인가(unknown 이 아닌가). */
+function isKnown(item, field) {
+  return fieldStatus(item, field) !== 'unknown';
+}
+
+function numOf(item, field) {
+  return Number(item[field] || 0);
+}
+
 /**
- * 1. PPR (Protein-Price Ratio, g/천원)
- * 수식: protein_g / (price_krw / 1000)
+ * 1. PPR (Protein-Price Ratio, g/천원) = protein_g / (price_krw / 1000)
  */
 export function computePPR(protein_g, price_krw) {
   if (!price_krw || price_krw <= 0) return 0;
@@ -35,8 +88,7 @@ export function getPPRGrade(ppr, cutoffs = DEFAULT_RULES.cutoffs.ppr) {
 }
 
 /**
- * 2. CPD (Calorie-Protein Density, g/100kcal)
- * 수식: protein_g / (kcal / 100)
+ * 2. CPD (Calorie-Protein Density, g/100kcal) = protein_g / (kcal / 100)
  */
 export function computeCPD(protein_g, kcal) {
   if (!kcal || kcal <= 0) return 0;
@@ -52,20 +104,28 @@ export function getCPDGrade(cpd, cutoffs = DEFAULT_RULES.cutoffs.cpd) {
 }
 
 /**
- * 3. NPI (Net Protein Index, 보정 g)
- * 수식: protein_g * Q * (1 - min(0.50, sum_penalty)) + bonus
+ * 3. NPI (Net Protein Index, 보정 g) = protein_g × Q × (1 − min(cap, Σpenalty)) + bonus
  */
 export function computeNPI(params, rules = DEFAULT_RULES) {
+  const q = rules.protein_source_q || DEFAULT_RULES.protein_source_q;
   const protein_g = Number(params.protein_g || 0);
-  const qCode = params.protein_source || 'Q5';
-  let Q = rules.q_weights[qCode] !== undefined ? rules.q_weights[qCode] : 0.60;
+
+  // F3 — protein_source 미상은 조용한 폴백이 아니라 명시 상수 Q_unknown 을 쓴다.
+  const qCode = params.protein_source;
+  let Q;
+  if (qCode && q[qCode] !== undefined) {
+    Q = q[qCode];
+  } else {
+    Q = q.Q_unknown !== undefined ? q.Q_unknown : 0.6;
+  }
   if (params.secondary_low_q) {
-    Q = Math.max(0.50, Q - 0.05);
+    Q = Math.max(q.floor !== undefined ? q.floor : 0.5, Q - (q.secondary_low_q_penalty || 0.05));
   }
 
-  const penalties = computePenalties(params);
-  const totalPenalty = Math.min(0.50, penalties.totalDeduction);
-  const bonus = Number(params.fiber_g || 0) >= 5 ? 1.0 : 0.0;
+  const penalties = computePenalties(params, rules);
+  const cap = (rules.penalties || DEFAULT_RULES.penalties).max_total_penalty;
+  const totalPenalty = Math.min(cap, penalties.totalDeduction);
+  const bonus = penalties.bonus ? penalties.bonus.bonus : 0;
 
   const npi = protein_g * Q * (1.0 - totalPenalty) + bonus;
   return Math.round(npi * 10) / 10;
@@ -79,67 +139,144 @@ export function getNPIGrade(npi, cutoffs = DEFAULT_RULES.cutoffs.npi) {
 }
 
 /**
- * 유해요소 페널티 계산
+ * 유해요소 페널티 계산.
+ * 반환값의 unresolved 는 "판정에 필요한데 값을 모르는" 항목이다 — 이 목록이 비어야
+ * 페널티 합계를 신뢰할 수 있다.
  */
-export function computePenalties(item) {
+export function computePenalties(item, rules = DEFAULT_RULES) {
+  const P = rules.penalties || DEFAULT_RULES.penalties;
   const list = [];
+  const unresolved = [];
   let totalDeduction = 0;
 
-  const isFried = item.cooking === 'fried' || 
-    (typeof item.name === 'string' && /튀김|프라이드|크리스피|튀긴|돈까스|치킨/.test(item.name));
-  if (isFried) {
-    list.push({ code: 'fried', label: '튀김', deduction: 0.15 });
-    totalDeduction += 0.15;
+  // ── 튀김 (F1) ──
+  // cooking 이 실측이면 그 값만 믿는다. 이름 정규식은 cooking 이 unknown 일 때의
+  // 보조 추정으로만 쓰고, 그때는 estimated 표식을 남긴다.
+  const friedRe = new RegExp(P.fried.name_regex);
+  const cooking = item.cooking;
+  if (cooking === 'fried') {
+    list.push({ code: 'fried', label: '튀김', deduction: P.fried.deduction, estimated: false });
+    totalDeduction += P.fried.deduction;
+  } else if (!cooking || cooking === 'unknown') {
+    if (typeof item.name === 'string' && friedRe.test(item.name)) {
+      list.push({ code: 'fried', label: '튀김(제품명 추정)', deduction: P.fried.deduction, estimated: true });
+      totalDeduction += P.fried.deduction;
+    } else {
+      unresolved.push('cooking');
+    }
   }
 
-  const sodium = Number(item.sodium_mg || 0);
-  if (sodium >= 1000) {
-    const pct = Math.round((sodium / 2000) * 100);
-    list.push({ code: 'sodium', label: `나트륨 ${pct}%`, deduction: 0.15, raw: sodium });
-    totalDeduction += 0.15;
+  // ── 나트륨 ──
+  if (isKnown(item, 'sodium_mg')) {
+    const sodium = numOf(item, 'sodium_mg');
+    if (sodium >= P.sodium.threshold_mg) {
+      const pct = Math.round((sodium / 2000) * 100);
+      list.push({ code: 'sodium', label: `나트륨 ${pct}%`, deduction: P.sodium.deduction, raw: sodium });
+      totalDeduction += P.sodium.deduction;
+    }
+  } else {
+    unresolved.push('sodium_mg');
   }
 
-  const satFat = Number(item.sat_fat_g || 0);
-  if (satFat >= 10) {
-    list.push({ code: 'sat_fat', label: `포화지방 ${satFat}g`, deduction: 0.15, raw: satFat });
-    totalDeduction += 0.15;
+  // ── 포화지방 ──
+  if (isKnown(item, 'sat_fat_g')) {
+    const satFat = numOf(item, 'sat_fat_g');
+    if (satFat >= P.sat_fat.threshold_g) {
+      list.push({ code: 'sat_fat', label: `포화지방 ${satFat}g`, deduction: P.sat_fat.deduction, raw: satFat });
+      totalDeduction += P.sat_fat.deduction;
+    }
+  } else {
+    unresolved.push('sat_fat_g');
   }
 
-  const sugar = Number(item.sugar_g || 0);
-  const protein = Number(item.protein_g || 0);
-  if (sugar >= 20 || (sugar > 0 && sugar >= protein)) {
-    list.push({ code: 'sugar', label: `당류 ${sugar}g`, deduction: 0.10, raw: sugar });
-    totalDeduction += 0.10;
+  // ── 당류 (F2: sugar >= protein 조항을 룰에서 읽는다) ──
+  if (isKnown(item, 'sugar_g')) {
+    const sugar = numOf(item, 'sugar_g');
+    const protein = numOf(item, 'protein_g');
+    const overThreshold = sugar >= P.sugar.threshold_g;
+    const overProtein = P.sugar.also_when_sugar_ge_protein && sugar > 0 && sugar >= protein;
+    if (overThreshold || overProtein) {
+      list.push({
+        code: 'sugar',
+        label: overThreshold ? `당류 ${sugar}g` : `당류 ${sugar}g > 단백질 ${protein}g`,
+        deduction: P.sugar.deduction,
+        raw: sugar,
+        reason: overThreshold ? 'threshold' : 'over_protein'
+      });
+      totalDeduction += P.sugar.deduction;
+    }
+  } else {
+    unresolved.push('sugar_g');
   }
 
-  const transFat = Number(item.trans_fat_g || 0);
-  if (transFat >= 0.5) {
-    list.push({ code: 'trans_fat', label: `트랜스지방 ${transFat}g`, deduction: 0.10, raw: transFat });
-    totalDeduction += 0.10;
+  // ── 트랜스지방 ──
+  if (isKnown(item, 'trans_fat_g')) {
+    const transFat = numOf(item, 'trans_fat_g');
+    if (transFat >= P.trans_fat.threshold_g) {
+      list.push({ code: 'trans_fat', label: `트랜스지방 ${transFat}g`, deduction: P.trans_fat.deduction, raw: transFat });
+      totalDeduction += P.trans_fat.deduction;
+    }
+  } else {
+    unresolved.push('trans_fat_g');
   }
 
-  const fiber = Number(item.fiber_g || 0);
-  const bonus = fiber >= 5 ? { code: 'fiber', label: `식이섬유 ${fiber}g`, bonus: 1.0 } : null;
+  // ── 식이섬유 보너스 ──
+  let bonus = null;
+  if (isKnown(item, 'fiber_g')) {
+    const fiber = numOf(item, 'fiber_g');
+    if (fiber >= P.fiber_bonus.threshold_g) {
+      bonus = { code: 'fiber', label: `식이섬유 ${fiber}g`, bonus: P.fiber_bonus.bonus_g };
+    }
+  } else {
+    unresolved.push('fiber_g');
+  }
+
+  totalDeduction = Math.round(totalDeduction * 100) / 100;
 
   return {
     items: list,
     bonus,
-    totalDeduction: Math.round(totalDeduction * 100) / 100,
-    cappedDeduction: Math.min(0.50, Math.round(totalDeduction * 100) / 100)
+    unresolved,
+    totalDeduction,
+    cappedDeduction: Math.min(P.max_total_penalty, totalDeduction)
   };
+}
+
+/**
+ * W1 — 마케팅 표기 강도 판정 (F4).
+ * 반환: 'strong' | 'weak' | 'none'
+ * 표기가 없으면 워싱 판독 대상이 아니다. 단백질을 내세우지 않은 삼각김밥은
+ * 단백질이 적어도 '워싱'이 아니라는 기획서 §1.6 전제를 코드로 옮긴 것이다.
+ */
+export function detectClaimStrength(item, rules = DEFAULT_RULES) {
+  const W1 = (rules.washing_rules || DEFAULT_RULES.washing_rules).W1;
+  const haystack = `${item.claim_text || ''} ${item.name || ''}`.toLowerCase();
+
+  const strongRe = new RegExp(W1.strong_claim_regex, 'i');
+  const weakRe = new RegExp(W1.weak_claim_regex, 'i');
+
+  if (weakRe.test(haystack) && !strongRe.test(haystack)) return 'weak';
+  if (strongRe.test(haystack)) return 'strong';
+
+  // 정규식에 안 걸려도 수집 단계에서 표기를 확인했다면 강한 표기로 본다.
+  if (item.marketing_claim) return 'strong';
+  return 'none';
 }
 
 /**
  * 4. 프로틴 워싱 판독 (PW Score: 0~100)
  */
-export function computePW(item, categoryMedianPpr = null) {
-  // 마케팅 강조 표기가 없으면 null (판독 대상 아님)
-  if (!item.marketing_claim) {
-    return null;
-  }
+export function computePW(item, categoryMedianPpr = null, rules = DEFAULT_RULES) {
+  const R = rules.washing_rules || DEFAULT_RULES.washing_rules;
+  const claims = (rules.protein_claims || DEFAULT_RULES.protein_claims).high_protein;
+
+  // W1: 표기 전제
+  const claimStrength = detectClaimStrength(item, rules);
+  if (claimStrength === 'none') return null;
 
   let score = 0;
-  const breakdown = [];
+  const breakdown = [{ code: 'W1', score: 0, reason: claimStrength === 'weak' ? '약한 단백질 표기' : '단백질 강조 표기' }];
+
   const protein = Number(item.protein_g || 0);
   const serving = Number(item.serving_g || 100);
   const kcal = Number(item.kcal || 0);
@@ -147,98 +284,113 @@ export function computePW(item, categoryMedianPpr = null) {
   const isLiquid = item.category === '유제품/음료' || /음료|쉐이크|드링크|밀크|라떼/.test(item.name || '');
 
   // W2: 법적 '고단백' 3기준 검증
-  // 고형 >=11g/100g, 액상 >=5.5g/100mL, 열량 >=5.5g/100kcal (CPD >= 5.5)
-  const meetsSolid = !isLiquid && serving > 0 && ((protein / serving) * 100 >= 11.0);
-  const meetsLiquid = isLiquid && serving > 0 && ((protein / serving) * 100 >= 5.5);
-  const meetsKcal = cpd >= 5.5;
+  const meetsSolid = !isLiquid && serving > 0 && ((protein / serving) * 100 >= claims.solid_g_per_100g);
+  const meetsLiquid = isLiquid && serving > 0 && ((protein / serving) * 100 >= claims.liquid_g_per_100ml);
+  const meetsKcal = cpd >= claims.kcal_g_per_100kcal;
 
-  const meetsAnyLegalHigh = meetsSolid || meetsLiquid || meetsKcal;
-  if (!meetsAnyLegalHigh) {
-    const claimStr = (item.claim_text || item.name || '').toLowerCase();
-    const isWeakClaim = /함유|급원/.test(claimStr) && !/고단백|풍부|protein|프로틴/.test(claimStr);
-    const w2Points = isWeakClaim ? 20 : 40;
-    score += w2Points;
-    breakdown.push({ code: 'W2', score: w2Points, reason: '법적 고단백 영양표시 기준 미달' });
+  if (!(meetsSolid || meetsLiquid || meetsKcal)) {
+    const w2 = claimStrength === 'weak' ? R.W2_weak_claim_fail : R.W2_strong_claim_fail;
+    score += w2;
+    breakdown.push({ code: 'W2', score: w2, reason: '법적 고단백 영양표시 기준 미달' });
   }
 
   // W3: sugar_g >= protein_g
-  const sugar = Number(item.sugar_g || 0);
-  if (sugar > 0 && sugar >= protein) {
-    score += 20;
-    breakdown.push({ code: 'W3', score: 20, reason: `당류(${sugar}g)가 단백질(${protein}g) 이상` });
+  if (isKnown(item, 'sugar_g')) {
+    const sugar = Number(item.sugar_g || 0);
+    if (sugar > 0 && sugar >= protein) {
+      score += R.W3_sugar_over_protein;
+      breakdown.push({ code: 'W3', score: R.W3_sugar_over_protein, reason: `당류(${sugar}g)가 단백질(${protein}g) 이상` });
+    }
   }
 
   // W4: sodium_mg / protein_g >= 60
-  const sodium = Number(item.sodium_mg || 0);
-  if (protein > 0 && (sodium / protein) >= 60) {
-    score += 15;
-    breakdown.push({ code: 'W4', score: 15, reason: `단백질당 나트륨 비율 과다 (${Math.round(sodium / protein)}mg/g >= 60)` });
+  if (isKnown(item, 'sodium_mg')) {
+    const sodium = Number(item.sodium_mg || 0);
+    if (protein > 0 && (sodium / protein) >= R.W4_sodium_protein_ratio) {
+      score += R.W4_score;
+      breakdown.push({ code: 'W4', score: R.W4_score, reason: `단백질당 나트륨 ${Math.round(sodium / protein)}mg/g (기준 ${R.W4_sodium_protein_ratio} 이상)` });
+    }
   }
 
-  // W5: sat_fat_g >= 10 || cooking === 'fried'
-  const satFat = Number(item.sat_fat_g || 0);
-  const isFried = item.cooking === 'fried' || /튀김|치킨|돈까스|크리스피/.test(item.name || '');
-  if (satFat >= 10 || isFried) {
-    score += 15;
-    breakdown.push({ code: 'W5', score: 15, reason: '포화지방 10g 이상 또는 튀김 조리' });
+  // W5: sat_fat_g >= 10 || 튀김 (F1 — 이름 정규식은 cooking 미상일 때만)
+  const friedRe = new RegExp((rules.penalties || DEFAULT_RULES.penalties).fried.name_regex);
+  const friedByCooking = item.cooking === 'fried';
+  const friedByName = (!item.cooking || item.cooking === 'unknown') && friedRe.test(item.name || '');
+  const satFatHigh = isKnown(item, 'sat_fat_g') && Number(item.sat_fat_g || 0) >= 10;
+  if (satFatHigh || friedByCooking || friedByName) {
+    score += R.W5_fat_or_fried_score;
+    breakdown.push({ code: 'W5', score: R.W5_fat_or_fried_score, reason: satFatHigh ? '포화지방 10g 이상' : '튀김 조리' });
   }
 
   // W6: PPR < 카테고리 중위수
   const ppr = computePPR(protein, item.price_krw);
   if (categoryMedianPpr !== null && ppr < categoryMedianPpr) {
-    score += 10;
-    breakdown.push({ code: 'W6', score: 10, reason: `동일 카테고리 가성비(PPR) 중위수 미달` });
+    score += R.W6_below_median_ppr;
+    breakdown.push({ code: 'W6', score: R.W6_below_median_ppr, reason: '동일 카테고리 가성비(PPR) 중위수 미달' });
   }
 
   score = Math.min(100, Math.max(0, score));
 
-  let tier = 'verified'; // 검증 고단백
+  let tier = 'verified';
   let label = '검증 고단백';
-  if (score >= 50) {
-    tier = 'washing'; // 워싱 의심
+  if (score >= R.tiers.washing_min) {
+    tier = 'washing';
     label = `워싱 의심 ${score}`;
-  } else if (score >= 25) {
-    tier = 'conditional'; // 조건부
-    label = `조건부`;
+  } else if (score > R.tiers.verified_max) {
+    tier = 'conditional';
+    label = '조건부';
   }
 
-  return {
-    score,
-    tier,
-    label,
-    breakdown
-  };
+  return { score, tier, label, breakdown, claimStrength };
 }
 
 /**
  * 5. 종합 등급 계산
- * 세 지표 점수화: A=4, B=3, C=2, D=1 평균.
- * 워싱 의심(PW >= 50)이면 1단계 강등 (A->B, B->C, C->D, D->D)
  */
 export function computeTotalGrade(pprGrade, cpdGrade, npiGrade, pwInfo = null, cutoffs = DEFAULT_RULES.cutoffs.total_grade) {
   const valMap = { A: 4, B: 3, C: 2, D: 1 };
-  const pprVal = valMap[pprGrade] || 1;
-  const cpdVal = valMap[cpdGrade] || 1;
-  const npiVal = valMap[npiGrade] || 1;
-
-  const avg = (pprVal + cpdVal + npiVal) / 3;
+  const avg = ((valMap[pprGrade] || 1) + (valMap[cpdGrade] || 1) + (valMap[npiGrade] || 1)) / 3;
 
   let grade = 'D';
   if (avg >= cutoffs.A) grade = 'A';
   else if (avg >= cutoffs.B) grade = 'B';
   else if (avg >= cutoffs.C) grade = 'C';
 
-  // 워싱 판정 🔴 (score >= 50)이면 종합 등급 1단계 강등
   if (pwInfo && pwInfo.tier === 'washing') {
     if (grade === 'A') grade = 'B';
     else if (grade === 'B') grade = 'C';
     else if (grade === 'C') grade = 'D';
   }
 
+  return { grade, average: Math.round(avg * 100) / 100 };
+}
+
+/**
+ * 등급 판정 가능 여부 — 기획안 v2.0 §5.2
+ * 필수 3필드가 실측이 아니거나, 페널티 입력 3종 중 허용치를 넘는 unknown 이 있으면
+ * 등급을 매기지 않는다(면제가 아니라 보류).
+ */
+export function computeGradeEligibility(item, rules = DEFAULT_RULES) {
+  const cfg = rules.grade_eligibility || DEFAULT_RULES.grade_eligibility;
+  const missingRequired = cfg.required_measured.filter(f => fieldStatus(item, f) !== 'measured');
+  const unknownPenaltyInputs = cfg.penalty_inputs.filter(f => fieldStatus(item, f) === 'unknown');
+
+  const eligible = missingRequired.length === 0 &&
+    unknownPenaltyInputs.length <= cfg.max_unknown_penalty_inputs;
+
   return {
-    grade,
-    average: Math.round(avg * 100) / 100
+    eligible,
+    missing_required: missingRequired,
+    unknown_penalty_inputs: unknownPenaltyInputs
   };
+}
+
+/** 레코드의 필수 필드 실측 비율 */
+export function computeCompleteness(item, rules = DEFAULT_RULES) {
+  const cfg = rules.grade_eligibility || DEFAULT_RULES.grade_eligibility;
+  const fields = [...cfg.required_measured, ...cfg.penalty_inputs, 'serving_g'];
+  const measured = fields.filter(f => fieldStatus(item, f) === 'measured').length;
+  return Math.round((measured / fields.length) * 100) / 100;
 }
 
 /**
@@ -257,10 +409,11 @@ export function evaluateMenu(menu, options = {}) {
   const npi = computeNPI(menu, rules);
   const npiGrade = getNPIGrade(npi, rules.cutoffs.npi);
 
-  const penalties = computePenalties(menu);
-  const pwInfo = computePW(menu, medianPpr);
-
+  const penalties = computePenalties(menu, rules);
+  const pwInfo = computePW(menu, medianPpr, rules);
   const total = computeTotalGrade(pprGrade, cpdGrade, npiGrade, pwInfo, rules.cutoffs.total_grade);
+
+  const eligibility = computeGradeEligibility(menu, rules);
 
   return {
     ...menu,
@@ -269,14 +422,23 @@ export function evaluateMenu(menu, options = {}) {
     cpd,
     cpd_grade: cpdGrade,
     npi,
-    npi_grade: npiGrade,
+    // 페널티 입력을 모르면 NPI 등급은 매기지 않는다 — 감점 없는 것과 모르는 것은 다르다.
+    npi_grade: eligibility.eligible ? npiGrade : null,
     pw: pwInfo ? pwInfo.score : null,
     pw_tier: pwInfo ? pwInfo.tier : null,
     pw_label: pwInfo ? pwInfo.label : null,
     pw_breakdown: pwInfo ? pwInfo.breakdown : [],
-    grade: total.grade,
-    grade_avg: total.average,
+    claim_strength: pwInfo ? pwInfo.claimStrength : 'none',
+    grade: eligibility.eligible ? total.grade : null,
+    grade_avg: eligibility.eligible ? total.average : null,
+    grade_eligible: eligibility.eligible,
+    grade_hold_reason: eligibility.eligible ? null : {
+      missing_required: eligibility.missing_required,
+      unknown_penalty_inputs: eligibility.unknown_penalty_inputs
+    },
+    completeness: computeCompleteness(menu, rules),
     penalties: penalties.items,
+    penalty_unresolved: penalties.unresolved,
     fiber_bonus: penalties.bonus,
     computed_at: new Date().toISOString()
   };
@@ -285,6 +447,7 @@ export function evaluateMenu(menu, options = {}) {
 if (typeof window !== 'undefined') {
   window.ProteinScore = {
     DEFAULT_RULES,
+    fieldStatus,
     computePPR,
     getPPRGrade,
     computeCPD,
@@ -292,8 +455,10 @@ if (typeof window !== 'undefined') {
     computeNPI,
     getNPIGrade,
     computePenalties,
+    detectClaimStrength,
     computePW,
     computeTotalGrade,
+    computeGradeEligibility,
     evaluateMenu
   };
 }
