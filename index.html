@@ -41,6 +41,9 @@
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     html, body {
       margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
       background: var(--bg);
       color: var(--ink);
       font-family: var(--sans);
@@ -52,6 +55,7 @@
 
     /* 최상단 네비 및 모바일 쉘 컨테이너 */
     .app-shell {
+      width: 100%;
       max-width: 480px;
       margin: 0 auto;
       min-height: 100dvh;
@@ -60,6 +64,7 @@
       flex-direction: column;
       box-shadow: 0 0 24px rgba(0,0,0,0.06);
       position: relative;
+      overflow-x: hidden;
       /* 하단 탭바 + 플로팅 독 여백 확보로 짤림 현상 원천 방지 */
       padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px));
     }
@@ -307,7 +312,8 @@
     }
     .detail-hero-photo {
       width: 100%;
-      height: 180px;
+      height: 140px;
+      max-height: 140px;
       border-radius: var(--r2);
       overflow: hidden;
       background: var(--surface-2);
@@ -437,7 +443,9 @@
       margin-bottom: 6px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 4px;
     }
     .target-numbers {
       font-size: 16px;
@@ -452,34 +460,58 @@
       font-family: var(--mono);
     }
 
-    /* 입력 그리드 */
+    /* 입력 그리드 (모바일 X-overflow 원천 차단) */
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
       margin-bottom: 16px;
+      width: 100%;
+      box-sizing: border-box;
     }
     .form-field {
       display: flex;
       flex-direction: column;
       gap: 4px;
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .form-field > div {
+      display: flex;
+      gap: 6px;
+      width: 100%;
+      min-width: 0;
+    }
+    .form-field > div > * {
+      min-width: 0;
+      flex: 1 1 0;
     }
     .field-label {
       font-size: 12px;
       color: var(--ink-2);
       font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .form-select, .form-input {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
       height: 42px;
       border: 1.5px solid var(--line-strong);
       background: var(--surface);
       color: var(--ink);
       border-radius: var(--r2);
-      padding: 0 10px;
-      font-size: 14px;
+      padding: 0 8px;
+      font-size: 13px;
       font-weight: 500;
       outline: none;
       transition: border-color 0.15s, box-shadow 0.15s;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
     .form-select:focus, .form-input:focus {
       border-color: var(--brand);
@@ -553,29 +585,31 @@
       flex-direction: column;
       animation: sheetSlideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .bottom-sheet {
+    dialog.bottom-sheet {
       position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 480px;
+      inset: auto 0 0 0 !important;
+      margin: 0 auto !important;
+      width: 100% !important;
+      max-width: 480px !important;
+      height: auto;
+      max-height: 90dvh;
+      max-height: 90vh; /* fallback */
       border: none;
       border-radius: 20px 20px 0 0;
       padding: 0;
       background: var(--surface);
       box-shadow: 0 -8px 30px rgba(0,0,0,0.18);
       z-index: 100;
-      max-height: 88dvh;
       overflow: hidden;
+      box-sizing: border-box;
     }
     .bottom-sheet::backdrop {
       background: rgba(15, 23, 42, 0.6);
       backdrop-filter: blur(4px);
     }
     @keyframes sheetSlideUp {
-      from { transform: translate(-50%, 100%); }
-      to { transform: translate(-50%, 0); }
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
     }
     .sheet-header {
       position: relative;
@@ -620,7 +654,8 @@
       flex: 1;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      padding: 16px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+      overscroll-behavior: contain;
+      padding: 16px 16px calc(28px + env(safe-area-inset-bottom, 0px));
     }
 
     /* 영양성분표 팩트 박스 (고대비 표 형태) */
@@ -654,31 +689,334 @@
       font-size: 14px;
     }
 
-    /* 지표 3종 요약 박스 */
+    /* 지표 3종 요약 박스 (모바일 잘림 방지 및 최적화) */
     .metric-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      margin: 12px 0;
+      margin: 12px 0 8px;
     }
     .metric-card {
       background: var(--surface-2);
-      border: 1px solid var(--line);
+      border: 1.5px solid var(--line);
       border-radius: var(--r2);
-      padding: 10px 6px;
+      padding: 10px 4px 8px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: all 0.15s ease;
+      box-sizing: border-box;
+      min-width: 0;
     }
+    .metric-card:hover, .metric-card:active {
+      border-color: var(--brand);
+      background: var(--surface-highlight);
+    }
+    .metric-badge-chip {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: var(--r-full);
+      margin-bottom: 4px;
+      line-height: 1.2;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .badge-ppr { background: #ffedd5; color: #c2410c; }
+    .badge-cpd { background: #dbeafe; color: #1d4ed8; }
+    .badge-npi { background: #f3e8ff; color: #7e22ce; }
+    
     .metric-val {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
       font-family: var(--mono);
       color: var(--ink);
+      line-height: 1.1;
     }
     .metric-label {
-      font-size: 11px;
-      color: var(--ink-2);
+      font-size: 10px;
+      color: var(--ink-3);
       font-weight: 600;
       margin-top: 2px;
+      white-space: nowrap;
+    }
+    .metric-grade-pill {
+      margin-top: 4px;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      line-height: 1.3;
+    }
+    .metric-grade-A { background: var(--good-weak); color: var(--good-c); }
+    .metric-grade-B { background: #e0f2fe; color: #0369a1; }
+    .metric-grade-C { background: var(--warn-weak); color: var(--warn-c); }
+    .metric-grade-D { background: var(--bad-weak); color: var(--bad-c); }
+
+    /* 지표 3종 설명 카드 (PPR/CPD/NPI) */
+    .metric-guide-box {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: var(--r2);
+      padding: 12px;
+      margin: 8px 0 14px;
+    }
+    .metric-guide-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--line);
+    }
+    .metric-guide-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .metric-guide-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .metric-guide-item {
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--ink-2);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r1);
+      padding: 8px 10px;
+    }
+    .metric-guide-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+    .metric-guide-formula {
+      font-size: 10px;
+      color: var(--ink-3);
+      font-family: var(--mono);
+      background: var(--surface-2);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .metric-guide-item p {
+      margin: 0;
+      font-size: 11px;
+      color: var(--ink-2);
+      line-height: 1.45;
+    }
+
+    /* 랭킹 정렬 안내 툴팁 바 */
+    .ranking-sort-tip {
+      background: var(--surface-highlight);
+      border: 1px solid #fed7aa;
+      border-radius: var(--r2);
+      padding: 8px 12px;
+      font-size: 12px;
+      color: var(--ink-2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 6px 0 12px;
+    }
+
+    /* ── 화해(Hwahae)형 CleanRadar 원재료·첨가물 안심 분석 컴포넌트 ── */
+    .clean-radar-card {
+      background: var(--surface);
+      border: 1.5px solid var(--line-strong);
+      border-radius: var(--r2);
+      padding: 14px;
+      margin: 12px 0 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .clean-radar-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .clean-radar-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .clean-radar-score-badge {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: var(--r-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .clean-score-high   { background: var(--good-weak); color: var(--good-c); border: 1px solid var(--good); }
+    .clean-score-medium { background: var(--warn-weak); color: var(--warn-c); border: 1px solid var(--warn); }
+    .clean-score-low    { background: var(--bad-weak);  color: var(--bad-c);  border: 1px solid var(--bad); }
+
+    /* 화해형 누적 컬러 세그먼트 바 */
+    .clean-bar-wrapper {
+      margin: 8px 0 6px;
+    }
+    .clean-bar {
+      width: 100%;
+      height: 12px;
+      border-radius: var(--r-full);
+      overflow: hidden;
+      display: flex;
+      background: var(--surface-3);
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    }
+    .clean-seg {
+      height: 100%;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .seg-good    { background: #10b981; } /* 🟢 안심 */
+    .seg-neutral { background: #94a3b8; } /* ⚪ 일반 */
+    .seg-caution { background: #f59e0b; } /* 🟡 주의 */
+    .seg-bad     { background: #ef4444; } /* 🔴 기피 */
+
+    .clean-legend {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--ink-2);
+      margin-top: 6px;
+      padding: 0 2px;
+    }
+    .clean-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .clean-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 4대 카테고리 심층 Teardown 그리드 */
+    .clean-teardown-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .clean-teardown-item {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: var(--r1);
+      padding: 8px 10px;
+      font-size: 11px;
+    }
+    .clean-teardown-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3px;
+    }
+    .clean-teardown-cat {
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .clean-teardown-badge {
+      font-size: 9px;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .badge-status-good    { background: var(--good-weak); color: var(--good-c); }
+    .badge-status-neutral { background: var(--surface-3); color: var(--ink-2); }
+    .badge-status-caution { background: var(--warn-weak); color: var(--warn-c); }
+    .badge-status-bad     { background: var(--bad-weak);  color: var(--bad-c); }
+
+    .clean-teardown-title {
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .clean-teardown-desc {
+      color: var(--ink-2);
+      line-height: 1.4;
+      font-size: 10.5px;
+    }
+
+    /* 전성분 태그 목록 및 아코디언 */
+    .clean-tags-section {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--line-strong);
+    }
+    .clean-tags-toggle-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 4px 0;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .clean-tags-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 8px;
+    }
+    .clean-ingredient-tag {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: var(--r-full);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      transition: transform 0.1s;
+      user-select: none;
+    }
+    .clean-ingredient-tag:active {
+      transform: scale(0.96);
+    }
+    .tag-tier-1 { background: var(--good-weak); color: var(--good-c); border: 1px solid #a7f3d0; }
+    .tag-tier-2 { background: var(--surface-2); color: var(--ink-2);  border: 1px solid var(--line); }
+    .tag-tier-3 { background: var(--warn-weak); color: var(--warn-c); border: 1px solid #fde68a; }
+    .tag-tier-4 { background: var(--bad-weak);  color: var(--bad-c);  border: 1px solid #fecaca; }
+
+    .clean-tag-info-popup {
+      margin-top: 8px;
+      background: var(--surface-highlight);
+      border: 1px solid #fed7aa;
+      border-radius: var(--r1);
+      padding: 8px 10px;
+      font-size: 11px;
+      color: var(--ink);
+      line-height: 1.45;
+      display: none;
     }
 
     /* 비교 플로팅 독 (하단 탭바 위에 고정) */
@@ -908,9 +1246,19 @@
         <button class="chip" data-sort="npi">클린 식단 순 (NPI)</button>
       </div>
 
-      <!-- 채널 및 가격 필터 칩 -->
+      <!-- 랭킹 정렬 안내 툴팁 바 -->
+      <div class="ranking-sort-tip" id="ranking-sort-tip">
+        <span class="sort-tip-icon">💡</span>
+        <span class="sort-tip-text" id="ranking-sort-tip-text">
+          <strong>PPR (가성비) 순:</strong> 1,000원당 단백질(g)이 많은 순서로 정렬합니다.
+        </span>
+      </div>
+
+      <!-- 채널 및 가격/성분 필터 칩 -->
       <div class="chip-scroll" id="ranking-filter-chips">
         <button class="chip active" data-filter="all">전체</button>
+        <button class="chip" data-filter="clean">🟢 안심 클린만</button>
+        <button class="chip" data-filter="allulose">🍯 알룰로스 제품</button>
         <button class="chip" data-filter="cvs">편의점 4사</button>
         <button class="chip" data-filter="mart">대형마트/식품 (CJ·풀무원)</button>
         <button class="chip" data-filter="online">식단/온라인몰</button>
@@ -1108,8 +1456,11 @@
         <p style="font-size:var(--t2); color:var(--ink-2); line-height:1.6;">
           <strong>1. 데이터 출처 및 수집 원칙</strong><br>
           본 서비스의 모든 영양정보는 식품의약품안전처 「식품등의 표시기준」 및 「어린이 식생활안전관리 특별법」에 따라 공개된 브랜드 공식 영양성분표, 공공데이터포털, 포장지 영양성분 표시사항을 바탕으로 운영자가 수동 검증(QA R1~R5)하여 제공합니다.<br><br>
-          <strong>2. 지표 산식의 독립성</strong><br>
-          PPR(가성비), CPD(다이어트 밀도), NPI(클린 지수) 및 PW(프로틴 워싱 점수)는 공개된 객관적 영양성분 수치를 기반으로 한 수치 모델이며, 특정 제조사나 브랜드를 비방하거나 홍보할 목적이 없습니다.<br><br>
+          <strong>2. 핵심 지표 정의 및 산식 체계</strong><br>
+          • <strong>PPR (Protein-Price Ratio, g/천원) - 가성비 지표:</strong> 단백질(g) ÷ (가격(원) ÷ 1,000). 1,000원당 섭취 가능한 단백질 양으로, 수치가 높을수록 가성비가 우수합니다. (A등급: ≥8.0, B등급: 5.0~7.9, C등급: 3.0~4.9, D등급: &lt;3.0)<br>
+          • <strong>CPD (Calorie-Protein Density, g/100kcal) - 다이어트 밀도 지표:</strong> 단백질(g) ÷ (열량(kcal) ÷ 100). 칼로리 대비 단백질 효율을 뜻하며, 다이어트 시 불필요한 칼로리 섭취를 최소화하는 핵심 지표입니다. (A등급: ≥12.0, B등급: 8.0~11.9, C등급: 5.5~7.9, D등급: &lt;5.5)<br>
+          • <strong>NPI (Net Protein Index, 보정 g) - 클린 식단 지수:</strong> 단백질(g) × 원물 품질 가중치(닭가슴살 1.0, 가공육 0.7 등) × (1 - 유해요소 페널티 합계) + 식이섬유 보너스. 나트륨(>1,000mg), 당류(>20g), 포화지방(>10g), 튀김 조리 등 감점을 반영한 순수 실효 단백질입니다. (A등급: ≥25, B등급: 18~24.9, C등급: 12~17.9, D등급: &lt;12)<br>
+          • <strong>PW (Protein Washing Score, 0~100점) - 워싱 판독 점수:</strong> '단백질/프로틴' 마케팅 강조 제품을 대상으로 식약처 기준 미달, 당류·포화지방 과다 여부를 정량 평가하여 50점 이상 시 '프로틴 워싱 의심'으로 경고합니다.<br><br>
           <strong>3. 72시간 정정 SLA (이의제기 창구)</strong><br>
           표시된 수치에 오류가 있거나 리뉴얼·단종된 경우 각 카드의 "이 숫자 틀렸어요" 또는 신고 창구를 통해 접수하시면 72시간 이내에 공식 영양표를 재확인하여 정정 이력을 투명하게 반영합니다.<br><br>
           <strong>4. 개인정보 보호 (비회원제)</strong><br>

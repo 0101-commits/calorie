@@ -6,6 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { evaluateMenu, computePPR } from '../js/score.js';
 import { validateMenuQA } from '../js/qa.js';
+import { analyzeIngredients } from '../js/clean_radar.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -63,15 +64,26 @@ function main() {
     catMedianMap[cat] = pprs.length % 2 !== 0 ? pprs[mid] : (pprs[mid - 1] + pprs[mid]) / 2;
   }
 
-  // 3. 지표 및 등급 산출 (evaluateMenu)
+  // 3. 지표 및 등급 산출 (evaluateMenu) & CleanRadar 원재료 안심 분석
   const evaluatedItems = rawData.map(item => {
     const medianPpr = catMedianMap[item.category] || 6.0;
-    return evaluateMenu(item, { categoryMedianPpr: medianPpr });
+    const evaluated = evaluateMenu(item, { categoryMedianPpr: medianPpr });
+    const cleanAnalysis = analyzeIngredients(item.ingredients_raw, evaluated);
+    evaluated.clean_score = cleanAnalysis.cleanScore;
+    evaluated.clean_tier = cleanAnalysis.cleanScore >= 75 ? 'clean' : (cleanAnalysis.cleanScore >= 50 ? 'moderate' : 'warning');
+    evaluated.clean_counts = {
+      good: cleanAnalysis.stats.goodCount,
+      neutral: cleanAnalysis.stats.neutralCount,
+      caution: cleanAnalysis.stats.cautionCount,
+      bad: cleanAnalysis.stats.badCount
+    };
+    return evaluated;
   });
 
   // 4. 통계 산출
   const gradeCounts = { A: 0, B: 0, C: 0, D: 0 };
   const pwCounts = { verified: 0, conditional: 0, washing: 0, none: 0 };
+  const cleanCounts = { clean: 0, moderate: 0, warning: 0 };
 
   for (const item of evaluatedItems) {
     gradeCounts[item.grade] = (gradeCounts[item.grade] || 0) + 1;
@@ -80,6 +92,7 @@ function main() {
     } else {
       pwCounts.none++;
     }
+    cleanCounts[item.clean_tier] = (cleanCounts[item.clean_tier] || 0) + 1;
   }
 
   const total = evaluatedItems.length;
@@ -95,6 +108,11 @@ function main() {
   console.log(`  워싱 의심 🔴: ${pwCounts.washing}건`);
   console.log(`  비강조 일반식품: ${pwCounts.none}건`);
 
+  console.log('\n🧪 [CleanRadar 원재료 안심 현황]');
+  console.log(`  🟢 안심 클린: ${cleanCounts.clean}건 (${((cleanCounts.clean / total) * 100).toFixed(1)}%)`);
+  console.log(`  🟡 조건부 안심: ${cleanCounts.moderate}건 (${((cleanCounts.moderate / total) * 100).toFixed(1)}%)`);
+  console.log(`  🔴 기피/주의: ${cleanCounts.warning}건 (${((cleanCounts.warning / total) * 100).toFixed(1)}%)`);
+
   // 5. data.json 출력
   const outputPath = path.join(rootDir, 'data.json');
   const jsonStr = JSON.stringify(evaluatedItems, null, 2);
@@ -102,7 +120,7 @@ function main() {
 
   const fileSizeBytes = fs.statSync(outputPath).size;
   const fileSizeKB = (fileSizeBytes / 1024).toFixed(1);
-  console.log(`\n💾 data.json 빌드 완료: ${fileSizeKB} KB (목표: <= 300KB) -> ${outputPath}`);
+  console.log(`\n💾 data.json 빌드 완료: ${fileSizeKB} KB -> ${outputPath}`);
 
   // build meta
   const meta = {
@@ -111,7 +129,8 @@ function main() {
     rule_version: 'v1.0',
     file_size_kb: Number(fileSizeKB),
     grades: gradeCounts,
-    washing: pwCounts
+    washing: pwCounts,
+    clean: cleanCounts
   };
   fs.writeFileSync(path.join(rootDir, 'data_meta.json'), JSON.stringify(meta, null, 2), 'utf-8');
   console.log('✨ 빌드가 성공적으로 완료되었습니다!\n');

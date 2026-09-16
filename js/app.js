@@ -5,6 +5,7 @@ import { createSearchItem, searchProducts } from './search.js';
 import { PRESETS, computeDailyTargets, computeMealTarget, computeFitScore, generateReasonSentence } from './calc.js';
 import { findBestCombos } from './combo.js';
 import { BarcodeScanner, lookupBarcode } from './scan.js';
+import { analyzeIngredients } from './clean_radar.js';
 
 // 전역 상태
 const state = {
@@ -169,11 +170,21 @@ function setupEventListeners() {
     });
   });
 
+  const sortTipMap = {
+    ppr: '<strong>PPR (가성비) 순:</strong> 1,000원당 단백질(g)이 많은 순서로 정렬합니다. (단백질 ÷ 천원)',
+    cpd: '<strong>CPD (다이어트) 순:</strong> 100kcal당 단백질(g)이 높은 다이어트 밀도 순으로 정렬합니다. (단백질 ÷ 100kcal)',
+    npi: '<strong>NPI (클린 식단) 순:</strong> 원물 품질 가중치와 유해요소(나트륨·당류·포화지방 등) 감점을 제외한 순수 실효 단백질(g) 순으로 정렬합니다.'
+  };
+
   document.querySelectorAll('[data-sort]').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('[data-sort]').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       state.rankingSort = btn.dataset.sort;
+      const tipEl = document.getElementById('ranking-sort-tip-text');
+      if (tipEl) {
+        tipEl.innerHTML = sortTipMap[state.rankingSort] || sortTipMap.ppr;
+      }
       renderRankingList();
     });
   });
@@ -234,6 +245,7 @@ function setupEventListeners() {
   [el.sheetDetail, el.sheetCompare, el.sheetScanner, el.sheetPolicy, el.sheetReport].forEach(dlg => {
     if (!dlg) return;
     dlg.addEventListener('click', (e) => {
+      if (e.target !== dlg) return;
       const rect = dlg.getBoundingClientRect();
       const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height
         && rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
@@ -338,7 +350,11 @@ function renderRankingList() {
   }
 
   // 필터 칩
-  if (state.rankingFilter === 'cvs') {
+  if (state.rankingFilter === 'clean') {
+    list = list.filter(p => p.clean_tier === 'clean');
+  } else if (state.rankingFilter === 'allulose') {
+    list = list.filter(p => p.ingredients_raw && (p.ingredients_raw.includes('알룰로스') || p.ingredients_raw.includes('알룰로오스')));
+  } else if (state.rankingFilter === 'cvs') {
     list = list.filter(p => p.channel === 'cvs');
   } else if (state.rankingFilter === 'mart') {
     list = list.filter(p => p.channel === 'mart');
@@ -499,6 +515,17 @@ function createProductCardElement(p, highlightMetric = 'ppr') {
     tagsHtml += `<span class="tag tag-verified">검증 고단백</span>`;
   }
 
+  // CleanRadar 안심원료 및 알룰로스 뱃지
+  if (p.clean_tier === 'clean') {
+    tagsHtml += `<span class="tag" style="background:#ecfdf5; color:#059669; border:1px solid rgba(16,185,129,0.3);">🟢 안심원료</span>`;
+  } else if (p.clean_tier === 'warning') {
+    tagsHtml += `<span class="tag" style="background:#fef2f2; color:#dc2626; border:1px solid rgba(239,68,68,0.3);">🔴 첨가물주의</span>`;
+  }
+
+  if (p.ingredients_raw && (p.ingredients_raw.includes('알룰로스') || p.ingredients_raw.includes('알룰로오스'))) {
+    tagsHtml += `<span class="tag" style="background:#f0fdf4; color:#166534; border:1px solid rgba(22,101,52,0.25);">🍯 알룰로스</span>`;
+  }
+
   if (p.penalties && p.penalties.length > 0) {
     tagsHtml += `<span class="tag tag-penalty">${p.penalties[0].label}</span>`;
   }
@@ -580,6 +607,103 @@ function openDetailModal(p) {
     `;
   }
 
+  // ── CleanRadar 원재료·첨가물 안심 분석 ──
+  const cleanReport = analyzeIngredients(p.ingredients_raw, p);
+  const { stats, teardowns, tokens, cleanScore, tierLabel } = cleanReport;
+  const scoreClass = cleanScore >= 80 ? 'clean-score-high' : (cleanScore >= 50 ? 'clean-score-medium' : 'clean-score-low');
+
+  const tagsCloudHtml = tokens.map((t, idx) => `
+    <span class="clean-ingredient-tag tag-tier-${t.tier}" data-tag-idx="${idx}">
+      ${t.tier === 1 ? '🟢' : (t.tier === 3 ? '🟡' : (t.tier === 4 ? '🔴' : '⚪'))} ${t.name}
+    </span>
+  `).join('');
+
+  const cleanRadarSection = `
+    <!-- 🔬 화해형 CleanRadar 원재료·첨가물 안심 분석 카드 -->
+    <div class="clean-radar-card">
+      <div class="clean-radar-head">
+        <div class="clean-radar-title">
+          <span>🔬 원재료·첨가물 안심 분석</span>
+        </div>
+        <span class="clean-radar-score-badge ${scoreClass}">안심 ${cleanScore}점 · ${tierLabel}</span>
+      </div>
+
+      <!-- 화해형 4색 누적 세그먼트 바 -->
+      <div class="clean-bar-wrapper">
+        <div class="clean-bar">
+          <div class="clean-seg seg-good" style="width: ${stats.goodPct}%;" title="안심 ${stats.goodCount}개 (${stats.goodPct}%)"></div>
+          <div class="clean-seg seg-neutral" style="width: ${stats.neutralPct}%;" title="일반 ${stats.neutralCount}개 (${stats.neutralPct}%)"></div>
+          <div class="clean-seg seg-caution" style="width: ${stats.cautionPct}%;" title="주의 ${stats.cautionCount}개 (${stats.cautionPct}%)"></div>
+          <div class="clean-seg seg-bad" style="width: ${stats.badPct}%;" title="기피 ${stats.badCount}개 (${stats.badPct}%)"></div>
+        </div>
+        <div class="clean-legend">
+          <span class="clean-legend-item"><span class="clean-dot" style="background:#10b981;"></span>안심 ${stats.goodCount}</span>
+          <span class="clean-legend-item"><span class="clean-dot" style="background:#94a3b8;"></span>일반 ${stats.neutralCount}</span>
+          <span class="clean-legend-item"><span class="clean-dot" style="background:#f59e0b;"></span>주의 ${stats.cautionCount}</span>
+          <span class="clean-legend-item"><span class="clean-dot" style="background:#ef4444;"></span>기피 ${stats.badCount}</span>
+        </div>
+      </div>
+
+      <!-- 4대 카테고리 심층 Teardown (당류/원물/지방/첨가물) -->
+      <div class="clean-teardown-list">
+        <!-- 1. 당류 및 감미료 -->
+        <div class="clean-teardown-item">
+          <div class="clean-teardown-header">
+            <span class="clean-teardown-cat">${teardowns.sweetener.icon} 당류 & 감미료</span>
+            <span class="clean-teardown-badge badge-status-${teardowns.sweetener.status}">${teardowns.sweetener.badge}</span>
+          </div>
+          <div class="clean-teardown-title">${teardowns.sweetener.title}</div>
+          <div class="clean-teardown-desc">${teardowns.sweetener.desc}</div>
+        </div>
+
+        <!-- 2. 단백질 원천 -->
+        <div class="clean-teardown-item">
+          <div class="clean-teardown-header">
+            <span class="clean-teardown-cat">${teardowns.protein.icon} 단백질 원물 품질</span>
+            <span class="clean-teardown-badge badge-status-${teardowns.protein.status}">${teardowns.protein.badge}</span>
+          </div>
+          <div class="clean-teardown-title">${teardowns.protein.title}</div>
+          <div class="clean-teardown-desc">${teardowns.protein.desc}</div>
+        </div>
+
+        <!-- 3. 지방 및 유지류 -->
+        <div class="clean-teardown-item">
+          <div class="clean-teardown-header">
+            <span class="clean-teardown-cat">${teardowns.fat.icon} 지방 & 유지 원료</span>
+            <span class="clean-teardown-badge badge-status-${teardowns.fat.status}">${teardowns.fat.badge}</span>
+          </div>
+          <div class="clean-teardown-title">${teardowns.fat.title}</div>
+          <div class="clean-teardown-desc">${teardowns.fat.desc}</div>
+        </div>
+
+        <!-- 4. 식품첨가물 및 보존료 -->
+        <div class="clean-teardown-item">
+          <div class="clean-teardown-header">
+            <span class="clean-teardown-cat">${teardowns.additive.icon} 요주의 식품첨가물</span>
+            <span class="clean-teardown-badge badge-status-${teardowns.additive.status}">${teardowns.additive.badge}</span>
+          </div>
+          <div class="clean-teardown-title">${teardowns.additive.title}</div>
+          <div class="clean-teardown-desc">${teardowns.additive.desc}</div>
+        </div>
+      </div>
+
+      <!-- 전성분 인터랙티브 태그 클라우드 -->
+      <div class="clean-tags-section">
+        <button class="clean-tags-toggle-btn" id="btn-toggle-clean-tags">
+          <span>📋 전성분 원재료 태그 (${tokens.length}종)</span>
+          <span id="clean-tags-arrow">보기 ▾</span>
+        </button>
+        <div class="clean-tags-cloud" id="clean-tags-cloud" style="display:none;">
+          ${tagsCloudHtml}
+        </div>
+        <div class="clean-tag-info-popup" id="clean-tag-info-popup">
+          <strong id="clean-tag-info-title"></strong><br>
+          <span id="clean-tag-info-desc"></span>
+        </div>
+      </div>
+    </div>
+  `;
+
   el.sheetDetailContent.innerHTML = `
     ${heroImageHtml}
     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
@@ -593,21 +717,71 @@ function openDetailModal(p) {
 
     <!-- 지표 3종 카드 -->
     <div class="metric-grid">
-      <div class="metric-card">
+      <div class="metric-card" title="단백질 가성비 지표">
+        <span class="metric-badge-chip badge-ppr">PPR 가성비</span>
         <div class="metric-val">${p.ppr}</div>
-        <div class="metric-label">PPR (g/천원)</div>
+        <div class="metric-label">g / 1,000원</div>
+        <span class="metric-grade-pill metric-grade-${p.ppr_grade || 'B'}">${p.ppr_grade || 'B'}등급</span>
       </div>
-      <div class="metric-card">
+      <div class="metric-card" title="다이어트 밀도 지표">
+        <span class="metric-badge-chip badge-cpd">CPD 다이어트</span>
         <div class="metric-val">${p.cpd}</div>
-        <div class="metric-label">CPD (g/100kcal)</div>
+        <div class="metric-label">g / 100kcal</div>
+        <span class="metric-grade-pill metric-grade-${p.cpd_grade || 'B'}">${p.cpd_grade || 'B'}등급</span>
       </div>
-      <div class="metric-card">
+      <div class="metric-card" title="클린 식단 지수">
+        <span class="metric-badge-chip badge-npi">NPI 클린식단</span>
         <div class="metric-val">${p.npi}</div>
-        <div class="metric-label">NPI (보정 g)</div>
+        <div class="metric-label">순수 보정 g</div>
+        <span class="metric-grade-pill metric-grade-${p.npi_grade || 'B'}">${p.npi_grade || 'B'}등급</span>
+      </div>
+    </div>
+
+    <!-- 핵심 지표 설명 가이드 박스 -->
+    <div class="metric-guide-box">
+      <div class="metric-guide-head">
+        <span class="metric-guide-title">💡 핵심 지표 설명 (PPR · CPD · NPI)</span>
+        <span style="font-size:10px; color:var(--ink-3); font-weight:600;">기획서 v1.1 기준</span>
+      </div>
+      <div class="metric-guide-items">
+        <div class="metric-guide-item">
+          <div class="metric-guide-item-top">
+            <span style="font-weight:700; color:var(--ink);"><span class="metric-badge-chip badge-ppr" style="margin:0 4px 0 0;">PPR</span>단백질 가성비</span>
+            <span class="metric-guide-formula">단백질(g) ÷ (가격 ÷ 1,000)</span>
+          </div>
+          <p>
+            1,000원당 섭취 가능한 단백질량(g)입니다. <strong>8.0 이상(A등급)</strong>이면 가성비 1등 메뉴입니다.<br>
+            👉 이 제품: <strong>${p.ppr}g/천원 (${p.ppr_grade || 'B'}등급)</strong>
+          </p>
+        </div>
+
+        <div class="metric-guide-item">
+          <div class="metric-guide-item-top">
+            <span style="font-weight:700; color:var(--ink);"><span class="metric-badge-chip badge-cpd" style="margin:0 4px 0 0;">CPD</span>다이어트 밀도</span>
+            <span class="metric-guide-formula">단백질(g) ÷ (열량 ÷ 100)</span>
+          </div>
+          <p>
+            100kcal당 단백질 함량(g)입니다. 불필요한 칼로리 없이 순수 단백질만 채우는 효율로, <strong>12.0 이상(A등급)</strong>이면 다이어트에 최적화되어 있습니다.<br>
+            👉 이 제품: <strong>${p.cpd}g/100kcal (${p.cpd_grade || 'B'}등급)</strong>
+          </p>
+        </div>
+
+        <div class="metric-guide-item">
+          <div class="metric-guide-item-top">
+            <span style="font-weight:700; color:var(--ink);"><span class="metric-badge-chip badge-npi" style="margin:0 4px 0 0;">NPI</span>클린 식단 지수</span>
+            <span class="metric-guide-formula">단백질 × 원물품질 - 페널티</span>
+          </div>
+          <p>
+            단백질 원물 품질(닭가슴살 100%, 가공육 70%)과 유해요소(나트륨·당류·포화지방 과다, 튀김 등) 감점을 반영한 <strong>순수 실효 단백질(g)</strong>입니다. <strong>25 이상(A등급)</strong>이면 최고 수준의 클린 식단입니다.<br>
+            👉 이 제품: <strong>${p.npi}g (${p.npi_grade || 'B'}등급)</strong>
+          </p>
+        </div>
       </div>
     </div>
 
     ${washingSection}
+
+    ${cleanRadarSection}
 
     <!-- 영양성분 팩트 표 -->
     <div class="nutrition-table">
@@ -634,6 +808,36 @@ function openDetailModal(p) {
       출처: ${p.source_type} (${p.source_url ? '공식 영양표' : '패키지 OCR'}) · 확인일: ${p.verified_at} · 룰: ${p.rule_version}
     </div>
   `;
+
+  // 태그 아코디언 토글
+  const toggleBtn = document.getElementById('btn-toggle-clean-tags');
+  const cloud = document.getElementById('clean-tags-cloud');
+  const arrow = document.getElementById('clean-tags-arrow');
+  const popup = document.getElementById('clean-tag-info-popup');
+  const popupTitle = document.getElementById('clean-tag-info-title');
+  const popupDesc = document.getElementById('clean-tag-info-desc');
+
+  if (toggleBtn && cloud) {
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = cloud.style.display === 'none';
+      cloud.style.display = isHidden ? 'flex' : 'none';
+      arrow.textContent = isHidden ? '접기 ▴' : '보기 ▾';
+    });
+  }
+
+  // 개별 성분 태그 클릭 시 툴팁 팝오버
+  document.querySelectorAll('.clean-ingredient-tag').forEach(tag => {
+    tag.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = parseInt(tag.dataset.tagIdx, 10);
+      const item = tokens[idx];
+      if (item && popup && popupTitle && popupDesc) {
+        popupTitle.textContent = `${item.tier === 1 ? '🟢 안심' : (item.tier === 3 ? '🟡 주의' : (item.tier === 4 ? '🔴 기피' : '⚪ 일반'))}: ${item.name} (${item.title})`;
+        popupDesc.textContent = item.desc;
+        popup.style.display = 'block';
+      }
+    });
+  });
 
   document.getElementById('btn-toggle-compare').addEventListener('click', () => {
     toggleCompareItem(p.menu_id);
