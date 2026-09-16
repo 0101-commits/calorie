@@ -162,6 +162,13 @@ function main() {
       };
       // 상세 화면이 재계산하지 않도록 판정 결과를 저장한다(카드·상세 불일치 제거).
       // 토큰은 이름·등급·분류만 담고 설명 문구는 클라이언트 사전에서 조회한다(페이로드 절감).
+      // 성분 그룹 플래그 — 알룰로스 전용 칩을 감미료 그룹 필터로 일반화하기 위한 값
+      const sweeteners = cleanAnalysis.tokens.filter(t => t.category === 'sweetener');
+      evaluated.sweetener_group = sweeteners.length === 0
+        ? 'none'
+        : (sweeteners.some(t => t.tier === 4) ? 'refined'
+          : (sweeteners.some(t => t.tier === 3) ? 'mixed' : 'alternative'));
+
       evaluated.clean_report = {
         tierLabel: cleanAnalysis.tierLabel,
         stats: cleanAnalysis.stats,
@@ -171,6 +178,7 @@ function main() {
     } else {
       evaluated.clean_score = null;
       evaluated.clean_tier = 'unknown';
+      evaluated.sweetener_group = 'unknown';
       evaluated.clean_counts = { good: 0, neutral: 0, caution: 0, bad: 0 };
       evaluated.clean_report = null;
     }
@@ -231,6 +239,7 @@ function main() {
     pw: it.pw,
     pw_tier: it.pw_tier,
     clean_tier: it.clean_tier,
+    sweetener_group: it.sweetener_group,
     image_url: it.image_url || '',
     verified_at: it.verified_at
   }));

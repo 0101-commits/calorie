@@ -2,10 +2,10 @@
   "total_count": 517,
   "graded_count": 495,
   "hold_count": 22,
-  "generated_at": "2026-09-16T06:54:33.930Z",
+  "generated_at": "2026-09-16T07:14:36.272Z",
   "rule_version": "v1.1",
   "rule_file": "rules/rule_v1.1.json",
-  "file_size_kb": 2413.4,
+  "file_size_kb": 2449.9,
   "grades": {
     "A": 101,
     "B": 142,
@@ -134,7 +134,19 @@
         "sodium_hard_cap_ratio": 1.5,
         "duplicate_category_exempt": [
           "유제품/음료"
-        ]
+        ],
+        "max_beverage_items": 1,
+        "main_categories": [
+          "도시락",
+          "삼각김밥/주먹밥",
+          "샌드위치/버거",
+          "샐러드",
+          "닭가슴살/육가공",
+          "면",
+          "즉석밥/죽",
+          "한식/분식"
+        ],
+        "require_main_item": true
       }
     },
     "staleness": {

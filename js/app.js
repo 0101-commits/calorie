@@ -514,6 +514,7 @@ function renderRankingList() {
     if (state.rankingFilter === 'clean') list = list.filter(p => p.clean_tier === 'clean');
     else if (state.rankingFilter === 'verified') list = list.filter(p => p.pw_tier === 'verified');
     else if (state.rankingFilter === 'under5k') list = list.filter(p => p.price_krw <= 5000);
+    else if (state.rankingFilter === 'alt_sweetener') list = list.filter(p => p.sweetener_group === 'alternative');
     else if (['cvs', 'fr', 'mart', 'online'].includes(state.rankingFilter)) {
       list = list.filter(p => p.channel === state.rankingFilter);
     }
@@ -1034,7 +1035,12 @@ function bindDetailEvents(p) {
       const dict = DICT_BY_NAME.get(t.name);
       const tierLabel = { 1: '안심', 2: '일반', 3: '주의', 4: '기피' }[t.tier] || '일반';
       popupTitle.textContent = `${tierLabel}: ${t.name}${dict ? ` (${dict.title})` : ''}`;
-      popupDesc.textContent = dict ? dict.desc : '사전에 등록되지 않은 일반 원재료입니다.';
+      // 판정에는 근거를 함께 보여준다. 근거가 없으면 없다고 말한다 — 이 서비스의 기본 규칙이다.
+      const basis = dict && dict.basis
+        ? `근거: ${dict.basis}`
+        : '공적 기준으로 뒷받침되는 판정이 아닙니다(참고용 설명).';
+      popupDesc.textContent = `${dict ? dict.desc : '사전에 등록되지 않은 일반 원재료입니다.'}
+${basis}`;
       popup.hidden = false;
     });
   });

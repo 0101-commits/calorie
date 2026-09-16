@@ -1441,3 +1441,10 @@ details.clean-tags-section > summary {
   border-radius: var(--r25); padding: var(--x3) var(--x4);
   font-size: var(--t2); line-height: 1.6; margin: 0 0 var(--x3);
 }
+
+.clean-tag-info-popup {
+  white-space: pre-line;
+  /* 표시 제어를 hidden 속성으로 통일한다(원본은 display:none + style 조작이었다) */
+  border-color: var(--line);
+}
+.clean-tag-info-popup:not([hidden]) { display: block; }
