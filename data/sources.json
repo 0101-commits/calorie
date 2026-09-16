@@ -267,5 +267,55 @@
       "status": "active",
       "note": "scripts/fetch_public_data.py 가 실제로 호출해 응답을 받은 엔드포인트"
     }
-  ]
+  ],
+  "retail_catalog": {
+    "_note": "편의점 공식 웹 상품 목록 — 상품명과 정가만 얻는다. 영양성분은 이 페이지들에 없어 식약처 공공DB(T1)와 이름으로 매칭해 붙인다(scripts/build_cvs_items.js).",
+    "_verified": "2026-09-16 · scripts/collect_cvs_prices.js 로 실제 수집해 1,807건 확보",
+    "chains": [
+      {
+        "chain": "CU",
+        "brand_code": "cu",
+        "url": "https://cu.bgfretail.com/product/pbAjax.do?pageIndex={n}",
+        "selector": "li.prod_list",
+        "per_page": 40,
+        "collected": 1249,
+        "status": "ready",
+        "note": "상세(view.do?gdIdx=)에도 영양정보는 없다 — 상품명·가격·설명·태그뿐"
+      },
+      {
+        "chain": "이마트24",
+        "brand_code": "emart24",
+        "url": "https://emart24.co.kr/goods/pl?page={n}",
+        "selector": "div.itemWrap",
+        "per_page": 20,
+        "collected": 534,
+        "status": "ready",
+        "note": "goods/ff 는 goods/pl 과 동일 목록을 반환한다"
+      },
+      {
+        "chain": "세븐일레븐",
+        "brand_code": "7eleven",
+        "url": "https://www.7-eleven.co.kr/product/7prodList.asp",
+        "selector": "div.pic_product",
+        "per_page": 13,
+        "collected": 24,
+        "status": "ready",
+        "note": "공식 웹에는 신상품 위주 소량만 공개된다"
+      },
+      {
+        "chain": "GS25",
+        "brand_code": "gs25",
+        "url": null,
+        "status": "excluded",
+        "note": "공식 웹에 상품 카탈로그가 없다. products 경로가 전부 '우리동네GS 앱 다운로드' 안내로 귀결된다. 앱 수집은 어떤 단계에서도 하지 않으므로 대상에서 제외한다(2026-09-16 확인)"
+      }
+    ],
+    "_guards": [
+      "robots 준수 — 세 곳 모두 상품 경로 차단 없음(2026-09-16 확인)",
+      "요청 간격 5초",
+      "페이지 상한 40",
+      "403/429 수신 시 즉시 중단",
+      "로그인 뒤 데이터 미접근"
+    ]
+  }
 }
