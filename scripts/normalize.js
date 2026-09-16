@@ -174,6 +174,18 @@ function main() {
     item.price_krw_status = statusFor(item, 'price_krw');
     item.serving_g_status = statusFor(item, 'serving_g');
 
+    // 있을 수 없는 0은 실측이 아니라 '모름'이다.
+    // 공공DB·수집원이 미확보 값을 0으로 적어 두는 경우가 있어, 그대로 두면
+    // 페널티가 면제돼 등급이 부풀려진다(v1 의 가장 큰 결함이었다).
+    if (Number(item.sodium_mg) === 0) {
+      item.sodium_mg = null;
+      item.sodium_mg_status = 'unknown';
+    }
+    if (Number(item.sat_fat_g) === 0 && Number(item.fat_g || 0) >= 5) {
+      item.sat_fat_g = null;
+      item.sat_fat_g_status = 'unknown';
+    }
+
     // 가격 추정 판정 — T1 공공DB 행은 가격이 없어 수집기가 카테고리 고정값을 넣었다
     if (item.source_type === 'T1') {
       const candidates = ESTIMATED_PRICE_BY_CATEGORY[item.category] || [];

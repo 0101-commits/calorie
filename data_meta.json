@@ -1,37 +1,37 @@
 {
-  "total_count": 517,
-  "graded_count": 495,
-  "hold_count": 22,
-  "generated_at": "2026-09-16T07:14:36.272Z",
+  "total_count": 826,
+  "graded_count": 787,
+  "hold_count": 39,
+  "generated_at": "2026-09-16T10:36:53.064Z",
   "rule_version": "v1.1",
   "rule_file": "rules/rule_v1.1.json",
-  "file_size_kb": 2449.9,
+  "file_size_kb": 3193.3,
   "grades": {
-    "A": 101,
-    "B": 142,
-    "C": 177,
-    "D": 75
+    "A": 102,
+    "B": 152,
+    "C": 335,
+    "D": 198
   },
   "washing": {
-    "verified": 212,
-    "conditional": 22,
-    "washing": 38,
-    "none": 245
+    "verified": 214,
+    "conditional": 18,
+    "washing": 40,
+    "none": 554
   },
   "clean": {
     "clean": 247,
     "moderate": 106,
     "warning": 164,
-    "unknown": 0
+    "unknown": 309
   },
   "channels": {
-    "cvs": 200,
+    "cvs": 509,
     "mart": 94,
     "online": 50,
     "fr": 173
   },
-  "estimated_price_count": 22,
-  "latest_verified_at": "2026-09-15",
+  "estimated_price_count": 37,
+  "latest_verified_at": "2026-09-16",
   "rules_snapshot": {
     "cutoffs": {
       "ppr": {

@@ -1,5 +1,15 @@
 [
   {
+    "brand_code": "405",
+    "name": "405",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
     "brand_code": "7eleven",
     "name": "세븐일레븐",
     "aliases": [],
@@ -10,8 +20,68 @@
     "disclosure_duty": null
   },
   {
+    "brand_code": "대영",
+    "name": "대영",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
     "brand_code": "마루카네",
     "name": "마루카네",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "매일",
+    "name": "매일",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "스위트",
+    "name": "스위트",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "연세",
+    "name": "연세",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "옐로우",
+    "name": "옐로우",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "하겐",
+    "name": "하겐",
     "aliases": [],
     "channels": [
       "cvs"
@@ -114,7 +184,9 @@
   {
     "brand_code": "cj",
     "name": "CJ제일제당",
-    "aliases": [],
+    "aliases": [
+      "CJ"
+    ],
     "channels": [
       "cvs",
       "mart"
@@ -345,6 +417,16 @@
     "aliases": [],
     "channels": [
       "mart"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "ick",
+    "name": "ICK",
+    "aliases": [],
+    "channels": [
+      "cvs"
     ],
     "nutrition_url": null,
     "disclosure_duty": null

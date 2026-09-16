@@ -14,3 +14,7 @@ data/seed.json.p0bak
 
 # OMC 런타임 상태
 .omc/
+
+# 편의점 결합 체크포인트
+data/.cvs_build_checkpoint.json
+data/seed.json.premerge
