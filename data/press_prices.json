@@ -1,0 +1,54 @@
+[
+  {
+    "brand_code": "cu",
+    "brand": "CU",
+    "name": "크카당맛있당정식",
+    "price_krw": 5700,
+    "confidence": "quoted",
+    "price_source_type": "T3",
+    "source_url": "https://www.bgfretail.com/press/view/?id=2039",
+    "article_title": "BGF 리테일",
+    "published_at": "2026-09-14",
+    "detected_at": "2026-09-16T11:07:39.377Z",
+    "status": "감지"
+  },
+  {
+    "brand_code": "cu",
+    "brand": "CU",
+    "name": "풍성한가위 정찬 도시락",
+    "price_krw": 6500,
+    "confidence": "quoted",
+    "price_source_type": "T3",
+    "source_url": "https://www.bgfretail.com/press/view/?id=2033",
+    "article_title": "BGF 리테일",
+    "published_at": "2026-09-08",
+    "detected_at": "2026-09-16T11:08:09.299Z",
+    "status": "감지"
+  },
+  {
+    "brand_code": "cu",
+    "brand": "CU",
+    "name": "풍성한가위 잡채 모둠전",
+    "price_krw": 5600,
+    "confidence": "quoted",
+    "price_source_type": "T3",
+    "source_url": "https://www.bgfretail.com/press/view/?id=2033",
+    "article_title": "BGF 리테일",
+    "published_at": "2026-09-08",
+    "detected_at": "2026-09-16T11:08:09.299Z",
+    "status": "감지"
+  },
+  {
+    "brand_code": "cu",
+    "brand": "CU",
+    "name": "참깨송편",
+    "price_krw": 3500,
+    "confidence": "quoted",
+    "price_source_type": "T3",
+    "source_url": "https://www.bgfretail.com/press/view/?id=2033",
+    "article_title": "BGF 리테일",
+    "published_at": "2026-09-08",
+    "detected_at": "2026-09-16T11:08:09.299Z",
+    "status": "감지"
+  }
+]

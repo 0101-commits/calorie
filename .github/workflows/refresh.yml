@@ -54,6 +54,13 @@ jobs:
           fi
           python scripts/fetch_public_data.py
 
+      - name: 보도자료 가격 수집 (주 1회)
+        if: github.event.schedule == '0 5 * * 1' || github.event.inputs.job == 'detect' || github.event.inputs.job == 'all'
+        run: |
+          npx puppeteer browsers install chrome
+          node scripts/collect_press.js
+          node scripts/apply_press_prices.js
+
       - name: 정규화 · 빌드 (게이트 G1·G2·G3·G5)
         run: |
           node scripts/normalize.js
