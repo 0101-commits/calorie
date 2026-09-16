@@ -9,10 +9,11 @@ name: Data refresh
 
 on:
   schedule:
-    # 매주 월요일 09:00 KST (UTC 00:00) — 신상 감지 + 신선도 스윕
-    - cron: '0 0 * * 1'
-    # 매월 1일 09:00 KST — 공공DB 재동기화
-    - cron: '0 0 1 * *'
+    # 매주 월요일 14:00 KST (UTC 05:00) — 신상 감지 + 신선도 스윕
+    # GS리테일 robots 가 Visit-time 0400-0845 UTC 를 명시하므로 그 창 안에서 돈다.
+    - cron: '0 5 * * 1'
+    # 매월 1일 14:00 KST — 공공DB 재동기화
+    - cron: '0 5 1 * *'
   workflow_dispatch:
     inputs:
       job:
@@ -39,11 +40,11 @@ jobs:
           python-version: '3.12'
 
       - name: 신상·변경 감지 (주 1회)
-        if: github.event.schedule == '0 0 * * 1' || github.event.inputs.job == 'detect' || github.event.inputs.job == 'all'
+        if: github.event.schedule == '0 5 * * 1' || github.event.inputs.job == 'detect' || github.event.inputs.job == 'all'
         run: node scripts/detect_new.js
 
       - name: 공공DB 재동기화 (월 1회)
-        if: github.event.schedule == '0 0 1 * *' || github.event.inputs.job == 'public'
+        if: github.event.schedule == '0 5 1 * *' || github.event.inputs.job == 'public'
         env:
           DATA_GO_KR_API_KEY: ${{ secrets.DATA_GO_KR_API_KEY }}
         run: |
@@ -59,7 +60,7 @@ jobs:
           node scripts/build.js
 
       - name: 신선도 스윕
-        if: github.event.schedule == '0 0 * * 1' || github.event.inputs.job == 'stale' || github.event.inputs.job == 'all'
+        if: github.event.schedule == '0 5 * * 1' || github.event.inputs.job == 'stale' || github.event.inputs.job == 'all'
         run: node scripts/stale_sweep.js
 
       - name: 단위 테스트
