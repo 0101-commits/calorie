@@ -113,6 +113,13 @@ export function searchProducts(searchIndex, query, limit = 30) {
       } else if (item.chosungBrand.includes(normQ)) {
         score = 60;
         matchType = 'chosung_brand';
+      } else if (normQ.length >= 3) {
+        // 초성 질의에도 1자 오차를 허용한다(ㄷㄱㅅㅅ → ㄷㄱㅅ 오타 등).
+        const dist = levenshteinDistance(item.chosungName.slice(0, normQ.length), normQ);
+        if (dist <= 1) {
+          score = 35;
+          matchType = 'chosung_fuzzy';
+        }
       }
     } else {
       // 2. 일반 텍스트 질의

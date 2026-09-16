@@ -15,6 +15,7 @@ const FILES = [
   'index.html',
   '.nojekyll',
   'data.json',
+  'data_index.json',
   'data_meta.json'
 ];
 
@@ -50,8 +51,11 @@ function copyDir(rel, exts) {
 }
 
 function main() {
-  fs.rmSync(siteDir, { recursive: true, force: true });
+  // 디렉터리 자체가 잠겨 있을 수 있으므로(로컬 서버가 물고 있는 경우) 내용만 비운다.
   fs.mkdirSync(siteDir, { recursive: true });
+  for (const entry of fs.readdirSync(siteDir)) {
+    fs.rmSync(path.join(siteDir, entry), { recursive: true, force: true });
+  }
 
   let count = 0;
   for (const f of FILES) {

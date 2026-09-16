@@ -62,6 +62,42 @@ export const GOAL_WEIGHTS = {
 };
 
 /**
+ * 룰 파일(rules/rule_v1.1.json)의 recommendation 블록을 주입한다.
+ * data_meta.json 의 rules_snapshot 을 그대로 넘기면 된다 — 화면과 빌드가 같은 값을 쓴다.
+ * 주입하지 않으면 위 상수(테스트 픽스처 겸 기본값)가 쓰인다.
+ */
+export function configureFromRules(recommendation) {
+  if (!recommendation) return;
+  if (recommendation.pal) Object.assign(PAL_MAP, recommendation.pal);
+  if (recommendation.meal_ratios) {
+    Object.assign(MEAL_RATIOS, recommendation.meal_ratios);
+  }
+  if (recommendation.fit_weights) {
+    for (const [goal, w] of Object.entries(recommendation.fit_weights)) {
+      if (GOAL_WEIGHTS[goal]) Object.assign(GOAL_WEIGHTS[goal], w);
+    }
+  }
+  if (recommendation.goals) {
+    for (const [goal, g] of Object.entries(recommendation.goals)) {
+      if (GOAL_PROFILES[goal]) Object.assign(GOAL_PROFILES[goal], g);
+    }
+  }
+  if (recommendation.meal_protein_clamp) {
+    MEAL_PROTEIN_CLAMP.min = recommendation.meal_protein_clamp.min;
+    MEAL_PROTEIN_CLAMP.max = recommendation.meal_protein_clamp.max;
+  }
+}
+
+export const MEAL_PROTEIN_CLAMP = { min: 20, max: 45 };
+
+// 목적별 1일 목표 계수 — rules/rule_v1.1.json 의 recommendation.goals 와 같은 값이어야 한다.
+export const GOAL_PROFILES = {
+  diet:      { kcal_factor: 0.80, protein_per_kg: 2.0, fat_pct: 0.25, sodium_day_mg: 2000, sugar_day_g: 50 },
+  lean_mass: { kcal_factor: 1.08, protein_per_kg: 1.8, fat_pct: 0.25, sodium_day_mg: 2300, sugar_day_g: 60 },
+  bulk_up:   { kcal_factor: 1.15, protein_per_kg: 1.6, fat_pct: 0.275, sodium_day_mg: 2600, sugar_day_g: 80 }
+};
+
+/**
  * 1. Mifflin-St Jeor 기초대사량 (BMR) 계산
  * 남: 10 * weight + 6.25 * height - 5 * age + 5
  * 여: 10 * weight + 6.25 * height - 5 * age - 161
@@ -96,33 +132,19 @@ export function computeDailyTargets(params) {
   const goal = params.goal || 'diet';
   const isMale = params.gender === 'male' || params.gender === '남';
 
-  let kcal_day = tdee;
-  let p_g_per_kg = 2.0;
-  let fat_ratio = 0.25;
-  let na_day = 2000;
-  let sugar_day = 50;
+  const profile = GOAL_PROFILES[goal] || GOAL_PROFILES.diet;
+  let kcal_day = tdee * profile.kcal_factor;
 
+  // 감량 시 하한 — 근손실·대사 적응 방지(기획서 §2.3)
   if (goal === 'diet') {
-    kcal_day = tdee * 0.80;
     const minKcal = Math.max(bmr * 1.1, isMale ? 1500 : 1200);
     kcal_day = Math.max(kcal_day, minKcal);
-    p_g_per_kg = 2.0;
-    fat_ratio = 0.25;
-    na_day = 2000;
-    sugar_day = 50;
-  } else if (goal === 'lean_mass') {
-    kcal_day = tdee * 1.08;
-    p_g_per_kg = 1.8;
-    fat_ratio = 0.25;
-    na_day = 2300;
-    sugar_day = 60;
-  } else if (goal === 'bulk_up') {
-    kcal_day = tdee * 1.15;
-    p_g_per_kg = 1.6;
-    fat_ratio = 0.28;
-    na_day = 2600;
-    sugar_day = 80;
   }
+
+  const p_g_per_kg = profile.protein_per_kg;
+  const fat_ratio = profile.fat_pct;
+  const na_day = profile.sodium_day_mg;
+  const sugar_day = profile.sugar_day_g;
 
   kcal_day = Math.round(kcal_day);
   const P_day = Math.round(weight * p_g_per_kg);
@@ -156,7 +178,7 @@ export function computeMealTarget(dailyTargets, meal = 'lunch') {
   if (isSnack) {
     P_meal = Math.round(dailyTargets.P_day * 0.15);
   } else {
-    P_meal = Math.min(45, Math.max(20, Math.round(dailyTargets.P_day / 3)));
+    P_meal = Math.min(MEAL_PROTEIN_CLAMP.max, Math.max(MEAL_PROTEIN_CLAMP.min, Math.round(dailyTargets.P_day / 3)));
   }
 
   const C_meal = Math.round(dailyTargets.C_day * s);

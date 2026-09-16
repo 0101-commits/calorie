@@ -1,111 +1,114 @@
 // 프로틴레이더 Cloudflare Worker API (worker/worker.js)
-// 규칙 버전: v1.0 (2026-09-15 확정 스펙)
+// 기획안 v2.0 P2 — 3가지를 고친다.
+//   ① D1 이 없으면 성공(success:true)이 아니라 503 을 반환한다. 저장하지 않았는데
+//      성공이라고 답하면 사용자는 제보가 접수된 줄 안다(가장 나쁜 실패 방식이다).
+//   ② CORS 를 Pages 도메인으로 제한한다(전역 개방 금지).
+//   ③ IP 는 저장 전에 해시한다. 컬럼명이 ip_hash 인데 평문이 들어가고 있었다.
+
+const ALLOWED_ORIGINS = [
+  'https://0101-commits.github.io',
+  'http://localhost:8080',
+  'http://127.0.0.1:8080'
+];
+
+function corsHeadersFor(request) {
+  const origin = request.headers.get('Origin') || '';
+  const allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  return {
+    'Access-Control-Allow-Origin': allowed,
+    'Vary': 'Origin',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json; charset=utf-8'
+  };
+}
+
+function json(body, status, headers) {
+  return new Response(JSON.stringify(body), { status, headers });
+}
+
+/** IP 를 그대로 저장하지 않는다 — 같은 제보자 판별에 필요한 만큼만 해시로 남긴다. */
+async function hashIp(ip, salt) {
+  const data = new TextEncoder().encode(`${salt || 'protein-radar'}:${ip || 'anonymous'}`);
+  const digest = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(digest)).slice(0, 12)
+    .map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const path = url.pathname;
-
-    // CORS 헤더 설정
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Content-Type': 'application/json; charset=utf-8'
-    };
+    const cors = corsHeadersFor(request);
 
     if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: corsHeaders });
+      return new Response(null, { headers: cors });
     }
 
+    const hasDb = Boolean(env && env.DB);
+
     try {
-      // 1. 바코드 조회 API
+      // 1. 바코드 조회
       if (path === '/api/barcode') {
         const barcode = url.searchParams.get('code');
-        if (!barcode) {
-          return new Response(JSON.stringify({ error: '바코드 번호가 누락되었습니다.' }), {
-            status: 400,
-            headers: corsHeaders
-          });
+        if (!barcode) return json({ error: '바코드 번호가 누락되었습니다.' }, 400, cors);
+        if (!hasDb) {
+          return json({ error: 'db_unavailable', message: '조회 서버가 아직 연결되지 않았습니다.' }, 503, cors);
         }
 
-        // D1 바인딩이 있는 경우 DB 조회
-        if (env && env.DB) {
-          const row = await env.DB.prepare('SELECT * FROM menus WHERE barcode = ?').bind(barcode).first();
-          if (row) {
-            // scan_log 성공 기록
-            ctx.waitUntil(
-              env.DB.prepare('INSERT INTO scan_logs (barcode, matched, created_at) VALUES (?, 1, ?)')
-                .bind(barcode, new Date().toISOString()).run()
-            );
-            return new Response(JSON.stringify({ matched: true, item: row }), { headers: corsHeaders });
-          } else {
-            // scan_log 실패 기록 (신상 후보 큐 집계용)
-            ctx.waitUntil(
-              env.DB.prepare('INSERT INTO scan_logs (barcode, matched, created_at) VALUES (?, 0, ?)')
-                .bind(barcode, new Date().toISOString()).run()
-            );
-            return new Response(JSON.stringify({ matched: false, message: '미등록 바코드입니다. 제보가 가능합니다.' }), {
-              status: 404,
-              headers: corsHeaders
-            });
-          }
-        }
-
-        // Mock fallback
-        return new Response(JSON.stringify({ matched: false, barcode }), { headers: corsHeaders });
+        const row = await env.DB.prepare('SELECT * FROM menus WHERE barcode = ?').bind(barcode).first();
+        ctx.waitUntil(
+          env.DB.prepare('INSERT INTO scan_logs (barcode, matched, created_at) VALUES (?, ?, ?)')
+            .bind(barcode, row ? 1 : 0, new Date().toISOString()).run()
+        );
+        if (row) return json({ matched: true, item: row }, 200, cors);
+        return json({ matched: false, message: '미등록 바코드입니다. 제보해 주시면 확인 후 등록합니다.' }, 404, cors);
       }
 
-      // 2. 오류 정정 및 이의제기 접수 API
+      // 2. 오류 정정·이의제기 접수
       if (path === '/api/report' && request.method === 'POST') {
         const body = await request.json();
-        const { menu_id, reason, detail } = body;
-
-        if (!menu_id || !reason) {
-          return new Response(JSON.stringify({ error: 'menu_id와 reason은 필수입니다.' }), {
-            status: 400,
-            headers: corsHeaders
-          });
+        const { menu_id, barcode, reason, detail } = body || {};
+        if (!reason) return json({ error: 'reason 은 필수입니다.' }, 400, cors);
+        if (!menu_id && !barcode) {
+          return json({ error: 'menu_id 또는 barcode 중 하나는 필요합니다.' }, 400, cors);
+        }
+        if (!hasDb) {
+          // 저장하지 못했으면 실패로 답한다.
+          return json({ error: 'db_unavailable', message: '접수 창구가 아직 연결되지 않았습니다.' }, 503, cors);
         }
 
-        if (env && env.DB) {
-          await env.DB.prepare(
-            'INSERT INTO reports (menu_id, reason, detail, status, created_at) VALUES (?, ?, ?, ?, ?)'
-          ).bind(menu_id, reason, detail || '', '접수', new Date().toISOString()).run();
-        }
+        await env.DB.prepare(
+          'INSERT INTO reports (menu_id, reason, detail, status, created_at) VALUES (?, ?, ?, ?, ?)'
+        ).bind(menu_id || barcode, reason, detail || '', '접수', new Date().toISOString()).run();
 
-        return new Response(JSON.stringify({ success: true, message: '72시간 내 재확인 SLA 접수 완료' }), {
-          headers: corsHeaders
-        });
+        return json({ success: true, message: '접수됐습니다. 공식 영양표를 재확인해 반영합니다.' }, 200, cors);
       }
 
-      // 3. 사진 제보 접수 API (2단계)
+      // 3. 사진 제보 접수
       if (path === '/api/submit' && request.method === 'POST') {
         const body = await request.json();
-        const { image_hash, nickname, parsed_json } = body;
-
-        if (env && env.DB) {
-          const clientIp = request.headers.get('CF-Connecting-IP') || 'anonymous';
-          await env.DB.prepare(
-            'INSERT INTO submissions (image_hash, nickname, ip_hash, parsed_json, status) VALUES (?, ?, ?, ?, ?)'
-          ).bind(image_hash || 'hash', nickname || '익명', clientIp, JSON.stringify(parsed_json || {}), '대기').run();
+        const { image_hash, nickname, parsed_json } = body || {};
+        if (!hasDb) {
+          return json({ error: 'db_unavailable', message: '제보 창구가 아직 연결되지 않았습니다.' }, 503, cors);
         }
 
-        return new Response(JSON.stringify({ success: true, message: '제보가 접수되었습니다.' }), {
-          headers: corsHeaders
-        });
+        const ipHash = await hashIp(request.headers.get('CF-Connecting-IP'), env.IP_SALT);
+        await env.DB.prepare(
+          'INSERT INTO submissions (image_hash, nickname, ip_hash, parsed_json, status) VALUES (?, ?, ?, ?, ?)'
+        ).bind(image_hash || null, nickname || '익명', ipHash, JSON.stringify(parsed_json || {}), '대기').run();
+
+        return json({ success: true, message: '제보가 접수되었습니다.' }, 200, cors);
       }
 
-      // 4. 상태 헬스체크
+      // 4. 헬스체크 — D1 연결 여부를 그대로 보고한다.
       if (path === '/api/health') {
-        return new Response(JSON.stringify({ status: 'ok', service: 'protein-radar-worker', version: 'v1.1' }), {
-          headers: corsHeaders
-        });
+        return json({ status: 'ok', service: 'protein-radar-worker', version: 'v2.0', db: hasDb }, 200, cors);
       }
 
-      return new Response(JSON.stringify({ error: 'Not Found' }), { status: 404, headers: corsHeaders });
+      return json({ error: 'Not Found' }, 404, cors);
     } catch (err) {
-      return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: corsHeaders });
+      return json({ error: 'internal_error', message: err.message }, 500, cors);
     }
   }
 };

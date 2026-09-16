@@ -145,6 +145,9 @@ function main() {
       categoryMedianPpr: catMedianMap[item.category] !== undefined ? catMedianMap[item.category] : 6.0
     });
 
+    // 카드에 찍히는 룰 버전은 실제로 계산에 쓰인 룰 파일의 버전이어야 한다.
+    evaluated.rule_version = rules.version;
+
     const cleanAnalysis = analyzeIngredients(item.ingredients_raw, evaluated);
     if (cleanAnalysis.available) {
       evaluated.clean_score = cleanAnalysis.cleanScore;

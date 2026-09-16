@@ -1,87 +1,93 @@
 // 프로틴레이더 메인 애플리케이션 (app.js)
-// 규칙 버전: v1.0 (2026-09-15 확정 스펙)
+// 기획안 v2.0 P2 — 신뢰 UI·2모드 랭킹·접근성·페이로드 분리를 반영한다.
+//
+// 핵심 원칙 3가지가 이 파일 전체를 관통한다.
+//   ① 모르는 값은 0이 아니라 "—"로 쓴다. 등급이 보류된 제품은 숨기지 않고 사유를 보여준다.
+//   ② 판정은 빌드가 한 번만 한다. 화면은 저장된 결과를 읽기만 한다(카드·상세 불일치 방지).
+//   ③ 비교 기준이 다른 채널은 같은 랭킹에 섞지 않는다.
 
 import { createSearchItem, searchProducts } from './search.js';
-import { PRESETS, computeDailyTargets, computeMealTarget, computeFitScore, generateReasonSentence } from './calc.js';
+import {
+  PRESETS, computeDailyTargets, computeMealTarget, computeFitScore,
+  generateReasonSentence, configureFromRules
+} from './calc.js';
 import { findBestCombos } from './combo.js';
 import { BarcodeScanner, lookupBarcode } from './scan.js';
-import { analyzeIngredients } from './clean_radar.js';
+import { INGREDIENT_DICTIONARY } from './clean_radar.js';
 
-// 전역 상태
+// 제보·신고 수신 엔드포인트. 비어 있으면 화면이 "준비 중"이라고 정직하게 말한다.
+const API_BASE = (typeof window !== 'undefined' && window.PR_API_BASE) || '';
+
+const PAGE_SIZE = 50;
+
+// 랭킹 2모드 — 기획안 §6.2. 비교 기준(1개 판매 단위 vs 100g 단가)이 다르므로 섞지 않는다.
+const RANKING_MODES = {
+  store: { label: '지금 매장에서', channels: ['cvs', 'fr'], note: '편의점·프랜차이즈 · 1개 판매 단위 가격 기준' },
+  stock: { label: '미리 쟁여두기', channels: ['mart', 'online'], note: '마트·온라인 · 단백질 100g당 가격 기준' }
+};
+
 const state = {
-  products: [],
+  index: [],           // 목록용 경량 인덱스 (data_index.json)
+  products: [],        // 상세·계산용 전체 데이터 (data.json, 지연 로드)
+  productMap: new Map(),
+  meta: null,
   searchIndex: [],
+  fullDataPromise: null,
   activeTab: 'home',
   homeFilter: 'all',
+  rankingMode: 'store',
   rankingSegment: 'all',
   rankingSort: 'ppr',
   rankingFilter: 'all',
+  rankingRendered: 0,
+  rankingList: [],
   calcMode: 'single',
-  compareList: [], // menu_id 배열 (최대 3개)
+  compareList: [],
   activeProduct: null,
   userProfile: {
-    gender: 'female',
-    age: 28,
-    height_cm: 162,
-    weight_kg: 54,
-    activity_level: 'moderate',
-    goal: 'diet',
-    meal: 'lunch',
-    budget_krw: 8000
+    gender: 'female', age: 28, height_cm: 162, weight_kg: 54,
+    activity_level: 'moderate', goal: 'diet', meal: 'lunch', budget_krw: 8000
   }
 };
 
 let scannerInstance = null;
 
-// DOM 요소 캐시
-const el = {
-  tabBtns: document.querySelectorAll('.tab-btn'),
-  tabContents: document.querySelectorAll('.tab-content'),
-  homeSearchInput: document.getElementById('home-search-input'),
-  homeScanBtn: document.getElementById('home-scan-btn'),
-  newItemsContainer: document.getElementById('new-items-container'),
-  homeRecommendContainer: document.getElementById('home-recommend-container'),
-  washingAlertContainer: document.getElementById('washing-alert-container'),
-  rankingListContainer: document.getElementById('ranking-list-container'),
-  calcResultContainer: document.getElementById('calc-result-container'),
-  compareDock: document.getElementById('compare-dock'),
-  compareDockCount: document.getElementById('compare-dock-count'),
-  btnOpenCompare: document.getElementById('btn-open-compare'),
-  sheetDetail: document.getElementById('sheet-detail'),
-  sheetDetailContent: document.getElementById('sheet-detail-content'),
-  btnCloseDetail: document.getElementById('btn-close-detail'),
-  sheetCompare: document.getElementById('sheet-compare'),
-  sheetCompareContent: document.getElementById('sheet-compare-content'),
-  btnCloseCompare: document.getElementById('btn-close-compare'),
-  sheetScanner: document.getElementById('sheet-scanner'),
-  btnCloseScanner: document.getElementById('btn-close-scanner'),
-  scannerVideo: document.getElementById('scanner-video'),
-  selectDemoBarcode: document.getElementById('select-demo-barcode'),
-  btnTestBarcode: document.getElementById('btn-test-barcode'),
-  sheetPolicy: document.getElementById('sheet-policy'),
-  btnOpenPolicy: document.getElementById('btn-open-policy'),
-  btnClosePolicy: document.getElementById('btn-close-policy'),
-  sheetReport: document.getElementById('sheet-report'),
-  reportTargetName: document.getElementById('report-target-name'),
-  btnCloseReport: document.getElementById('btn-close-report'),
-  btnSubmitReport: document.getElementById('btn-submit-report')
-};
-
-// 초기화
-async function init() {
-  loadStoredProfile();
-  await loadData();
-  setupEventListeners();
-  renderAll();
+const el = {};
+function toCamel(id) {
+  return id.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+}
+function cacheDom() {
+  const ids = [
+    'home-search-input', 'home-scan-btn', 'new-items-container', 'home-recommend-container',
+    'washing-alert-container', 'ranking-list-container', 'calc-result-container',
+    'compare-dock', 'compare-dock-count', 'btn-open-compare', 'sheet-detail', 'sheet-detail-content',
+    'btn-close-detail', 'sheet-compare', 'sheet-compare-content', 'btn-close-compare',
+    'sheet-scanner', 'btn-close-scanner', 'scanner-video', 'select-demo-barcode', 'btn-test-barcode',
+    'sheet-policy', 'btn-open-policy', 'btn-close-policy', 'sheet-report', 'report-target-name',
+    'btn-close-report', 'btn-submit-report', 'data-freshness', 'ranking-count', 'ranking-more',
+    'scanner-status', 'new-items-count', 'report-form-status'
+  ];
+  for (const id of ids) el[toCamel(id)] = document.getElementById(id);
+  el.tabBtns = document.querySelectorAll('.tab-btn');
+  el.tabContents = document.querySelectorAll('.tab-content');
 }
 
-// LocalStorage 체형 정보 복원
+/* ───────────────────────── 초기화 ───────────────────────── */
+
+async function init() {
+  cacheDom();
+  loadStoredProfile();
+  await loadIndex();
+  setupEventListeners();
+  renderAll();
+  // 목록이 먼저 그려진 뒤에 상세·계산용 전체 데이터를 배경에서 채운다.
+  scheduleFullData();
+}
+
 function loadStoredProfile() {
   try {
     const saved = localStorage.getItem('pr_user_profile');
-    if (saved) {
-      state.userProfile = { ...state.userProfile, ...JSON.parse(saved) };
-    }
+    if (saved) state.userProfile = { ...state.userProfile, ...JSON.parse(saved) };
   } catch (e) {
     console.warn('LocalStorage load error:', e);
   }
@@ -95,116 +101,140 @@ function saveStoredProfile() {
   }
 }
 
-// data.json 로드
-async function loadData() {
+/** 1단계 — 목록용 경량 인덱스(gzip 약 27KB) */
+async function loadIndex() {
   try {
-    const res = await fetch('data.json');
-    if (!res.ok) throw new Error('data.json 로드 실패');
-    state.products = await res.json();
-    state.searchIndex = state.products.map(createSearchItem);
+    const [idxRes, metaRes] = await Promise.all([fetch('data_index.json'), fetch('data_meta.json')]);
+    if (!idxRes.ok) throw new Error('data_index.json 로드 실패');
+    state.index = await idxRes.json();
+    state.searchIndex = state.index.map(createSearchItem);
+    if (metaRes.ok) {
+      state.meta = await metaRes.json();
+      // 화면이 쓰는 추천 파라미터도 룰 파일 스냅샷에서 주입한다(단일 원천).
+      if (state.meta.rules_snapshot) configureFromRules(state.meta.rules_snapshot.recommendation);
+    }
   } catch (err) {
-    console.error('데이터 로드 중 오류:', err);
-    state.products = [];
+    console.error('인덱스 로드 오류:', err);
+    state.index = [];
   }
 }
 
-// 이벤트 리스너 설정
-function setupEventListeners() {
-  // 1. 하단 탭 전환
-  el.tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tab = btn.dataset.tab;
-      switchTab(tab);
+/** 2단계 — 상세·계산용 전체 데이터 */
+function ensureFullData() {
+  if (state.products.length) return Promise.resolve(state.products);
+  if (state.fullDataPromise) return state.fullDataPromise;
+
+  state.fullDataPromise = fetch('data.json')
+    .then(res => {
+      if (!res.ok) throw new Error('data.json 로드 실패');
+      return res.json();
+    })
+    .then(list => {
+      state.products = list;
+      state.productMap = new Map(list.map(p => [p.menu_id, p]));
+      return list;
+    })
+    .catch(err => {
+      console.error('전체 데이터 로드 오류:', err);
+      state.fullDataPromise = null;
+      return [];
     });
-  });
+  return state.fullDataPromise;
+}
 
-  document.getElementById('nav-brand').addEventListener('click', (e) => {
-    e.preventDefault();
-    switchTab('home');
+function scheduleFullData() {
+  const run = () => ensureFullData().then(() => {
+    if (state.activeTab === 'calc') renderCalcTab();
   });
+  if ('requestIdleCallback' in window) window.requestIdleCallback(run, { timeout: 2500 });
+  else setTimeout(run, 300);
+}
 
-  // 2. 홈 탭 검색
+/** menu_id 로 전체 레코드를 찾는다(구 ID 공유 링크도 받아준다). */
+function findFull(menuId) {
+  if (state.productMap.has(menuId)) return state.productMap.get(menuId);
+  return state.products.find(p => p.menu_id === menuId ||
+    (Array.isArray(p.legacy_ids) && p.legacy_ids.includes(menuId))) || null;
+}
+
+/* ───────────────────────── 이벤트 ───────────────────────── */
+
+function setupEventListeners() {
+  el.tabBtns.forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
+
+  const navBrand = document.getElementById('nav-brand');
+  if (navBrand) navBrand.addEventListener('click', (e) => { e.preventDefault(); switchTab('home'); });
+
   let debounceTimer;
   el.homeSearchInput.addEventListener('input', (e) => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
       const q = e.target.value.trim();
-      if (q) {
-        const results = searchProducts(state.searchIndex, q, 30);
-        renderProductList(el.homeRecommendContainer, results, 'ppr');
-      } else {
-        renderHomeSections();
-      }
+      if (q) renderSearchResults(q);
+      else renderHomeSections();
     }, 150);
   });
 
-  // 3. 홈 퀵 필터
   document.querySelectorAll('[data-home-filter]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-home-filter]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      setActiveInGroup('[data-home-filter]', btn);
       state.homeFilter = btn.dataset.homeFilter;
       renderHomeSections();
     });
   });
 
-  // 4. 스캔 버튼 & 모달
-  el.homeScanBtn.addEventListener('click', () => {
-    openScannerModal();
-  });
-  el.btnCloseScanner.addEventListener('click', () => {
-    closeScannerModal();
-  });
-  el.btnTestBarcode.addEventListener('click', () => {
-    const code = el.selectDemoBarcode.value;
-    if (code) handleBarcodeScanned(code);
+  el.homeScanBtn.addEventListener('click', openScannerModal);
+  el.btnCloseScanner.addEventListener('click', closeScannerModal);
+  if (el.btnTestBarcode) {
+    el.btnTestBarcode.addEventListener('click', () => {
+      const code = el.selectDemoBarcode.value;
+      if (code) handleBarcodeScanned(code);
+    });
+  }
+
+  document.querySelectorAll('[data-ranking-mode]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setActiveInGroup('[data-ranking-mode]', btn);
+      state.rankingMode = btn.dataset.rankingMode;
+      state.rankingSort = state.rankingMode === 'stock' ? 'per100g' : 'ppr';
+      state.rankingFilter = 'all';
+      setActiveInGroup('[data-filter]', document.querySelector('[data-filter="all"]'));
+      syncModeUi();
+      renderRankingList();
+    });
   });
 
-  // 5. 랭킹 세그먼트 & 칩
   document.querySelectorAll('[data-segment]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-segment]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      setActiveInGroup('[data-segment]', btn);
       state.rankingSegment = btn.dataset.segment;
       renderRankingList();
     });
   });
 
-  const sortTipMap = {
-    ppr: '<strong>PPR (가성비) 순:</strong> 1,000원당 단백질(g)이 많은 순서로 정렬합니다. (단백질 ÷ 천원)',
-    cpd: '<strong>CPD (다이어트) 순:</strong> 100kcal당 단백질(g)이 높은 다이어트 밀도 순으로 정렬합니다. (단백질 ÷ 100kcal)',
-    npi: '<strong>NPI (클린 식단) 순:</strong> 원물 품질 가중치와 유해요소(나트륨·당류·포화지방 등) 감점을 제외한 순수 실효 단백질(g) 순으로 정렬합니다.'
-  };
-
   document.querySelectorAll('[data-sort]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-sort]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      setActiveInGroup('[data-sort]', btn);
       state.rankingSort = btn.dataset.sort;
-      const tipEl = document.getElementById('ranking-sort-tip-text');
-      if (tipEl) {
-        tipEl.innerHTML = sortTipMap[state.rankingSort] || sortTipMap.ppr;
-      }
+      updateSortTip();
       renderRankingList();
     });
   });
 
   document.querySelectorAll('[data-filter]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      setActiveInGroup('[data-filter]', btn);
       state.rankingFilter = btn.dataset.filter;
       renderRankingList();
     });
   });
 
-  // 6. 내 기준 탭 프리셋
+  if (el.rankingMore) el.rankingMore.addEventListener('click', () => renderRankingChunk());
+
   document.querySelectorAll('[data-preset]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-preset]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const presetKey = btn.dataset.preset;
-      const preset = PRESETS[presetKey];
+      setActiveInGroup('[data-preset]', btn);
+      const preset = PRESETS[btn.dataset.preset];
       if (preset) {
         state.userProfile = { ...state.userProfile, ...preset };
         syncProfileForm();
@@ -214,29 +244,24 @@ function setupEventListeners() {
     });
   });
 
-  // 7. 내 기준 입력 폼 체인지
-  ['input-gender', 'input-age', 'input-height', 'input-weight', 'input-activity', 'input-goal', 'input-meal', 'input-budget'].forEach(id => {
-    const elem = document.getElementById(id);
-    if (elem) {
-      elem.addEventListener('change', () => {
+  ['input-gender', 'input-age', 'input-height', 'input-weight', 'input-activity', 'input-goal', 'input-meal', 'input-budget']
+    .forEach(id => {
+      const elem = document.getElementById(id);
+      if (elem) elem.addEventListener('change', () => {
         readProfileForm();
         renderCalcTab();
         saveStoredProfile();
       });
-    }
-  });
+    });
 
-  // 8. 내 기준 모드 세그먼트 (단품 vs 조합)
   document.querySelectorAll('[data-calc-mode]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-calc-mode]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      setActiveInGroup('[data-calc-mode]', btn);
       state.calcMode = btn.dataset.calcMode;
       renderCalcTab();
     });
   });
 
-  // 9. 모달 닫기 버튼들 및 외부 클릭(백드롭) 닫기
   el.btnCloseDetail.addEventListener('click', () => el.sheetDetail.close());
   el.btnCloseCompare.addEventListener('click', () => el.sheetCompare.close());
   el.btnClosePolicy.addEventListener('click', () => el.sheetPolicy.close());
@@ -247,620 +272,768 @@ function setupEventListeners() {
     dlg.addEventListener('click', (e) => {
       if (e.target !== dlg) return;
       const rect = dlg.getBoundingClientRect();
-      const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height
-        && rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
-      if (!isInDialog) {
+      const inside = rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX && e.clientX <= rect.left + rect.width;
+      if (!inside) {
         if (dlg === el.sheetScanner && scannerInstance) scannerInstance.stopCamera();
         dlg.close();
       }
     });
   });
 
-  el.btnOpenPolicy.addEventListener('click', (e) => {
-    e.preventDefault();
-    el.sheetPolicy.showModal();
-  });
-  el.btnOpenCompare.addEventListener('click', () => openCompareModal());
+  el.btnOpenPolicy.addEventListener('click', (e) => { e.preventDefault(); el.sheetPolicy.showModal(); });
+  el.btnOpenCompare.addEventListener('click', openCompareModal);
+  el.btnSubmitReport.addEventListener('click', submitReport);
+}
 
-  // 10. 신고 제출
-  el.btnSubmitReport.addEventListener('click', () => {
-    alert('접수 창구가 아직 연결되지 않았습니다. 준비되는 대로 이 화면에서 바로 접수할 수 있게 됩니다.');
-    el.sheetReport.close();
+function setActiveInGroup(selector, btn) {
+  if (!btn) return;
+  document.querySelectorAll(selector).forEach(b => {
+    const on = b === btn;
+    b.classList.toggle('active', on);
+    if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
   });
 }
 
-// 탭 전환
 function switchTab(tabId) {
   state.activeTab = tabId;
-  el.tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+  el.tabBtns.forEach(b => {
+    const on = b.dataset.tab === tabId;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-selected', String(on));
+  });
   el.tabContents.forEach(c => c.classList.toggle('active', c.id === `tab-${tabId}`));
   window.scrollTo({ top: 0, behavior: 'instant' });
+  if (tabId === 'calc') renderCalcTab();
 }
 
-// 프로필 폼 동기화
+/* ───────────────────────── 프로필 폼 ───────────────────────── */
+
 function syncProfileForm() {
-  document.getElementById('input-gender').value = state.userProfile.gender;
-  document.getElementById('input-age').value = state.userProfile.age;
-  document.getElementById('input-height').value = state.userProfile.height_cm;
-  document.getElementById('input-weight').value = state.userProfile.weight_kg;
-  document.getElementById('input-activity').value = state.userProfile.activity_level;
-  document.getElementById('input-goal').value = state.userProfile.goal;
-  document.getElementById('input-meal').value = state.userProfile.meal;
-  document.getElementById('input-budget').value = state.userProfile.budget_krw;
+  const set = (id, v) => { const node = document.getElementById(id); if (node) node.value = v; };
+  set('input-gender', state.userProfile.gender);
+  set('input-age', state.userProfile.age);
+  set('input-height', state.userProfile.height_cm);
+  set('input-weight', state.userProfile.weight_kg);
+  set('input-activity', state.userProfile.activity_level);
+  set('input-goal', state.userProfile.goal);
+  set('input-meal', state.userProfile.meal);
+  set('input-budget', state.userProfile.budget_krw);
 }
 
 function readProfileForm() {
-  state.userProfile.gender = document.getElementById('input-gender').value;
-  state.userProfile.age = Number(document.getElementById('input-age').value);
-  state.userProfile.height_cm = Number(document.getElementById('input-height').value);
-  state.userProfile.weight_kg = Number(document.getElementById('input-weight').value);
-  state.userProfile.activity_level = document.getElementById('input-activity').value;
-  state.userProfile.goal = document.getElementById('input-goal').value;
-  state.userProfile.meal = document.getElementById('input-meal').value;
-  state.userProfile.budget_krw = Number(document.getElementById('input-budget').value);
+  const get = id => (document.getElementById(id) || {}).value;
+  state.userProfile.gender = get('input-gender');
+  state.userProfile.age = Number(get('input-age'));
+  state.userProfile.height_cm = Number(get('input-height'));
+  state.userProfile.weight_kg = Number(get('input-weight'));
+  state.userProfile.activity_level = get('input-activity');
+  state.userProfile.goal = get('input-goal');
+  state.userProfile.meal = get('input-meal');
+  state.userProfile.budget_krw = Number(get('input-budget'));
 }
 
-// 전체 렌더링
+/* ───────────────────────── 공통 헬퍼 ───────────────────────── */
+
+const CH_LABEL = { cvs: '편의점', mart: '마트', online: '식단몰', fr: '외식' };
+
+function daysSince(dateStr) {
+  if (!dateStr) return null;
+  const d = new Date(dateStr + 'T00:00:00');
+  if (isNaN(d)) return null;
+  return Math.floor((Date.now() - d.getTime()) / 86400000);
+}
+
+function staleState(p) {
+  const s = (state.meta && state.meta.rules_snapshot && state.meta.rules_snapshot.staleness)
+    || { stale_days: 90, rank_exclude_days: 180 };
+  const d = daysSince(p.verified_at);
+  if (d === null) return 'unknown';
+  if (d >= s.rank_exclude_days) return 'excluded';
+  if (d >= s.stale_days) return 'stale';
+  return 'fresh';
+}
+
+/** 단백질 100g당 가격(원) — '미리 쟁여두기' 모드의 정렬 기준 */
+function pricePer100gProtein(p) {
+  const protein = Number(p.protein_g || 0);
+  if (!protein || !p.price_krw) return Infinity;
+  return Math.round(Number(p.price_krw) / protein * 100);
+}
+
+function categoryIcon(p) {
+  const map = {
+    '유제품/음료': '🥛', '샐러드': '🥗', '닭가슴살/육가공': '🍗', '과자/바': '🍫',
+    '디저트': '🍦', '면': '🍜', '삼각김밥/주먹밥': '🍙', '샌드위치/버거': '🥪',
+    '즉석밥/죽': '🍚', '한식/분식': '🍲', '도시락': '🍱'
+  };
+  if (map[p.category]) return map[p.category];
+  return p.channel === 'mart' ? '🛒' : '🍱';
+}
+
+function fmtValue(value, status, unit = '') {
+  if (status === 'unknown' || value === null || value === undefined) return '—';
+  return `${value}${unit}`;
+}
+
+function escapeHtml(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
+function announce(node, text) {
+  if (node) node.textContent = text;
+}
+
+/* ───────────────────────── 렌더 ───────────────────────── */
+
 function renderAll() {
   syncProfileForm();
+  renderFreshness();
   renderHomeSections();
+  syncModeUi();
   renderRankingList();
   renderCalcTab();
   updateCompareDock();
 }
 
-// ── 홈 탭 렌더링 ──
-function renderHomeSections() {
-  // 이번 주 신상 3건
-  const newItems = [...state.products]
-    .filter(p => p.launch_date && p.launch_date >= '2026-08-15' && p.grade === 'A')
-    .sort((a, b) => b.launch_date.localeCompare(a.launch_date))
-    .slice(0, 3);
-  renderProductList(el.newItemsContainer, newItems, 'ppr');
-  document.getElementById('new-items-count').textContent = `검증 고단백 ${newItems.length}개`;
-
-  // 추천 하이라이트
-  let recItems = [...state.products];
-  if (state.homeFilter === 'best_ppr') {
-    recItems.sort((a, b) => b.ppr - a.ppr);
-  } else if (state.homeFilter === 'best_cpd') {
-    recItems.sort((a, b) => b.cpd - a.cpd);
-  } else if (state.homeFilter === 'best_npi') {
-    recItems.sort((a, b) => b.npi - a.npi);
-  } else if (state.homeFilter === 'washing') {
-    recItems = recItems.filter(p => p.pw !== null && p.pw >= 50);
-  } else {
-    // all: A/B 등급 중심 5건
-    recItems = recItems.filter(p => p.grade === 'A' || p.grade === 'B').slice(0, 5);
-  }
-  renderProductList(el.homeRecommendContainer, recItems.slice(0, 5), state.homeFilter.replace('best_', '') || 'ppr');
-
-  // 워싱 주의 2건
-  const washingItems = state.products.filter(p => p.pw !== null && p.pw >= 50).slice(0, 2);
-  renderProductList(el.washingAlertContainer, washingItems, 'ppr');
+function renderFreshness() {
+  if (!el.dataFreshness) return;
+  const m = state.meta;
+  if (!m) { el.dataFreshness.textContent = ''; return; }
+  const hold = m.hold_count ? ` · 정보 부족 ${m.hold_count}` : '';
+  el.dataFreshness.textContent = `${m.total_count}건${hold} · 최근 확인 ${m.latest_verified_at || '-'}`;
 }
 
-// ── 랭킹 탭 렌더링 ──
+// ── 홈 ──
+function renderHomeSections() {
+  // 「이번 주 새로 확인한 메뉴」 — 출시일 데이터가 없으므로 실제로 갱신되는 verified_at 을 쓴다.
+  const latest = (state.meta && state.meta.latest_verified_at) || '';
+  const latestAll = state.index.filter(p => p.verified_at === latest);
+  renderProductList(el.newItemsContainer, latestAll.slice().sort((a, b) => (b.ppr || 0) - (a.ppr || 0)).slice(0, 3),
+    'ppr', '아직 새로 확인된 메뉴가 없습니다.');
+  if (el.newItemsCount) {
+    // 확인일이 한 종류뿐이면 '새로 확인한'이라는 말이 성립하지 않는다 — 있는 그대로 적는다.
+    const distinctDates = new Set(state.index.map(p2 => p2.verified_at)).size;
+    el.newItemsCount.textContent = !latest ? ''
+      : (distinctDates <= 1
+        ? `${latest} 일괄 확인 · 갱신 이력이 쌓이면 이 자리에 변경분만 표시됩니다`
+        : `${latest} 확인 · ${latestAll.length}건`);
+  }
+
+  let rec = state.index.filter(p => p.grade_eligible !== false && staleState(p) !== 'excluded');
+  if (state.homeFilter === 'best_ppr') rec = rec.slice().sort((a, b) => b.ppr - a.ppr);
+  else if (state.homeFilter === 'best_cpd') rec = rec.slice().sort((a, b) => b.cpd - a.cpd);
+  else if (state.homeFilter === 'best_npi') rec = rec.slice().sort((a, b) => b.npi - a.npi);
+  else rec = rec.filter(p => p.grade === 'A' || p.grade === 'B');
+  renderProductList(el.homeRecommendContainer, rec.slice(0, 5), state.homeFilter.replace('best_', '') || 'ppr');
+
+  const washing = state.index.filter(p => p.pw_tier === 'washing').slice(0, 2);
+  renderProductList(el.washingAlertContainer, washing, 'ppr', '이번 주 워싱 의심 판정은 없습니다.');
+}
+
+function renderSearchResults(q) {
+  const results = searchProducts(state.searchIndex, q, 30);
+  if (results.length === 0) {
+    el.homeRecommendContainer.innerHTML = `
+      <div class="empty-state">
+        <p><strong>"${escapeHtml(q)}"</strong> 검색 결과가 없습니다.</p>
+        <p class="empty-sub">아직 등록되지 않은 상품일 수 있습니다. 영양표 사진을 제보해 주시면 확인 후 등록합니다.</p>
+        <button class="btn" type="button" id="btn-empty-report">영양표 사진 제보하기</button>
+      </div>`;
+    const b = document.getElementById('btn-empty-report');
+    if (b) b.addEventListener('click', () => openReportSheet(null, q));
+  } else {
+    renderProductList(el.homeRecommendContainer, results, 'ppr');
+  }
+  announce(el.rankingCount, `검색 결과 ${results.length}건`);
+}
+
+// ── 랭킹 ──
+function syncModeUi() {
+  const isStock = state.rankingMode === 'stock';
+  const per100 = document.querySelector('[data-sort="per100g"]');
+  const ppr = document.querySelector('[data-sort="ppr"]');
+  if (per100) per100.hidden = !isStock;
+  if (ppr) ppr.hidden = isStock;
+  document.querySelectorAll('[data-filter]').forEach(b => {
+    const only = b.dataset.modeOnly;
+    if (only) b.hidden = only !== state.rankingMode;
+  });
+  document.querySelectorAll('[data-sort]').forEach(b => {
+    const on = b.dataset.sort === state.rankingSort;
+    b.classList.toggle('active', on);
+    if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
+  });
+  const noteEl = document.getElementById('ranking-mode-note');
+  if (noteEl) noteEl.textContent = RANKING_MODES[state.rankingMode].note;
+  updateSortTip();
+}
+
+const SORT_TIPS = {
+  ppr: '<strong>가성비(PPR) 순:</strong> 1,000원당 단백질(g)이 많은 순서입니다.',
+  per100g: '<strong>단백질 100g당 가격 순:</strong> 대용량 제품을 같은 기준으로 비교합니다. 낮을수록 쌉니다.',
+  cpd: '<strong>다이어트 밀도(CPD) 순:</strong> 100kcal당 단백질(g)이 높은 순서입니다.',
+  npi: '<strong>실질 단백질(NPI) 순:</strong> 원물 품질과 유해요소 감점을 반영한 보정 단백질(g) 순서입니다.'
+};
+
+function updateSortTip() {
+  const tip = document.getElementById('ranking-sort-tip-text');
+  if (tip) tip.innerHTML = SORT_TIPS[state.rankingSort] || SORT_TIPS.ppr;
+}
+
 function renderRankingList() {
-  let list = [...state.products];
+  const mode = RANKING_MODES[state.rankingMode];
+  let list = state.index.filter(p => mode.channels.includes(p.channel));
 
-  // 세그먼트: 이번 주 신상 필터
-  if (state.rankingSegment === 'new') {
-    list = list.filter(p => p.launch_date && p.launch_date >= '2026-08-15');
+  if (state.rankingSegment === 'recent') {
+    const latest = (state.meta && state.meta.latest_verified_at) || '';
+    list = list.filter(p => p.verified_at === latest);
   }
 
-  // 필터 칩
-  if (state.rankingFilter === 'clean') {
-    list = list.filter(p => p.clean_tier === 'clean');
-  } else if (state.rankingFilter === 'allulose') {
-    list = list.filter(p => p.ingredients_raw && (p.ingredients_raw.includes('알룰로스') || p.ingredients_raw.includes('알룰로오스')));
-  } else if (state.rankingFilter === 'cvs') {
-    list = list.filter(p => p.channel === 'cvs');
-  } else if (state.rankingFilter === 'mart') {
-    list = list.filter(p => p.channel === 'mart');
-  } else if (state.rankingFilter === 'online') {
-    list = list.filter(p => p.channel === 'online');
-  } else if (state.rankingFilter === 'fr') {
-    list = list.filter(p => p.channel === 'fr');
-  } else if (state.rankingFilter === 'under5k') {
-    list = list.filter(p => p.price_krw <= 5000);
-  } else if (state.rankingFilter === 'verified') {
-    list = list.filter(p => p.pw_tier === 'verified');
+  // 등급 보류는 기본 노출에서 빼되, 전용 필터로 들어올 수 있게 한다(제보 유입 동선).
+  if (state.rankingFilter === 'hold') {
+    list = list.filter(p => p.grade_eligible === false);
+  } else {
+    list = list.filter(p => p.grade_eligible !== false);
+    if (state.rankingFilter === 'clean') list = list.filter(p => p.clean_tier === 'clean');
+    else if (state.rankingFilter === 'verified') list = list.filter(p => p.pw_tier === 'verified');
+    else if (state.rankingFilter === 'under5k') list = list.filter(p => p.price_krw <= 5000);
+    else if (['cvs', 'fr', 'mart', 'online'].includes(state.rankingFilter)) {
+      list = list.filter(p => p.channel === state.rankingFilter);
+    }
   }
 
-  // 정렬
+  // 180일 넘게 재확인되지 않은 건은 랭킹에서 뺀다(검색으로는 여전히 찾을 수 있다).
+  list = list.filter(p => staleState(p) !== 'excluded');
+
   const sortKey = state.rankingSort;
   list.sort((a, b) => {
     if (sortKey === 'cpd') return b.cpd - a.cpd;
     if (sortKey === 'npi') return b.npi - a.npi;
-    return b.ppr - a.ppr; // ppr 기본
+    if (sortKey === 'per100g') return pricePer100gProtein(a) - pricePer100gProtein(b);
+    return b.ppr - a.ppr;
   });
 
-  renderProductList(el.rankingListContainer, list, sortKey);
+  state.rankingList = list;
+  state.rankingRendered = 0;
+  el.rankingListContainer.innerHTML = '';
+  renderRankingChunk();
+  announce(el.rankingCount, `${mode.label} ${list.length}건`);
 }
 
-// ── 내 기준 탭 렌더링 ──
+/** 한 번에 50건씩 — 수백 건을 한꺼번에 그리면 중급 기기에서 화면이 멈춘다. */
+function renderRankingChunk() {
+  const slice = state.rankingList.slice(state.rankingRendered, state.rankingRendered + PAGE_SIZE);
+  if (state.rankingRendered === 0 && slice.length === 0) {
+    el.rankingListContainer.innerHTML = '<div class="empty-state"><p>조건에 맞는 메뉴가 없습니다.</p></div>';
+  }
+  const frag = document.createDocumentFragment();
+  for (const p of slice) frag.appendChild(createProductCardElement(p, state.rankingSort));
+  el.rankingListContainer.appendChild(frag);
+  state.rankingRendered += slice.length;
+
+  if (el.rankingMore) {
+    const remain = state.rankingList.length - state.rankingRendered;
+    el.rankingMore.hidden = remain <= 0;
+    el.rankingMore.textContent = remain > 0 ? `${remain}건 더 보기` : '';
+  }
+}
+
+// ── 내 기준 ──
 function renderCalcTab() {
   const daily = computeDailyTargets(state.userProfile);
   const meal = computeMealTarget(daily, state.userProfile.meal);
 
-  // 배너 업데이트
   const mealNameMap = { breakfast: '아침', lunch: '점심', dinner: '저녁', snack: '간식/운동후' };
-  document.getElementById('target-title-text').textContent = `오늘 ${mealNameMap[meal.meal]} 1끼 타깃`;
-  document.getElementById('target-tdee-badge').textContent = `TDEE ${daily.tdee.toLocaleString()} kcal`;
-  document.getElementById('target-numbers-text').textContent = 
-    `${meal.kcal} kcal · 단백질 ${meal.P}g · 나트륨 ${meal.Na}mg 이하`;
-  document.getElementById('target-formula-text').textContent = 
-    `BMR ${daily.bmr.toLocaleString()} × ${meal.meal === 'lunch' ? '0.35' : meal.ratio} (Mifflin-St Jeor)`;
+  const setText = (id, v) => { const node = document.getElementById(id); if (node) node.textContent = v; };
+  setText('target-title-text', `오늘 ${mealNameMap[meal.meal]} 1끼 타깃`);
+  setText('target-tdee-badge', `TDEE ${daily.tdee.toLocaleString()} kcal`);
+  setText('target-numbers-text', `${meal.kcal} kcal · 단백질 ${meal.P}g · 나트륨 ${meal.Na}mg 이하`);
+  // 산식은 실제 계산 순서를 그대로 적는다(예전에는 PAL·목적계수가 빠져 있었다).
+  const goalLabel = { diet: '감량', lean_mass: '린매스업', bulk_up: '벌크업' }[daily.goal] || daily.goal;
+  const palUsed = (daily.tdee / daily.bmr).toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
+  setText('target-formula-text',
+    `BMR ${daily.bmr.toLocaleString()} × 활동 ${palUsed} = TDEE ${daily.tdee.toLocaleString()} → ${goalLabel} 보정 1일 ${daily.kcal_day.toLocaleString()}kcal × 끼니 ${meal.ratio} = ${meal.kcal}kcal (Mifflin-St Jeor)`);
+
+  if (!state.products.length) {
+    el.calcResultContainer.innerHTML = '<div class="empty-state"><p>추천 계산에 필요한 데이터를 불러오는 중입니다…</p></div>';
+    ensureFullData().then(() => { if (state.activeTab === 'calc') renderCalcTab(); });
+    return;
+  }
+
+  const comboRules = state.meta && state.meta.rules_snapshot && state.meta.rules_snapshot.recommendation
+    ? state.meta.rules_snapshot.recommendation.combo : undefined;
 
   if (state.calcMode === 'single') {
-    // 단품 Top 5
     const singles = state.products
       .filter(p => p.price_krw <= state.userProfile.budget_krw)
+      // 워싱 의심·등급 보류는 개인 맞춤 추천에서 제외한다(기획서 §2.4 하드 필터).
+      .filter(p => p.pw_tier !== 'washing')
+      .filter(p => p.grade_eligible !== false)
+      .filter(p => staleState(p) !== 'excluded')
       .map(p => ({
         product: p,
         fitScore: computeFitScore(p, meal, state.userProfile.goal),
         reason: generateReasonSentence(p, meal, 0, state.userProfile.goal)
       }))
-      .sort((a, b) => b.fitScore - a.fitScore)
+      .sort((a, b) => b.fitScore - a.fitScore || b.product.npi - a.product.npi)
       .slice(0, 5);
-
-    renderSingleRecommendations(singles, meal);
+    renderSingleRecommendations(singles);
   } else {
-    // 조합 Top 5
     const combos = findBestCombos(state.products, meal, {
       budget: state.userProfile.budget_krw,
       goal: state.userProfile.goal,
-      topCount: 5
+      topCount: 5,
+      rules: comboRules
     });
-
-    renderComboRecommendations(combos);
+    renderComboRecommendations(combos, meal);
   }
 }
 
-// 단품 추천 렌더링
-function renderSingleRecommendations(items, target) {
+function renderSingleRecommendations(items) {
   el.calcResultContainer.innerHTML = '';
   if (items.length === 0) {
-    el.calcResultContainer.innerHTML = '<div style="text-align:center; padding:30px; color:var(--ink-3);">조건에 맞는 단품 추천이 없습니다. 예산을 늘려보세요.</div>';
+    el.calcResultContainer.innerHTML = '<div class="empty-state"><p>조건에 맞는 단품 추천이 없습니다. 예산을 늘려 보세요.</p></div>';
     return;
   }
-
   items.forEach(({ product, fitScore, reason }) => {
     const card = createProductCardElement(product, 'ppr');
-    // Fit 점수 및 이유 문장 삽입
-    const reasonBox = document.createElement('div');
+    const reasonBox = document.createElement('span');
     reasonBox.className = 'combo-reason';
-    reasonBox.style.marginTop = '8px';
-    reasonBox.innerHTML = `<strong>Fit ${fitScore}점:</strong> ${reason}`;
+    reasonBox.innerHTML = `<strong>Fit ${fitScore}점:</strong> ${escapeHtml(reason)}`;
     card.appendChild(reasonBox);
     el.calcResultContainer.appendChild(card);
   });
 }
 
-// 조합 추천 렌더링
-function renderComboRecommendations(combos) {
+function renderComboRecommendations(combos, meal) {
   el.calcResultContainer.innerHTML = '';
   if (combos.length === 0) {
-    el.calcResultContainer.innerHTML = '<div style="text-align:center; padding:30px; color:var(--ink-3);">조건을 만족하는 1끼 조합을 찾을 수 없습니다. 예산을 상향해보세요.</div>';
+    el.calcResultContainer.innerHTML = `<div class="empty-state">
+      <p>조건을 만족하는 1끼 조합을 찾지 못했습니다.</p>
+      <p class="empty-sub">예산을 올리거나 끼니를 바꿔 보세요. 나트륨이 1끼 목표의 150%를 넘는 조합은 추천에서 제외됩니다.</p>
+    </div>`;
     return;
   }
 
-  combos.forEach((c, idx) => {
-    const card = document.createElement('div');
-    card.className = 'combo-card';
+  // 목표 열량이 커서 지금 데이터로는 채우기 어려운 경우가 있다 — 낮은 점수를 그냥 내놓지 않고 이유를 말한다.
+  const best = combos[0];
+  if (best && (best.score < 40 || combos.length < 3)) {
+    const note = document.createElement('p');
+    note.className = 'combo-caveat';
+    const fill = Math.round((best.aggregate.kcal / meal.kcal) * 100);
+    note.textContent = `지금 등록된 메뉴로는 이 목표(${meal.kcal}kcal)를 채우는 조합이 많지 않습니다. 가장 가까운 조합도 목표의 ${fill}% 수준입니다. 예산을 올리거나 끼니 비중을 조정해 보세요.`;
+    el.calcResultContainer.appendChild(note);
+  }
 
-    const itemNames = c.items.map(m => m.name).join(' + ');
-    const thumbsHtml = c.items.map(m => {
-      return m.image_url
-        ? `<img src="${m.image_url}" alt="${m.name}" title="${m.name}" style="width:38px; height:38px; object-fit:cover; border-radius:6px; border:1px solid var(--line); background:var(--surface-2);" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';">`
-        : '';
-    }).filter(Boolean).join('');
+  combos.forEach((c, idx) => {
+    const card = document.createElement('article');
+    card.className = 'combo-card';
+    const naPct = meal.Na ? Math.round((c.aggregate.sodium_mg / meal.Na) * 100) : 0;
 
     card.innerHTML = `
       <div class="combo-header">
-        <span style="font-size:var(--t2); color:var(--ink-3); font-weight:var(--w-bold);">추천 조합 #${idx + 1}</span>
+        <span class="combo-rank">추천 조합 #${idx + 1}</span>
         <span class="combo-score-badge">Fit ${c.score}점</span>
       </div>
-      ${thumbsHtml ? `<div style="display:flex; gap:6px; margin:6px 0 8px 0;">${thumbsHtml}</div>` : ''}
-      <div class="combo-title">${itemNames}</div>
+      <h3 class="combo-title">${escapeHtml(c.aggregate.name)}</h3>
       <div class="combo-meta">
-        ${c.aggregate.price_krw.toLocaleString()}원 · ${c.aggregate.kcal}kcal · 단백질 ${c.aggregate.protein_g}g · 나트륨 ${c.aggregate.sodium_mg}mg
+        ${c.aggregate.price_krw.toLocaleString()}원 · ${c.aggregate.kcal}kcal · 단백질 ${c.aggregate.protein_g}g · 나트륨 ${c.aggregate.sodium_mg}mg (1끼 목표의 ${naPct}%)
       </div>
-      <div class="combo-reason">${c.reason}</div>
+      <div class="combo-reason">${escapeHtml(c.reason)}</div>
+      <div class="combo-items"></div>
     `;
 
-    card.addEventListener('click', () => {
-      // 첫 번째 제품의 상세 열기
-      openDetailModal(c.items[0]);
+    const itemsWrap = card.querySelector('.combo-items');
+    c.items.forEach(m => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'combo-item-btn';
+      b.textContent = `${m.name} · ${Number(m.price_krw).toLocaleString()}원`;
+      b.addEventListener('click', () => openDetailModal(m));
+      itemsWrap.appendChild(b);
     });
 
     el.calcResultContainer.appendChild(card);
   });
 }
 
-// ── 카드 렌더링 헬퍼 ──
-function renderProductList(container, items, highlightMetric = 'ppr') {
+/* ───────────────────────── 카드 ───────────────────────── */
+
+function renderProductList(container, items, highlightMetric = 'ppr', emptyText = '해당하는 메뉴가 없습니다.') {
+  if (!container) return;
   container.innerHTML = '';
   if (!items || items.length === 0) {
-    container.innerHTML = '<div style="text-align:center; padding:30px; color:var(--ink-3);">해당하는 메뉴가 없습니다.</div>';
+    container.innerHTML = `<div class="empty-state"><p>${escapeHtml(emptyText)}</p></div>`;
     return;
   }
-
-  items.forEach(p => {
-    const card = createProductCardElement(p, highlightMetric);
-    container.appendChild(card);
-  });
+  const frag = document.createDocumentFragment();
+  items.forEach(p => frag.appendChild(createProductCardElement(p, highlightMetric)));
+  container.appendChild(frag);
 }
 
 function createProductCardElement(p, highlightMetric = 'ppr') {
-  const card = document.createElement('div');
+  // 카드는 버튼이다 — div + click 은 키보드·스크린리더에서 존재하지 않는 것과 같다.
+  const card = document.createElement('button');
+  card.type = 'button';
   card.className = 'card';
 
-  // 브랜드/채널 로고 및 이니셜
-  const initial = (p.brand || 'PR').slice(0, 2).toUpperCase();
+  const hold = p.grade_eligible === false;
+  const stale = staleState(p);
 
-  // 지표 텍스트 포맷
-  const pprClass = highlightMetric === 'ppr' ? 'strong' : '';
-  const cpdClass = highlightMetric === 'cpd' ? 'strong' : '';
-  const npiClass = highlightMetric === 'npi' ? 'strong' : '';
-
-  // 태그 목록
   let tagsHtml = '';
-  if (p.pw_tier === 'washing') {
-    tagsHtml += `<span class="tag tag-washing">🚨 워싱 의심 ${p.pw}점</span>`;
+  if (hold) {
+    tagsHtml += '<span class="tag tag-hold">정보 부족 · 등급 보류</span>';
+  } else if (p.pw_tier === 'washing') {
+    tagsHtml += `<span class="tag tag-washing">워싱 의심 ${p.pw}점</span>`;
   } else if (p.pw_tier === 'conditional') {
-    tagsHtml += `<span class="tag tag-conditional">조건부</span>`;
+    tagsHtml += '<span class="tag tag-conditional">조건부</span>';
   } else if (p.pw_tier === 'verified') {
-    tagsHtml += `<span class="tag tag-verified">검증 고단백</span>`;
+    tagsHtml += '<span class="tag tag-verified">검증 고단백</span>';
   }
 
-  // CleanRadar 안심원료 및 알룰로스 뱃지
-  if (p.clean_tier === 'clean') {
-    tagsHtml += `<span class="tag" style="background:#ecfdf5; color:#059669; border:1px solid rgba(16,185,129,0.3);">🟢 안심원료</span>`;
-  } else if (p.clean_tier === 'warning') {
-    tagsHtml += `<span class="tag" style="background:#fef2f2; color:#dc2626; border:1px solid rgba(239,68,68,0.3);">🔴 첨가물주의</span>`;
-  }
+  if (p.clean_tier === 'clean') tagsHtml += '<span class="tag tag-clean">안심 원료</span>';
+  else if (p.clean_tier === 'warning') tagsHtml += '<span class="tag tag-additive">첨가물 주의</span>';
+  else if (p.clean_tier === 'unknown') tagsHtml += '<span class="tag tag-muted">원재료 미확보</span>';
 
-  if (p.ingredients_raw && (p.ingredients_raw.includes('알룰로스') || p.ingredients_raw.includes('알룰로오스'))) {
-    tagsHtml += `<span class="tag" style="background:#f0fdf4; color:#166534; border:1px solid rgba(22,101,52,0.25);">🍯 알룰로스</span>`;
-  }
+  if (stale === 'stale') tagsHtml += '<span class="tag tag-muted">확인한 지 오래됨</span>';
+  if (p.price_krw_status === 'estimated') tagsHtml += '<span class="tag tag-estimate">가격 추정</span>';
 
-  if (p.penalties && p.penalties.length > 0) {
-    tagsHtml += `<span class="tag tag-penalty">${p.penalties[0].label}</span>`;
-  }
+  const priceText = p.price_krw_status === 'unknown'
+    ? '가격 미확인'
+    : `${Number(p.price_krw).toLocaleString()}원${p.price_krw_status === 'estimated' ? '(추정)' : ''}`;
 
-  // 카테고리/채널별 아이콘 매핑
-  let icon = '🍱';
-  if (p.category === '유제품/음료') icon = '🥛';
-  else if (p.category === '샐러드') icon = '🥗';
-  else if (p.category === '닭가슴살/육가공') icon = '🍗';
-  else if (p.category === '과자/바') icon = '🍫';
-  else if (p.category === '아이스크림') icon = '🍦';
-  else if (p.category === '라면/면류') icon = '🍜';
-  else if (p.category === '삼각김밥/주먹밥') icon = '🍙';
-  else if (p.category === '샌드위치/버거') icon = '🥪';
-  else if (p.channel === 'mart') icon = '🛒';
+  const metricHtml = highlightMetric === 'per100g'
+    ? `<span class="metric-item strong">100g당 ${pricePer100gProtein(p).toLocaleString()}원</span>
+       <span class="metric-item">CPD ${p.cpd}</span>
+       <span class="metric-item">NPI ${p.npi}</span>`
+    : `<span class="metric-item ${highlightMetric === 'ppr' ? 'strong' : ''}">PPR ${p.ppr}</span>
+       <span class="metric-item ${highlightMetric === 'cpd' ? 'strong' : ''}">CPD ${p.cpd}</span>
+       <span class="metric-item ${highlightMetric === 'npi' ? 'strong' : ''}">NPI ${p.npi}</span>`;
 
-  const chLabelMap = { cvs: '편의점', mart: '마트', online: '식단몰', fr: '외식' };
-  const chLabel = chLabelMap[p.channel] || '기타';
+  const stampClass = hold ? 'grade-hold' : `grade-${p.grade}`;
+  const stampText = hold ? '?' : p.grade;
+  const stampLabel = hold ? '등급 보류' : `종합 ${p.grade}등급`;
 
   const photoHtml = p.image_url
-    ? `<img src="${p.image_url}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-       <span class="fallback-emoji" style="display:none;">${icon}</span>`
-    : `<span class="fallback-emoji">${icon}</span>`;
+    ? `<img src="${escapeHtml(p.image_url)}" alt="" loading="lazy" referrerpolicy="no-referrer"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+       <span class="fallback-emoji" aria-hidden="true" style="display:none;">${categoryIcon(p)}</span>`
+    : `<span class="fallback-emoji" aria-hidden="true">${categoryIcon(p)}</span>`;
 
   card.innerHTML = `
-    <div class="card-row">
-      <div class="card-photo">
-        ${photoHtml}
-      </div>
-      <div class="card-info">
-        <div class="card-title">${p.name}</div>
-        <div class="card-meta">${p.brand} · ${chLabel} · ${p.serving_g}g · ${p.price_krw.toLocaleString()}원</div>
-        <div class="card-metrics">
-          <span class="metric-item ${pprClass}">PPR ${p.ppr}</span>
-          <span class="metric-item ${cpdClass}">CPD ${p.cpd}</span>
-          <span class="metric-item ${npiClass}">NPI ${p.npi}</span>
-        </div>
-        <div class="card-tags">
-          ${tagsHtml}
-        </div>
-      </div>
-      <div class="grade-stamp grade-${p.grade}">${p.grade}</div>
-    </div>
+    <span class="card-row">
+      <span class="card-photo">${photoHtml}</span>
+      <span class="card-info">
+        <span class="card-title">${escapeHtml(p.name)}</span>
+        <span class="card-meta">${escapeHtml(p.brand)} · ${CH_LABEL[p.channel] || '기타'} · ${p.serving_g ? p.serving_g + 'g' : '—'} · ${priceText}</span>
+        <span class="card-metrics">${metricHtml}</span>
+        <span class="card-tags">${tagsHtml}</span>
+      </span>
+      <span class="grade-stamp ${stampClass}" aria-hidden="true">${stampText}</span>
+    </span>
+    <span class="sr-only">${stampLabel}</span>
   `;
 
   card.addEventListener('click', () => openDetailModal(p));
   return card;
 }
 
-// ── 상세 바텀시트 열기 ──
-function openDetailModal(p) {
+/* ───────────────────────── 상세 시트 ───────────────────────── */
+
+async function openDetailModal(pLight) {
+  if (!el.sheetDetail.open) el.sheetDetail.showModal();
+  el.sheetDetailContent.innerHTML = '<div class="empty-state"><p>불러오는 중…</p></div>';
+
+  await ensureFullData();
+  const p = findFull(pLight.menu_id) || pLight;
   state.activeProduct = p;
+
+  const hold = p.grade_eligible === false;
   const isComparing = state.compareList.includes(p.menu_id);
-  const chLabelMap = { cvs: '편의점', mart: '대형마트/식품', online: '식단/온라인몰', fr: '외식/카페' };
-  const chLabel = chLabelMap[p.channel] || '기타';
+  const chLabel = CH_LABEL[p.channel] || '기타';
 
   const heroImageHtml = p.image_url
-    ? `<div class="detail-hero-photo">
-         <img src="${p.image_url}" alt="${p.name}" referrerpolicy="no-referrer" onerror="this.parentElement.style.display='none';">
-       </div>`
+    ? `<div class="detail-hero-photo"><img src="${escapeHtml(p.image_url)}" alt="" referrerpolicy="no-referrer" onerror="this.parentElement.style.display='none';"></div>`
     : '';
-
-  // 영양성분 1일 기준치 대비 %
-  const pPct = Math.round((p.protein_g / 55) * 100);
-  const naPct = Math.round((p.sodium_mg / 2000) * 100);
-  const sugarPct = p.sugar_g ? Math.round((p.sugar_g / 100) * 100) : 0;
-  const satFatPct = p.sat_fat_g ? Math.round((p.sat_fat_g / 15) * 100) : 0;
-
-  let washingSection = '';
-  if (p.marketing_claim) {
-    const wTier = p.pw_tier === 'washing' ? 'var(--bad)' : (p.pw_tier === 'conditional' ? 'var(--warn)' : 'var(--good)');
-    washingSection = `
-      <div style="background:var(--surface-2); border-left:4px solid ${wTier}; padding:10px 12px; border-radius:var(--r2); margin:12px 0;">
-        <div style="font-weight:bold; color:${wTier}; font-size:var(--t3);">워싱 판독 결과: ${p.pw_label || '검증 고단백'} (${p.pw}점)</div>
-        <div style="font-size:var(--t1); color:var(--ink-2); margin-top:4px;">
-          ${p.pw_breakdown && p.pw_breakdown.length > 0 ? p.pw_breakdown.map(b => `• ${b.reason}`).join('<br>') : '식약처 고단백 영양강조 기준을 정직하게 충족함'}
-        </div>
-      </div>
-    `;
-  }
-
-  // ── CleanRadar 원재료·첨가물 안심 분석 ──
-  const cleanReport = analyzeIngredients(p.ingredients_raw, p);
-  const { stats, teardowns, tokens, cleanScore, tierLabel } = cleanReport;
-  const scoreClass = cleanScore >= 80 ? 'clean-score-high' : (cleanScore >= 50 ? 'clean-score-medium' : 'clean-score-low');
-
-  const tagsCloudHtml = tokens.map((t, idx) => `
-    <span class="clean-ingredient-tag tag-tier-${t.tier}" data-tag-idx="${idx}">
-      ${t.tier === 1 ? '🟢' : (t.tier === 3 ? '🟡' : (t.tier === 4 ? '🔴' : '⚪'))} ${t.name}
-    </span>
-  `).join('');
-
-  const cleanRadarSection = `
-    <!-- 🔬 화해형 CleanRadar 원재료·첨가물 안심 분석 카드 -->
-    <div class="clean-radar-card">
-      <div class="clean-radar-head">
-        <div class="clean-radar-title">
-          <span>🔬 원재료·첨가물 안심 분석</span>
-        </div>
-        <span class="clean-radar-score-badge ${scoreClass}">안심 ${cleanScore}점 · ${tierLabel}</span>
-      </div>
-
-      <!-- 화해형 4색 누적 세그먼트 바 -->
-      <div class="clean-bar-wrapper">
-        <div class="clean-bar">
-          <div class="clean-seg seg-good" style="width: ${stats.goodPct}%;" title="안심 ${stats.goodCount}개 (${stats.goodPct}%)"></div>
-          <div class="clean-seg seg-neutral" style="width: ${stats.neutralPct}%;" title="일반 ${stats.neutralCount}개 (${stats.neutralPct}%)"></div>
-          <div class="clean-seg seg-caution" style="width: ${stats.cautionPct}%;" title="주의 ${stats.cautionCount}개 (${stats.cautionPct}%)"></div>
-          <div class="clean-seg seg-bad" style="width: ${stats.badPct}%;" title="기피 ${stats.badCount}개 (${stats.badPct}%)"></div>
-        </div>
-        <div class="clean-legend">
-          <span class="clean-legend-item"><span class="clean-dot" style="background:#10b981;"></span>안심 ${stats.goodCount}</span>
-          <span class="clean-legend-item"><span class="clean-dot" style="background:#94a3b8;"></span>일반 ${stats.neutralCount}</span>
-          <span class="clean-legend-item"><span class="clean-dot" style="background:#f59e0b;"></span>주의 ${stats.cautionCount}</span>
-          <span class="clean-legend-item"><span class="clean-dot" style="background:#ef4444;"></span>기피 ${stats.badCount}</span>
-        </div>
-      </div>
-
-      <!-- 4대 카테고리 심층 Teardown (당류/원물/지방/첨가물) -->
-      <div class="clean-teardown-list">
-        <!-- 1. 당류 및 감미료 -->
-        <div class="clean-teardown-item">
-          <div class="clean-teardown-header">
-            <span class="clean-teardown-cat">${teardowns.sweetener.icon} 당류 & 감미료</span>
-            <span class="clean-teardown-badge badge-status-${teardowns.sweetener.status}">${teardowns.sweetener.badge}</span>
-          </div>
-          <div class="clean-teardown-title">${teardowns.sweetener.title}</div>
-          <div class="clean-teardown-desc">${teardowns.sweetener.desc}</div>
-        </div>
-
-        <!-- 2. 단백질 원천 -->
-        <div class="clean-teardown-item">
-          <div class="clean-teardown-header">
-            <span class="clean-teardown-cat">${teardowns.protein.icon} 단백질 원물 품질</span>
-            <span class="clean-teardown-badge badge-status-${teardowns.protein.status}">${teardowns.protein.badge}</span>
-          </div>
-          <div class="clean-teardown-title">${teardowns.protein.title}</div>
-          <div class="clean-teardown-desc">${teardowns.protein.desc}</div>
-        </div>
-
-        <!-- 3. 지방 및 유지류 -->
-        <div class="clean-teardown-item">
-          <div class="clean-teardown-header">
-            <span class="clean-teardown-cat">${teardowns.fat.icon} 지방 & 유지 원료</span>
-            <span class="clean-teardown-badge badge-status-${teardowns.fat.status}">${teardowns.fat.badge}</span>
-          </div>
-          <div class="clean-teardown-title">${teardowns.fat.title}</div>
-          <div class="clean-teardown-desc">${teardowns.fat.desc}</div>
-        </div>
-
-        <!-- 4. 식품첨가물 및 보존료 -->
-        <div class="clean-teardown-item">
-          <div class="clean-teardown-header">
-            <span class="clean-teardown-cat">${teardowns.additive.icon} 요주의 식품첨가물</span>
-            <span class="clean-teardown-badge badge-status-${teardowns.additive.status}">${teardowns.additive.badge}</span>
-          </div>
-          <div class="clean-teardown-title">${teardowns.additive.title}</div>
-          <div class="clean-teardown-desc">${teardowns.additive.desc}</div>
-        </div>
-      </div>
-
-      <!-- 전성분 인터랙티브 태그 클라우드 -->
-      <div class="clean-tags-section">
-        <button class="clean-tags-toggle-btn" id="btn-toggle-clean-tags">
-          <span>📋 전성분 원재료 태그 (${tokens.length}종)</span>
-          <span id="clean-tags-arrow">보기 ▾</span>
-        </button>
-        <div class="clean-tags-cloud" id="clean-tags-cloud" style="display:none;">
-          ${tagsCloudHtml}
-        </div>
-        <div class="clean-tag-info-popup" id="clean-tag-info-popup">
-          <strong id="clean-tag-info-title"></strong><br>
-          <span id="clean-tag-info-desc"></span>
-        </div>
-      </div>
-    </div>
-  `;
 
   el.sheetDetailContent.innerHTML = `
     ${heroImageHtml}
-    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+    <div class="detail-head">
       <div>
-        <div style="font-size:var(--t2); color:var(--ink-3);">${p.brand} · ${chLabel} · ${p.category}</div>
-        <h2 style="margin:2px 0 6px 0; font-size:var(--t6); color:var(--ink);">${p.name}</h2>
-        <div style="font-size:var(--t4); font-weight:bold; color:var(--brand);">${p.price_krw.toLocaleString()}원</div>
+        <div class="detail-brand">${escapeHtml(p.brand)} · ${chLabel} · ${escapeHtml(p.category)}</div>
+        <h2 class="detail-name">${escapeHtml(p.name)}</h2>
+        <div class="detail-price">${p.price_krw_status === 'unknown' ? '가격 미확인' : Number(p.price_krw).toLocaleString() + '원'}
+          ${p.price_krw_status === 'estimated' ? '<span class="tag tag-estimate">추정가</span>' : ''}</div>
       </div>
-      <div class="grade-stamp grade-${p.grade}" style="width:48px; height:48px; font-size:22px;">${p.grade}</div>
+      <div class="grade-stamp ${hold ? 'grade-hold' : 'grade-' + p.grade} detail-stamp" aria-hidden="true">${hold ? '?' : p.grade}</div>
     </div>
 
-    <!-- 지표 3종 카드 -->
-    <div class="metric-grid">
-      <div class="metric-card" title="단백질 가성비 지표">
-        <span class="metric-badge-chip badge-ppr">PPR 가성비</span>
-        <div class="metric-val">${p.ppr}</div>
-        <div class="metric-label">g / 1,000원</div>
-        <span class="metric-grade-pill metric-grade-${p.ppr_grade || 'B'}">${p.ppr_grade || 'B'}등급</span>
-      </div>
-      <div class="metric-card" title="다이어트 밀도 지표">
-        <span class="metric-badge-chip badge-cpd">CPD 다이어트</span>
-        <div class="metric-val">${p.cpd}</div>
-        <div class="metric-label">g / 100kcal</div>
-        <span class="metric-grade-pill metric-grade-${p.cpd_grade || 'B'}">${p.cpd_grade || 'B'}등급</span>
-      </div>
-      <div class="metric-card" title="클린 식단 지수">
-        <span class="metric-badge-chip badge-npi">NPI 클린식단</span>
-        <div class="metric-val">${p.npi}</div>
-        <div class="metric-label">순수 보정 g</div>
-        <span class="metric-grade-pill metric-grade-${p.npi_grade || 'B'}">${p.npi_grade || 'B'}등급</span>
-      </div>
-    </div>
+    ${hold ? renderHoldNotice(p) : ''}
+    ${renderMetricCards(p, hold)}
+    ${hold ? '' : renderWhyBlock(p)}
+    ${renderWashingBlock(p)}
+    ${renderCleanBlock(p)}
+    ${renderNutritionTable(p)}
+    ${renderGuideBox()}
 
-    <!-- 핵심 지표 설명 가이드 박스 -->
-    <div class="metric-guide-box">
-      <div class="metric-guide-head">
-        <span class="metric-guide-title">💡 핵심 지표 설명 (PPR · CPD · NPI)</span>
-        <span style="font-size:10px; color:var(--ink-3); font-weight:600;">기획서 v1.1 기준</span>
-      </div>
-      <div class="metric-guide-items">
-        <div class="metric-guide-item">
-          <div class="metric-guide-item-top">
-            <span style="font-weight:700; color:var(--ink);"><span class="metric-badge-chip badge-ppr" style="margin:0 4px 0 0;">PPR</span>단백질 가성비</span>
-            <span class="metric-guide-formula">단백질(g) ÷ (가격 ÷ 1,000)</span>
-          </div>
-          <p>
-            1,000원당 섭취 가능한 단백질량(g)입니다. <strong>8.0 이상(A등급)</strong>이면 가성비 1등 메뉴입니다.<br>
-            👉 이 제품: <strong>${p.ppr}g/천원 (${p.ppr_grade || 'B'}등급)</strong>
-          </p>
-        </div>
-
-        <div class="metric-guide-item">
-          <div class="metric-guide-item-top">
-            <span style="font-weight:700; color:var(--ink);"><span class="metric-badge-chip badge-cpd" style="margin:0 4px 0 0;">CPD</span>다이어트 밀도</span>
-            <span class="metric-guide-formula">단백질(g) ÷ (열량 ÷ 100)</span>
-          </div>
-          <p>
-            100kcal당 단백질 함량(g)입니다. 불필요한 칼로리 없이 순수 단백질만 채우는 효율로, <strong>12.0 이상(A등급)</strong>이면 다이어트에 최적화되어 있습니다.<br>
-            👉 이 제품: <strong>${p.cpd}g/100kcal (${p.cpd_grade || 'B'}등급)</strong>
-          </p>
-        </div>
-
-        <div class="metric-guide-item">
-          <div class="metric-guide-item-top">
-            <span style="font-weight:700; color:var(--ink);"><span class="metric-badge-chip badge-npi" style="margin:0 4px 0 0;">NPI</span>클린 식단 지수</span>
-            <span class="metric-guide-formula">단백질 × 원물품질 - 페널티</span>
-          </div>
-          <p>
-            단백질 원물 품질(닭가슴살 100%, 가공육 70%)과 유해요소(나트륨·당류·포화지방 과다, 튀김 등) 감점을 반영한 <strong>순수 실효 단백질(g)</strong>입니다. <strong>25 이상(A등급)</strong>이면 최고 수준의 클린 식단입니다.<br>
-            👉 이 제품: <strong>${p.npi}g (${p.npi_grade || 'B'}등급)</strong>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    ${washingSection}
-
-    ${cleanRadarSection}
-
-    <!-- 영양성분 팩트 표 -->
-    <div class="nutrition-table">
-      <div class="nutrition-header">영양정보 (1회 제공량 ${p.serving_g}g)</div>
-      <div class="nutrition-row thick"><span>열량</span><span>${p.kcal} kcal</span></div>
-      <div class="nutrition-row thick"><span>단백질</span><span>${p.protein_g} g (${pPct}%)</span></div>
-      <div class="nutrition-row"><span>탄수화물</span><span>${p.carb_g || '-'} g</span></div>
-      <div class="nutrition-row"><span>- 당류</span><span>${p.sugar_g || '-'} g (${sugarPct}%)</span></div>
-      <div class="nutrition-row"><span>지방</span><span>${p.fat_g || '-'} g</span></div>
-      <div class="nutrition-row"><span>- 포화지방</span><span>${p.sat_fat_g || '-'} g (${satFatPct}%)</span></div>
-      <div class="nutrition-row"><span>나트륨</span><span>${p.sodium_mg} mg (${naPct}%)</span></div>
-      <div class="nutrition-row"><span>식이섬유</span><span>${p.fiber_g || 0} g</span></div>
-    </div>
-
-    <!-- 버튼 그룹 -->
     <div class="btn-group">
-      <button class="btn ${isComparing ? 'btn-brand' : ''}" id="btn-toggle-compare">
-        ${isComparing ? '✓ 비교함에 담김' : '비교 담기 (최대 3개)'}
+      <button class="btn ${isComparing ? 'btn-brand' : ''}" type="button" id="btn-toggle-compare">
+        ${isComparing ? '비교함에 담김' : '비교 담기 (최대 3개)'}
       </button>
-      <button class="btn" id="btn-open-report">이 숫자 틀렸어요</button>
+      <button class="btn" type="button" id="btn-open-report">이 숫자 틀렸어요</button>
     </div>
 
-    <div style="font-size:var(--t1); color:var(--ink-3); margin-top:14px; text-align:center;">
-      출처: ${p.source_type} (${p.source_url ? '공식 영양표' : '패키지 OCR'}) · 확인일: ${p.verified_at} · 룰: ${p.rule_version}
+    <div class="detail-source">
+      출처 ${escapeHtml(p.source_type)}
+      ${p.source_url ? `· <a href="${escapeHtml(p.source_url)}" target="_blank" rel="noopener noreferrer">원본 보기</a>` : '· 패키지 촬영본'}
+      · 확인일 ${escapeHtml(p.verified_at)} · 룰 ${escapeHtml(p.rule_version)}
     </div>
   `;
 
-  // 태그 아코디언 토글
-  const toggleBtn = document.getElementById('btn-toggle-clean-tags');
-  const cloud = document.getElementById('clean-tags-cloud');
-  const arrow = document.getElementById('clean-tags-arrow');
+  bindDetailEvents(p);
+}
+
+function renderHoldNotice(p) {
+  const reason = p.grade_hold_reason || {};
+  const labels = {
+    kcal: '열량', protein_g: '단백질', price_krw: '가격',
+    sodium_mg: '나트륨', sat_fat_g: '포화지방', sugar_g: '당류'
+  };
+  const missing = (reason.missing_required || []).map(f => labels[f] || f);
+  const unknown = (reason.unknown_penalty_inputs || []).map(f => labels[f] || f);
+  const parts = [];
+  if (missing.length) parts.push(`${missing.join('·')} 값이 실측이 아님`);
+  if (unknown.length) parts.push(`${unknown.join('·')} 정보 없음`);
+
+  return `
+    <div class="hold-notice">
+      <div class="hold-title">등급을 매기지 않았습니다</div>
+      <p>${escapeHtml(parts.join(' · ') || '판정에 필요한 값이 부족합니다')}. 감점이 없는 것과 정보가 없는 것은 다르므로, 확인되지 않은 값으로 등급을 만들지 않습니다.</p>
+      <button class="btn" type="button" id="btn-hold-report">영양표 사진 제보하기</button>
+    </div>`;
+}
+
+function renderMetricCards(p, hold) {
+  const cell = (badge, cls, val, unit, grade) => `
+    <div class="metric-card">
+      <span class="metric-badge-chip ${cls}">${badge}</span>
+      <div class="metric-val">${val}</div>
+      <div class="metric-label">${unit}</div>
+      ${grade ? `<span class="metric-grade-pill metric-grade-${grade}">${grade}등급</span>`
+              : '<span class="metric-grade-pill metric-grade-hold">보류</span>'}
+    </div>`;
+  return `<div class="metric-grid">
+    ${cell('PPR 가성비', 'badge-ppr', p.ppr, 'g / 1,000원', p.ppr_grade)}
+    ${cell('CPD 다이어트', 'badge-cpd', p.cpd, 'g / 100kcal', p.cpd_grade)}
+    ${cell('NPI 실질단백', 'badge-npi', p.npi, '보정 g', hold ? null : p.npi_grade)}
+  </div>`;
+}
+
+/** 「이 등급이 나온 이유」 — 교육 문단 대신 이 제품의 대입 과정을 보여준다. */
+function renderWhyBlock(p) {
+  const snapshot = (state.meta && state.meta.rules_snapshot) || {};
+  const cut = (snapshot.cutoffs && snapshot.cutoffs.total_grade) || { A: 3.3, B: 2.3, C: 1.3 };
+  const qMap = { Q1: 1.0, Q2: 0.9, Q3: 0.8, Q4: 0.7, Q5: 0.6 };
+  const q = qMap[p.protein_source] !== undefined ? qMap[p.protein_source] : 0.6;
+  const qLabel = qMap[p.protein_source] !== undefined ? p.protein_source : '원물 미확인';
+
+  const penalties = p.penalties || [];
+  const sumDeduction = Math.min(0.5, penalties.reduce((s, x) => s + (x.deduction || 0), 0));
+  const bonus = p.fiber_bonus ? p.fiber_bonus.bonus : 0;
+  const penaltyText = penalties.length
+    ? penalties.map(x => `${x.label} −${x.deduction}${x.estimated ? '(추정)' : ''}`).join(' · ')
+    : '감점 없음';
+  const demoted = p.pw_tier === 'washing';
+
+  return `
+    <section class="why-block">
+      <h3 class="why-title">이 등급이 나온 이유</h3>
+      <div class="why-line">
+        PPR ${p.ppr} <b>${p.ppr_grade}</b> · CPD ${p.cpd} <b>${p.cpd_grade}</b> · NPI ${p.npi} <b>${p.npi_grade}</b>
+        → 평균 <b>${p.grade_avg}</b> (A컷 ${cut.A}) → 종합 <b>${p.grade}</b>${demoted ? ' <span class="why-demote">(워싱 판정으로 1단계 강등)</span>' : ''}
+      </div>
+      <div class="why-formula">
+        NPI = 단백질 ${p.protein_g}g × 원물 ${q}(${escapeHtml(qLabel)}) × (1 − 감점 ${sumDeduction.toFixed(2)})${bonus ? ` + 식이섬유 ${bonus}` : ''} = <b>${p.npi}</b>
+      </div>
+      <div class="why-penalties">감점 요인: ${escapeHtml(penaltyText)}</div>
+      ${(p.penalty_unresolved && p.penalty_unresolved.length)
+        ? `<div class="why-unresolved">확인되지 않아 판정하지 못한 항목: ${escapeHtml(p.penalty_unresolved.join(', '))}</div>` : ''}
+    </section>`;
+}
+
+function renderWashingBlock(p) {
+  if (!p.pw_tier) {
+    return `<section class="washing-block washing-none">
+      <div class="washing-head">워싱 판독 <span class="tag tag-muted">대상 아님</span></div>
+      <p>단백질을 내세운 표기가 없어 판독 대상이 아닙니다. 단백질이 적다는 뜻이 아니라, 광고 표기와 실제 함량의 차이를 따지는 지표가 적용되지 않는다는 뜻입니다.</p>
+    </section>`;
+  }
+  const tierClass = p.pw_tier === 'washing' ? 'washing-bad' : (p.pw_tier === 'conditional' ? 'washing-warn' : 'washing-good');
+  const rows = (p.pw_breakdown || [])
+    .filter(b => b.code !== 'W1' && b.score > 0)
+    .map(b => `<li><b>${b.code}</b> ${escapeHtml(b.reason)} <span class="washing-score">+${b.score}</span></li>`)
+    .join('');
+  return `
+    <section class="washing-block ${tierClass}">
+      <div class="washing-head">워싱 판독 <b>${escapeHtml(p.pw_label)}</b> · ${p.pw}점</div>
+      ${rows ? `<ul class="washing-list">${rows}</ul>` : '<p>법적 고단백 기준을 충족하고 감점 조항에 걸리지 않았습니다.</p>'}
+    </section>`;
+}
+
+const DICT_BY_NAME = new Map(INGREDIENT_DICTIONARY.map(d => [d.name, d]));
+
+function renderCleanBlock(p) {
+  if (!p.clean_report) {
+    return `
+      <section class="clean-radar-card clean-unknown">
+        <div class="clean-radar-head"><span class="clean-radar-title">원재료·첨가물 안심 분석</span></div>
+        <p>이 제품의 <strong>원재료명을 아직 확보하지 못했습니다.</strong> 성분을 추정해 보여주지 않습니다.</p>
+        <button class="btn" type="button" id="btn-clean-report">원재료 사진 제보하기</button>
+      </section>`;
+  }
+
+  const r = p.clean_report;
+  const s = r.stats;
+  const scoreClass = p.clean_score >= 80 ? 'clean-score-high' : (p.clean_score >= 50 ? 'clean-score-medium' : 'clean-score-low');
+  const td = r.teardowns || {};
+
+  const teardownHtml = [
+    ['sweetener', '당류 & 감미료'],
+    ['protein', '단백질 원물 품질'],
+    ['fat', '지방 & 유지 원료'],
+    ['additive', '요주의 식품첨가물']
+  ].filter(([k]) => td[k]).map(([k, label]) => `
+    <div class="clean-teardown-item">
+      <div class="clean-teardown-header">
+        <span class="clean-teardown-cat">${escapeHtml(label)}</span>
+        <span class="clean-teardown-badge badge-status-${td[k].status}">${escapeHtml(td[k].badge)}</span>
+      </div>
+      <div class="clean-teardown-title">${escapeHtml(td[k].title)}</div>
+      <div class="clean-teardown-desc">${escapeHtml(td[k].desc)}</div>
+    </div>`).join('');
+
+  const tagsHtml = (r.tokens || []).map((t, idx) => `
+    <button type="button" class="clean-ingredient-tag tag-tier-${t.tier}" data-tag-idx="${idx}">${escapeHtml(t.name)}</button>`).join('');
+
+  const seg = (cls, pctVal, label, count) =>
+    `<div class="clean-seg ${cls}" style="width:${pctVal}%"><span class="sr-only">${label} ${count}개</span></div>`;
+
+  return `
+    <section class="clean-radar-card">
+      <div class="clean-radar-head">
+        <span class="clean-radar-title">원재료·첨가물 안심 분석</span>
+        <span class="clean-radar-score-badge ${scoreClass}">안심 ${p.clean_score}점 · ${escapeHtml(r.tierLabel)}</span>
+      </div>
+      <div class="clean-bar-wrapper">
+        <div class="clean-bar">
+          ${seg('seg-good', s.goodPct, '안심', s.goodCount)}
+          ${seg('seg-neutral', s.neutralPct, '일반', s.neutralCount)}
+          ${seg('seg-caution', s.cautionPct, '주의', s.cautionCount)}
+          ${seg('seg-bad', s.badPct, '기피', s.badCount)}
+        </div>
+        <div class="clean-legend">
+          <span class="clean-legend-item"><span class="clean-dot dot-good"></span>안심 ${s.goodCount}</span>
+          <span class="clean-legend-item"><span class="clean-dot dot-neutral"></span>일반 ${s.neutralCount}</span>
+          <span class="clean-legend-item"><span class="clean-dot dot-caution"></span>주의 ${s.cautionCount}</span>
+          <span class="clean-legend-item"><span class="clean-dot dot-bad"></span>기피 ${s.badCount}</span>
+        </div>
+      </div>
+      <div class="clean-teardown-list">${teardownHtml}</div>
+      <details class="clean-tags-section">
+        <summary class="clean-tags-toggle-btn">전성분 원재료 ${(r.tokens || []).length}종</summary>
+        <div class="clean-tags-cloud">${tagsHtml}</div>
+        <div class="clean-tag-info-popup" id="clean-tag-info-popup" hidden>
+          <strong id="clean-tag-info-title"></strong><br>
+          <span id="clean-tag-info-desc"></span>
+        </div>
+      </details>
+    </section>`;
+}
+
+function renderNutritionTable(p) {
+  const snapshot = (state.meta && state.meta.rules_snapshot) || {};
+  const std = snapshot.daily_standards || { protein_g: 55, sodium_mg: 2000, sugar_g: 100, sat_fat_g: 15 };
+  const pctOf = (v, base, status) => (status === 'unknown' || v == null) ? '' : ` (${Math.round((v / base) * 100)}%)`;
+  const row = (label, value, status, unit, pct = '') =>
+    `<div class="nutrition-row"><span>${label}</span><span>${fmtValue(value, status, ' ' + unit)}${pct}</span></div>`;
+
+  const servingText = p.serving_g_status === 'estimated'
+    ? `${p.serving_g}g(추정)` : (p.serving_g ? `${p.serving_g}g` : '—');
+
+  return `
+    <div class="nutrition-table">
+      <div class="nutrition-header">영양정보 (1회 제공량 ${servingText})</div>
+      <div class="nutrition-row thick"><span>열량</span><span>${fmtValue(p.kcal, p.kcal_status, ' kcal')}</span></div>
+      <div class="nutrition-row thick"><span>단백질</span><span>${fmtValue(p.protein_g, p.protein_g_status, ' g')}${pctOf(p.protein_g, std.protein_g, p.protein_g_status)}</span></div>
+      ${row('탄수화물', p.carb_g, p.carb_g_status, 'g')}
+      ${row('- 당류', p.sugar_g, p.sugar_g_status, 'g', pctOf(p.sugar_g, std.sugar_g, p.sugar_g_status))}
+      ${row('지방', p.fat_g, p.fat_g_status, 'g')}
+      ${row('- 포화지방', p.sat_fat_g, p.sat_fat_g_status, 'g', pctOf(p.sat_fat_g, std.sat_fat_g, p.sat_fat_g_status))}
+      ${row('- 트랜스지방', p.trans_fat_g, p.trans_fat_g_status, 'g')}
+      ${row('나트륨', p.sodium_mg, p.sodium_mg_status, 'mg', pctOf(p.sodium_mg, std.sodium_mg, p.sodium_mg_status))}
+      ${row('식이섬유', p.fiber_g, p.fiber_g_status, 'g')}
+      <div class="nutrition-note">「—」는 해당 값을 아직 확보하지 못했다는 뜻입니다. 0이 아닙니다.</div>
+    </div>`;
+}
+
+/** 지표 설명은 접어 둔다 — 매번 3문단이 이 제품의 근거를 아래로 밀어냈다. */
+function renderGuideBox() {
+  return `
+    <details class="metric-guide-box">
+      <summary class="metric-guide-title">지표 3종은 무엇인가요? (PPR · CPD · NPI)</summary>
+      <div class="metric-guide-items">
+        <p><b>PPR</b> 단백질(g) ÷ (가격 ÷ 1,000). 1,000원당 단백질량으로, 8.0 이상이면 A등급입니다.</p>
+        <p><b>CPD</b> 단백질(g) ÷ (열량 ÷ 100). 100kcal당 단백질량으로, 12.0 이상이면 A등급입니다. 5.5는 식약처 '고단백' 표시의 열량 기준입니다.</p>
+        <p><b>NPI</b> 단백질 × 원물 품질 가중치 × (1 − 유해요소 감점) + 식이섬유 보너스. 25 이상이면 A등급입니다.</p>
+      </div>
+    </details>`;
+}
+
+function bindDetailEvents(p) {
+  const toggleCompare = document.getElementById('btn-toggle-compare');
+  if (toggleCompare) toggleCompare.addEventListener('click', () => {
+    toggleCompareItem(p.menu_id);
+    openDetailModal(p);
+  });
+
+  const openReport = document.getElementById('btn-open-report');
+  if (openReport) openReport.addEventListener('click', () => openReportSheet(p));
+
+  ['btn-hold-report', 'btn-clean-report'].forEach(id => {
+    const b = document.getElementById(id);
+    if (b) b.addEventListener('click', () => openReportSheet(p));
+  });
+
   const popup = document.getElementById('clean-tag-info-popup');
   const popupTitle = document.getElementById('clean-tag-info-title');
   const popupDesc = document.getElementById('clean-tag-info-desc');
+  const tokens = (p.clean_report && p.clean_report.tokens) || [];
 
-  if (toggleBtn && cloud) {
-    toggleBtn.addEventListener('click', () => {
-      const isHidden = cloud.style.display === 'none';
-      cloud.style.display = isHidden ? 'flex' : 'none';
-      arrow.textContent = isHidden ? '접기 ▴' : '보기 ▾';
-    });
-  }
-
-  // 개별 성분 태그 클릭 시 툴팁 팝오버
   document.querySelectorAll('.clean-ingredient-tag').forEach(tag => {
     tag.addEventListener('click', (e) => {
       e.stopPropagation();
-      const idx = parseInt(tag.dataset.tagIdx, 10);
-      const item = tokens[idx];
-      if (item && popup && popupTitle && popupDesc) {
-        popupTitle.textContent = `${item.tier === 1 ? '🟢 안심' : (item.tier === 3 ? '🟡 주의' : (item.tier === 4 ? '🔴 기피' : '⚪ 일반'))}: ${item.name} (${item.title})`;
-        popupDesc.textContent = item.desc;
-        popup.style.display = 'block';
-      }
+      const t = tokens[Number(tag.dataset.tagIdx)];
+      if (!t || !popup) return;
+      const dict = DICT_BY_NAME.get(t.name);
+      const tierLabel = { 1: '안심', 2: '일반', 3: '주의', 4: '기피' }[t.tier] || '일반';
+      popupTitle.textContent = `${tierLabel}: ${t.name}${dict ? ` (${dict.title})` : ''}`;
+      popupDesc.textContent = dict ? dict.desc : '사전에 등록되지 않은 일반 원재료입니다.';
+      popup.hidden = false;
     });
   });
-
-  document.getElementById('btn-toggle-compare').addEventListener('click', () => {
-    toggleCompareItem(p.menu_id);
-    openDetailModal(p); // 리렌더링
-  });
-
-  document.getElementById('btn-open-report').addEventListener('click', () => {
-    el.sheetDetail.close();
-    el.reportTargetName.textContent = `대상 상품: ${p.name} (${p.brand})`;
-    el.sheetReport.showModal();
-  });
-
-  el.sheetDetail.showModal();
 }
 
-// ── 비교함 관리 ──
+/* ───────────────────────── 비교함 ───────────────────────── */
+
 function toggleCompareItem(menuId) {
   const idx = state.compareList.indexOf(menuId);
-  if (idx >= 0) {
-    state.compareList.splice(idx, 1);
-  } else {
+  if (idx >= 0) state.compareList.splice(idx, 1);
+  else {
     if (state.compareList.length >= 3) {
-      alert('비교함에는 최대 3개 상품까지 담을 수 있습니다.');
+      alert('비교함에는 최대 3개까지 담을 수 있습니다.');
       return;
     }
     state.compareList.push(menuId);
@@ -871,73 +1044,38 @@ function toggleCompareItem(menuId) {
 function updateCompareDock() {
   const count = state.compareList.length;
   el.compareDockCount.textContent = `(${count}/3)`;
-  if (count > 0) {
-    el.compareDock.classList.add('visible');
-  } else {
-    el.compareDock.classList.remove('visible');
-  }
+  el.compareDock.classList.toggle('visible', count > 0);
 }
 
-function openCompareModal() {
-  const items = state.compareList.map(id => state.products.find(p => p.menu_id === id)).filter(Boolean);
+async function openCompareModal() {
+  await ensureFullData();
+  const items = state.compareList.map(findFull).filter(Boolean);
   if (items.length === 0) return;
 
+  const row = (label, cells) => `<tr><td>${label}</td>${cells}</tr>`;
   el.sheetCompareContent.innerHTML = `
-    <h3 style="margin-top:0; font-size:18px; color:var(--ink);">메뉴 영양·가성비 한눈에 비교</h3>
-    <p style="font-size:12px; color:var(--ink-2); margin-bottom:12px;">좌우로 스크롤하여 최대 3개 상품의 지표를 비교하세요.</p>
+    <h3 class="compare-title">메뉴 영양·가성비 비교</h3>
+    <p class="compare-sub">좌우로 스크롤해 최대 3개를 비교하세요.</p>
     <div class="compare-table-wrap">
       <table class="compare-table">
-        <thead>
-          <tr>
-            <th>구분</th>
-            ${items.map(m => `
-              <th>
-                ${m.image_url ? `<img src="${m.image_url}" alt="${m.name}" style="width:40px; height:40px; object-fit:cover; border-radius:6px; margin:0 auto 6px auto; display:block; border:1px solid var(--line);" referrerpolicy="no-referrer" onerror="this.style.display='none';">` : ''}
-                <div style="font-size:11px; color:var(--ink-2);">${m.brand}</div>
-                <div style="font-size:13px; font-weight:700; color:var(--ink); margin-top:2px;">${m.name}</div>
-              </th>
-            `).join('')}
-          </tr>
-        </thead>
+        <thead><tr><th scope="col">구분</th>
+          ${items.map(m => `<th scope="col"><div class="compare-brand">${escapeHtml(m.brand)}</div><div class="compare-name">${escapeHtml(m.name)}</div></th>`).join('')}
+        </tr></thead>
         <tbody>
-          <tr>
-            <td>종합 등급</td>
-            ${items.map(m => `<td><span class="grade-stamp grade-${m.grade}" style="width:28px; height:28px; margin:0 auto; font-size:14px;">${m.grade}</span></td>`).join('')}
-          </tr>
-          <tr>
-            <td>가격</td>
-            ${items.map(m => `<td><strong>${m.price_krw.toLocaleString()}원</strong></td>`).join('')}
-          </tr>
-          <tr>
-            <td>PPR (가성비)</td>
-            ${items.map(m => `<td style="font-weight:800; color:var(--brand);">${m.ppr}</td>`).join('')}
-          </tr>
-          <tr>
-            <td>CPD (밀도)</td>
-            ${items.map(m => `<td>${m.cpd}</td>`).join('')}
-          </tr>
-          <tr>
-            <td>NPI (실질g)</td>
-            ${items.map(m => `<td>${m.npi}</td>`).join('')}
-          </tr>
-          <tr>
-            <td>단백질</td>
-            ${items.map(m => `<td><strong>${m.protein_g}g</strong></td>`).join('')}
-          </tr>
-          <tr>
-            <td>열량</td>
-            ${items.map(m => `<td>${m.kcal}kcal</td>`).join('')}
-          </tr>
-          <tr>
-            <td>나트륨</td>
-            ${items.map(m => `<td>${m.sodium_mg}mg</td>`).join('')}
-          </tr>
+          ${row('종합 등급', items.map(m => `<td>${m.grade_eligible === false ? '<span class="tag tag-hold">보류</span>' : `<span class="grade-stamp grade-${m.grade} compare-stamp">${m.grade}</span>`}</td>`).join(''))}
+          ${row('가격', items.map(m => `<td><strong>${Number(m.price_krw).toLocaleString()}원</strong>${m.price_krw_status === 'estimated' ? ' (추정)' : ''}</td>`).join(''))}
+          ${row('PPR (가성비)', items.map(m => `<td class="compare-strong">${m.ppr}</td>`).join(''))}
+          ${row('CPD (밀도)', items.map(m => `<td>${m.cpd}</td>`).join(''))}
+          ${row('NPI (실질g)', items.map(m => `<td>${m.npi}</td>`).join(''))}
+          ${row('단백질', items.map(m => `<td><strong>${fmtValue(m.protein_g, m.protein_g_status, 'g')}</strong></td>`).join(''))}
+          ${row('열량', items.map(m => `<td>${fmtValue(m.kcal, m.kcal_status, 'kcal')}</td>`).join(''))}
+          ${row('나트륨', items.map(m => `<td>${fmtValue(m.sodium_mg, m.sodium_mg_status, 'mg')}</td>`).join(''))}
+          ${row('확인일', items.map(m => `<td>${escapeHtml(m.verified_at)}</td>`).join(''))}
+          ${row('출처', items.map(m => `<td>${m.source_url ? `<a href="${escapeHtml(m.source_url)}" target="_blank" rel="noopener noreferrer">원본</a>` : escapeHtml(m.source_type)}</td>`).join(''))}
         </tbody>
       </table>
     </div>
-    <div style="margin-top:16px;">
-      <button class="btn" id="btn-clear-compare">비교함 비우기</button>
-    </div>
+    <div class="compare-actions"><button class="btn" type="button" id="btn-clear-compare">비교함 비우기</button></div>
   `;
 
   document.getElementById('btn-clear-compare').addEventListener('click', () => {
@@ -949,17 +1087,18 @@ function openCompareModal() {
   el.sheetCompare.showModal();
 }
 
-// ── 바코드 스캔 처리 ──
+/* ───────────────────────── 스캔 ───────────────────────── */
+
 function openScannerModal() {
   el.sheetScanner.showModal();
   if (!scannerInstance) {
     scannerInstance = new BarcodeScanner({
       videoElement: el.scannerVideo,
-      onDetected: (barcode) => {
-        handleBarcodeScanned(barcode);
-      },
+      onDetected: handleBarcodeScanned,
+      onStatus: (msg) => announce(el.scannerStatus, msg),
       onError: (err) => {
         console.warn('카메라 스캔 오류:', err);
+        announce(el.scannerStatus, '카메라를 쓸 수 없습니다. 제품명으로 검색하거나 사진을 제보해 주세요.');
       }
     });
   }
@@ -971,15 +1110,66 @@ function closeScannerModal() {
   el.sheetScanner.close();
 }
 
-function handleBarcodeScanned(barcode) {
+async function handleBarcodeScanned(barcode) {
   closeScannerModal();
+  await ensureFullData();
   const matched = lookupBarcode(barcode, state.products);
   if (matched) {
     openDetailModal(matched);
-  } else {
-    alert(`[미등록 바코드 ${barcode}]\n등록되지 않은 상품입니다. 영양표 사진을 찍어 제보해주시면 48시간 내에 검증 성적표가 등록됩니다!`);
+    return;
+  }
+  // 미등록 — 막다른 길이 아니라 제보 입구로 보낸다.
+  openReportSheet(null, '', barcode);
+}
+
+/* ───────────────────────── 제보·신고 ───────────────────────── */
+
+function openReportSheet(p, queryText = '', barcode = '') {
+  if (el.sheetDetail.open) el.sheetDetail.close();
+  const label = p
+    ? `대상 상품: ${p.name} (${p.brand})`
+    : (barcode ? `미등록 바코드 ${barcode}` : (queryText ? `검색어 "${queryText}"` : '미등록 상품 제보'));
+  el.reportTargetName.textContent = label;
+  el.sheetReport.dataset.menuId = p ? p.menu_id : '';
+  el.sheetReport.dataset.barcode = barcode || '';
+  if (el.reportFormStatus) {
+    el.reportFormStatus.textContent = API_BASE ? '' : '접수 창구를 준비 중입니다. 지금은 제출해도 저장되지 않습니다.';
+  }
+  if (el.btnSubmitReport) el.btnSubmitReport.disabled = !API_BASE;
+  el.sheetReport.showModal();
+}
+
+async function submitReport() {
+  if (!API_BASE) {
+    announce(el.reportFormStatus, '접수 창구를 준비 중입니다. 연결되면 이 화면에서 바로 접수됩니다.');
+    return;
+  }
+  const reasonEl = document.getElementById('report-reason');
+  const detailEl = document.getElementById('report-detail');
+  const payload = {
+    menu_id: el.sheetReport.dataset.menuId || null,
+    barcode: el.sheetReport.dataset.barcode || null,
+    reason: reasonEl ? reasonEl.value : 'other',
+    detail: detailEl ? detailEl.value : ''
+  };
+
+  el.btnSubmitReport.disabled = true;
+  announce(el.reportFormStatus, '보내는 중…');
+  try {
+    const res = await fetch(`${API_BASE}/api/report`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error(`상태 ${res.status}`);
+    announce(el.reportFormStatus, '접수됐습니다. 공식 영양표를 재확인해 반영하겠습니다.');
+    setTimeout(() => el.sheetReport.close(), 1200);
+  } catch (err) {
+    console.warn('제보 전송 실패:', err);
+    announce(el.reportFormStatus, '지금은 접수되지 않았습니다. 잠시 후 다시 시도해 주세요.');
+  } finally {
+    el.btnSubmitReport.disabled = false;
   }
 }
 
-// 앱 실행
 document.addEventListener('DOMContentLoaded', init);
