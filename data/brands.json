@@ -20,76 +20,6 @@
     "disclosure_duty": null
   },
   {
-    "brand_code": "대영",
-    "name": "대영",
-    "aliases": [],
-    "channels": [
-      "cvs"
-    ],
-    "nutrition_url": null,
-    "disclosure_duty": null
-  },
-  {
-    "brand_code": "마루카네",
-    "name": "마루카네",
-    "aliases": [],
-    "channels": [
-      "cvs"
-    ],
-    "nutrition_url": null,
-    "disclosure_duty": null
-  },
-  {
-    "brand_code": "매일",
-    "name": "매일",
-    "aliases": [],
-    "channels": [
-      "cvs"
-    ],
-    "nutrition_url": null,
-    "disclosure_duty": null
-  },
-  {
-    "brand_code": "스위트",
-    "name": "스위트",
-    "aliases": [],
-    "channels": [
-      "cvs"
-    ],
-    "nutrition_url": null,
-    "disclosure_duty": null
-  },
-  {
-    "brand_code": "연세",
-    "name": "연세",
-    "aliases": [],
-    "channels": [
-      "cvs"
-    ],
-    "nutrition_url": null,
-    "disclosure_duty": null
-  },
-  {
-    "brand_code": "옐로우",
-    "name": "옐로우",
-    "aliases": [],
-    "channels": [
-      "cvs"
-    ],
-    "nutrition_url": null,
-    "disclosure_duty": null
-  },
-  {
-    "brand_code": "하겐",
-    "name": "하겐",
-    "aliases": [],
-    "channels": [
-      "cvs"
-    ],
-    "nutrition_url": null,
-    "disclosure_duty": null
-  },
-  {
     "brand_code": "bardak",
     "name": "바르닭",
     "aliases": [],
@@ -948,6 +878,76 @@
     "aliases": [],
     "channels": [
       "online"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "대영",
+    "name": "대영",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "마루카네",
+    "name": "마루카네",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "매일",
+    "name": "매일",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "스위트",
+    "name": "스위트",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "연세",
+    "name": "연세",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "옐로우",
+    "name": "옐로우",
+    "aliases": [],
+    "channels": [
+      "cvs"
+    ],
+    "nutrition_url": null,
+    "disclosure_duty": null
+  },
+  {
+    "brand_code": "하겐",
+    "name": "하겐",
+    "aliases": [],
+    "channels": [
+      "cvs"
     ],
     "nutrition_url": null,
     "disclosure_duty": null
