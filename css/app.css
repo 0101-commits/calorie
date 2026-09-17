@@ -1448,3 +1448,22 @@ details.clean-tags-section > summary {
   border-color: var(--line);
 }
 .clean-tag-info-popup:not([hidden]) { display: block; }
+
+/* ── 타이밍(운동 전·후·휴식일) ───────────────────────────── */
+.target-basis {
+  margin-top: var(--x2);
+  font-size: var(--t3, 11px);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.target-basis a { color: inherit; text-decoration: underline; }
+
+.tag-fast { background: var(--brand-weak, var(--surface-2)); color: var(--brand, var(--ink)); }
+.tag-slow { background: var(--surface-2); color: var(--ink-2); }
+
+.absorb-note {
+  margin-top: var(--x2);
+  font-size: var(--t3, 11px);
+  color: var(--ink-3, var(--ink-2));
+  line-height: 1.5;
+}

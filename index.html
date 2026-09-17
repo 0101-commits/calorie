@@ -104,6 +104,7 @@
         <button class="chip" type="button" aria-pressed="false" data-filter="verified">검증 고단백만</button>
         <button class="chip" type="button" aria-pressed="false" data-filter="under5k">5천원 이하</button>
         <button class="chip" type="button" aria-pressed="false" data-filter="alt_sweetener">대체당만 사용</button>
+        <button class="chip" type="button" aria-pressed="false" data-filter="fast_absorb">빠른 흡수</button>
         <button class="chip" type="button" aria-pressed="false" data-filter="cvs" data-mode-only="store">편의점</button>
         <button class="chip" type="button" aria-pressed="false" data-filter="fr" data-mode-only="store">외식</button>
         <button class="chip" type="button" aria-pressed="false" data-filter="mart" data-mode-only="stock" hidden>마트</button>
@@ -131,6 +132,17 @@
         <button class="chip active" data-preset="diet_female">다이어트 여성 표준</button>
         <button class="chip" data-preset="lean_male">린매스업 남성 표준</button>
         <button class="chip" data-preset="bulk_male">벌크업 남성 표준</button>
+      </div>
+
+      <!-- 타이밍 칩 — 오늘 언제 먹는지. 기본은 미선택이고, 고른 칩을 다시 누르면 해제된다. -->
+      <div class="section-head">
+        <span class="section-title">오늘 언제 먹나요?</span>
+        <span class="section-sub">선택은 저장하지 않습니다</span>
+      </div>
+      <div class="chip-scroll" id="timing-chips">
+        <button class="chip" type="button" aria-pressed="false" data-timing="pre">운동 전</button>
+        <button class="chip" type="button" aria-pressed="false" data-timing="post">운동 후</button>
+        <button class="chip" type="button" aria-pressed="false" data-timing="rest">운동 안 한 날</button>
       </div>
 
       <!-- 사용자 신체 및 목표 입력 폼 -->
@@ -176,7 +188,7 @@
             <option value="breakfast">아침 (25%)</option>
             <option value="lunch" selected>점심 (35%)</option>
             <option value="dinner">저녁 (30%)</option>
-            <option value="snack">간식/운동후 (10%)</option>
+            <option value="snack">간식 (10%)</option>
           </select>
         </div>
         <div class="form-field">
@@ -184,6 +196,7 @@
           <select id="input-budget" class="form-select">
             <option value="5000">5,000원 이하</option>
             <option value="8000" selected>8,000원 이하</option>
+            <option value="9000">9,000원 이하</option>
             <option value="12000">12,000원 이하</option>
             <option value="20000">제한 없음</option>
           </select>
@@ -196,12 +209,13 @@
           <span id="target-title-text">오늘 점심 1끼 타깃</span>
           <span id="target-tdee-badge" style="background:#ffedd5; padding:2px 8px; border-radius:12px; font-size:11px;">TDEE 1,980 kcal</span>
         </div>
-        <div class="target-numbers" id="target-numbers-text">
+        <div class="target-numbers" id="target-numbers-text" role="status" aria-live="polite">
           693 kcal · 단백질 38g · 나트륨 700mg 이하
         </div>
         <div class="target-formula" id="target-formula-text">
           BMR 1,277 × 1.55 × 0.80 × 0.35 (Mifflin-St Jeor 식약처 기준)
         </div>
+        <div class="target-basis" id="target-basis-text" hidden></div>
       </div>
 
       <!-- 단품 5 vs 조합 5 세그먼트 -->

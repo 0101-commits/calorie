@@ -9,11 +9,12 @@
 import { createSearchItem, searchProducts } from './search.js';
 import {
   PRESETS, computeDailyTargets, computeMealTarget, computeFitScore,
-  generateReasonSentence, configureFromRules
+  generateReasonSentence, configureFromRules, applyTimingTarget,
+  TIMING_PROFILES, TIMING_LABELS
 } from './calc.js';
-import { findBestCombos } from './combo.js';
+import { findBestCombos, TIMING_CARB_GUARD } from './combo.js';
 import { BarcodeScanner, lookupBarcode } from './scan.js';
-import { INGREDIENT_DICTIONARY } from './clean_radar.js';
+import { INGREDIENT_DICTIONARY, absorptionRank } from './clean_radar.js';
 
 // 제보·신고 수신 엔드포인트. 비어 있으면 화면이 "준비 중"이라고 정직하게 말한다.
 const API_BASE = (typeof window !== 'undefined' && window.PR_API_BASE) || '';
@@ -42,6 +43,8 @@ const state = {
   rankingRendered: 0,
   rankingList: [],
   calcMode: 'single',
+  // 타이밍은 그날 한 번 쓰는 값이라 저장하지 않는다 — 방문할 때마다 미선택에서 시작한다.
+  timing: null,
   compareList: [],
   activeProduct: null,
   userProfile: {
@@ -254,6 +257,20 @@ function setupEventListeners() {
       });
     });
 
+  // 타이밍 칩 — 고른 칩을 다시 누르면 해제된다(선택 없음 = 현행 동작).
+  document.querySelectorAll('[data-timing]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const next = state.timing === btn.dataset.timing ? null : btn.dataset.timing;
+      state.timing = next;
+      document.querySelectorAll('[data-timing]').forEach(b => {
+        const on = b.dataset.timing === next;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', String(on));
+      });
+      renderCalcTab();
+    });
+  });
+
   document.querySelectorAll('[data-calc-mode]').forEach(btn => {
     btn.addEventListener('click', () => {
       setActiveInGroup('[data-calc-mode]', btn);
@@ -344,7 +361,10 @@ function readProfileForm() {
   state.userProfile.activity_level = get('input-activity');
   state.userProfile.goal = get('input-goal');
   state.userProfile.meal = get('input-meal');
-  state.userProfile.budget_krw = Number(get('input-budget'));
+  // 프리셋 값이 select 옵션에 없으면 value 가 빈 문자열이 되고, 그대로 읽으면 예산 0원이 되어
+  // 추천이 통째로 사라진다(벌크업 프리셋 9,000원에서 실제로 그랬다). 값이 없으면 직전 값을 지킨다.
+  const budget = Number(get('input-budget'));
+  if (budget > 0) state.userProfile.budget_krw = budget;
 }
 
 /* ───────────────────────── 공통 헬퍼 ───────────────────────── */
@@ -515,6 +535,7 @@ function renderRankingList() {
     else if (state.rankingFilter === 'verified') list = list.filter(p => p.pw_tier === 'verified');
     else if (state.rankingFilter === 'under5k') list = list.filter(p => p.price_krw <= 5000);
     else if (state.rankingFilter === 'alt_sweetener') list = list.filter(p => p.sweetener_group === 'alternative');
+    else if (state.rankingFilter === 'fast_absorb') list = list.filter(p => p.absorption === 'fast');
     else if (['cvs', 'fr', 'mart', 'online'].includes(state.rankingFilter)) {
       list = list.filter(p => p.channel === state.rankingFilter);
     }
@@ -558,14 +579,32 @@ function renderRankingChunk() {
 
 // ── 내 기준 ──
 function renderCalcTab() {
-  const daily = computeDailyTargets(state.userProfile);
-  const meal = computeMealTarget(daily, state.userProfile.meal);
+  const timing = state.timing;
+  const daily = computeDailyTargets({ ...state.userProfile, timing });
+  const meal = applyTimingTarget(
+    computeMealTarget(daily, state.userProfile.meal),
+    timing,
+    state.userProfile.weight_kg
+  );
 
-  const mealNameMap = { breakfast: '아침', lunch: '점심', dinner: '저녁', snack: '간식/운동후' };
+  const mealNameMap = { breakfast: '아침', lunch: '점심', dinner: '저녁', snack: '간식' };
   const setText = (id, v) => { const node = document.getElementById(id); if (node) node.textContent = v; };
-  setText('target-title-text', `오늘 ${mealNameMap[meal.meal]} 1끼 타깃`);
+  const mealName = mealNameMap[meal.meal] || '1끼';
+  setText('target-title-text', timing ? `${TIMING_LABELS[timing]} · ${mealName} 타깃` : `오늘 ${mealName} 1끼 타깃`);
   setText('target-tdee-badge', `TDEE ${daily.tdee.toLocaleString()} kcal`);
-  setText('target-numbers-text', `${meal.kcal} kcal · 단백질 ${meal.P}g · 나트륨 ${meal.Na}mg 이하`);
+
+  if (timing === 'post') {
+    const t = TIMING_PROFILES.post;
+    setText('target-numbers-text', `단백질 ${t.protein_min}~${t.protein_max}g · 탄수 ${meal.C}g · ${meal.kcal} kcal`);
+  } else if (timing === 'pre') {
+    setText('target-numbers-text', `탄수 ${meal.C}g · 단백질 ${meal.P}g · ${meal.kcal} kcal`);
+  } else if (timing === 'rest') {
+    // 끼당 표시는 실제 채점에 쓰는 타깃(clamp 20~45g 적용분)이어야 한다 — P_day/3 을 적으면 화면과 추천이 갈린다.
+    setText('target-numbers-text', `오늘 단백질 ${daily.P_day}g · 이 끼니 타깃 ${meal.P}g · ${meal.kcal} kcal`);
+  } else {
+    setText('target-numbers-text', `${meal.kcal} kcal · 단백질 ${meal.P}g · 나트륨 ${meal.Na}mg 이하`);
+  }
+  renderTimingBasis(timing);
   // 산식은 실제 계산 순서를 그대로 적는다(예전에는 PAL·목적계수가 빠져 있었다).
   const goalLabel = { diet: '감량', lean_mass: '린매스업', bulk_up: '벌크업' }[daily.goal] || daily.goal;
   const palUsed = (daily.tdee / daily.bmr).toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
@@ -588,12 +627,17 @@ function renderCalcTab() {
       .filter(p => p.pw_tier !== 'washing')
       .filter(p => p.grade_eligible !== false)
       .filter(p => staleState(p) !== 'excluded')
+      // 탄수를 채점에 쓰는 타이밍(운동 전·후)에서는 탄수가 실측인 건만 고른다 — 모르는 값을 0으로 채점하지 않는다.
+      .filter(p => !TIMING_CARB_GUARD.includes(timing) || p.carb_g_status === 'measured')
       .map(p => ({
         product: p,
-        fitScore: computeFitScore(p, meal, state.userProfile.goal),
-        reason: generateReasonSentence(p, meal, 0, state.userProfile.goal)
+        fitScore: computeFitScore(p, meal, state.userProfile.goal, timing),
+        reason: generateReasonSentence(p, meal, 0, state.userProfile.goal, timing)
       }))
-      .sort((a, b) => b.fitScore - a.fitScore || b.product.npi - a.product.npi)
+      // 운동 후에는 Fit 동점을 흡수 속도로 가른다(점수에는 넣지 않는다).
+      .sort((a, b) => b.fitScore - a.fitScore ||
+        (timing === 'post' ? absorptionRank(a.product) - absorptionRank(b.product) : 0) ||
+        b.product.npi - a.product.npi)
       .slice(0, 5);
     renderSingleRecommendations(singles);
   } else {
@@ -601,10 +645,37 @@ function renderCalcTab() {
       budget: state.userProfile.budget_krw,
       goal: state.userProfile.goal,
       topCount: 5,
+      timing,
       rules: comboRules
     });
     renderComboRecommendations(combos, meal);
   }
+}
+
+const ABSORPTION_TAGS = {
+  fast: '<span class="tag tag-fast">⚡ 빠른 흡수</span>',
+  slow: '<span class="tag tag-slow">느린 흡수</span>',
+  unknown: '<span class="tag tag-muted">흡수 속도 미확보</span>'
+};
+
+/** 타이밍 수치의 출처를 화면에 적는다 — 근거 없는 숫자를 내놓지 않는다(서비스 규칙 3). */
+function renderTimingBasis(timing) {
+  const node = document.getElementById('target-basis-text');
+  if (!node) return;
+  if (!timing) { node.hidden = true; node.innerHTML = ''; return; }
+
+  const issnProtein = '<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5477153/" target="_blank" rel="noopener noreferrer">ISSN 2017 단백질·운동</a>';
+  const issnTiming = '<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5596471/" target="_blank" rel="noopener noreferrer">ISSN 2017 영양 타이밍</a>';
+  const kg = state.userProfile.weight_kg;
+  const text = {
+    pre: `기준: 1끼 단백질 0.25g/kg(${issnProtein}) · 탄수 ${TIMING_PROFILES.pre.carb_per_kg}g/kg — 1~4g/kg/day(${issnTiming})의 하단을 3끼로 나눈 환산값입니다. 체중 ${kg}kg 기준. 소화 부담은 개인차가 큽니다.`,
+    post: `기준: 1회 ${TIMING_PROFILES.post.protein_min}~${TIMING_PROFILES.post.protein_max}g(${issnProtein}) · 탄수 ${TIMING_PROFILES.post.carb_per_kg}g/kg, 직후~2시간(${issnTiming}). 체중 ${kg}kg 기준.`,
+    rest: `기준: 1일 1.4~2.0g/kg, 3~4시간 간격 분배(${issnProtein}). 운동을 쉰 날에도 하루 총량은 내리지 않습니다.`
+  }[timing];
+
+  if (!text) { node.hidden = true; node.innerHTML = ''; return; }
+  node.innerHTML = text;
+  node.hidden = false;
 }
 
 function renderSingleRecommendations(items) {
@@ -713,6 +784,12 @@ function createProductCardElement(p, highlightMetric = 'ppr') {
   else if (p.clean_tier === 'warning') tagsHtml += '<span class="tag tag-additive">첨가물 주의</span>';
   else if (p.clean_tier === 'unknown') tagsHtml += '<span class="tag tag-muted">원재료 미확보</span>';
 
+  // 흡수 속도는 운동 후 추천과 전용 필터에서만 보여 준다 — 다른 화면에서는 판단에 쓰이지 않는 정보다.
+  if ((state.timing === 'post' && state.activeTab === 'calc') ||
+      (state.rankingFilter === 'fast_absorb' && state.activeTab === 'ranking')) {
+    if (ABSORPTION_TAGS[p.absorption]) tagsHtml += ABSORPTION_TAGS[p.absorption];
+  }
+
   if (stale === 'stale') tagsHtml += '<span class="tag tag-muted">확인한 지 오래됨</span>';
   if (p.price_krw_status === 'estimated') tagsHtml += '<span class="tag tag-estimate">가격 추정</span>';
 
@@ -791,6 +868,7 @@ async function openDetailModal(pLight) {
     ${hold ? '' : renderWhyBlock(p)}
     ${renderWashingBlock(p)}
     ${renderCleanBlock(p)}
+    ${renderAbsorptionBlock(p)}
     ${renderNutritionTable(p)}
     ${renderGuideBox()}
 
@@ -899,6 +977,27 @@ function renderWashingBlock(p) {
 }
 
 const DICT_BY_NAME = new Map(INGREDIENT_DICTIONARY.map(d => [d.name, d]));
+
+/** 「이 타이밍에 맞는 이유」 — 흡수 속도 판정과 그 근거를 원재료 이름으로 밝힌다. */
+function renderAbsorptionBlock(p) {
+  const labels = { fast: '빠른 흡수', medium: '보통', slow: '느린 흡수', unknown: '판정하지 않음' };
+  const label = labels[p.absorption] || labels.unknown;
+  const basis = (p.absorption_basis || []).map(escapeHtml).join(' · ');
+
+  const body = (!p.absorption || p.absorption === 'unknown')
+    ? '원재료를 확보하지 못했거나 분류할 수 있는 단백질 원천이 없어 흡수 속도를 판정하지 않았습니다. 제품명으로 추정하지 않습니다.'
+    : `판정 근거 원재료: ${basis}`;
+
+  return `
+    <section class="clean-radar-card">
+      <div class="clean-radar-head">
+        <span class="clean-radar-title">운동 타이밍 메모</span>
+        <span class="tag ${p.absorption === 'fast' ? 'tag-fast' : (p.absorption === 'slow' ? 'tag-slow' : 'tag-muted')}">${label}</span>
+      </div>
+      <p>${body}</p>
+      <p class="absorb-note">흡수 속도는 등급·점수에 넣지 않습니다. 운동 후 추천에서 점수가 같을 때 순서를 정하는 데만 씁니다.</p>
+    </section>`;
+}
 
 function renderCleanBlock(p) {
   if (!p.clean_report) {

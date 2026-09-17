@@ -3,6 +3,9 @@
 
 import { computeFitScore, generateReasonSentence } from './calc.js';
 
+// 탄수 가중치를 쓰는 타이밍 — app.js 의 같은 이름 상수와 뜻이 같다.
+export const TIMING_CARB_GUARD = ['pre', 'post'];
+
 export const DEFAULT_COMBO_RULES = {
   max_singles: 30,
   kcal_range: [0.7, 1.3],
@@ -12,6 +15,8 @@ export const DEFAULT_COMBO_RULES = {
   sodium_hard_cap_ratio: 1.5,
   duplicate_category_exempt: ['유제품/음료'],
   max_beverage_items: 1,
+  // 운동 후에는 음료+바 같은 조합이 실제 선택지다 — 이때만 '식사류 최소 1개'를 면제한다.
+  require_main_item_exempt_timing: ['post'],
   main_categories: ['도시락', '삼각김밥/주먹밥', '샌드위치/버거', '샐러드', '닭가슴살/육가공', '면', '즉석밥/죽', '한식/분식'],
   require_main_item: true
 };
@@ -26,8 +31,13 @@ export function findBestCombos(items, mealTarget, options = {}) {
   const R = { ...DEFAULT_COMBO_RULES, ...(options.rules || {}) };
   const budget = options.budget || 10000;
   const goal = options.goal || 'diet';
+  const timing = options.timing || null;
   const topCount = options.topCount || 5;
   const maxSingles = options.maxSingles || R.max_singles;
+
+  if (timing && (R.require_main_item_exempt_timing || []).includes(timing)) {
+    R.require_main_item = false;
+  }
 
   // 1. 하드 필터 및 후보 풀 구성
   //
@@ -50,11 +60,13 @@ export function findBestCombos(items, mealTarget, options = {}) {
       if (item.pw_tier === 'washing') return false;
       // 등급 보류(정보 부족)는 추천 근거가 부족하므로 조합 후보에서 뺀다.
       if (item.grade_eligible === false) return false;
+      // 탄수를 채점에 쓰는 타이밍(운동 전·후)에서는 탄수가 실측인 건만 쓴다 — 단품 추천과 같은 기준이다.
+      if (TIMING_CARB_GUARD.includes(timing) && item.carb_g_status !== 'measured') return false;
       return true;
     });
 
   const tracks = trackTargets.map(t => eligible
-    .map(item => ({ item, fit: computeFitScore(item, t, goal) }))
+    .map(item => ({ item, fit: computeFitScore(item, t, goal, timing) }))
     .sort((a, b) => b.fit - a.fit)
     .map(x => x.item));
 
@@ -87,7 +99,7 @@ export function findBestCombos(items, mealTarget, options = {}) {
     const a = scoredSingles[i];
     for (let j = i + 1; j < n; j++) {
       const b = scoredSingles[j];
-      const combo = evaluateCombo([a, b], mealTarget, { budget, minKcal, maxKcal, maxSodium, goal, R });
+      const combo = evaluateCombo([a, b], mealTarget, { budget, minKcal, maxKcal, maxSodium, goal, timing, R });
       if (combo) validCombos.push(combo);
     }
   }
@@ -99,7 +111,7 @@ export function findBestCombos(items, mealTarget, options = {}) {
       if (a.price_krw + b.price_krw > budget) continue;
       for (let k = j + 1; k < n; k++) {
         const c = scoredSingles[k];
-        const combo = evaluateCombo([a, b, c], mealTarget, { budget, minKcal, maxKcal, maxSodium, goal, R });
+        const combo = evaluateCombo([a, b, c], mealTarget, { budget, minKcal, maxKcal, maxSodium, goal, timing, R });
         if (combo) validCombos.push(combo);
       }
     }
@@ -153,7 +165,7 @@ export function findBestCombos(items, mealTarget, options = {}) {
  * 조합 타당성 검증 및 합산 평가
  */
 function evaluateCombo(items, mealTarget, ctx) {
-  const { budget, minKcal, maxKcal, maxSodium, goal, R } = ctx;
+  const { budget, minKcal, maxKcal, maxSodium, goal, timing, R } = ctx;
 
   // 1. 카테고리 제약
   //    ① 같은 카테고리 중복 금지(음료는 예외) ② 단, 음료는 조합당 상한이 있다
@@ -205,10 +217,10 @@ function evaluateCombo(items, mealTarget, ctx) {
     npi_sum: Math.round(totalNpi * 10) / 10
   };
 
-  const rawFit = computeFitScore(aggregate, mealTarget, goal);
+  const rawFit = computeFitScore(aggregate, mealTarget, goal, timing);
   const penalty = R.size_penalty_per_extra_item * (items.length - 2);
   const finalScore = Math.max(0, Math.round(rawFit - penalty));
-  const reason = generateReasonSentence(aggregate, mealTarget, finalScore, goal);
+  const reason = generateReasonSentence(aggregate, mealTarget, finalScore, goal, timing);
 
   return { items, item_count: items.length, aggregate, score: finalScore, reason };
 }
