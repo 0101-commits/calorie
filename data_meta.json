@@ -2,7 +2,7 @@
   "total_count": 826,
   "graded_count": 787,
   "hold_count": 39,
-  "generated_at": "2026-09-17T03:48:52.405Z",
+  "generated_at": "2026-09-17T03:59:36.507Z",
   "rule_version": "v1.1",
   "rule_file": "rules/rule_v1.1.json",
   "file_size_kb": 2009.4,
@@ -175,7 +175,7 @@
           "protein_max": 40,
           "carb_per_kg": 0.6,
           "protein_under_dir": 1.5,
-          "sodium_cap_ratio": 1.3
+          "sodium_cap_ratio": 1.1
         },
         "rest": {
           "protein_floor_per_kg": 1.4

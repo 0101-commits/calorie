@@ -630,7 +630,7 @@ function renderCalcTab() {
       // 탄수를 채점에 쓰는 타이밍(운동 전·후)에서는 탄수가 실측인 건만 고른다 — 모르는 값을 0으로 채점하지 않는다.
       .filter(p => !TIMING_CARB_GUARD.includes(timing) || p.carb_g_status === 'measured')
       // 운동 후 가중치에서 나트륨 비중이 낮아(0.05) 점수만으로는 막히지 않는다.
-      // 조합에 이미 있는 방식대로 1끼 목표의 130%를 넘는 단품은 운동 후 추천에서 뺀다.
+      // 조합에 이미 있는 방식대로 1끼 목표의 110%를 넘는 단품은 운동 후 추천에서 뺀다.
       .filter(p => timing !== 'post' || !meal.Na ||
         Number(p.sodium_mg || 0) <= meal.Na * TIMING_PROFILES.post.sodium_cap_ratio)
       .map(p => ({
