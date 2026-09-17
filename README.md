@@ -95,6 +95,9 @@ scripts/
   normalize.js          정규화 + 필드 신뢰도 부여
   build.js              QA → 지표 → data.json + data_index.json (게이트 G1·G2·G3·G5·G8)
   detect_new.js  stale_sweep.js  collect_site.js  check_deploy_hygiene.js
+  audit_ingredients.js        원재료 전수 점검(제품명 불일치·복사·단백질 원천 없음)
+  purge_copied_ingredients.js 복사된 원재료 격리 + 재확인 큐 적재
+  collect_ingredients.js      식품안전나라 C005 로 원재료 재수집(야간 창에서만 응답)
 worker/worker.js        /api/barcode /report /submit /identify /health
 migrations/002_schema_v2.sql   D1 스키마 v2
 ```
@@ -108,6 +111,10 @@ npm run pipeline   # 격리 → 정규화 → 빌드 (data.json · data_index.js
 npm test           # 단위 테스트 38건
 npm run site       # 공개 배포 산출물 수집(_site) + 배포 위생 게이트 G7
 npm run serve      # http://localhost:8080
+
+node scripts/audit_ingredients.js --json        # 원재료 점검 보고서
+node scripts/purge_copied_ingredients.js --dry  # 복사된 원재료가 있는지만 확인
+node scripts/collect_ingredients.js --probe     # 재수집 API 창이 열렸는지 확인
 ```
 
 공공DB 수집에는 `.env`의 `DATA_GO_KR_API_KEY`가 필요하다. 코드에 키를 적지 않는다.
@@ -124,6 +131,7 @@ npm run serve      # http://localhost:8080
 | G5 | 룰 파일과 코드 기본값 불일치(지표·추천·타이밍) | build.js + tests/rules.test.js + tests/timing.test.js |
 | G7 | 배포 산출물의 시크릿·내부 도구·개발 부산물 | check_deploy_hygiene.js |
 | G8 | 원재료 없이 내려진 흡수 속도 판정 | build.js |
+| G9 | 브랜드가 다른데 같은 원재료 문자열(남의 제품 원재료) | build.js + tests/qa.test.js |
 | — | 근거 없는 기피 판정, 효능 단정 어휘, 성분 날조 | tests/ingredients.test.js |
 
 ---
@@ -133,14 +141,23 @@ npm run serve      # http://localhost:8080
 826건 · 판정 787 / 보류 39 · A 13.0% · B 19.3% · C 42.6% · D 25.2%
 채널: 편의점 509 · 외식 173 · 마트 94 · 온라인 50
 워싱: 검증 214 · 조건부 18 · 워싱 40 · 대상 아님 554
-흡수 속도: 빠름 49 · 보통 345 · 느림 85 · 미확보 347
+원재료 확보 45건 · 미확보 781건
+CleanRadar: 안심 15 · 조건부 16 · 주의 14 · 원재료 미확보 781
+흡수 속도: 빠름 16 · 보통 11 · 느림 11 · 미확보 788
 
 **알려진 한계**
 - 제품 이미지 0건. 타사 CDN 핫링크 167건을 내렸고 촬영 큐(`data/photo_queue.json`)로 남겼다
 - 트랜스지방·식이섬유·출시일 결측. 트랜스지방 페널티와 식이섬유 보너스는 데이터가 들어오기 전까지 발동하지 않는다
 - 알레르기 정보 없음. 안전에 직결되므로 커버리지 90% 전에는 필터를 열지 않는다
 - 가격 37건이 추정값(공공DB에 가격이 없다). 해당 건은 등급 보류 상태다
-- 원재료 미확보 309건. 흡수 속도 판정도 347건이 보류이며, 커버리지가 올라오기 전에는 점수에 넣지 않는다
+- **원재료 472건을 격리했다(2026-09-17).** 서로 다른 브랜드가 같은 문자열을 쓰고 있었다 — 동원참치의 원재료가
+  "닭가슴살(국내산 96%)…" 였고 87건이 그 한 문자열을 공유했다. 45묶음 471건 + 제품명 불일치 1건을 비웠고
+  `data/quarantine/copied_ingredients.json` 에 원문을 남겼다. 만든 주범인 `enrich_ingredients.js` 는 폐기했고
+  같은 일이 다시 들어오면 게이트 G9 가 빌드를 멈춘다
+- 그 결과 원재료 보유가 517→45건이 됐다. CleanRadar 와 흡수 속도는 지표를 유지하되 대부분 「미확보」로 표시된다.
+  재수집은 `data/recheck_queue.json`(472건)과 야간 크론이 맡는다 — 식품안전나라 C005 는 09~19시에 응답하지 않는다
+- 외식 프랜차이즈 3곳(롯데리아·도미노·피자헛) 공식 페이지를 실사했으나 영양성분·알레르기만 있고 전성분은 없다.
+  외식 메뉴의 원재료는 이 경로로는 채울 수 없다
 - D1 미배포. 제보·정정이 실제로 돌 때 켠다(기획안 D14)
 
 ---
