@@ -6,7 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { evaluateMenu, computePPR, DEFAULT_RULES, fieldStatus } from '../js/score.js';
-import { validateMenuQA } from '../js/qa.js';
+import { validateMenuQA, findCopiedIngredientGroups } from '../js/qa.js';
 import { analyzeIngredients, classifyAbsorption } from '../js/clean_radar.js';
 import { TIMING_PROFILES, TIMING_FIT_WEIGHTS } from '../js/calc.js';
 
@@ -66,6 +66,12 @@ function gateG8(items) {
   return bad;
 }
 
+/** G9 — 브랜드가 다른데 원재료 문자열이 같은 건(복사된 원재료) */
+function gateG9(items) {
+  return findCopiedIngredientGroups(items).map(g =>
+    `${g.items.length}건 · 브랜드 ${g.brands.length}곳 (${g.items.slice(0, 3).map(i => i.name).join(', ')}…) — ${g.ingredients_raw.slice(0, 40)}…`);
+}
+
 /** G1 — 값이 0인데 measured 로 적힌 '플레이스홀더' 탐지 */
 function gateG1(items) {
   const suspects = [];
@@ -121,6 +127,17 @@ function main() {
   if (g3.length) {
     console.error(`💥 G3 enum 정합 게이트 실패 ${g3.length}건:`);
     g3.slice(0, 10).forEach(m => console.error('  - ' + m));
+    process.exit(1);
+  }
+
+  // ── G9 복사된 원재료 ──
+  //    서로 다른 브랜드가 같은 원재료 문자열을 가질 수는 없다. 한쪽은 남의 제품 것이다.
+  //    실측에서 동원참치의 원재료가 닭가슴살이었고 87건이 한 문자열을 공유했다.
+  const g9 = gateG9(rawData);
+  if (g9.length) {
+    console.error(`💥 G9 원재료 복사 게이트 실패 ${g9.length}묶음 — 남의 제품 원재료로 판정할 수 없습니다:`);
+    g9.slice(0, 10).forEach(m => console.error('  - ' + m));
+    console.error('  → node scripts/purge_copied_ingredients.js 로 비우고 재수집 큐에 넣으세요.');
     process.exit(1);
   }
 

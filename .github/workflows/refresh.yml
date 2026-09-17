@@ -14,10 +14,13 @@ on:
     - cron: '0 5 * * 1'
     # 매월 1일 14:00 KST — 공공DB 재동기화
     - cron: '0 5 1 * *'
+    # 매일 21:00 KST (UTC 12:00) — 원재료 재수집.
+    # 식품안전나라 C005 는 "09시~19시에는 서비스가 제한됩니다"(ERROR-503) 라서 야간에만 응답한다.
+    - cron: '0 12 * * *'
   workflow_dispatch:
     inputs:
       job:
-        description: '실행할 작업 (detect | public | stale | all)'
+        description: '실행할 작업 (detect | public | stale | ingredients | all)'
         required: false
         default: 'all'
 
@@ -53,6 +56,17 @@ jobs:
             exit 0
           fi
           python scripts/fetch_public_data.py
+
+      - name: 원재료 재수집 (야간 창)
+        if: github.event.schedule == '0 12 * * *' || github.event.inputs.job == 'ingredients'
+        env:
+          FOOD_SAFETY_KOREA_API_KEY: ${{ secrets.FOOD_SAFETY_KOREA_API_KEY }}
+        run: |
+          if [ -z "$FOOD_SAFETY_KOREA_API_KEY" ]; then
+            echo "FOOD_SAFETY_KOREA_API_KEY 시크릿이 없습니다. 원재료 재수집을 건너뜁니다."
+            exit 0
+          fi
+          node scripts/collect_ingredients.js --limit=200
 
       - name: 보도자료 가격 수집 (주 1회)
         if: github.event.schedule == '0 5 * * 1' || github.event.inputs.job == 'detect' || github.event.inputs.job == 'all'

@@ -105,8 +105,34 @@ export function validateMenuQA(menu, existingIds = new Set()) {
   };
 }
 
+/**
+ * 브랜드가 다른데 원재료 문자열이 같은 묶음을 찾는다.
+ *
+ * 서로 다른 브랜드의 제품이 글자 하나까지 같은 원재료를 가질 수는 없다. 한쪽은 남의 제품 것이다.
+ * 실측(2026-09-17)에서 동원참치의 원재료가 "닭가슴살(국내산 96%)…" 였고 87건이 그 문자열을 공유했다.
+ * 빌드 게이트(G9)·점검 스크립트·격리 스크립트가 모두 이 함수를 쓴다.
+ */
+export function findCopiedIngredientGroups(items, minLength = 20) {
+  const byRaw = new Map();
+  for (const it of items || []) {
+    const raw = String((it && it.ingredients_raw) || '').trim();
+    if (raw.length < minLength) continue;
+    if (!byRaw.has(raw)) byRaw.set(raw, []);
+    byRaw.get(raw).push(it);
+  }
+
+  const groups = [];
+  for (const [raw, group] of byRaw) {
+    const brands = [...new Set(group.map(g => g.brand_code || g.brand))];
+    if (brands.length < 2) continue;   // 같은 브랜드의 맛 변형은 정상이다
+    groups.push({ ingredients_raw: raw, brands, items: group });
+  }
+  return groups.sort((a, b) => b.items.length - a.items.length);
+}
+
 if (typeof window !== 'undefined') {
   window.ProteinQA = {
-    validateMenuQA
+    validateMenuQA,
+    findCopiedIngredientGroups
   };
 }

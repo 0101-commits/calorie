@@ -1,0 +1,3095 @@
+[
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 32,
+    "item_count": 87,
+    "brands": [
+      "goobne",
+      "cj",
+      "hansung",
+      "마루카네",
+      "jiller",
+      "pulmuone",
+      "dongwon",
+      "harim",
+      "ottogi",
+      "nobrand",
+      "heodak",
+      "rankingdak",
+      "bardak",
+      "homeplus",
+      "momstouch",
+      "mcdonalds",
+      "kfc",
+      "burgerking",
+      "costco",
+      "suzis",
+      "metree",
+      "bodynine",
+      "kyochon",
+      "bbq",
+      "bhc",
+      "lotteria",
+      "nbb",
+      "puradak",
+      "gs25",
+      "7eleven",
+      "jinju",
+      "lotte_wellfood"
+    ],
+    "ingredients_raw": "닭가슴살(국내산 96%), 정제수, 천일염(국내산), 마늘분말, 양파분말, 비타민C, 포도당",
+    "items": [
+      {
+        "menu_id": "cvs-goobne-sausage-garlic-120",
+        "brand": "굽네치킨",
+        "name": "굽네 닭가슴살 후랑크 마늘맛 120g"
+      },
+      {
+        "menu_id": "cvs-cj-maxbon-protein-55",
+        "brand": "CJ제일제당",
+        "name": "맥스봉 프로틴 55g"
+      },
+      {
+        "menu_id": "cvs-hansung-hanseong-crami-90",
+        "brand": "한성기업",
+        "name": "한성 크래미 90g"
+      },
+      {
+        "menu_id": "cvs-마루카네-감동란-반숙계란-2구-100g-100",
+        "brand": "마루카네",
+        "name": "감동란 반숙계란 (2구 100g)"
+      },
+      {
+        "menu_id": "cvs-jiller-beef-jerky-60",
+        "brand": "질러",
+        "name": "질러 직화육포 60g"
+      },
+      {
+        "menu_id": "mart-cj-the-healthy-chicken-grilled-100",
+        "brand": "CJ제일제당",
+        "name": "더건강한 닭가슴살 직화통살구이 100g"
+      },
+      {
+        "menu_id": "mart-cj-spam-light-100",
+        "brand": "CJ제일제당",
+        "name": "스팸 25% 라이트 200g (100g 기준)"
+      },
+      {
+        "menu_id": "mart-pulmuone-earth-diet-chicken-breast-100",
+        "brand": "풀무원",
+        "name": "지구식단 결이 다른 직화 닭가슴살 100g"
+      },
+      {
+        "menu_id": "mart-dongwon-tuna-light-100",
+        "brand": "동원",
+        "name": "동원참치 라이트스탠다드 100g"
+      },
+      {
+        "menu_id": "mart-dongwon-tuna-high-protein-100",
+        "brand": "동원",
+        "name": "동원참치 고단백 살코기 참치 100g"
+      },
+      {
+        "menu_id": "mart-dongwon-richam-double-light-100",
+        "brand": "동원",
+        "name": "동원 리챔 더블라이트 (100g 기준)"
+      },
+      {
+        "menu_id": "mart-dongwon-chicken-breast-can-135",
+        "brand": "동원",
+        "name": "동원 순닭가슴살 캔 135g"
+      },
+      {
+        "menu_id": "mart-harim-chicken-original-100",
+        "brand": "하림",
+        "name": "하림 닭가슴살 오리지널 100g"
+      },
+      {
+        "menu_id": "mart-harim-tenderloin-sousvide-100",
+        "brand": "하림",
+        "name": "하림 촉촉한 수비드 닭안심 100g"
+      },
+      {
+        "menu_id": "mart-ottogi-chicken-breast-can-135",
+        "brand": "오뚜기",
+        "name": "오뚜기 담백한 닭가슴살 135g"
+      },
+      {
+        "menu_id": "mart-nobrand-frozen-chicken-breast-100",
+        "brand": "노브랜드",
+        "name": "노브랜드 냉동 닭가슴살 (100g 기준)"
+      },
+      {
+        "menu_id": "mart-nobrand-baked-eggs-80",
+        "brand": "노브랜드",
+        "name": "노브랜드 쫄깃한 구운란 2알 (80g)"
+      },
+      {
+        "menu_id": "mart-nobrand-tuna-light-100",
+        "brand": "노브랜드",
+        "name": "노브랜드 살코기 참치 100g"
+      },
+      {
+        "menu_id": "online-goobne-road-dak-oven-grilled-100",
+        "brand": "굽네치킨",
+        "name": "굽네 로드닭 오븐구이 닭가슴살 100g"
+      },
+      {
+        "menu_id": "online-heodak-steam-chicken-garlic-100",
+        "brand": "허닭",
+        "name": "허닭 스팀 닭가슴살 마늘맛 100g"
+      },
+      {
+        "menu_id": "mart-cj-spam-single-classic-80",
+        "brand": "CJ제일제당",
+        "name": "스팸 싱글 클래식 80g"
+      },
+      {
+        "menu_id": "mart-cj-gourmet-soba-chicken-cutlet-150",
+        "brand": "CJ제일제당",
+        "name": "고메 바삭 통닭가슴살 카츠 150g"
+      },
+      {
+        "menu_id": "mart-pulmuone-earth-diet-luncheon-100",
+        "brand": "풀무원",
+        "name": "지구식단 식물성 런천미트 (100g 기준)"
+      },
+      {
+        "menu_id": "mart-dongwon-tuna-mild-100",
+        "brand": "동원",
+        "name": "동원참치 마일드 100g"
+      },
+      {
+        "menu_id": "mart-dongwon-tuna-pepper-chili-100",
+        "brand": "동원",
+        "name": "동원 고추참치 100g"
+      },
+      {
+        "menu_id": "mart-dongwon-oven-chicken-breast-100",
+        "brand": "동원",
+        "name": "동원 오븐구이 닭가슴살 오리지널 100g"
+      },
+      {
+        "menu_id": "mart-harim-tandoori-chicken-tender-100",
+        "brand": "하림",
+        "name": "하림 탄두리 치킨 닭안심 텐더 100g"
+      },
+      {
+        "menu_id": "mart-harim-yongari-protein-nugget-100",
+        "brand": "하림",
+        "name": "하림 용가리 치킨 고단백 너겟 (100g 기준)"
+      },
+      {
+        "menu_id": "online-rankingdak-masitdak-soft-chicken-breast-100",
+        "brand": "랭킹닭컴",
+        "name": "맛있닭 소프트 닭가슴살 마늘맛 100g"
+      },
+      {
+        "menu_id": "online-rankingdak-eatmate-soft-tenderloin-garlic-100",
+        "brand": "랭킹닭컴",
+        "name": "잇메이트 소프트 닭안심 마늘맛 100g"
+      },
+      {
+        "menu_id": "online-rankingdak-eatmate-low-sodium-chicken-100",
+        "brand": "랭킹닭컴",
+        "name": "잇메이트 저염 닭가슴살 오리지널 100g"
+      },
+      {
+        "menu_id": "online-goobne-road-dak-chili-sousvide-100",
+        "brand": "굽네치킨",
+        "name": "굽네 로드닭 수비드 닭가슴살 칠리 100g"
+      },
+      {
+        "menu_id": "online-heodak-slice-chicken-chili-100",
+        "brand": "허닭",
+        "name": "허닭 슬라이스 닭가슴살 칠리 100g"
+      },
+      {
+        "menu_id": "online-bardak-direct-sousvide-chicken-100",
+        "brand": "바르닭",
+        "name": "바르닭 직화 수비드 닭가슴살 오리지널 100g"
+      },
+      {
+        "menu_id": "online-bardak-chicken-donggeurang-100",
+        "brand": "바르닭",
+        "name": "바르닭 닭가슴살 한입 동그랑땡 100g"
+      },
+      {
+        "menu_id": "mart-nobrand-frozen-tenderloin-100",
+        "brand": "노브랜드",
+        "name": "노브랜드 냉동 닭안심 (100g 기준)"
+      },
+      {
+        "menu_id": "mart-homeplus-signature-chicken-breast-100",
+        "brand": "홈플러스",
+        "name": "홈플러스 시그니처 수비드 닭가슴살 100g"
+      },
+      {
+        "menu_id": "fr-momstouch-fried-thigh-boneless-300",
+        "brand": "맘스터치",
+        "name": "후라이드 싸이순살 치킨 300g"
+      },
+      {
+        "menu_id": "fr-momstouch-cajun-tteokgangjeong-r-250",
+        "brand": "맘스터치",
+        "name": "케이준 떡강정 R 250g"
+      },
+      {
+        "menu_id": "fr-mcdonalds-mcnuggets-6pcs-108",
+        "brand": "맥도날드",
+        "name": "맥너겟 6조각 108g"
+      },
+      {
+        "menu_id": "fr-kfc-tender-4pcs-120",
+        "brand": "KFC",
+        "name": "텐더 4조각 120g"
+      },
+      {
+        "menu_id": "fr-kfc-black-label-chicken-1pc-85",
+        "brand": "KFC",
+        "name": "블랙라벨 치킨 1조각 85g"
+      },
+      {
+        "menu_id": "fr-kfc-hot-crispy-chicken-1pc-100",
+        "brand": "KFC",
+        "name": "핫크리스피 치킨 1조각 100g"
+      },
+      {
+        "menu_id": "fr-kfc-original-chicken-1pc-100",
+        "brand": "KFC",
+        "name": "오리지널 치킨 1조각 100g"
+      },
+      {
+        "menu_id": "fr-burgerking-nugget-king-8pcs-152",
+        "brand": "버거킹",
+        "name": "너겟킹 8조각 152g"
+      },
+      {
+        "menu_id": "mart-costco-rotisserie-chicken-serving-200",
+        "brand": "코스트코",
+        "name": "로티세리 치킨 (1/4마리 200g 기준)"
+      },
+      {
+        "menu_id": "mart-suzis-costco-suzies-grilled-chicken-100",
+        "brand": "수지스",
+        "name": "수지스 그릴드 닭가슴살 100g (1팩 기준)"
+      },
+      {
+        "menu_id": "online-metree-steam-chicken-chili-100",
+        "brand": "미트리",
+        "name": "미트리 스팀 닭가슴살 칠리맛 100g"
+      },
+      {
+        "menu_id": "online-bodynine-spicy-chicken-150",
+        "brand": "바디나인",
+        "name": "바디나인 내가 몸짱이 될 닭 스파이시 150g"
+      },
+      {
+        "menu_id": "online-goobne-road-dak-subeed-100",
+        "brand": "굽네치킨",
+        "name": "굽네몰 로드닭 저염 수비드 닭가슴살 100g"
+      },
+      {
+        "menu_id": "online-goobne-somatdak-chicken-thigh-100",
+        "brand": "굽네치킨",
+        "name": "굽네몰 소맛닭 통다리살 구이 100g"
+      },
+      {
+        "menu_id": "fr-goobne-original-boneless-200",
+        "brand": "굽네치킨",
+        "name": "굽네 오리지널 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-goobne-pepper-crispy-boneless-200",
+        "brand": "굽네치킨",
+        "name": "굽네 고추바사삭 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-goobne-garlic-crispy-boneless-200",
+        "brand": "굽네치킨",
+        "name": "굽네 남해마늘 바사삭 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-goobne-chicken-breast-vienna-120",
+        "brand": "굽네치킨",
+        "name": "굽네 닭가슴살 그릴 비엔나 120g"
+      },
+      {
+        "menu_id": "fr-kyochon-original-boneless-200",
+        "brand": "교촌치킨",
+        "name": "교촌 오리지널 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-kyochon-red-boneless-200",
+        "brand": "교촌치킨",
+        "name": "교촌 레드 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-kyochon-honey-boneless-200",
+        "brand": "교촌치킨",
+        "name": "교촌 허니 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-bbq-jamaica-whole-thigh-220",
+        "brand": "BBQ",
+        "name": "자메이카 통다리구이 2조각 (220g)"
+      },
+      {
+        "menu_id": "fr-bbq-golden-olive-boneless-200",
+        "brand": "BBQ",
+        "name": "황금올리브치킨 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-bhc-matchoking-boneless-200",
+        "brand": "BHC",
+        "name": "맛초킹 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-lotteria-chicken-fillet-4pcs-116",
+        "brand": "롯데리아",
+        "name": "치킨 휠레 4조각 116g"
+      },
+      {
+        "menu_id": "fr-nbb-crunch-wing-4pcs-120",
+        "brand": "노브랜드버거",
+        "name": "크런치 윙 4조각 120g"
+      },
+      {
+        "menu_id": "fr-mcdonalds-chicken-tender-4pcs-120",
+        "brand": "맥도날드",
+        "name": "맥스파이시 치킨 텐더 4조각 120g"
+      },
+      {
+        "menu_id": "fr-burgerking-basak-king-4pcs-130",
+        "brand": "버거킹",
+        "name": "바삭킹 4조각 130g"
+      },
+      {
+        "menu_id": "fr-kfc-chicken-skin-fry-100",
+        "brand": "KFC",
+        "name": "닭껍질튀김 100g"
+      },
+      {
+        "menu_id": "fr-lotteria-fire-wing-4pcs-120",
+        "brand": "롯데리아",
+        "name": "화이어윙 4조각 120g"
+      },
+      {
+        "menu_id": "fr-goobne-galbi-boneless-200",
+        "brand": "굽네치킨",
+        "name": "굽네 갈비천왕 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-goobne-oven-crispy-boneless-200",
+        "brand": "굽네치킨",
+        "name": "굽네 오븐바사삭 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-kyochon-half-boneless-200",
+        "brand": "교촌치킨",
+        "name": "교촌 반반 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-kyochon-salsal-fried-200",
+        "brand": "교촌치킨",
+        "name": "교촌 살살후라이드 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-bbq-inner-tender-10pcs-200",
+        "brand": "BBQ",
+        "name": "황금올리브치킨 속안심 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-bbq-king-galbi-boneless-200",
+        "brand": "BBQ",
+        "name": "극한왕갈비치킨 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-bhc-bburingkle-boneless-200",
+        "brand": "BHC",
+        "name": "뿌링클 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-bhc-goldking-boneless-200",
+        "brand": "BHC",
+        "name": "골드킹 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-puradak-black-aglio-boneless-200",
+        "brand": "푸라닭",
+        "name": "블랙알리오 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-puradak-chili-mayo-boneless-200",
+        "brand": "푸라닭",
+        "name": "고추마요 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-puradak-original-boneless-200",
+        "brand": "푸라닭",
+        "name": "푸라닭 오리지널 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "cvs-gs25-bigger-chicken-leg-170",
+        "brand": "GS25",
+        "name": "GS25 더큰 닭다리 즉석조리 170g"
+      },
+      {
+        "menu_id": "cvs-gs25-crispy-tongdari-chicken-180",
+        "brand": "GS25",
+        "name": "GS25 바삭통다리 치킨 180g"
+      },
+      {
+        "menu_id": "cvs-7eleven-seven-roasted-chicken-leg-160",
+        "brand": "세븐일레븐",
+        "name": "세븐일레븐 통닭다리구이 160g"
+      },
+      {
+        "menu_id": "cvs-jinju-cheonhajangsa-original-50",
+        "brand": "진주햄",
+        "name": "진주햄 천하장사 오리지널 50g"
+      },
+      {
+        "menu_id": "cvs-lotte_wellfood-lotte-uiseong-garlic-frank-70",
+        "brand": "롯데웰푸드",
+        "name": "롯데 의성마늘 후랑크 70g"
+      },
+      {
+        "menu_id": "cvs-lotte_wellfood-lotte-uiseong-garlic-spicy-frank-70",
+        "brand": "롯데웰푸드",
+        "name": "롯데 의성마늘 매콤 후랑크 70g"
+      },
+      {
+        "menu_id": "cvs-lotte_wellfood-lotte-kisseutik-original-50",
+        "brand": "롯데웰푸드",
+        "name": "롯데 키스틱 오리지널 50g"
+      },
+      {
+        "menu_id": "cvs-cj-spam-single-classic-80",
+        "brand": "CJ제일제당",
+        "name": "CJ 스팸 싱글 클래식 80g"
+      },
+      {
+        "menu_id": "cvs-pulmuone-chokchokran-egg-100",
+        "brand": "풀무원",
+        "name": "풀무원 촉촉란 2구 100g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 11,
+    "item_count": 50,
+    "brands": [
+      "momstouch",
+      "subway",
+      "mcdonalds",
+      "kfc",
+      "masitdak",
+      "lotteria",
+      "nbb",
+      "frankburger",
+      "twosome",
+      "salady",
+      "samlip"
+    ],
+    "ingredients_raw": "버거번[밀가루, 백설탕, 쇼트닝, 효모, 정제소금], 패티[돼지고기, 소고기, 대두단백, L-글루탐산나트륨], 양상추, 피클, 특제마요소스[식물성유지, 설탕, 식초]",
+    "items": [
+      {
+        "menu_id": "fr-momstouch-deep-cheese-burger-226",
+        "brand": "맘스터치",
+        "name": "딥치즈버거 단품 226g"
+      },
+      {
+        "menu_id": "fr-momstouch-white-garlic-burger-248",
+        "brand": "맘스터치",
+        "name": "화이트갈릭버거 단품 248g"
+      },
+      {
+        "menu_id": "fr-subway-k-bbq-15cm-245",
+        "brand": "써브웨이",
+        "name": "K-바비큐 15cm"
+      },
+      {
+        "menu_id": "fr-subway-steak-and-cheese-15cm-245",
+        "brand": "써브웨이",
+        "name": "스테이크 & 치즈 15cm"
+      },
+      {
+        "menu_id": "fr-subway-pulled-pork-bbq-15cm-248",
+        "brand": "써브웨이",
+        "name": "풀드포크 바비큐 15cm"
+      },
+      {
+        "menu_id": "fr-subway-egg-mayo-15cm-238",
+        "brand": "써브웨이",
+        "name": "에그마요 15cm"
+      },
+      {
+        "menu_id": "fr-subway-shrimp-15cm-198",
+        "brand": "써브웨이",
+        "name": "쉬림프 15cm"
+      },
+      {
+        "menu_id": "fr-mcdonalds-double-quarter-pounder-275",
+        "brand": "맥도날드",
+        "name": "더블 쿼터파운더 치즈 단품 275g"
+      },
+      {
+        "menu_id": "fr-mcdonalds-quarter-pounder-cheese-198",
+        "brand": "맥도날드",
+        "name": "쿼터파운더 치즈 단품 198g"
+      },
+      {
+        "menu_id": "fr-mcdonalds-big-mac-213",
+        "brand": "맥도날드",
+        "name": "빅맥 단품 213g"
+      },
+      {
+        "menu_id": "fr-kfc-zinger-burger-220",
+        "brand": "KFC",
+        "name": "징거버거 단품 220g"
+      },
+      {
+        "menu_id": "online-masitdak-chicken-burrito-chili-180",
+        "brand": "맛있닭",
+        "name": "맛있닭 닭가슴살 한끼 브리또 칠리 180g"
+      },
+      {
+        "menu_id": "fr-lotteria-t-rex-burger-214",
+        "brand": "롯데리아",
+        "name": "T-REX 버거 단품 214g"
+      },
+      {
+        "menu_id": "fr-lotteria-hot-crispy-burger-189",
+        "brand": "롯데리아",
+        "name": "핫크리스피 버거 단품 189g"
+      },
+      {
+        "menu_id": "fr-lotteria-classic-cheese-burger-145",
+        "brand": "롯데리아",
+        "name": "클래식 치즈버거 단품 145g"
+      },
+      {
+        "menu_id": "fr-lotteria-mozzarella-in-the-burger-bacon-224",
+        "brand": "롯데리아",
+        "name": "모짜렐라 인 더 버거 베이컨 단품 224g"
+      },
+      {
+        "menu_id": "fr-nbb-signature-burger-203",
+        "brand": "노브랜드버거",
+        "name": "NBB 시그니처 버거 단품 203g"
+      },
+      {
+        "menu_id": "fr-nbb-megabyte-burger-252",
+        "brand": "노브랜드버거",
+        "name": "메가바이트 버거 단품 252g"
+      },
+      {
+        "menu_id": "fr-frankburger-frank-burger-r-170",
+        "brand": "프랭크버거",
+        "name": "프랭크버거 R 단품 170g"
+      },
+      {
+        "menu_id": "fr-frankburger-cheeseburger-r-190",
+        "brand": "프랭크버거",
+        "name": "치즈버거 R 단품 190g"
+      },
+      {
+        "menu_id": "fr-frankburger-double-cheeseburger-r-260",
+        "brand": "프랭크버거",
+        "name": "더블치즈버거 R 단품 260g"
+      },
+      {
+        "menu_id": "fr-frankburger-jg-burger-310",
+        "brand": "프랭크버거",
+        "name": "JG버거 단품 310g"
+      },
+      {
+        "menu_id": "fr-twosome-mexican-panini-195",
+        "brand": "투썸플레이스",
+        "name": "멕시칸 파니니 195g"
+      },
+      {
+        "menu_id": "fr-twosome-pesto-ham-cheese-panini-190",
+        "brand": "투썸플레이스",
+        "name": "페스토 햄치즈 파니니 190g"
+      },
+      {
+        "menu_id": "fr-subway-italian-bmt-15cm-226",
+        "brand": "써브웨이",
+        "name": "이탈리안 비엠티 15cm"
+      },
+      {
+        "menu_id": "fr-subway-spicy-italian-15cm-218",
+        "brand": "써브웨이",
+        "name": "스파이시 이탈리안 15cm"
+      },
+      {
+        "menu_id": "fr-subway-tuna-15cm-238",
+        "brand": "써브웨이",
+        "name": "참치 15cm"
+      },
+      {
+        "menu_id": "fr-salady-egg-bacon-sand-180",
+        "brand": "샐러디",
+        "name": "에그베이컨 샌드 180g"
+      },
+      {
+        "menu_id": "fr-salady-mexican-wrap-220",
+        "brand": "샐러디",
+        "name": "멕시칸 랩 220g"
+      },
+      {
+        "menu_id": "fr-momstouch-unbelievable-burger-308",
+        "brand": "맘스터치",
+        "name": "언빌리버블 버거 단품 308g"
+      },
+      {
+        "menu_id": "fr-momstouch-incredible-burger-305",
+        "brand": "맘스터치",
+        "name": "인크레더블 버거 단품 305g"
+      },
+      {
+        "menu_id": "fr-momstouch-shrimp-burger-175",
+        "brand": "맘스터치",
+        "name": "통새우버거 단품 175g"
+      },
+      {
+        "menu_id": "fr-mcdonalds-bacon-tomato-deluxe-240",
+        "brand": "맥도날드",
+        "name": "베이컨 토마토 디럭스 단품 240g"
+      },
+      {
+        "menu_id": "fr-mcdonalds-1955-burger-255",
+        "brand": "맥도날드",
+        "name": "1955 버거 단품 255g"
+      },
+      {
+        "menu_id": "fr-mcdonalds-cheeseburger-116",
+        "brand": "맥도날드",
+        "name": "치즈버거 단품 116g"
+      },
+      {
+        "menu_id": "fr-mcdonalds-double-cheeseburger-167",
+        "brand": "맥도날드",
+        "name": "더블 치즈버거 단품 167g"
+      },
+      {
+        "menu_id": "fr-mcdonalds-egg-mcmuffin-139",
+        "brand": "맥도날드",
+        "name": "에그 맥머핀 139g"
+      },
+      {
+        "menu_id": "fr-mcdonalds-sausage-egg-mcmuffin-166",
+        "brand": "맥도날드",
+        "name": "소시지 에그 맥머핀 166g"
+      },
+      {
+        "menu_id": "fr-kfc-tower-burger-245",
+        "brand": "KFC",
+        "name": "타워버거 단품 245g"
+      },
+      {
+        "menu_id": "fr-kfc-zinger-blt-burger-238",
+        "brand": "KFC",
+        "name": "징거BLT 버거 단품 238g"
+      },
+      {
+        "menu_id": "fr-kfc-hot-cheese-zinger-230",
+        "brand": "KFC",
+        "name": "핫치즈징거버거 단품 230g"
+      },
+      {
+        "menu_id": "fr-lotteria-shrimp-burger-179",
+        "brand": "롯데리아",
+        "name": "새우버거 단품 179g"
+      },
+      {
+        "menu_id": "fr-lotteria-ria-miracle-burger-200",
+        "brand": "롯데리아",
+        "name": "리아미라클 버거 단품 200g"
+      },
+      {
+        "menu_id": "fr-nbb-meat-mania-burger-285",
+        "brand": "노브랜드버거",
+        "name": "미트 마니아 버거 단품 285g"
+      },
+      {
+        "menu_id": "fr-nbb-double-cheese-bacon-224",
+        "brand": "노브랜드버거",
+        "name": "더블치즈앤베이컨 버거 단품 224g"
+      },
+      {
+        "menu_id": "fr-nbb-sanchez-burger-218",
+        "brand": "노브랜드버거",
+        "name": "산체스 버거 단품 218g"
+      },
+      {
+        "menu_id": "fr-nbb-smoky-salsa-burger-200",
+        "brand": "노브랜드버거",
+        "name": "스모키 살사 버거 단품 200g"
+      },
+      {
+        "menu_id": "fr-frankburger-bacon-cheese-r-215",
+        "brand": "프랭크버거",
+        "name": "베이컨치즈버거 R 단품 215g"
+      },
+      {
+        "menu_id": "fr-frankburger-shrimp-burger-190",
+        "brand": "프랭크버거",
+        "name": "쉬림프버거 단품 190g"
+      },
+      {
+        "menu_id": "cvs-samlip-cheese-pangpang-hotdog-100",
+        "brand": "삼립",
+        "name": "삼립 치즈팡팡 핫도그 100g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 13,
+    "item_count": 35,
+    "brands": [
+      "emart24",
+      "cj",
+      "pulmuone",
+      "ottogi",
+      "daesang",
+      "goobne",
+      "heodak",
+      "gs25",
+      "cu",
+      "7eleven",
+      "metree",
+      "hansot",
+      "teacherkim"
+    ],
+    "ingredients_raw": "쌀(국산), 돼지고기(국산), 계란말이(계란, 식염), 어묵볶음, 볶음김치[배추, 고춧가루, 마늘, 정제염], 식물성유지, 변성전분, L-글루탐산나트륨, 양조간장, 참기름",
+    "items": [
+      {
+        "menu_id": "cvs-emart24-meatball-lunch-420",
+        "brand": "이마트24",
+        "name": "힘을내요 미트볼 도시락"
+      },
+      {
+        "menu_id": "mart-cj-hetbahn-sotban-abalone-200",
+        "brand": "CJ제일제당",
+        "name": "햇반 솥반 전복내장영양밥 200g"
+      },
+      {
+        "menu_id": "mart-cj-hetbahn-sotban-mushroom-beef-200",
+        "brand": "CJ제일제당",
+        "name": "햇반 솥반 버섯소고기영양밥 200g"
+      },
+      {
+        "menu_id": "mart-pulmuone-roll-yubu-chobap-high-protein-160",
+        "brand": "풀무원",
+        "name": "고단백 롤유부초밥 (1인분 160g 기준)"
+      },
+      {
+        "menu_id": "mart-ottogi-easy-meal-chicken-konjac-rice-200",
+        "brand": "오뚜기",
+        "name": "가뿐한끼 닭가슴살 곤약볶음밥 200g"
+      },
+      {
+        "menu_id": "mart-daesang-homings-chicken-fried-rice-210",
+        "brand": "대상",
+        "name": "청정원 호밍스 닭가슴살 볶음밥 210g"
+      },
+      {
+        "menu_id": "online-goobne-chicken-chibap-kimchi-200",
+        "brand": "굽네치킨",
+        "name": "굽네 볼케이노 닭가슴살 치밥 200g"
+      },
+      {
+        "menu_id": "online-heodak-fried-rice-chicken-konjac-200",
+        "brand": "허닭",
+        "name": "허닭 닭가슴살 곤약볶음밥 갈릭 200g"
+      },
+      {
+        "menu_id": "cvs-gs25-hyeja-chicken-lunchbox-420",
+        "brand": "GS25",
+        "name": "혜자로운 고단백 통닭다리살 도시락 420g"
+      },
+      {
+        "menu_id": "cvs-gs25-tuna-mayo-gimbap-235",
+        "brand": "GS25",
+        "name": "참치마요 김밥 235g"
+      },
+      {
+        "menu_id": "cvs-cu-mukeunji-tuna-gimbap-240",
+        "brand": "CU",
+        "name": "묵은지 참치 김밥 240g"
+      },
+      {
+        "menu_id": "cvs-cu-handon-gimbap-245",
+        "brand": "CU",
+        "name": "한돈 듬뿍 김밥 245g"
+      },
+      {
+        "menu_id": "cvs-7eleven-egg-rich-gimbap-220",
+        "brand": "세븐일레븐",
+        "name": "계란 듬뿍 김밥 220g"
+      },
+      {
+        "menu_id": "online-metree-chicken-fried-rice-garlic-200",
+        "brand": "미트리",
+        "name": "미트리 닭가슴살 볶음밥 갈릭 200g"
+      },
+      {
+        "menu_id": "online-metree-chicken-fried-rice-kimchi-200",
+        "brand": "미트리",
+        "name": "미트리 닭가슴살 볶음밥 김치 200g"
+      },
+      {
+        "menu_id": "fr-hansot-dongbaek-dosirak-440",
+        "brand": "한솥도시락",
+        "name": "동백 도시락 440g"
+      },
+      {
+        "menu_id": "fr-hansot-charcoal-bulgogi-bowl-350",
+        "brand": "한솥도시락",
+        "name": "숯불직화구이 덮밥 350g"
+      },
+      {
+        "menu_id": "fr-teacherkim-bareun-gimbap-250",
+        "brand": "바르다김선생",
+        "name": "바른 김밥 250g"
+      },
+      {
+        "menu_id": "fr-teacherkim-keto-creamcheese-220",
+        "brand": "바르다김선생",
+        "name": "키토 크림치즈 호두 김밥 220g"
+      },
+      {
+        "menu_id": "fr-hansot-jindallae-dosirak-510",
+        "brand": "한솥도시락",
+        "name": "진달래 도시락 510g"
+      },
+      {
+        "menu_id": "fr-hansot-gaenari-dosirak-430",
+        "brand": "한솥도시락",
+        "name": "개나리 도시락 430g"
+      },
+      {
+        "menu_id": "fr-hansot-spam-kimchi-friedrice-350",
+        "brand": "한솥도시락",
+        "name": "스팸김치볶음밥 350g"
+      },
+      {
+        "menu_id": "fr-hansot-tuna-veggie-bibimbap-390",
+        "brand": "한솥도시락",
+        "name": "참치야채 감초고추장 비빔밥 390g"
+      },
+      {
+        "menu_id": "cvs-gs25-hyeja-7side-480",
+        "brand": "GS25",
+        "name": "GS25 혜자로운 집밥 7첩반상 도시락 480g"
+      },
+      {
+        "menu_id": "cvs-gs25-hyeja-tongtong-soya-450",
+        "brand": "GS25",
+        "name": "GS25 혜자로운 집밥 통통쏘야 도시락 450g"
+      },
+      {
+        "menu_id": "cvs-gs25-hyeja-egghambak-460",
+        "brand": "GS25",
+        "name": "GS25 혜자로운 집밥 에그함박 도시락 460g"
+      },
+      {
+        "menu_id": "cvs-gs25-hyeja-chicken-sausage-410",
+        "brand": "GS25",
+        "name": "GS25 혜자로운 집밥 닭가슴살소시지 도시락 410g"
+      },
+      {
+        "menu_id": "cvs-cu-baek-hanpan-460",
+        "brand": "CU",
+        "name": "CU 백종원 한판 도시락 460g"
+      },
+      {
+        "menu_id": "cvs-cu-baek-7side-hanpan-470",
+        "brand": "CU",
+        "name": "CU 백종원 7첩 한판 도시락 470g"
+      },
+      {
+        "menu_id": "cvs-7eleven-seven-matjangwoo-bibim-430",
+        "brand": "세븐일레븐",
+        "name": "세븐일레븐 맛장우 전주비빔밥 도시락 430g"
+      },
+      {
+        "menu_id": "cvs-7eleven-seven-matjangwoo-bulbaek-460",
+        "brand": "세븐일레븐",
+        "name": "세븐일레븐 맛장우 든든한불백 도시락 460g"
+      },
+      {
+        "menu_id": "cvs-emart24-smoked-duck-390",
+        "brand": "이마트24",
+        "name": "이마트24 훈제오리&채소 도시락 390g"
+      },
+      {
+        "menu_id": "cvs-cj-cupban-tuna-mayo-247",
+        "brand": "CJ제일제당",
+        "name": "CJ 햇반컵반 참치마요덮밥 247g"
+      },
+      {
+        "menu_id": "cvs-cj-cupban-miyeokguk-167",
+        "brand": "CJ제일제당",
+        "name": "CJ 햇반컵반 미역국밥 167g"
+      },
+      {
+        "menu_id": "cvs-cj-cupban-hwangtaeguk-170",
+        "brand": "CJ제일제당",
+        "name": "CJ 햇반컵반 황태국밥 170g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 6,
+    "item_count": 19,
+    "brands": [
+      "nongshim",
+      "samyang",
+      "ottogi",
+      "paldo",
+      "harim",
+      "gs25"
+    ],
+    "ingredients_raw": "소맥분(호주산/미국산), 분리대두단백, 변성전분, 팜유, 정제소금, 사골농축액, 고춧가루, 마늘분말, 정제설탕, 효모추출물, 탄산칼륨, L-글루탐산나트륨",
+    "items": [
+      {
+        "menu_id": "cvs-nongshim-shin-geonmyeon-97",
+        "brand": "농심",
+        "name": "농심 신라면 건면 97g"
+      },
+      {
+        "menu_id": "cvs-nongshim-shin-bowl-114",
+        "brand": "농심",
+        "name": "농심 신라면 큰사발면 114g"
+      },
+      {
+        "menu_id": "cvs-nongshim-shin-toomba-bowl-113",
+        "brand": "농심",
+        "name": "농심 신라면 툼바 큰사발면 113g"
+      },
+      {
+        "menu_id": "cvs-samyang-buldak-cup-105",
+        "brand": "삼양식품",
+        "name": "삼양 불닭볶음면 큰컵 105g"
+      },
+      {
+        "menu_id": "cvs-samyang-carbo-buldak-cup-105",
+        "brand": "삼양식품",
+        "name": "삼양 까르보불닭볶음면 큰컵 105g"
+      },
+      {
+        "menu_id": "cvs-samyang-rose-buldak-cup-105",
+        "brand": "삼양식품",
+        "name": "삼양 로제불닭볶음면 큰컵 105g"
+      },
+      {
+        "menu_id": "cvs-nongshim-yukgaejang-bowl-86",
+        "brand": "농심",
+        "name": "농심 육개장 사발면 86g"
+      },
+      {
+        "menu_id": "cvs-nongshim-fried-udon-bowl-111",
+        "brand": "농심",
+        "name": "농심 튀김우동 큰사발면 111g"
+      },
+      {
+        "menu_id": "cvs-nongshim-chapagetti-bowl-123",
+        "brand": "농심",
+        "name": "농심 짜파게티 큰사발면 123g"
+      },
+      {
+        "menu_id": "cvs-ottogi-jin-spicy-cup-110",
+        "brand": "오뚜기",
+        "name": "오뚜기 진라면 매운맛 큰컵 110g"
+      },
+      {
+        "menu_id": "cvs-paldo-bibimmyeon-cup-115",
+        "brand": "팔도",
+        "name": "팔도 비빔면 컵 115g"
+      },
+      {
+        "menu_id": "cvs-harim-themisik-artisan-ramen-cup-112",
+        "brand": "하림",
+        "name": "하림 The미식 장인라면 얼큰한맛 컵 112g"
+      },
+      {
+        "menu_id": "cvs-nongshim-neoguri-bowl-158",
+        "brand": "농심",
+        "name": "농심 너구리 큰사발면 111g"
+      },
+      {
+        "menu_id": "cvs-ottogi-chamkkae-ramen-cup-110",
+        "brand": "오뚜기",
+        "name": "오뚜기 참깨라면 큰사발 110g"
+      },
+      {
+        "menu_id": "cvs-ottogi-yeol-ramen-cup-105",
+        "brand": "오뚜기",
+        "name": "오뚜기 열라면 큰사발 105g"
+      },
+      {
+        "menu_id": "cvs-paldo-wangttukkeong-110",
+        "brand": "팔도",
+        "name": "팔도 왕뚜껑 110g"
+      },
+      {
+        "menu_id": "cvs-gs25-omori-kimchi-stew-cup-160",
+        "brand": "GS25",
+        "name": "GS25 오모리 김치찌개라면 160g"
+      },
+      {
+        "menu_id": "cvs-samyang-cheese-buldak-cup-105",
+        "brand": "삼양식품",
+        "name": "삼양 치즈 불닭볶음면 큰컵 105g"
+      },
+      {
+        "menu_id": "cvs-nongshim-ansungtangmyun-cup-66",
+        "brand": "농심",
+        "name": "농심 안성탕면 컵 66g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 4,
+    "item_count": 17,
+    "brands": [
+      "cj",
+      "pulmuone",
+      "nobrand",
+      "daesang"
+    ],
+    "ingredients_raw": "대두 100%(국산), 응고제(염화마그네슘), 천일염",
+    "items": [
+      {
+        "menu_id": "mart-cj-happy-tofu-pan-fried-100",
+        "brand": "CJ제일제당",
+        "name": "행복한콩 부침용 국산콩 두부 (100g 기준)"
+      },
+      {
+        "menu_id": "mart-cj-dadam-tofu-kimchi-stew-200",
+        "brand": "CJ제일제당",
+        "name": "다담 부드러운 순두부찌개 양념 (조리후 1회)"
+      },
+      {
+        "menu_id": "mart-pulmuone-wide-tofu-noodle-100",
+        "brand": "풀무원",
+        "name": "넓은 두부면 100g"
+      },
+      {
+        "menu_id": "mart-pulmuone-thin-tofu-noodle-100",
+        "brand": "풀무원",
+        "name": "얇은 두부면 100g"
+      },
+      {
+        "menu_id": "mart-pulmuone-earth-diet-tofu-tender-100",
+        "brand": "풀무원",
+        "name": "지구식단 결이 다른 두부텐더 (100g 기준)"
+      },
+      {
+        "menu_id": "mart-pulmuone-korean-soy-firm-tofu-100",
+        "brand": "풀무원",
+        "name": "국산콩 부침두부 (100g 기준)"
+      },
+      {
+        "menu_id": "mart-pulmuone-two-cup-tofu-110",
+        "brand": "풀무원",
+        "name": "국산콩 투컵두부 찌개용 110g"
+      },
+      {
+        "menu_id": "mart-pulmuone-high-protein-soft-tofu-150",
+        "brand": "풀무원",
+        "name": "고단백 순두부 150g"
+      },
+      {
+        "menu_id": "mart-nobrand-fresh-tofu-100",
+        "brand": "노브랜드",
+        "name": "노브랜드 고소한 찌개부침두부 (100g 기준)"
+      },
+      {
+        "menu_id": "mart-cj-happy-tofu-stew-100",
+        "brand": "CJ제일제당",
+        "name": "행복한콩 찌개용 국산콩 두부 (100g 기준)"
+      },
+      {
+        "menu_id": "mart-cj-bibigo-tofu-kimchi-stew-230",
+        "brand": "CJ제일제당",
+        "name": "비비고 두부김치찌개 460g (1인분 230g 기준)"
+      },
+      {
+        "menu_id": "mart-pulmuone-korean-soy-firm-tofu-100-100",
+        "brand": "풀무원",
+        "name": "크고 단단한 국산콩 부침두부 (100g 기준)"
+      },
+      {
+        "menu_id": "mart-pulmuone-earth-diet-kalguksu-tofu-150",
+        "brand": "풀무원",
+        "name": "지구식단 들깨두부 칼국수 (두부면 150g 기준)"
+      },
+      {
+        "menu_id": "mart-pulmuone-soft-tofu-snack-pack-200",
+        "brand": "풀무원",
+        "name": "풀무원 떠먹는 콩즙 연두부 200g"
+      },
+      {
+        "menu_id": "mart-daesang-jongga-fresh-tofu-100",
+        "brand": "대상",
+        "name": "종가집 콩이 가득한 부침두부 (100g 기준)"
+      },
+      {
+        "menu_id": "mart-pulmuone-tofu-noodle-thin-100",
+        "brand": "풀무원",
+        "name": "풀무원 얇은 두부면 100g"
+      },
+      {
+        "menu_id": "mart-pulmuone-tofu-noodle-wide-100",
+        "brand": "풀무원",
+        "name": "풀무원 넓은 두부면 100g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 9,
+    "item_count": 17,
+    "brands": [
+      "pulmuone",
+      "paris",
+      "cj",
+      "ottogi",
+      "samlip",
+      "dongwon",
+      "hansung",
+      "domino",
+      "pizzahut"
+    ],
+    "ingredients_raw": "정제수, 단백질복합원료, 천일염, 대두단백, 비타민C, 천연향료",
+    "items": [
+      {
+        "menu_id": "mart-pulmuone-earth-diet-bulgogi-100",
+        "brand": "풀무원",
+        "name": "지구식단 식물성 직화불고기 100g"
+      },
+      {
+        "menu_id": "mart-paris-baguette-protein-bread-100",
+        "brand": "파리바게뜨",
+        "name": "파리바게뜨 고단백 12곡 식빵 2쪽 (100g)"
+      },
+      {
+        "menu_id": "mart-cj-bibigo-chicken-dumpling-175",
+        "brand": "CJ제일제당",
+        "name": "비비고 닭가슴살 왕교자 (175g 기준)"
+      },
+      {
+        "menu_id": "mart-ottogi-cup-noodle-high-protein-rose-45",
+        "brand": "오뚜기",
+        "name": "오뚜기 컵누들 고단백 로제맛 45g"
+      },
+      {
+        "menu_id": "mart-samlip-high-protein-plain-bagel-110",
+        "brand": "삼립",
+        "name": "삼립 미각제빵소 고단백 플레인 베이글 110g"
+      },
+      {
+        "menu_id": "mart-cj-bibigo-mackerel-grilled-60",
+        "brand": "CJ제일제당",
+        "name": "비비고 순살 고등어구이 60g"
+      },
+      {
+        "menu_id": "mart-cj-bibigo-spanish-mackerel-grilled-60",
+        "brand": "CJ제일제당",
+        "name": "비비고 순살 삼치구이 60g"
+      },
+      {
+        "menu_id": "mart-cj-bibigo-flounder-grilled-60",
+        "brand": "CJ제일제당",
+        "name": "비비고 순살 가자미구이 60g"
+      },
+      {
+        "menu_id": "mart-cj-bibigo-salmon-grilled-60",
+        "brand": "CJ제일제당",
+        "name": "비비고 순살 연어구이 60g"
+      },
+      {
+        "menu_id": "mart-dongwon-real-crabs-144",
+        "brand": "동원",
+        "name": "동원 리얼 크랩스 게맛살 144g"
+      },
+      {
+        "menu_id": "mart-hansung-crami-150",
+        "brand": "한성기업",
+        "name": "한성 크래미 150g"
+      },
+      {
+        "menu_id": "mart-pulmuone-roll-yubuchobap-140",
+        "brand": "풀무원",
+        "name": "풀무원 롤유부초밥 (유부 140g 기준)"
+      },
+      {
+        "menu_id": "fr-domino-black-tiger-shrimp-thin-170",
+        "brand": "도미노피자",
+        "name": "블랙타이거 슈림프 씬 (2조각 기준)"
+      },
+      {
+        "menu_id": "fr-domino-potato-thin-180",
+        "brand": "도미노피자",
+        "name": "포테이토 씬 피자 (2조각 기준)"
+      },
+      {
+        "menu_id": "fr-domino-real-bulgogi-thin-175",
+        "brand": "도미노피자",
+        "name": "리얼불고기 씬 피자 (2조각 기준)"
+      },
+      {
+        "menu_id": "fr-pizzahut-rib-steak-bite-190",
+        "brand": "피자헛",
+        "name": "립스테이크 바이트 피자 (2조각 기준)"
+      },
+      {
+        "menu_id": "cvs-cj-samho-odeng-bowl-360",
+        "brand": "CJ제일제당",
+        "name": "CJ 삼호어묵 오뎅한그릇 360g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 6,
+    "item_count": 16,
+    "brands": [
+      "emart24",
+      "salady",
+      "slowcali",
+      "pokeallday",
+      "cuchara",
+      "starbucks"
+    ],
+    "ingredients_raw": "양상추(국산), 로메인, 적근대, 닭가슴살(국내산), 삶은계란, 방울토마토, 블랙올리브, 스위트콘, 시저드레싱[마요네즈, 파마산치즈, 올리브유, 레몬즙, 정제소금]",
+    "items": [
+      {
+        "menu_id": "cvs-emart24-tofu-steak-salad-220",
+        "brand": "이마트24",
+        "name": "고단백 두부 스테이크 샐러드 220g"
+      },
+      {
+        "menu_id": "fr-salady-tandanji-salad-240",
+        "brand": "샐러디",
+        "name": "탄단지 샐러디 240g"
+      },
+      {
+        "menu_id": "fr-salady-chili-bacon-warmbowl-300",
+        "brand": "샐러디",
+        "name": "칠리베이컨 웜볼 300g"
+      },
+      {
+        "menu_id": "fr-salady-roast-chicken-leg-salad-260",
+        "brand": "샐러디",
+        "name": "로스트닭다리살 샐러디 260g"
+      },
+      {
+        "menu_id": "fr-salady-beef-buckwheat-salad-290",
+        "brand": "샐러디",
+        "name": "우삼겹 메밀면 샐러디 290g"
+      },
+      {
+        "menu_id": "fr-slowcali-classic-tuna-poke-380",
+        "brand": "슬로우캘리",
+        "name": "클래식 참치 포케 380g"
+      },
+      {
+        "menu_id": "fr-slowcali-beef-steak-bowl-390",
+        "brand": "슬로우캘리",
+        "name": "부채살 스테이크 보울 390g"
+      },
+      {
+        "menu_id": "fr-pokeallday-duck-buckwheat-poke-350",
+        "brand": "포케올데이",
+        "name": "메밀면 훈제오리 포케 350g"
+      },
+      {
+        "menu_id": "fr-cuchara-burrito-bowl-steak-410",
+        "brand": "쿠차라",
+        "name": "부리또 볼 스테이크 410g"
+      },
+      {
+        "menu_id": "fr-cuchara-burrito-bowl-tofu-400",
+        "brand": "쿠차라",
+        "name": "부리또 볼 두부 400g"
+      },
+      {
+        "menu_id": "fr-salady-beef-warmbowl-300",
+        "brand": "샐러디",
+        "name": "우삼겹 웜볼 300g"
+      },
+      {
+        "menu_id": "fr-slowcali-spicy-tuna-poke-380",
+        "brand": "슬로우캘리",
+        "name": "스파이시 참치 포케 380g"
+      },
+      {
+        "menu_id": "fr-slowcali-garlic-shrimp-bowl-350",
+        "brand": "슬로우캘리",
+        "name": "하와이안 갈릭 쉬림프 350g"
+      },
+      {
+        "menu_id": "fr-pokeallday-beef-brownrice-360",
+        "brand": "포케올데이",
+        "name": "현미밥 우삼겹 포케 360g"
+      },
+      {
+        "menu_id": "fr-pokeallday-rawbeef-buckwheat-350",
+        "brand": "포케올데이",
+        "name": "메밀면 육회 포케 350g"
+      },
+      {
+        "menu_id": "fr-starbucks-cobb-salad-mealbox-195",
+        "brand": "스타벅스",
+        "name": "콥 & 화이트 샐러드 밀 박스 195g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 8,
+    "item_count": 16,
+    "brands": [
+      "mcdonalds",
+      "burgerking",
+      "lotteria",
+      "nbb",
+      "frankburger",
+      "twosome",
+      "gs25",
+      "7eleven"
+    ],
+    "ingredients_raw": "버거번[밀가루, 백설탕, 쇼트닝, 효모, 정제소금], 비프패티[소고기(호주산), 돈지방, 양파, 소금, 후추], 불고기소스[물엿, 백설탕, 간장, 마늘], 양상추, 피클, 특제마요소스[식물성유지, 설탕, 식초]",
+    "items": [
+      {
+        "menu_id": "fr-mcdonalds-egg-bulgogi-burger-171",
+        "brand": "맥도날드",
+        "name": "에그 불고기 버거 단품 171g"
+      },
+      {
+        "menu_id": "fr-burgerking-whopper-278",
+        "brand": "버거킹",
+        "name": "와퍼 단품 278g"
+      },
+      {
+        "menu_id": "fr-lotteria-hanwoo-bulgogi-burger-266",
+        "brand": "롯데리아",
+        "name": "한우불고기 버거 단품 266g"
+      },
+      {
+        "menu_id": "fr-nbb-grilled-bulgogi-burger-154",
+        "brand": "노브랜드버거",
+        "name": "그릴드 불고기 버거 단품 154g"
+      },
+      {
+        "menu_id": "fr-burgerking-whole-shrimp-whopper-328",
+        "brand": "버거킹",
+        "name": "통새우와퍼 단품 328g"
+      },
+      {
+        "menu_id": "fr-burgerking-quattro-cheese-whopper-309",
+        "brand": "버거킹",
+        "name": "콰트로치즈와퍼 단품 309g"
+      },
+      {
+        "menu_id": "fr-burgerking-cheese-whopper-298",
+        "brand": "버거킹",
+        "name": "치즈와퍼 단품 298g"
+      },
+      {
+        "menu_id": "fr-burgerking-whopper-junior-158",
+        "brand": "버거킹",
+        "name": "와퍼주니어 단품 158g"
+      },
+      {
+        "menu_id": "fr-burgerking-garlic-bulgogi-whopper-315",
+        "brand": "버거킹",
+        "name": "갈릭불고기와퍼 단품 315g"
+      },
+      {
+        "menu_id": "fr-lotteria-bulgogi-burger-188",
+        "brand": "롯데리아",
+        "name": "불고기 버거 단품 188g"
+      },
+      {
+        "menu_id": "fr-lotteria-double-hanwoo-bulgogi-340",
+        "brand": "롯데리아",
+        "name": "더블 한우불고기 버거 단품 340g"
+      },
+      {
+        "menu_id": "fr-frankburger-sg-bulgogi-170",
+        "brand": "프랭크버거",
+        "name": "SG불고기버거 단품 170g"
+      },
+      {
+        "menu_id": "fr-frankburger-k-bulgogi-180",
+        "brand": "프랭크버거",
+        "name": "K불고기버거 단품 180g"
+      },
+      {
+        "menu_id": "fr-twosome-all-day-beef-panini-195",
+        "brand": "투썸플레이스",
+        "name": "올데이 비프 파니니 195g"
+      },
+      {
+        "menu_id": "cvs-gs25-double-bulgogi-burger-190",
+        "brand": "GS25",
+        "name": "GS25 더블 불고기버거 190g"
+      },
+      {
+        "menu_id": "cvs-7eleven-seven-bulgogi-burger-175",
+        "brand": "세븐일레븐",
+        "name": "세븐일레븐 불고기 버거 175g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 11,
+    "item_count": 14,
+    "brands": [
+      "cj",
+      "pulmuone",
+      "quest",
+      "bsn",
+      "costco",
+      "momstouch",
+      "orion",
+      "nongshim",
+      "lotte_wellfood",
+      "haitai",
+      "daesang"
+    ],
+    "ingredients_raw": "분리대두단백너겟(분리대두단백, 전분), 분리유청단백(WPI), 볶음아몬드(미국산), D-알룰로스, 에리스리톨, 효소처리스테비아, 대두레시틴, 아라비아검, 글리세린, 천연바닐라향",
+    "items": [
+      {
+        "menu_id": "mart-cj-maxbon-protein-bar-40",
+        "brand": "CJ제일제당",
+        "name": "맥스봉 프로틴 40g"
+      },
+      {
+        "menu_id": "mart-pulmuone-tofu-bar-plain-40",
+        "brand": "풀무원",
+        "name": "풀무원 식물성 지구식단 두부바 플레인 40g"
+      },
+      {
+        "menu_id": "online-quest-protein-bar-chocolate-chip-60",
+        "brand": "퀘스트뉴트리션",
+        "name": "퀘스트 프로틴바 초콜릿 칩 쿠키 도우 60g"
+      },
+      {
+        "menu_id": "mart-cj-maxbon-cheddar-cheese-sausage-70",
+        "brand": "CJ제일제당",
+        "name": "맥스봉 오리지널 치즈 소시지 70g"
+      },
+      {
+        "menu_id": "mart-pulmuone-tofu-bar-basil-40",
+        "brand": "풀무원",
+        "name": "식물성 지구식단 바질 두부바 40g"
+      },
+      {
+        "menu_id": "mart-pulmuone-crispy-tofu-ball-100",
+        "brand": "풀무원",
+        "name": "지구식단 바삭 크리스피 두부볼 100g"
+      },
+      {
+        "menu_id": "online-bsn-syntha6-crisp-bar-vanilla-57",
+        "brand": "BSN",
+        "name": "신타6 프로틴 크리스피 바 바닐라 마시멜로 57g"
+      },
+      {
+        "menu_id": "mart-costco-kirkland-protein-bar-cookiedough-60",
+        "brand": "코스트코",
+        "name": "커클랜드 시그니처 프로틴바 초콜릿칩 쿠키도우 60g"
+      },
+      {
+        "menu_id": "fr-momstouch-cheesestick-2pcs-80",
+        "brand": "맘스터치",
+        "name": "치즈스틱 2조각 80g"
+      },
+      {
+        "menu_id": "cvs-orion-pocachip-original-113",
+        "brand": "오리온",
+        "name": "오리온 포카칩 오리지널 66g"
+      },
+      {
+        "menu_id": "cvs-nongshim-potato-chip-original-108",
+        "brand": "농심",
+        "name": "농심 포테토칩 오리지널 60g"
+      },
+      {
+        "menu_id": "cvs-lotte_wellfood-lotte-zero-cacao-cake-56",
+        "brand": "롯데웰푸드",
+        "name": "롯데 제로 카카오 케이크 56g (2개입)"
+      },
+      {
+        "menu_id": "cvs-haitai-honey-butter-chip-108",
+        "brand": "해태",
+        "name": "해태 허니버터칩 60g"
+      },
+      {
+        "menu_id": "cvs-daesang-cheongjungone-chew-pea-35",
+        "brand": "대상",
+        "name": "청정원 츄앤크리스피 완두 35g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 8,
+    "item_count": 14,
+    "brands": [
+      "momstouch",
+      "subway",
+      "salady",
+      "burgerking",
+      "nbb",
+      "starbucks",
+      "twosome",
+      "cu"
+    ],
+    "ingredients_raw": "버거번[밀가루, 백설탕, 쇼트닝, 효모, 정제소금], 치킨패티[닭고기(국내산), 튀김옷(소맥분, 팜유, L-글루탐산나트륨), 식염], 양상추, 피클, 특제마요소스[식물성유지, 설탕, 식초]",
+    "items": [
+      {
+        "menu_id": "fr-momstouch-thigh-burger-230",
+        "brand": "맘스터치",
+        "name": "싸이버거 단품 230g"
+      },
+      {
+        "menu_id": "fr-momstouch-spicy-thigh-burger-225",
+        "brand": "맘스터치",
+        "name": "불싸이버거 단품 225g"
+      },
+      {
+        "menu_id": "fr-subway-rotisserie-chicken-15cm-247",
+        "brand": "써브웨이",
+        "name": "로티세리 바비큐 치킨 15cm"
+      },
+      {
+        "menu_id": "fr-subway-roast-chicken-15cm-247",
+        "brand": "써브웨이",
+        "name": "로스트 치킨 15cm"
+      },
+      {
+        "menu_id": "fr-subway-chicken-slice-15cm-221",
+        "brand": "써브웨이",
+        "name": "치킨 슬라이스 15cm"
+      },
+      {
+        "menu_id": "fr-salady-chicken-sausage-warmwrap-245",
+        "brand": "샐러디",
+        "name": "치킨소시지 웜랩 245g"
+      },
+      {
+        "menu_id": "fr-burgerking-long-chicken-burger-210",
+        "brand": "버거킹",
+        "name": "롱치킨버거 단품 210g"
+      },
+      {
+        "menu_id": "fr-nbb-coleslaw-chicken-burger-226",
+        "brand": "노브랜드버거",
+        "name": "코울슬로 치킨 버거 단품 226g"
+      },
+      {
+        "menu_id": "fr-starbucks-bbq-chicken-cheese-ciabatta-145",
+        "brand": "스타벅스",
+        "name": "바비큐 치킨 치즈 치아바타 145g"
+      },
+      {
+        "menu_id": "fr-starbucks-chicken-bacon-wrap-175",
+        "brand": "스타벅스",
+        "name": "치킨 베이컨 랩 175g"
+      },
+      {
+        "menu_id": "fr-subway-chicken-bacon-avocado-15cm-260",
+        "brand": "써브웨이",
+        "name": "치킨 베이컨 아보카도 15cm"
+      },
+      {
+        "menu_id": "fr-momstouch-golden-mac-cheese-265",
+        "brand": "맘스터치",
+        "name": "골든맥앤치즈 치킨버거 단품 265g"
+      },
+      {
+        "menu_id": "fr-twosome-bbq-chicken-panini-200",
+        "brand": "투썸플레이스",
+        "name": "바베큐 치킨 파니니 200g"
+      },
+      {
+        "menu_id": "cvs-cu-spicy-chicken-burger-180",
+        "brand": "CU",
+        "name": "CU 매콤 치킨버거 180g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 7,
+    "item_count": 13,
+    "brands": [
+      "harim",
+      "cj",
+      "lotte_wellfood",
+      "rankingdak",
+      "imdak",
+      "masitdak",
+      "sajo"
+    ],
+    "ingredients_raw": "닭가슴살(국내산 78%), 정제수, 대두단백, 변성전분, D-알룰로스, 정제소금, 콜라겐케이싱, 천연향신료, 효모추출물",
+    "items": [
+      {
+        "menu_id": "cvs-harim-sausage-original-100",
+        "brand": "하림",
+        "name": "하림 닭가슴살 소시지 오리지널 100g"
+      },
+      {
+        "menu_id": "mart-cj-the-healthy-chicken-sausage-100",
+        "brand": "CJ제일제당",
+        "name": "더건강한 닭가슴살 소시지 프랑크 100g"
+      },
+      {
+        "menu_id": "mart-harim-chicken-sausage-smoked-100",
+        "brand": "하림",
+        "name": "하림 닭가슴살 소시지 훈제 100g"
+      },
+      {
+        "menu_id": "mart-lotte_wellfood-lotte-uiseong-garlic-chicken-frank-70",
+        "brand": "롯데웰푸드",
+        "name": "의성마늘 닭가슴살 프랑크 70g"
+      },
+      {
+        "menu_id": "online-rankingdak-eatmate-chicken-sausage-100",
+        "brand": "랭킹닭컴",
+        "name": "잇메이트 닭가슴살 소시지 마늘맛 100g"
+      },
+      {
+        "menu_id": "online-rankingdak-eatmate-monster-sausage-100",
+        "brand": "랭킹닭컴",
+        "name": "잇메이트 몬스터 닭가슴살 소시지 100g"
+      },
+      {
+        "menu_id": "online-imdak-frank-sausage-herb-100",
+        "brand": "아임닭",
+        "name": "아임닭 한끼 프랑크 허브 100g"
+      },
+      {
+        "menu_id": "online-masitdak-chicken-sausage-smoked-100",
+        "brand": "맛있닭",
+        "name": "맛있닭 닭가슴살 소시지 훈제맛 100g"
+      },
+      {
+        "menu_id": "cvs-cj-maxbon-cheese-55",
+        "brand": "CJ제일제당",
+        "name": "CJ 맥스봉 치즈소시지 55g"
+      },
+      {
+        "menu_id": "cvs-harim-chicken-hotbar-garlic-80",
+        "brand": "하림",
+        "name": "하림 닭가슴살 핫바 갈릭 80g"
+      },
+      {
+        "menu_id": "cvs-harim-chicken-hotbar-smoked-80",
+        "brand": "하림",
+        "name": "하림 닭가슴살 핫바 훈제 80g"
+      },
+      {
+        "menu_id": "cvs-cj-maxbon-original-50",
+        "brand": "CJ제일제당",
+        "name": "CJ 맥스봉 오리지널 소시지 50g"
+      },
+      {
+        "menu_id": "cvs-sajo-spicy-hotbar-80",
+        "brand": "사조대림",
+        "name": "사조 대림선 매콤 숯불구이맛 핫바 80g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 7,
+    "item_count": 13,
+    "brands": [
+      "gs25",
+      "metree",
+      "hansot",
+      "teacherkim",
+      "cu",
+      "7eleven",
+      "emart24"
+    ],
+    "ingredients_raw": "쌀(국산), 돼지고기(국산/스페인산), 양념고추장[물엿, 소맥분, 고추양념, 백설탕, 정제소금], 양파, 대파, 볶음김치[배추, 고춧가루, 마늘, 정제염], 식물성유지, 변성전분, L-글루탐산나트륨, 양조간장, 참기름",
+    "items": [
+      {
+        "menu_id": "cvs-gs25-hyeja-jeyuk-430",
+        "brand": "GS25",
+        "name": "혜자로운 집밥 제육볶음 도시락"
+      },
+      {
+        "menu_id": "cvs-gs25-double-cheese-bulgogi-gimbap-245",
+        "brand": "GS25",
+        "name": "더블치즈 불고기 김밥 245g"
+      },
+      {
+        "menu_id": "online-metree-chicken-fried-rice-bulgogi-200",
+        "brand": "미트리",
+        "name": "미트리 닭가슴살 볶음밥 소불고기맛 200g"
+      },
+      {
+        "menu_id": "fr-hansot-spicy-pork-dosirak-380",
+        "brand": "한솥도시락",
+        "name": "제육볶음 도시락 380g"
+      },
+      {
+        "menu_id": "fr-hansot-mega-chicken-pork-560",
+        "brand": "한솥도시락",
+        "name": "메가치킨제육 도시락 560g"
+      },
+      {
+        "menu_id": "fr-teacherkim-spicy-pork-gimbap-260",
+        "brand": "바르다김선생",
+        "name": "매운 제육쌈 김밥 260g"
+      },
+      {
+        "menu_id": "fr-hansot-beef-bulgogi-dosirak-400",
+        "brand": "한솥도시락",
+        "name": "소불고기 도시락 400g"
+      },
+      {
+        "menu_id": "fr-hansot-beef-bibimbap-410",
+        "brand": "한솥도시락",
+        "name": "소불고기 감초고추장 비빔밥 410g"
+      },
+      {
+        "menu_id": "fr-hansot-kimchi-pork-bowl-370",
+        "brand": "한솥도시락",
+        "name": "김치제육덮밥 370g"
+      },
+      {
+        "menu_id": "cvs-cu-baek-spicy-bulgogi-440",
+        "brand": "CU",
+        "name": "CU 백종원 매콤 불고기 도시락 440g"
+      },
+      {
+        "menu_id": "cvs-cu-baek-bassak-bulgogi-430",
+        "brand": "CU",
+        "name": "CU 백종원 바싹 불고기 한판 430g"
+      },
+      {
+        "menu_id": "cvs-7eleven-seven-matjangwoo-spicy-jeyuk-450",
+        "brand": "세븐일레븐",
+        "name": "세븐일레븐 맛장우 매콤제육 도시락 450g"
+      },
+      {
+        "menu_id": "cvs-emart24-bassak-sausage-440",
+        "brand": "이마트24",
+        "name": "이마트24 바싹불고기&소시지 도시락 440g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 10,
+    "item_count": 13,
+    "brands": [
+      "gs25",
+      "cu",
+      "7eleven",
+      "starbucks",
+      "subway",
+      "salady",
+      "pokeallday",
+      "cuchara",
+      "twosome",
+      "nbb"
+    ],
+    "ingredients_raw": "양상추(국산), 로메인, 적근대, 닭가슴살구이(국내산 닭가슴살, 천일염, 백후추), 방울토마토, 블랙올리브, 스위트콘, 시저드레싱[마요네즈, 파마산치즈, 올리브유, 레몬즙, 정제소금]",
+    "items": [
+      {
+        "menu_id": "cvs-gs25-chicken-tender-cobb-200",
+        "brand": "GS25",
+        "name": "치킨텐더 & 콥 샐러드 200g"
+      },
+      {
+        "menu_id": "cvs-cu-grilled-chicken-salad-210",
+        "brand": "CU",
+        "name": "그릴 닭가슴살 샐러드 210g"
+      },
+      {
+        "menu_id": "cvs-7eleven-seven-chicken-egg-salad-200",
+        "brand": "세븐일레븐",
+        "name": "닭가슴살 듬뿍 에그 샐러드 200g"
+      },
+      {
+        "menu_id": "mart-starbucks-protein-black-tofu-salad-180",
+        "brand": "스타벅스",
+        "name": "스타벅스 블랙 핑거 두부 & 닭가슴살 샐러드 180g"
+      },
+      {
+        "menu_id": "fr-subway-roasted-chicken-salad-300",
+        "brand": "써브웨이",
+        "name": "로스티드 치킨 샐러드 300g (올리브오일 드레싱)"
+      },
+      {
+        "menu_id": "fr-salady-roasted-chicken-warmbowl-320",
+        "brand": "샐러디",
+        "name": "로스트닭가슴살 웜볼 320g"
+      },
+      {
+        "menu_id": "fr-salady-bbq-chicken-warmbowl-310",
+        "brand": "샐러디",
+        "name": "바비큐치킨 웜볼 310g"
+      },
+      {
+        "menu_id": "fr-pokeallday-chicken-brownrice-poke-360",
+        "brand": "포케올데이",
+        "name": "현미밥 닭가슴살 포케 360g"
+      },
+      {
+        "menu_id": "fr-cuchara-burrito-bowl-chicken-410",
+        "brand": "쿠차라",
+        "name": "부리또 볼 치킨 410g"
+      },
+      {
+        "menu_id": "fr-twosome-grilled-chicken-salad-220",
+        "brand": "투썸플레이스",
+        "name": "그릴드 치킨 샐러드 220g"
+      },
+      {
+        "menu_id": "fr-subway-rotisserie-chicken-salad-300",
+        "brand": "써브웨이",
+        "name": "로티세리 바비큐 치킨 샐러드 300g"
+      },
+      {
+        "menu_id": "fr-salady-caesar-chicken-salad-210",
+        "brand": "샐러디",
+        "name": "시저치킨 샐러디 210g"
+      },
+      {
+        "menu_id": "fr-nbb-chicken-caesar-salad-180",
+        "brand": "노브랜드버거",
+        "name": "치킨 시저 샐러드 180g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 8,
+    "item_count": 12,
+    "brands": [
+      "imdak",
+      "orion",
+      "nongshim",
+      "haitai",
+      "crown",
+      "labnosh",
+      "daesangwellife",
+      "lotte_wellfood"
+    ],
+    "ingredients_raw": "분리대두단백너겟(분리대두단백, 전분), 분리유청단백(WPI), 볶음아몬드(미국산), 올리고당, D-말티톨시럽, 에리스리톨, 대두레시틴, 아라비아검, 글리세린, 천연바닐라향",
+    "items": [
+      {
+        "menu_id": "online-imdak-chicken-jerky-spicy-40",
+        "brand": "아임닭",
+        "name": "아임닭 매콤 닭가슴살 육포 40g"
+      },
+      {
+        "menu_id": "cvs-orion-dryou-chip-chili-60",
+        "brand": "오리온",
+        "name": "오리온 닥터유 단백질칩 칠리살사맛 60g"
+      },
+      {
+        "menu_id": "cvs-orion-dryou-chip-butter-60",
+        "brand": "오리온",
+        "name": "오리온 닥터유 단백질칩 버터솔트맛 60g"
+      },
+      {
+        "menu_id": "cvs-orion-sun-hot-spicy-112",
+        "brand": "오리온",
+        "name": "오리온 태양의맛 썬 핫스파이시 64g"
+      },
+      {
+        "menu_id": "cvs-nongshim-saewookkang-138",
+        "brand": "농심",
+        "name": "농심 새우깡 90g"
+      },
+      {
+        "menu_id": "cvs-nongshim-maeun-saewookkang-138",
+        "brand": "농심",
+        "name": "농심 매운 새우깡 90g"
+      },
+      {
+        "menu_id": "cvs-haitai-baked-onion-120",
+        "brand": "해태",
+        "name": "해태 구운양파 70g"
+      },
+      {
+        "menu_id": "cvs-crown-cornchip-118",
+        "brand": "크라운",
+        "name": "크라운 C콘chip 옥수수 70g"
+      },
+      {
+        "menu_id": "cvs-labnosh-cookiebar-black-40",
+        "brand": "랩노쉬",
+        "name": "랩노쉬 프로틴 쿠키바 블랙쿠키 40g"
+      },
+      {
+        "menu_id": "cvs-daesangwellife-mymil-protein-bar-nuts-40",
+        "brand": "대상웰라이프",
+        "name": "마이밀 프로틴 바 견과류 40g"
+      },
+      {
+        "menu_id": "cvs-lotte_wellfood-lotte-easyprotein-bar-50",
+        "brand": "롯데웰푸드",
+        "name": "롯데 이지프로틴 고단백질바 50g"
+      },
+      {
+        "menu_id": "cvs-nongshim-bbusheo-bbusheo-bulgogi-90",
+        "brand": "농심",
+        "name": "농심 뿌셔뿌셔 불고기맛 90g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 8,
+    "item_count": 9,
+    "brands": [
+      "cj",
+      "harim",
+      "homeplus",
+      "rankingdak",
+      "lotte_wellfood",
+      "cu",
+      "metree",
+      "goobne"
+    ],
+    "ingredients_raw": "닭가슴살(국내산 82%), 양파(국산), 대파, 정제수, 분리대두단백, 변성전분, 천일염, 비타민C, 후춧가루",
+    "items": [
+      {
+        "menu_id": "mart-cj-the-healthy-chicken-cube-100",
+        "brand": "CJ제일제당",
+        "name": "더건강한 닭가슴살 한입큐브 100g"
+      },
+      {
+        "menu_id": "mart-harim-chicken-steak-100",
+        "brand": "하림",
+        "name": "하림 그릴드 닭가슴살 스테이크 100g"
+      },
+      {
+        "menu_id": "mart-homeplus-signature-chicken-cube-100",
+        "brand": "홈플러스",
+        "name": "홈플러스 시그니처 닭가슴살 큐브 100g"
+      },
+      {
+        "menu_id": "online-rankingdak-masitdak-chicken-steak-original-100",
+        "brand": "랭킹닭컴",
+        "name": "맛있닭 닭가슴살 스테이크 오리지널 100g"
+      },
+      {
+        "menu_id": "mart-lotte_wellfood-lotte-chefood-chicken-steak-100",
+        "brand": "롯데웰푸드",
+        "name": "쉐푸드 직화 그릴 닭가슴살 스테이크 100g"
+      },
+      {
+        "menu_id": "online-rankingdak-masitdak-chicken-ball-perilla-100",
+        "brand": "랭킹닭컴",
+        "name": "맛있닭 닭가슴살 볼 깻잎맛 100g"
+      },
+      {
+        "menu_id": "cvs-cu-chicken-cube-deuktem-100",
+        "brand": "CU",
+        "name": "득템 닭가슴살 큐브 100g"
+      },
+      {
+        "menu_id": "online-metree-beef-ball-original-100",
+        "brand": "미트리",
+        "name": "미트리 소고기 볼 오리지널 100g"
+      },
+      {
+        "menu_id": "fr-goobne-volcano-boneless-200",
+        "brand": "굽네치킨",
+        "name": "굽네 볼케이노 순살 (200g 1회 기준)"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 6,
+    "item_count": 8,
+    "brands": [
+      "greekday",
+      "daesangwellife",
+      "starbucks",
+      "binggrae",
+      "costco",
+      "yozm"
+    ],
+    "ingredients_raw": "정제수, 원유(국산), 분리유청단백분말(WPI), 프락토올리고당, D-알룰로스, 효소처리스테비아, 대두레시틴, 탄산수소나트륨, 젤란검, 천연향료",
+    "items": [
+      {
+        "menu_id": "cvs-greekday-signature-100",
+        "brand": "그릭데이",
+        "name": "그릭데이 시그니처 그릭요거트 100g"
+      },
+      {
+        "menu_id": "online-daesangwellife-mymeal-new-protein-lowsugar-190",
+        "brand": "대상웰라이프",
+        "name": "마이밀 뉴프로틴 로우슈거 190mL"
+      },
+      {
+        "menu_id": "mart-starbucks-greek-yogurt-plain-100",
+        "brand": "스타벅스",
+        "name": "스타벅스 오가닉 그릭요거트 플레인 100g"
+      },
+      {
+        "menu_id": "mart-binggrae-yoplait-greek-plain-100",
+        "brand": "빙그레",
+        "name": "요플레 그릭요거트 플레인 달지않은맛 100g"
+      },
+      {
+        "menu_id": "mart-costco-kirkland-greek-yogurt-serving-100",
+        "brand": "코스트코",
+        "name": "커클랜드 시그니처 무지방 그릭요거트 (100g 기준)"
+      },
+      {
+        "menu_id": "online-greekday-signature-plain-100",
+        "brand": "그릭데이",
+        "name": "그릭데이 시그니처 그릭요거트 100g"
+      },
+      {
+        "menu_id": "online-greekday-light-greek-yogurt-100",
+        "brand": "그릭데이",
+        "name": "그릭데이 라이트 그릭요거트 100g"
+      },
+      {
+        "menu_id": "online-yozm-plain-greek-yogurt-100",
+        "brand": "요즘",
+        "name": "요즘 플레인 그릭요거트 100g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 8,
+    "item_count": 8,
+    "brands": [
+      "goobne",
+      "morningegg",
+      "cu",
+      "gs25",
+      "rankingdak",
+      "cj",
+      "harim",
+      "nobrand"
+    ],
+    "ingredients_raw": "닭가슴살(국내산 93%), 정제수, 천일염, 참나무훈연액, 양파분말, 마늘분말, 효모추출물",
+    "items": [
+      {
+        "menu_id": "cvs-goobne-chicken-smoked-100",
+        "brand": "굽네치킨",
+        "name": "굽네 훈제 닭가슴살 오리지널 100g"
+      },
+      {
+        "menu_id": "cvs-morningegg-smoked-eggs-2p-100",
+        "brand": "아침에계란",
+        "name": "쫄깃한 훈제란 (2구 100g)"
+      },
+      {
+        "menu_id": "cvs-cu-deuktem-chicken-100",
+        "brand": "CU",
+        "name": "득템 훈제 닭가슴살 100g"
+      },
+      {
+        "menu_id": "cvs-gs25-youus-smoked-chicken-100",
+        "brand": "GS25",
+        "name": "유어스 훈제 닭가슴살 100g"
+      },
+      {
+        "menu_id": "online-rankingdak-eatmate-smoked-chicken-100",
+        "brand": "랭킹닭컴",
+        "name": "잇메이트 훈제 닭가슴살 오리지널 100g"
+      },
+      {
+        "menu_id": "mart-cj-the-healthy-chicken-smoked-100",
+        "brand": "CJ제일제당",
+        "name": "더건강한 닭가슴살 참나무 훈제 100g"
+      },
+      {
+        "menu_id": "mart-harim-nature-organic-chicken-smoked-100",
+        "brand": "하림",
+        "name": "하림 자연실록 무항생제 훈제 닭가슴살 100g"
+      },
+      {
+        "menu_id": "mart-nobrand-smoked-duck-slice-100",
+        "brand": "노브랜드",
+        "name": "노브랜드 훈제오리 슬라이스 (100g 기준)"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 3,
+    "item_count": 8,
+    "brands": [
+      "gs25",
+      "cu",
+      "7eleven"
+    ],
+    "ingredients_raw": "쌀(국산), 조미김(국산, 천일염, 참기름), 참치마요[다랑어(원양산 70%), 마요네즈(대두유, 난황액, 발효식초, 설탕), 양파, 흑후추], 참기름, 볶음참깨, 정제소금, L-글루탐산나트륨",
+    "items": [
+      {
+        "menu_id": "cvs-gs25-tuna-mayo-tri-110",
+        "brand": "GS25",
+        "name": "참치마요 삼각김밥 110g"
+      },
+      {
+        "menu_id": "cvs-gs25-tuna-mayo-big-triangle-155",
+        "brand": "GS25",
+        "name": "참치마요 더큰삼각김밥 155g"
+      },
+      {
+        "menu_id": "cvs-gs25-new-tuna-kimchi-triangle-110",
+        "brand": "GS25",
+        "name": "뉴참치김치 삼각김밥 110g"
+      },
+      {
+        "menu_id": "cvs-cu-double-topping-tuna-mayo-150",
+        "brand": "CU",
+        "name": "토핑2배 참치마요 삼각김밥 150g"
+      },
+      {
+        "menu_id": "cvs-7eleven-bigger-tuna-mayo-150",
+        "brand": "세븐일레븐",
+        "name": "더커진 참치마요네즈 삼각김밥 150g"
+      },
+      {
+        "menu_id": "cvs-gs25-tuna-mayo-gimbap-240",
+        "brand": "GS25",
+        "name": "GS25 참치마요 김밥 240g"
+      },
+      {
+        "menu_id": "cvs-cu-tuna-mayo-samgak-110",
+        "brand": "CU",
+        "name": "CU 참치마요 삼각김밥 110g"
+      },
+      {
+        "menu_id": "cvs-7eleven-seven-bigger-tuna-mayo-samgak-140",
+        "brand": "세븐일레븐",
+        "name": "세븐일레븐 더커진 참치마요 삼각김밥 140g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 6,
+    "item_count": 7,
+    "brands": [
+      "optimum",
+      "maeil",
+      "namyang",
+      "lottechilsung",
+      "cocacola",
+      "kwangdong"
+    ],
+    "ingredients_raw": "정제수, 원유(국산), 분리유청단백분말(WPI), D-알룰로스, 수크랄로스, 아세설팜칼륨, 대두레시틴, 탄산수소나트륨, 젤란검, 천연향료",
+    "items": [
+      {
+        "menu_id": "online-optimum-gold-standard-whey-single-30",
+        "brand": "옵티멈뉴트리션",
+        "name": "골드스탠다드 100% 웨이 더블리치초콜릿 1스쿱 (30g)"
+      },
+      {
+        "menu_id": "online-maeil-selex-profit-peach-330",
+        "brand": "매일유업",
+        "name": "셀렉스 프로핏 웨이프로틴 드링크 복숭아 330mL"
+      },
+      {
+        "menu_id": "cvs-namyang-takefit-max-grain-250",
+        "brand": "남양유업",
+        "name": "남양 테이크핏 맥스 호박씨(고소한맛) 250mL"
+      },
+      {
+        "menu_id": "cvs-lottechilsung-lotte-chilsung-cider-zero-355",
+        "brand": "롯데칠성",
+        "name": "롯데 칠성사이다 제로 355mL"
+      },
+      {
+        "menu_id": "cvs-cocacola-zero-355",
+        "brand": "코카콜라",
+        "name": "코카콜라 제로 355mL"
+      },
+      {
+        "menu_id": "cvs-lottechilsung-pepsi-zero-lime-355",
+        "brand": "롯데칠성",
+        "name": "롯데 펩시 제로슈거 라임향 355mL"
+      },
+      {
+        "menu_id": "cvs-kwangdong-vita500-zero-100",
+        "brand": "광동제약",
+        "name": "광동 비타500 제로 100mL"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 3,
+    "item_count": 7,
+    "brands": [
+      "lalasweet",
+      "binggrae",
+      "lotte_wellfood"
+    ],
+    "ingredients_raw": "정제수, 원유(국산), 유크림, 백설탕, 물엿, 탈지분유, 식물성유지, 대두레시틴, 구아검",
+    "items": [
+      {
+        "menu_id": "cvs-lalasweet-corn-monaka-85",
+        "brand": "라라스윗",
+        "name": "라라스윗 옥수수 모나카 140mL"
+      },
+      {
+        "menu_id": "cvs-lalasweet-chocolate-pint-270",
+        "brand": "라라스윗",
+        "name": "라라스윗 초콜릿 파인트 474mL"
+      },
+      {
+        "menu_id": "cvs-binggrae-merona-75",
+        "brand": "빙그레",
+        "name": "빙그레 메로나 75mL"
+      },
+      {
+        "menu_id": "cvs-binggrae-samanko-120",
+        "brand": "빙그레",
+        "name": "빙그레 참붕어싸만코 150mL"
+      },
+      {
+        "menu_id": "cvs-lotte_wellfood-lotte-jawsbar-75",
+        "brand": "롯데웰푸드",
+        "name": "롯데 죠스바 75mL"
+      },
+      {
+        "menu_id": "cvs-lotte_wellfood-lotte-screwbar-75",
+        "brand": "롯데웰푸드",
+        "name": "롯데 스크류바 75mL"
+      },
+      {
+        "menu_id": "cvs-binggrae-babamba-70",
+        "brand": "빙그레",
+        "name": "빙그레 바밤바 70mL"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 4,
+    "item_count": 6,
+    "brands": [
+      "labnosh",
+      "ildong",
+      "binggrae",
+      "orion"
+    ],
+    "ingredients_raw": "정제수, 원유(국산), 분리유청단백분말(WPI), 바나나농축액, D-알룰로스, 수크랄로스, 아세설팜칼륨, 대두레시틴, 탄산수소나트륨, 젤란검, 천연향료",
+    "items": [
+      {
+        "menu_id": "cvs-labnosh-protein-banana-350",
+        "brand": "랩노쉬",
+        "name": "랩노쉬 프로틴 드링크 마일드 바나나 350mL"
+      },
+      {
+        "menu_id": "online-labnosh-protein-banana-350",
+        "brand": "랩노쉬",
+        "name": "랩노쉬 프로틴 드링크 마일드 바나나 350mL"
+      },
+      {
+        "menu_id": "online-ildong-hymeune-active-banana-250",
+        "brand": "일동후디스",
+        "name": "하이뮨 프로틴 밸런스 액티브 바나나 250mL"
+      },
+      {
+        "menu_id": "online-binggrae-the-danbaek-banana-250",
+        "brand": "빙그레",
+        "name": "더단백 드링크 바나나 250mL"
+      },
+      {
+        "menu_id": "cvs-orion-dryou-pro-drink-24g-banana-250",
+        "brand": "오리온",
+        "name": "닥터유 PRO 단백질 드링크 바나나 250mL"
+      },
+      {
+        "menu_id": "cvs-ildong-himmune-active-banana-250",
+        "brand": "일동후디스",
+        "name": "일동후디스 하이뮨 프로틴 밸런스 액티브 바나나 250mL"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 5,
+    "item_count": 6,
+    "brands": [
+      "kellogg",
+      "orion",
+      "nongshim",
+      "delight",
+      "lotte_wellfood"
+    ],
+    "ingredients_raw": "분리대두단백너겟(분리대두단백, 전분), 분리유청단백(WPI), 볶음아몬드(미국산), 올리고당, 백설탕, 물엿, 대두레시틴, 아라비아검, 글리세린, 천연바닐라향",
+    "items": [
+      {
+        "menu_id": "cvs-kellogg-protein-bar-50",
+        "brand": "켈로그",
+        "name": "켈로그 프로틴 그래놀라바 50g"
+      },
+      {
+        "menu_id": "cvs-orion-dryou-ball-96",
+        "brand": "오리온",
+        "name": "오리온 닥터유 단백질볼 48g"
+      },
+      {
+        "menu_id": "cvs-nongshim-meoktaekkang-108",
+        "brand": "농심",
+        "name": "농심 먹태깡 청양마요맛 60g"
+      },
+      {
+        "menu_id": "cvs-delight-garlic-butter-bagelchip-60",
+        "brand": "딜라이트프로젝트",
+        "name": "딜라이트 프로젝트 갈릭버터 베이글칩 60g"
+      },
+      {
+        "menu_id": "cvs-delight-protein-bagelchip-104",
+        "brand": "딜라이트프로젝트",
+        "name": "딜라이트 프로젝트 단백질 베이글칩 55g"
+      },
+      {
+        "menu_id": "cvs-lotte_wellfood-lotte-chicchoc-single-30",
+        "brand": "롯데웰푸드",
+        "name": "롯데 칙촉 오리지널 30g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 4,
+    "item_count": 5,
+    "brands": [
+      "labnosh",
+      "namyang",
+      "calobye",
+      "ildong"
+    ],
+    "ingredients_raw": "정제수, 원유(국산), 분리유청단백분말(WPI), 코코아분말, D-알룰로스, 수크랄로스, 아세설팜칼륨, 대두레시틴, 탄산수소나트륨, 젤란검, 천연향료",
+    "items": [
+      {
+        "menu_id": "cvs-labnosh-protein-choco-350",
+        "brand": "랩노쉬",
+        "name": "랩노쉬 프로틴 드링크 마일드 초코 350mL"
+      },
+      {
+        "menu_id": "online-namyang-takefit-max-choco-250",
+        "brand": "남양유업",
+        "name": "테이크핏 맥스 호두초코 250mL"
+      },
+      {
+        "menu_id": "online-calobye-perfect-power-shake-choco-250",
+        "brand": "칼로바이",
+        "name": "퍼펙트 파워쉐이크 20G 초코 250mL"
+      },
+      {
+        "menu_id": "online-labnosh-protein-cacao-350",
+        "brand": "랩노쉬",
+        "name": "랩노쉬 프로틴 드링크 마일드 카카오 350mL"
+      },
+      {
+        "menu_id": "cvs-ildong-himmune-active-deepchoco-250",
+        "brand": "일동후디스",
+        "name": "일동후디스 하이뮨 프로틴 밸런스 액티브 딥초코 250mL"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 3,
+    "item_count": 5,
+    "brands": [
+      "orion",
+      "seoul",
+      "daesangwellife"
+    ],
+    "ingredients_raw": "정제수, 원유(국산), 분리유청단백분말(WPI), 코코아분말, 프락토올리고당, D-알룰로스, 효소처리스테비아, 대두레시틴, 탄산수소나트륨, 젤란검, 천연향료",
+    "items": [
+      {
+        "menu_id": "cvs-orion-dryou-pro-choco-350",
+        "brand": "오리온",
+        "name": "닥터유 PRO 단백질 드링크 40g 초코 350mL"
+      },
+      {
+        "menu_id": "cvs-orion-dryou-pro-choco-250",
+        "brand": "오리온",
+        "name": "닥터유 PRO 단백질 드링크 24g 초코 250mL"
+      },
+      {
+        "menu_id": "cvs-seoul-milk-protein-choco-260",
+        "brand": "서울우유",
+        "name": "서울우유 프로틴 우유 초코 260mL"
+      },
+      {
+        "menu_id": "cvs-daesangwellife-daesang-mymeal-newprotein-choco-250",
+        "brand": "대상웰라이프",
+        "name": "마이밀 마시는 뉴프로틴 딥초코 250mL"
+      },
+      {
+        "menu_id": "online-orion-doctor-you-pro-drink-choco-250",
+        "brand": "오리온",
+        "name": "닥터유PRO 단백질 드링크 초코 250mL"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 3,
+    "item_count": 5,
+    "brands": [
+      "slowcali",
+      "salady",
+      "pokeallday"
+    ],
+    "ingredients_raw": "양상추(국산), 로메인, 적근대, 훈제연어(노르웨이산), 방울토마토, 블랙올리브, 스위트콘, 시저드레싱[마요네즈, 파마산치즈, 올리브유, 레몬즙, 정제소금]",
+    "items": [
+      {
+        "menu_id": "fr-slowcali-classic-salmon-poke-380",
+        "brand": "슬로우캘리",
+        "name": "클래식 연어 포케 380g"
+      },
+      {
+        "menu_id": "fr-salady-salmon-salad-230",
+        "brand": "샐러디",
+        "name": "연어 샐러디 230g"
+      },
+      {
+        "menu_id": "fr-slowcali-spicy-salmon-poke-380",
+        "brand": "슬로우캘리",
+        "name": "스파이시 연어 포케 380g"
+      },
+      {
+        "menu_id": "fr-slowcali-wasabi-salmon-poke-380",
+        "brand": "슬로우캘리",
+        "name": "와사비 렌치 연어 포케 380g"
+      },
+      {
+        "menu_id": "fr-pokeallday-salmon-brownrice-360",
+        "brand": "포케올데이",
+        "name": "현미밥 연어 포케 360g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 3,
+    "item_count": 5,
+    "brands": [
+      "starbucks",
+      "gs25",
+      "cu"
+    ],
+    "ingredients_raw": "식빵[소맥분(미국산), 쇼트닝, 정제설탕, 효모, 정제염], 슬라이스햄[돼지고기, 닭고기, 아질산나트륨], 슬라이스치즈, 양상추, 머스타드소스, 식물성유지",
+    "items": [
+      {
+        "menu_id": "fr-starbucks-ham-rucola-olive-sandwich-190",
+        "brand": "스타벅스",
+        "name": "햄 & 루꼴라 올리브 샌드위치 190g"
+      },
+      {
+        "menu_id": "fr-starbucks-english-muffin-sandwich-140",
+        "brand": "스타벅스",
+        "name": "브렉퍼스트 잉글리쉬 머핀 샌드위치 140g"
+      },
+      {
+        "menu_id": "fr-starbucks-bacon-cheese-toast-130",
+        "brand": "스타벅스",
+        "name": "베이컨 치즈 토스트 130g"
+      },
+      {
+        "menu_id": "cvs-gs25-idol-popular-sandwich-150",
+        "brand": "GS25",
+        "name": "GS25 아이돌 인기 샌드위치 150g"
+      },
+      {
+        "menu_id": "cvs-cu-taiwan-condensed-milk-sandwich-130",
+        "brand": "CU",
+        "name": "CU 대만식 연유 샌드위치 130g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 3,
+    "item_count": 4,
+    "brands": [
+      "gs25",
+      "cu",
+      "starbucks"
+    ],
+    "ingredients_raw": "식빵[소맥분(미국산), 쇼트닝, 정제설탕, 효모, 정제염], 닭가슴살(국내산 85%), 마요네즈, 로메인, 토마토, 머스타드소스, 식물성유지",
+    "items": [
+      {
+        "menu_id": "cvs-gs25-chicken-cutlet-sand-190",
+        "brand": "GS25",
+        "name": "통통 치킨까스 샌드위치 190g"
+      },
+      {
+        "menu_id": "cvs-cu-cajun-chicken-sand-185",
+        "brand": "CU",
+        "name": "케이준 치킨 샌드위치 185g"
+      },
+      {
+        "menu_id": "cvs-cu-cajun-chicken-sandwich-180",
+        "brand": "CU",
+        "name": "케이준 치킨 샌드위치 180g"
+      },
+      {
+        "menu_id": "fr-starbucks-chicken-tomato-cheese-205",
+        "brand": "스타벅스",
+        "name": "치킨 토마토 치즈 샌드위치 205g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 4,
+    "item_count": 4,
+    "brands": [
+      "harim",
+      "cj",
+      "pulmuone",
+      "suzis"
+    ],
+    "ingredients_raw": "닭가슴살(국내산 96%), 정제수, 천일염(국내산), 마늘분말, 양파분말, 흑후추분태, 비타민C, 포도당",
+    "items": [
+      {
+        "menu_id": "mart-harim-chicken-black-pepper-100",
+        "brand": "하림",
+        "name": "하림 닭가슴살 블랙페퍼 100g"
+      },
+      {
+        "menu_id": "mart-cj-the-healthy-chicken-blackpepper-100",
+        "brand": "CJ제일제당",
+        "name": "더건강한 닭가슴살 통살 페퍼 100g"
+      },
+      {
+        "menu_id": "mart-pulmuone-earth-diet-chicken-pepper-100",
+        "brand": "풀무원",
+        "name": "지구식단 결이 다른 직화 닭가슴살 블랙페퍼 100g"
+      },
+      {
+        "menu_id": "mart-suzis-costco-suzies-pepper-chicken-100",
+        "brand": "수지스",
+        "name": "수지스 페퍼 닭가슴살 100g (1팩 기준)"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 3,
+    "item_count": 4,
+    "brands": [
+      "gs25",
+      "7eleven",
+      "starbucks"
+    ],
+    "ingredients_raw": "식빵[소맥분(미국산), 쇼트닝, 정제설탕, 효모, 정제염], 에그스프레드[삶은계란(국산), 마요네즈, 정제설탕, 식염], 슬라이스햄, 머스타드소스, 식물성유지",
+    "items": [
+      {
+        "menu_id": "cvs-gs25-egg-sandwich-165",
+        "brand": "GS25",
+        "name": "듬뿍 에그 샌드위치 165g"
+      },
+      {
+        "menu_id": "cvs-7eleven-ham-egg-toast-170",
+        "brand": "세븐일레븐",
+        "name": "햄에그 토스트 샌드위치 170g"
+      },
+      {
+        "menu_id": "fr-starbucks-sweetpumpkin-egg-190",
+        "brand": "스타벅스",
+        "name": "단호박 에그 샐러드 샌드위치 190g"
+      },
+      {
+        "menu_id": "cvs-7eleven-seven-egg-potato-sandwich-160",
+        "brand": "세븐일레븐",
+        "name": "세븐일레븐 에그 포테이토 샌드위치 160g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 4,
+    "item_count": 4,
+    "brands": [
+      "lalasweet",
+      "binggrae",
+      "haitai",
+      "lotte_wellfood"
+    ],
+    "ingredients_raw": "정제수, 원유(국산), 유크림, 백설탕, 물엿, 탈지분유, 바닐라추출액, 식물성유지, 대두레시틴, 구아검",
+    "items": [
+      {
+        "menu_id": "cvs-lalasweet-vanilla-monaka-85",
+        "brand": "라라스윗",
+        "name": "라라스윗 바닐라 모나카 140mL"
+      },
+      {
+        "menu_id": "cvs-binggrae-together-mini-140",
+        "brand": "빙그레",
+        "name": "빙그레 투게더 미니어처 바닐라 250mL"
+      },
+      {
+        "menu_id": "cvs-haitai-bravo-cone-140",
+        "brand": "해태",
+        "name": "해태 부라보콘 바닐라 140mL"
+      },
+      {
+        "menu_id": "cvs-lotte_wellfood-lotte-worldcone-vanilla-160",
+        "brand": "롯데웰푸드",
+        "name": "롯데 월드콘 바닐라 160mL"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 3,
+    "item_count": 3,
+    "brands": [
+      "yonsei",
+      "nobrand",
+      "maeil"
+    ],
+    "ingredients_raw": "정제수, 원액두유(대두고형분 9% 이상, 대두-외국산), 분리대두단백(미국산 ISP), D-알룰로스, 수크랄로스, 아세설팜칼륨, 대두레시틴, 탄산수소나트륨, 젤란검, 천연향료",
+    "items": [
+      {
+        "menu_id": "cvs-yonsei-high-protein-lowsugar-190",
+        "brand": "연세유업",
+        "name": "연세 고단백 저당 두유 190mL"
+      },
+      {
+        "menu_id": "mart-nobrand-soymilk-unsweetened-190",
+        "brand": "노브랜드",
+        "name": "노브랜드 고소한 순수두유 무가당 190mL"
+      },
+      {
+        "menu_id": "mart-maeil-soymilk-high-protein-190",
+        "brand": "매일유업",
+        "name": "매일두유 고단백 190mL"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 2,
+    "item_count": 3,
+    "brands": [
+      "gs25",
+      "hansot"
+    ],
+    "ingredients_raw": "쌀(국산), 닭고기(국산), 너비아니[돼지고기, 소고기, 대두단백, 정제설탕], 양념간장[설탕, 물엿, 마늘], 볶음김치[배추, 고춧가루, 마늘, 정제염], 식물성유지, 변성전분, L-글루탐산나트륨, 양조간장, 참기름",
+    "items": [
+      {
+        "menu_id": "cvs-gs25-hyeja-neobiani-420",
+        "brand": "GS25",
+        "name": "혜자로운 집밥 너비아니&닭강정 도시락"
+      },
+      {
+        "menu_id": "fr-hansot-chicken-mayo-301",
+        "brand": "한솥도시락",
+        "name": "치킨마요 301g"
+      },
+      {
+        "menu_id": "fr-hansot-big-chicken-mayo-395",
+        "brand": "한솥도시락",
+        "name": "빅치킨마요 395g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 2,
+    "item_count": 3,
+    "brands": [
+      "cu",
+      "hansot"
+    ],
+    "ingredients_raw": "쌀(국산), 돈까스[돼지고기(국산), 튀김옷(소맥분, 팜유, 옥수수전분), 정제염], 돈까스소스[설탕, 양조식초, 토마토페이스트], 볶음김치[배추, 고춧가루, 마늘, 정제염], 식물성유지, 변성전분, L-글루탐산나트륨, 양조간장, 참기름",
+    "items": [
+      {
+        "menu_id": "cvs-cu-baekjongwon-doublepork-450",
+        "brand": "CU",
+        "name": "백종원 더블패티 매콤돈까스 반반 도시락"
+      },
+      {
+        "menu_id": "fr-hansot-tonkatsu-doryeonnim-390",
+        "brand": "한솥도시락",
+        "name": "돈까스도련님 도시락 390g"
+      },
+      {
+        "menu_id": "cvs-cu-baek-triple-tonkatsu-490",
+        "brand": "CU",
+        "name": "CU 백종원 트리플 돈까스 도시락 490g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 2,
+    "item_count": 3,
+    "brands": [
+      "cj",
+      "masitdak"
+    ],
+    "ingredients_raw": "소맥분(밀), 돼지고기(국산), 부추, 양배추, 두부(대두), 대파, 당면, 변성전분, 참기름, 정제소금, L-글루탐산나트륨",
+    "items": [
+      {
+        "menu_id": "mart-cj-bibigo-protein-dumpling-175",
+        "brand": "CJ제일제당",
+        "name": "비비고 식물성 단백질 만두 175g"
+      },
+      {
+        "menu_id": "online-masitdak-dumpling-kimchi-168",
+        "brand": "맛있닭",
+        "name": "맛있닭 닭가슴살 한끼 만두 김치맛 168g"
+      },
+      {
+        "menu_id": "online-masitdak-dumpling-galbi-168",
+        "brand": "맛있닭",
+        "name": "맛있닭 닭가슴살 한끼 만두 갈비맛 168g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 2,
+    "item_count": 3,
+    "brands": [
+      "maeil",
+      "hbaf"
+    ],
+    "ingredients_raw": "분리대두단백너겟(분리대두단백, 전분), 분리유청단백(WPI), 볶음아몬드(미국산), 볶음땅콩, 올리고당, D-말티톨시럽, 에리스리톨, 대두레시틴, 아라비아검, 글리세린, 천연바닐라향",
+    "items": [
+      {
+        "menu_id": "online-maeil-selex-core-protein-bar-berry-38",
+        "brand": "매일유업",
+        "name": "셀렉스 코어프로틴 너츠바 베리 38g"
+      },
+      {
+        "menu_id": "cvs-hbaf-honey-butter-almond-30",
+        "brand": "바프",
+        "name": "바프 HBAF 허니버터아몬드 30g"
+      },
+      {
+        "menu_id": "cvs-hbaf-wasabi-almond-30",
+        "brand": "바프",
+        "name": "바프 HBAF 와사비맛아몬드 30g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 3,
+    "item_count": 3,
+    "brands": [
+      "binggrae",
+      "costco",
+      "lotte_wellfood"
+    ],
+    "ingredients_raw": "분리대두단백너겟(분리대두단백, 전분), 분리유청단백(WPI), 볶음아몬드(미국산), D-알룰로스, 에리스리톨, 효소처리스테비아, 준초콜릿(식물성유지, 코코아분말, 유당), 코코아매스, 대두레시틴, 아라비아검, 글리세린, 천연바닐라향",
+    "items": [
+      {
+        "menu_id": "online-binggrae-the-danbaek-crunch-bar-choco-40",
+        "brand": "빙그레",
+        "name": "더단백 크런치 단백질바 초코 40g"
+      },
+      {
+        "menu_id": "mart-costco-kirkland-protein-bar-brownie-60",
+        "brand": "코스트코",
+        "name": "커클랜드 시그니처 프로틴바 초콜릿 브라우니 60g"
+      },
+      {
+        "menu_id": "cvs-lotte_wellfood-lotte-zero-crunch-chocoball-34",
+        "brand": "롯데웰푸드",
+        "name": "롯데 제로 크런치 초코볼 34g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 2,
+    "item_count": 3,
+    "brands": [
+      "gs25",
+      "cu"
+    ],
+    "ingredients_raw": "쌀(국산), 조미김(국산, 천일염, 참기름), 제육볶음[돼지고기, 고추장, 물엿, 설탕, 양파, 대파, L-글루탐산나트륨], 참기름, 볶음참깨, 정제소금, L-글루탐산나트륨",
+    "items": [
+      {
+        "menu_id": "cvs-gs25-direct-bulgogi-triangle-110",
+        "brand": "GS25",
+        "name": "직화불고기 삼각김밥 110g"
+      },
+      {
+        "menu_id": "cvs-cu-spicy-pork-triangle-115",
+        "brand": "CU",
+        "name": "매콤제육 삼각김밥 115g"
+      },
+      {
+        "menu_id": "cvs-cu-baek-spicy-jeyuk-gimbap-235",
+        "brand": "CU",
+        "name": "CU 백종원 매콤제육 김밥 235g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 3,
+    "item_count": 3,
+    "brands": [
+      "gs25",
+      "7eleven",
+      "cu"
+    ],
+    "ingredients_raw": "쌀(국산), 조미김(국산, 천일염, 참기름), 비빔소스[소고기, 고추장(물엿, 소맥분, 고춧가루), 설탕, 마늘, 참기름], 콩나물, 참기름, 볶음참깨, 정제소금, L-글루탐산나트륨",
+    "items": [
+      {
+        "menu_id": "cvs-gs25-jeonju-bibim-triangle-110",
+        "brand": "GS25",
+        "name": "전주비빔 삼각김밥 110g"
+      },
+      {
+        "menu_id": "cvs-7eleven-jeonju-bibim-110",
+        "brand": "세븐일레븐",
+        "name": "전주비빔 삼각김밥 110g"
+      },
+      {
+        "menu_id": "cvs-cu-jeonju-bibim-samgak-110",
+        "brand": "CU",
+        "name": "CU 전주비빔 삼각김밥 110g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 2,
+    "item_count": 3,
+    "brands": [
+      "kfc",
+      "cheogajip"
+    ],
+    "ingredients_raw": "닭가슴살(국내산 84%), 정제수, 특제양념소스[백설탕, 양조간장, 물엿, 마늘, 고춧가루, 변성전분, L-글루탐산나트륨], 천일염, 비타민C",
+    "items": [
+      {
+        "menu_id": "fr-kfc-god-seasoned-chicken-1pc-110",
+        "brand": "KFC",
+        "name": "갓양념 치킨 1조각 110g"
+      },
+      {
+        "menu_id": "fr-cheogajip-supreme-boneless-200",
+        "brand": "처갓집양념치킨",
+        "name": "슈프림양념치킨 순살 (200g 1회 기준)"
+      },
+      {
+        "menu_id": "fr-cheogajip-seasoned-boneless-200",
+        "brand": "처갓집양념치킨",
+        "name": "처갓집 양념치킨 순살 (200g 1회 기준)"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 2,
+    "item_count": 3,
+    "brands": [
+      "cu",
+      "sajo"
+    ],
+    "ingredients_raw": "닭가슴살(국내산 78%), 정제수, 대두단백, 변성전분, D-알룰로스, 정제소금, 콜라겐케이싱, 폴리인산나트륨, L-글루탐산나트륨, 아질산나트륨(발색제)",
+    "items": [
+      {
+        "menu_id": "cvs-cu-giant-hotbar-spicy-100",
+        "brand": "CU",
+        "name": "CU 자이언트 핫바 매콤한맛 100g"
+      },
+      {
+        "menu_id": "cvs-sajo-charcoal-hotbar-80",
+        "brand": "사조대림",
+        "name": "사조 대림선 숯불구이맛 핫바 80g"
+      },
+      {
+        "menu_id": "cvs-sajo-wheeltouch-hotbar-80",
+        "brand": "사조대림",
+        "name": "사조 대림선 휠터치 핫바 80g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 2,
+    "item_count": 2,
+    "brands": [
+      "pulmuone_danone",
+      "maeil"
+    ],
+    "ingredients_raw": "정제수, 원유(국산), 분리유청단백분말(WPI), 정제설탕, 액상과당, 대두레시틴, 탄산수소나트륨, 젤란검, 천연향료",
+    "items": [
+      {
+        "menu_id": "cvs-pulmuone_danone-pulmuone-danone-greek-plain-90",
+        "brand": "풀무원다논",
+        "name": "그릭요거트 플레인 90g"
+      },
+      {
+        "menu_id": "cvs-maeil-baristarules-latte-250",
+        "brand": "매일유업",
+        "name": "매일유업 바리스타룰스 로에스프레소 라떼 250mL"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 2,
+    "item_count": 2,
+    "brands": [
+      "cj",
+      "harim"
+    ],
+    "ingredients_raw": "닭가슴살(국내산 82%), 양파(국산), 대파, 정제수, 분리대두단백, 변성전분, 천일염, 다진마늘, 마늘분말, 비타민C, 후춧가루",
+    "items": [
+      {
+        "menu_id": "mart-cj-the-healthy-chicken-steak-garlic-100",
+        "brand": "CJ제일제당",
+        "name": "더건강한 닭가슴살 스테이크 갈릭 100g"
+      },
+      {
+        "menu_id": "mart-harim-iff-chicken-cube-garlic-100",
+        "brand": "하림",
+        "name": "하림 IFF 닭가슴살 큐브 갈릭 (100g 기준)"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 2,
+    "item_count": 2,
+    "brands": [
+      "cj",
+      "rankingdak"
+    ],
+    "ingredients_raw": "닭가슴살(국내산 82%), 양파(국산), 대파, 정제수, 분리대두단백, 변성전분, 천일염, 모짜렐라치즈(자연치즈), 비타민C, 후춧가루",
+    "items": [
+      {
+        "menu_id": "mart-cj-the-healthy-chicken-cube-cheese-100",
+        "brand": "CJ제일제당",
+        "name": "더건강한 닭가슴살 한입큐브 치즈 100g"
+      },
+      {
+        "menu_id": "online-rankingdak-masitdak-chicken-ball-cheese-100",
+        "brand": "랭킹닭컴",
+        "name": "맛있닭 닭가슴살 볼 치즈맛 100g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 2,
+    "item_count": 2,
+    "brands": [
+      "ottogi",
+      "rankingdak"
+    ],
+    "ingredients_raw": "닭가슴살(국내산 84%), 정제수, 저당특제소스[D-알룰로스, 양조간장, 고춧가루, 다진마늘, 에리스리톨, 변성전분], 천일염, 비타민C",
+    "items": [
+      {
+        "menu_id": "mart-ottogi-curry-chicken-breast-135",
+        "brand": "오뚜기",
+        "name": "오뚜기 백세카레 순닭가슴살 135g"
+      },
+      {
+        "menu_id": "online-rankingdak-loveat-sauce-chicken-spicy-100",
+        "brand": "랭킹닭컴",
+        "name": "러브잇 소스 닭가슴살 매콤양념 100g"
+      }
+    ]
+  },
+  {
+    "reason": "copied_ingredients",
+    "detected_at": "2026-09-17",
+    "brand_count": 2,
+    "item_count": 2,
+    "brands": [
+      "cu",
+      "gs25"
+    ],
+    "ingredients_raw": "쌀(국산), 조미김(국산, 천일염, 참기름), 혼합양념육[돼지고기, 닭고기, 간장, 설탕], 참기름, 볶음참깨, 정제소금, L-글루탐산나트륨",
+    "items": [
+      {
+        "menu_id": "cvs-cu-dakgalbi-triangle-115",
+        "brand": "CU",
+        "name": "닭갈비 삼각김밥 115g"
+      },
+      {
+        "menu_id": "cvs-gs25-tong-sausage-gimbap-245",
+        "brand": "GS25",
+        "name": "GS25 바삭통소시지 김밥 245g"
+      }
+    ]
+  }
+]
