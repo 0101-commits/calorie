@@ -2,10 +2,10 @@
   "total_count": 826,
   "graded_count": 787,
   "hold_count": 39,
-  "generated_at": "2026-09-16T10:36:53.064Z",
+  "generated_at": "2026-09-17T02:35:36.446Z",
   "rule_version": "v1.1",
   "rule_file": "rules/rule_v1.1.json",
-  "file_size_kb": 3193.3,
+  "file_size_kb": 3255.3,
   "grades": {
     "A": 102,
     "B": 152,
@@ -23,6 +23,12 @@
     "moderate": 106,
     "warning": 164,
     "unknown": 309
+  },
+  "absorption": {
+    "fast": 49,
+    "medium": 345,
+    "slow": 85,
+    "unknown": 347
   },
   "channels": {
     "cvs": 509,
@@ -146,7 +152,54 @@
           "즉석밥/죽",
           "한식/분식"
         ],
-        "require_main_item": true
+        "require_main_item": true,
+        "require_main_item_exempt_timing": [
+          "post"
+        ]
+      },
+      "timing": {
+        "pre": {
+          "protein_per_kg": 0.25,
+          "protein_min": 15,
+          "protein_max": 30,
+          "carb_per_kg": 0.75,
+          "carb_basis": "internal_conversion",
+          "fat_over_dir": 2
+        },
+        "post": {
+          "protein_per_kg": 0.25,
+          "protein_min": 20,
+          "protein_max": 40,
+          "carb_per_kg": 0.6,
+          "protein_under_dir": 1.5
+        },
+        "rest": {
+          "protein_floor_per_kg": 1.4
+        },
+        "fit_weights": {
+          "pre": {
+            "kcal": 0.2,
+            "P": 0.2,
+            "C": 0.3,
+            "F": 0.15,
+            "Na": 0.1,
+            "Sugar": 0.05
+          },
+          "post": {
+            "kcal": 0.15,
+            "P": 0.4,
+            "C": 0.25,
+            "F": 0.1,
+            "Na": 0.05,
+            "Sugar": 0.05
+          }
+        },
+        "absorption_order": [
+          "fast",
+          "medium",
+          "slow",
+          "unknown"
+        ]
       }
     },
     "staleness": {

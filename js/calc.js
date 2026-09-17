@@ -86,9 +86,35 @@ export function configureFromRules(recommendation) {
     MEAL_PROTEIN_CLAMP.min = recommendation.meal_protein_clamp.min;
     MEAL_PROTEIN_CLAMP.max = recommendation.meal_protein_clamp.max;
   }
+  if (recommendation.timing) {
+    for (const key of ['pre', 'post', 'rest']) {
+      if (recommendation.timing[key]) Object.assign(TIMING_PROFILES[key], recommendation.timing[key]);
+    }
+    if (recommendation.timing.fit_weights) {
+      for (const [key, w] of Object.entries(recommendation.timing.fit_weights)) {
+        if (TIMING_FIT_WEIGHTS[key]) Object.assign(TIMING_FIT_WEIGHTS[key], w);
+      }
+    }
+  }
 }
 
 export const MEAL_PROTEIN_CLAMP = { min: 20, max: 45 };
+
+// 타이밍 프로필 — rules/rule_v1.1.json 의 recommendation.timing 과 같은 값이어야 한다(G5).
+// pre.carb_per_kg 0.75 는 ISSN 의 1~4 g/kg/day 중 하단을 3끼로 나눈 내부 환산값이다.
+export const TIMING_PROFILES = {
+  pre:  { protein_per_kg: 0.25, protein_min: 15, protein_max: 30, carb_per_kg: 0.75, carb_basis: 'internal_conversion', fat_over_dir: 2 },
+  post: { protein_per_kg: 0.25, protein_min: 20, protein_max: 40, carb_per_kg: 0.60, protein_under_dir: 1.5 },
+  rest: { protein_floor_per_kg: 1.4 }
+};
+
+// 타이밍이 선택되면 목적별 가중치(GOAL_WEIGHTS) 대신 이 값을 쓴다. rest 는 기존 가중치를 그대로 쓴다.
+export const TIMING_FIT_WEIGHTS = {
+  pre:  { kcal: 0.20, P: 0.20, C: 0.30, F: 0.15, Na: 0.10, Sugar: 0.05 },
+  post: { kcal: 0.15, P: 0.40, C: 0.25, F: 0.10, Na: 0.05, Sugar: 0.05 }
+};
+
+export const TIMING_LABELS = { pre: '운동 전', post: '운동 후', rest: '운동 안 한 날' };
 
 // 목적별 1일 목표 계수 — rules/rule_v1.1.json 의 recommendation.goals 와 같은 값이어야 한다.
 export const GOAL_PROFILES = {
@@ -147,7 +173,11 @@ export function computeDailyTargets(params) {
   const sugar_day = profile.sugar_day_g;
 
   kcal_day = Math.round(kcal_day);
-  const P_day = Math.round(weight * p_g_per_kg);
+  let P_day = Math.round(weight * p_g_per_kg);
+  // 운동을 쉰 날에도 하루 단백질 총량은 내리지 않는다 — 근유지를 좌우하는 건 그날 열량이 아니라 총량이다.
+  if (params.timing === 'rest') {
+    P_day = Math.max(P_day, Math.round(weight * TIMING_PROFILES.rest.protein_floor_per_kg));
+  }
   const F_day = Math.round((kcal_day * fat_ratio) / 9);
   const C_day = Math.max(0, Math.round((kcal_day - P_day * 4 - F_day * 9) / 4));
 
@@ -199,15 +229,41 @@ export function computeMealTarget(dailyTargets, meal = 'lunch') {
 }
 
 /**
- * 5. Fit Score — 가중 정규화 거리 (0~100)
+ * 4-b. 타이밍 보정 — 1끼 타깃의 단백질·탄수만 덮어쓴다.
+ * 열량·나트륨·당류는 사용자가 고른 끼니 비중을 그대로 둔다(타이밍은 끼니를 대체하지 않는다).
+ * rest 는 1끼 벡터를 바꾸지 않는다 — 휴식일의 규칙은 하루 총량(computeDailyTargets)에 있다.
  */
-export function computeFitScore(item, target, goal = 'diet') {
-  const weights = GOAL_WEIGHTS[goal] || GOAL_WEIGHTS.diet;
+export function applyTimingTarget(target, timing, weight_kg) {
+  const profile = TIMING_PROFILES[timing];
+  if (!profile || timing === 'rest') return { ...target, timing: timing || null };
+
+  const kg = Number(weight_kg) || 70;
+  const byWeight = Math.round(profile.protein_per_kg * kg);
+  const lo = profile.protein_min;
+  const hi = profile.protein_max;
+
+  // 권장은 점이 아니라 구간(20~40g)이다. 구간 안이면 손실 0이 되도록 밴드를 함께 넘긴다.
+  // 점 타깃은 '끼니 타깃과 체중 환산값 중 큰 쪽을 구간 안으로 밀어넣은 값' — 끼니 타깃을 깎지 않는다.
+  const P = Math.min(hi, Math.max(lo, byWeight, Number(target.P) || 0));
+  const C = Math.round(profile.carb_per_kg * kg);
+  return { ...target, P, P_band: [lo, hi], C, timing };
+}
+
+/**
+ * 5. Fit Score — 가중 정규화 거리 (0~100)
+ * timing 이 주어지면 목적별 가중치 대신 타이밍 가중치를 쓴다.
+ */
+export function computeFitScore(item, target, goal = 'diet', timing = null) {
+  const weights = (timing && TIMING_FIT_WEIGHTS[timing]) || GOAL_WEIGHTS[goal] || GOAL_WEIGHTS.diet;
+
+  // 단백질 권장 구간(운동 후 20~40g) — 구간 안이면 손실 0, 밖이면 가까운 경계에서부터 잰다.
+  const band = Array.isArray(target.P_band) ? target.P_band : null;
 
   // 허용폭 tol
   const tol = {
     kcal: Math.max(100, target.kcal * 0.20),
-    P: Math.max(5, target.P * 0.25),
+    // 구간이 있으면 구간 폭의 절반을 허용폭으로 쓴다 — 점 타깃의 25%는 너무 좁아 3g만 모자라도 최대 감점이었다.
+    P: band ? Math.max(5, (band[1] - band[0]) / 2) : Math.max(5, target.P * 0.25),
     C: Math.max(10, (target.C || 50) * 0.30),
     F: Math.max(5, (target.F || 15) * 0.30),
     Na: Math.max(200, target.Na * 0.40),
@@ -217,8 +273,13 @@ export function computeFitScore(item, target, goal = 'diet') {
   // 비대칭 방향 계수 dir
   const dirMultiplier = (key, val, tVal) => {
     if (key === 'P') {
-      return val >= tVal ? 0.5 : 1.0; // 단백질 초과는 덜 나쁨
+      if (band && val >= band[0] && val <= band[1]) return 0; // 권장 구간 안 — 감점 없음
+      if (val >= tVal) return 0.5; // 단백질 초과는 덜 나쁨
+      // 운동 후에는 단백질 미달이 더 크게 깎인다 — 이 끼니의 목적 자체가 단백질이다.
+      return timing === 'post' ? (TIMING_PROFILES.post.protein_under_dir || 1.5) : 1.0;
     }
+    // 운동 직전의 지방 초과는 소화 부담으로 이어진다(수치 근거는 없어 정렬 보조로만 쓴다).
+    if (key === 'F' && timing === 'pre' && val > tVal) return TIMING_PROFILES.pre.fat_over_dir || 2.0;
     if (key === 'kcal') {
       if (goal === 'diet') return val > tVal ? 2.0 : 0.5;
       if (goal === 'lean_mass') return 1.0;
@@ -239,9 +300,15 @@ export function computeFitScore(item, target, goal = 'diet') {
     { key: 'Sugar', val: Number(item.sugar_g || 0), target: target.Sugar, weight: weights.Sugar }
   ];
 
+  const bandDiff = (val) => {
+    if (val < band[0]) return band[0] - val;
+    if (val > band[1]) return val - band[1];
+    return 0;
+  };
+
   let weightedLoss = 0;
   metrics.forEach(m => {
-    const diff = Math.abs(m.val - m.target);
+    const diff = (m.key === 'P' && band) ? bandDiff(m.val) : Math.abs(m.val - m.target);
     const dir = dirMultiplier(m.key, m.val, m.target);
     const d = (diff / tol[m.key]) * dir;
     const loss = Math.min(1.0, d);
@@ -256,7 +323,7 @@ export function computeFitScore(item, target, goal = 'diet') {
  * 6. 이유 문장 템플릿 생성
  * "단백질 목표 45g 중 43g(96%), 열량 749kcal 목표에 -118kcal. 나트륨은 1끼 목표의 61%. 감점 요인: 당류 22g(목표 18g 초과)."
  */
-export function generateReasonSentence(item, target, fitScore, goal = 'diet') {
+export function generateReasonSentence(item, target, fitScore, goal = 'diet', timing = null) {
   const p = Number(item.protein_g || 0);
   const pPct = target.P > 0 ? Math.round((p / target.P) * 100) : 100;
   const kcalDiff = Math.round(Number(item.kcal || 0) - target.kcal);
@@ -281,6 +348,12 @@ export function generateReasonSentence(item, target, fitScore, goal = 'diet') {
   }
 
   let text = `단백질 목표 ${target.P}g 중 ${p}g(${pPct}%), 열량 ${target.kcal}kcal 목표에 ${kcalSign}kcal. 나트륨은 1끼 목표의 ${naPct}%.`;
+  if (timing === 'pre') {
+    text += ` 운동 전 기준 탄수 ${target.C}g 목표에 ${Number(item.carb_g || 0)}g, 지방 ${Number(item.fat_g || 0)}g.`;
+  } else if (timing === 'post') {
+    const profile = TIMING_PROFILES.post;
+    text += ` 운동 후 권장 구간 ${profile.protein_min}~${profile.protein_max}g 중 ${p}g.`;
+  }
   if (deductions.length > 0) {
     text += ` 감점 요인: ${deductions.slice(0, 2).join(', ')}.`;
   } else {
@@ -296,10 +369,14 @@ if (typeof window !== 'undefined') {
     PAL_MAP,
     MEAL_RATIOS,
     GOAL_WEIGHTS,
+    TIMING_PROFILES,
+    TIMING_FIT_WEIGHTS,
+    TIMING_LABELS,
     computeBMR,
     computeTDEE,
     computeDailyTargets,
     computeMealTarget,
+    applyTimingTarget,
     computeFitScore,
     generateReasonSentence
   };

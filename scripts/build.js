@@ -7,7 +7,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { evaluateMenu, computePPR, DEFAULT_RULES, fieldStatus } from '../js/score.js';
 import { validateMenuQA } from '../js/qa.js';
-import { analyzeIngredients } from '../js/clean_radar.js';
+import { analyzeIngredients, classifyAbsorption } from '../js/clean_radar.js';
+import { TIMING_PROFILES, TIMING_FIT_WEIGHTS } from '../js/calc.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,7 +38,32 @@ function gateG5(rules) {
   check('cutoffs.total_grade', rules.cutoffs.total_grade, DEFAULT_RULES.cutoffs.total_grade);
   check('penalties.max_total_penalty', rules.penalties.max_total_penalty, DEFAULT_RULES.penalties.max_total_penalty);
   check('protein_source_q.Q_unknown', rules.protein_source_q.Q_unknown, DEFAULT_RULES.protein_source_q.Q_unknown);
+
+  // 타이밍 블록도 같은 규칙을 받는다 — 룰 파일이 원천, 코드 상수는 픽스처.
+  const timing = (rules.recommendation && rules.recommendation.timing) || null;
+  if (!timing) {
+    mismatches.push('recommendation.timing: 룰 파일에 타이밍 블록이 없습니다');
+  } else {
+    for (const key of ['pre', 'post', 'rest']) {
+      check(`recommendation.timing.${key}`, timing[key], TIMING_PROFILES[key]);
+    }
+    check('recommendation.timing.fit_weights', timing.fit_weights, TIMING_FIT_WEIGHTS);
+  }
   return mismatches;
+}
+
+/** G8 — 근거 없이 내려진 흡수 속도 판정(원재료가 없거나 판정 근거 원재료가 비었는데 속도가 붙은 건) */
+function gateG8(items) {
+  const bad = [];
+  for (const it of items) {
+    if (it.absorption === 'unknown') continue;
+    if (!String(it.ingredients_raw || '').trim()) {
+      bad.push(`${it.menu_id} — 원재료 미확보인데 absorption=${it.absorption}`);
+    } else if (!Array.isArray(it.absorption_basis) || it.absorption_basis.length === 0) {
+      bad.push(`${it.menu_id} — absorption=${it.absorption} 인데 판정 근거 원재료가 없습니다`);
+    }
+  }
+  return bad;
 }
 
 /** G1 — 값이 0인데 measured 로 적힌 '플레이스홀더' 탐지 */
@@ -149,6 +175,12 @@ function main() {
     evaluated.rule_version = rules.version;
 
     const cleanAnalysis = analyzeIngredients(item.ingredients_raw, evaluated);
+
+    // 흡수 속도 — 원재료 토큰에서만 정한다. 점수에는 쓰지 않고 정렬·표기에만 쓴다(기획서 §산식 3).
+    const absorption = classifyAbsorption(cleanAnalysis.available ? cleanAnalysis.tokens : null);
+    evaluated.absorption = absorption.absorption;
+    evaluated.absorption_basis = absorption.absorption_basis;
+
     if (cleanAnalysis.available) {
       evaluated.clean_score = cleanAnalysis.cleanScore;
       evaluated.clean_tier = cleanAnalysis.cleanScore >= 75
@@ -185,8 +217,17 @@ function main() {
     return evaluated;
   });
 
+  // ── G8 흡수 속도 근거 ──
+  const g8 = gateG8(evaluatedItems);
+  if (g8.length) {
+    console.error(`💥 G8 흡수 속도 게이트 실패 ${g8.length}건 — 원재료 없이 흡수 속도를 판정할 수 없습니다:`);
+    g8.slice(0, 10).forEach(m => console.error('  - ' + m));
+    process.exit(1);
+  }
+
   // ── 통계 ──
   const gradeCounts = { A: 0, B: 0, C: 0, D: 0, hold: 0 };
+  const absorptionCounts = { fast: 0, medium: 0, slow: 0, unknown: 0 };
   const pwCounts = { verified: 0, conditional: 0, washing: 0, none: 0 };
   const cleanCounts = { clean: 0, moderate: 0, warning: 0, unknown: 0 };
   const channelCounts = {};
@@ -198,6 +239,7 @@ function main() {
     if (item.pw_tier) pwCounts[item.pw_tier]++; else pwCounts.none++;
     cleanCounts[item.clean_tier] = (cleanCounts[item.clean_tier] || 0) + 1;
     channelCounts[item.channel] = (channelCounts[item.channel] || 0) + 1;
+    absorptionCounts[item.absorption] = (absorptionCounts[item.absorption] || 0) + 1;
     if (item.price_krw_status === 'estimated') estimatedPrice++;
   }
 
@@ -209,6 +251,7 @@ function main() {
   console.log(`  A ${gradeCounts.A}건 (${pct(gradeCounts.A)}%) · B ${gradeCounts.B}건 (${pct(gradeCounts.B)}%) · C ${gradeCounts.C}건 (${pct(gradeCounts.C)}%) · D ${gradeCounts.D}건 (${pct(gradeCounts.D)}%)`);
   console.log('\n🛡️ [워싱 판독] 검증 ' + pwCounts.verified + ' · 조건부 ' + pwCounts.conditional + ' · 워싱 ' + pwCounts.washing + ' · 대상아님 ' + pwCounts.none);
   console.log('🧪 [CleanRadar] 안심 ' + cleanCounts.clean + ' · 조건부 ' + cleanCounts.moderate + ' · 주의 ' + cleanCounts.warning + ' · 원재료 미확보 ' + cleanCounts.unknown);
+  console.log('⚡ [흡수 속도] 빠름 ' + absorptionCounts.fast + ' · 보통 ' + absorptionCounts.medium + ' · 느림 ' + absorptionCounts.slow + ' · 미확보 ' + absorptionCounts.unknown);
   console.log('💰 추정가 표시 ' + estimatedPrice + '건');
 
   // ── 출력 ──
@@ -240,6 +283,7 @@ function main() {
     pw_tier: it.pw_tier,
     clean_tier: it.clean_tier,
     sweetener_group: it.sweetener_group,
+    absorption: it.absorption,
     image_url: it.image_url || '',
     verified_at: it.verified_at
   }));
@@ -257,6 +301,7 @@ function main() {
     grades: { A: gradeCounts.A, B: gradeCounts.B, C: gradeCounts.C, D: gradeCounts.D },
     washing: pwCounts,
     clean: cleanCounts,
+    absorption: absorptionCounts,
     channels: channelCounts,
     estimated_price_count: estimatedPrice,
     latest_verified_at: evaluatedItems.reduce((m, it) => (it.verified_at > m ? it.verified_at : m), ''),

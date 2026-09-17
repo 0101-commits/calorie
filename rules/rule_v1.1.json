@@ -8,7 +8,8 @@
     "F3 — protein_source 미상의 Q 폴백을 Q_unknown 명시 상수로 승격.",
     "F4 — W1(마케팅 표기 강도) 명시. 표기 없음은 판독 대상 아님, 약한 표기는 W2 20점, 강한 표기는 40점.",
     "결측 처리 — *_status 가 unknown 인 항목은 페널티 면제가 아니라 판정 보류(grade_eligible=false).",
-    "조합 — '음료 카테고리 중복 예외'를 무제한으로 두면 두유 3개가 1끼 조합 1위가 된다. 음료는 조합당 1개까지로 제한하고, 조합에 식사류가 최소 1개 포함되도록 한다."
+    "조합 — '음료 카테고리 중복 예외'를 무제한으로 두면 두유 3개가 1끼 조합 1위가 된다. 음료는 조합당 1개까지로 제한하고, 조합에 식사류가 최소 1개 포함되도록 한다.",
+    "타이밍(2026-09-17) — recommendation.timing 신설. 운동 전/후 1끼 단백질·탄수 타깃과 Fit 가중치를 여기에 둔다. 출처는 ISSN Position Stand: protein and exercise(2017, PMC5477153)와 nutrient timing(2017, PMC5596471). 다만 pre.carb_per_kg 0.75 는 출처의 1~4 g/kg/day 중 하단을 3끼로 나눈 내부 환산값이므로 화면에도 환산임을 적는다. 지표·등급 산식은 바뀌지 않는다."
   ],
   "daily_standards": {
     "kcal": 2000,
@@ -254,7 +255,54 @@
         "즉석밥/죽",
         "한식/분식"
       ],
-      "require_main_item": true
+      "require_main_item": true,
+      "require_main_item_exempt_timing": [
+        "post"
+      ]
+    },
+    "timing": {
+      "pre": {
+        "protein_per_kg": 0.25,
+        "protein_min": 15,
+        "protein_max": 30,
+        "carb_per_kg": 0.75,
+        "carb_basis": "internal_conversion",
+        "fat_over_dir": 2
+      },
+      "post": {
+        "protein_per_kg": 0.25,
+        "protein_min": 20,
+        "protein_max": 40,
+        "carb_per_kg": 0.6,
+        "protein_under_dir": 1.5
+      },
+      "rest": {
+        "protein_floor_per_kg": 1.4
+      },
+      "fit_weights": {
+        "pre": {
+          "kcal": 0.2,
+          "P": 0.2,
+          "C": 0.3,
+          "F": 0.15,
+          "Na": 0.1,
+          "Sugar": 0.05
+        },
+        "post": {
+          "kcal": 0.15,
+          "P": 0.4,
+          "C": 0.25,
+          "F": 0.1,
+          "Na": 0.05,
+          "Sugar": 0.05
+        }
+      },
+      "absorption_order": [
+        "fast",
+        "medium",
+        "slow",
+        "unknown"
+      ]
     }
   },
   "staleness": {

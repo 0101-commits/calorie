@@ -704,6 +704,75 @@ function evaluateAdditive(tokens, product) {
  * 원재료 미확보 상태 — 점수를 매기지 않는다.
  * 화면은 이 상태를 '원재료 미확보 · 제보하기' 빈 상태로 렌더한다.
  */
+// ── 흡수 속도 분류 ──
+// 단일 원천은 위 INGREDIENT_DICTIONARY 다. 여기서는 사전이 이미 판정한 단백질 원천의 이름만 묶는다.
+// 밀글루텐·젤라틴/콜라겐은 흡수 속도의 공적 근거가 없어 넣지 않는다(있어도 판정에 쓰지 않는다).
+export const ABSORPTION_BY_PROTEIN_NAME = {
+  '분리유청단백 (WPI)': 'fast',
+  '가수분해유청단백 (WPH)': 'fast',
+  '농축유청단백 (WPC)': 'fast',
+  '닭가슴살 원육': 'medium',
+  '계란/난백': 'medium',
+  '자연산 원육/생선살': 'medium',
+  '두부/자연대두': 'medium',
+  '성형육/어육가공품': 'medium',
+  '카제인단백질': 'slow',
+  '분리대두단백 (ISP)': 'slow'
+};
+
+// 사전 매칭은 먼저 걸리는 항목이 이긴다. '분리대두단백분말'·'대두단백'은 '두부/자연대두'(키워드 '대두')에
+// 먼저 잡혀 대두단백 항목까지 가지 못한다. CleanRadar 점수 체계를 건드리지 않고 흡수 속도만 바로잡기 위해
+// 원재료 원문을 한 번 더 본다.
+const ABSORPTION_RAW_OVERRIDE = [
+  { match: ['분리대두단백', 'isp'], name: '분리대두단백 (ISP)', speed: 'slow' },
+  { match: ['대두단백'], name: '대두단백', speed: 'slow' }
+];
+
+// 대두레시틴(유화제)·대두유도 '대두' 키워드에 걸려 단백질 원천으로 잡힌다. 흡수 속도 판정에서는 뺀다.
+const ABSORPTION_RAW_EXCLUDE = ['레시틴', '대두유'];
+
+export const ABSORPTION_ORDER = { fast: 0, medium: 1, slow: 2, unknown: 3 };
+
+/** 운동 후 목록에서 Fit 동점을 가르는 2차 기준. 점수에는 쓰지 않는다. */
+export function absorptionRank(item) {
+  const rank = ABSORPTION_ORDER[item && item.absorption];
+  return rank === undefined ? ABSORPTION_ORDER.unknown : rank;
+}
+
+/**
+ * 원재료 토큰에서 흡수 속도를 정한다. 원재료가 없거나 분류 가능한 단백질 원천이 없으면 unknown.
+ * 제품명·카테고리로 유추하지 않는다(서비스 규칙 3).
+ *
+ * 판정은 '가장 앞에 적힌 단백질 원천' 하나로만 한다. 식약처 표시기준상 원재료는 많이 쓴 순서로 적으므로
+ * 앞선 원료가 그 제품의 주 단백질원이다. 뒤에 붙은 미량 결착제(분리대두단백 등)가 원육 판정을 뒤집으면
+ * 닭가슴살 제품이 '느린 흡수'로 뒤바뀐다 — 실제로 13건이 그렇게 잘못 잡혔다.
+ */
+export function classifyAbsorption(tokens) {
+  const list = Array.isArray(tokens) ? tokens : [];
+  const hits = list
+    .filter(t => t && t.category === 'protein' && ABSORPTION_BY_PROTEIN_NAME[t.name])
+    .filter(t => {
+      const raw = String(t.raw || '').toLowerCase();
+      return !ABSORPTION_RAW_EXCLUDE.some(kw => raw.includes(kw));
+    })
+    .map(t => {
+      const raw = String(t.raw || '').toLowerCase();
+      // 사전이 '두부/자연대두'로 잡은 것만 교정한다. '패티[돼지고기, 소고기, 대두단백]' 처럼
+      // 원육이 주인 복합 토큰까지 뒤집으면 버거가 '느린 흡수'가 된다.
+      const override = t.name === '두부/자연대두'
+        ? ABSORPTION_RAW_OVERRIDE.find(o => o.match.some(kw => raw.includes(kw)))
+        : null;
+      return override
+        ? { name: override.name, speed: override.speed }
+        : { name: t.name, speed: ABSORPTION_BY_PROTEIN_NAME[t.name] };
+    });
+
+  if (hits.length === 0) return { absorption: 'unknown', absorption_basis: [] };
+
+  const main = hits[0];
+  return { absorption: main.speed, absorption_basis: [main.name] };
+}
+
 export function buildUnavailableReport() {
   return {
     available: false,
