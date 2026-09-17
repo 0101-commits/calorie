@@ -104,7 +104,7 @@ export const MEAL_PROTEIN_CLAMP = { min: 20, max: 45 };
 // pre.carb_per_kg 0.75 는 ISSN 의 1~4 g/kg/day 중 하단을 3끼로 나눈 내부 환산값이다.
 export const TIMING_PROFILES = {
   pre:  { protein_per_kg: 0.25, protein_min: 15, protein_max: 30, carb_per_kg: 0.75, carb_basis: 'internal_conversion', fat_over_dir: 2 },
-  post: { protein_per_kg: 0.25, protein_min: 20, protein_max: 40, carb_per_kg: 0.60, protein_under_dir: 1.5 },
+  post: { protein_per_kg: 0.25, protein_min: 20, protein_max: 40, carb_per_kg: 0.60, protein_under_dir: 1.5, sodium_cap_ratio: 1.3 },
   rest: { protein_floor_per_kg: 1.4 }
 };
 

@@ -258,6 +258,9 @@
       "require_main_item": true,
       "require_main_item_exempt_timing": [
         "post"
+      ],
+      "strict_diversity_timing": [
+        "post"
       ]
     },
     "timing": {
@@ -274,7 +277,8 @@
         "protein_min": 20,
         "protein_max": 40,
         "carb_per_kg": 0.6,
-        "protein_under_dir": 1.5
+        "protein_under_dir": 1.5,
+        "sodium_cap_ratio": 1.3
       },
       "rest": {
         "protein_floor_per_kg": 1.4

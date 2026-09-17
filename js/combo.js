@@ -17,6 +17,9 @@ export const DEFAULT_COMBO_RULES = {
   max_beverage_items: 1,
   // 운동 후에는 음료+바 같은 조합이 실제 선택지다 — 이때만 '식사류 최소 1개'를 면제한다.
   require_main_item_exempt_timing: ['post'],
+  // 3품목 조합이 2개를 공유하면 Jaccard 가 정확히 0.5라 기본 조건(> 0.5)에 걸리지 않는다.
+  // 후보 폭이 좁은 운동 후에서는 그 변형들이 Top 5 를 채우므로, 이때만 같은 값도 막는다.
+  strict_diversity_timing: ['post'],
   main_categories: ['도시락', '삼각김밥/주먹밥', '샌드위치/버거', '샐러드', '닭가슴살/육가공', '면', '즉석밥/죽', '한식/분식'],
   require_main_item: true
 };
@@ -38,6 +41,7 @@ export function findBestCombos(items, mealTarget, options = {}) {
   if (timing && (R.require_main_item_exempt_timing || []).includes(timing)) {
     R.require_main_item = false;
   }
+  const strictDiversity = !!timing && (R.strict_diversity_timing || []).includes(timing);
 
   // 1. 하드 필터 및 후보 풀 구성
   //
@@ -149,7 +153,8 @@ export function findBestCombos(items, mealTarget, options = {}) {
       }
 
       const union = candIds.size + selIds.size - intersection;
-      if (intersection / union > R.jaccard_max_3item) {
+      const share = intersection / union;
+      if (strictDiversity ? share >= R.jaccard_max_3item : share > R.jaccard_max_3item) {
         isDuplicate = true;
         break;
       }
