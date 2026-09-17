@@ -60,3 +60,34 @@ test('원재료가 없으면 어떤 성분도 만들어내지 않는다', () => 
   assert.equal(report.tokens.length, 0);
   assert.equal(report.cleanScore, null);
 });
+
+test('넓은 키워드보다 구체 키워드가 먼저 온다 (사전 순서 고정)', () => {
+  // 사전은 먼저 걸리는 항목이 이긴다. '대두' 같은 넓은 키워드가 앞에 오면
+  // 분리대두단백·대두레시틴·대두유가 전부 tier 1 '두부·대두'(안심 원료)로 잡힌다.
+  const nameOf = raw => {
+    const tokens = analyzeIngredients(raw).tokens;
+    return tokens.length ? tokens[0].name : null;
+  };
+
+  assert.equal(nameOf('분리대두단백(미국산)'), '분리·농축 대두단백');
+  assert.equal(nameOf('대두단백'), '분리·농축 대두단백');
+  assert.equal(nameOf('대두레시틴'), '레시틴 (유화제)');
+  assert.equal(nameOf('대두유'), '대두유');
+  assert.equal(nameOf('두부'), '두부/자연대두');
+
+  // 순서 자체를 고정한다 — 뒤에 항목을 추가하다 순서가 뒤집히면 여기서 막힌다.
+  const indexOf = name => INGREDIENT_DICTIONARY.findIndex(d => d.name === name);
+  const broad = indexOf('두부/자연대두');
+  for (const specific of ['분리·농축 대두단백', '레시틴 (유화제)', '대두유']) {
+    assert.ok(indexOf(specific) < broad, `${specific} 항목이 '두부/자연대두'보다 뒤에 있다`);
+  }
+});
+
+test('가공 단백 소재를 원물과 같은 등급으로 매기지 않는다', () => {
+  // 분리·농축 대두단백은 가공 단계를 거친 소재이므로 두부·대두 원물(tier 1)과 같을 수 없다.
+  const soyIsolate = INGREDIENT_DICTIONARY.find(d => d.name === '분리·농축 대두단백');
+  const wholeSoy = INGREDIENT_DICTIONARY.find(d => d.name === '두부/자연대두');
+  assert.equal(soyIsolate.tier, 2);
+  assert.equal(wholeSoy.tier, 1);
+  assert.equal(INGREDIENT_DICTIONARY.find(d => d.name === '레시틴 (유화제)').category, 'additive');
+});

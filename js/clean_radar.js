@@ -193,8 +193,38 @@ export const INGREDIENT_DICTIONARY = [
     desc: '가공하지 않은 축산물·수산물 원료로 단백질과 철·아연 등 미네랄의 급원이다. 부위에 따라 지방 함량 차이가 크다.',
     basis: null
   },
+  // ⚠ 아래 세 항목은 반드시 '두부/자연대두'(키워드 '대두')보다 앞에 있어야 한다.
+  //    사전은 먼저 걸리는 항목이 이기므로, 순서가 뒤집히면 분리대두단백·대두레시틴·대두유가
+  //    전부 tier 1 '두부·대두'(안심 원료)로 잡힌다.
   {
-    keywords: ['두부', '대두', '대두단백'],
+    keywords: ['분리대두단백', '농축대두단백', '대두단백', 'isp'],
+    name: '분리·농축 대두단백',
+    tier: 2,
+    category: 'protein',
+    title: '분리·농축 대두단백(ISP/SPC)',
+    desc: '탈지대두에서 단백질을 분리하거나 농축해 함량을 높인 식물성 원료다. 두부·대두 원물과 달리 가공 단계를 거친 단백 소재다. 식약처 표시기준상 대두는 알레르기 유발물질 표시 대상이다.',
+    basis: '식약처 「식품등의 표시기준」'
+  },
+  {
+    keywords: ['대두레시틴', '레시틴'],
+    name: '레시틴 (유화제)',
+    tier: 2,
+    category: 'additive',
+    title: '레시틴(유화제)',
+    desc: '대두·난황 등에서 얻는 인지질로 물과 기름을 섞는 유화 목적으로 쓰이는 지정 식품첨가물이다. 단백질 급원이 아니라 소량 첨가되는 보조 원료다.',
+    basis: '식약처 「식품첨가물의 기준 및 규격」'
+  },
+  {
+    keywords: ['대두유'],
+    name: '대두유',
+    tier: 2,
+    category: 'fat',
+    title: '대두유',
+    desc: '대두에서 정제한 식용유로 불포화지방산 비율이 높다. 식약처 표시기준에 따라 포화지방·트랜스지방 함량을 표시한다.',
+    basis: '식약처 「식품등의 표시기준」'
+  },
+  {
+    keywords: ['두부', '대두'],
     name: '두부/자연대두',
     tier: 1,
     category: 'protein',
@@ -218,15 +248,6 @@ export const INGREDIENT_DICTIONARY = [
     category: 'protein',
     title: '카제인 단백질',
     desc: '우유 단백질의 대부분을 차지하는 성분으로 위에서 응고해 천천히 소화된다. 식약처 표시기준상 우유는 알레르기 유발물질 표시 대상이다.',
-    basis: '식약처 「식품등의 표시기준」'
-  },
-  {
-    keywords: ['분리대두단백', 'isp'],
-    name: '분리대두단백 (ISP)',
-    tier: 2,
-    category: 'protein',
-    title: '분리대두단백(ISP)',
-    desc: '탈지대두에서 단백질만 분리해 함량을 90% 안팎으로 높인 식물성 원료다. 식약처 표시기준상 대두는 알레르기 유발물질 표시 대상이다.',
     basis: '식약처 「식품등의 표시기준」'
   },
   {
@@ -268,7 +289,7 @@ export const INGREDIENT_DICTIONARY = [
     basis: null
   },
   {
-    keywords: ['카놀라유', '대두유', '옥수수유', '해바라기유', '현미유'],
+    keywords: ['카놀라유', '옥수수유', '해바라기유', '현미유'],
     name: '식물성 식용유',
     tier: 2,
     category: 'fat',
@@ -306,12 +327,12 @@ export const INGREDIENT_DICTIONARY = [
     basis: '식약처 「식품등의 표시기준」'
   },
   {
-    keywords: ['비타민c', 'l-아스코브산', '구연산', '레시틴', '대두레시틴', '탄산수소나트륨', '정제수', '천일염'],
+    keywords: ['비타민c', 'l-아스코브산', '구연산', '탄산수소나트륨', '정제수', '천일염'],
     name: '표준 안심 식품원료',
     tier: 2,
     category: 'additive',
     title: '일반 식품원료·영양성분',
-    desc: '정제수, 식염, 구연산, 레시틴, 비타민C 등 식품 제조에 널리 쓰이는 원료와 영양성분이다. 각각 식품 원료 또는 지정 식품첨가물로 관리된다.',
+    desc: '정제수, 식염, 구연산, 비타민C 등 식품 제조에 널리 쓰이는 원료와 영양성분이다. 각각 식품 원료 또는 지정 식품첨가물로 관리된다.',
     basis: '식약처 「식품첨가물의 기준 및 규격」'
   },
   {
@@ -717,19 +738,8 @@ export const ABSORPTION_BY_PROTEIN_NAME = {
   '두부/자연대두': 'medium',
   '성형육/어육가공품': 'medium',
   '카제인단백질': 'slow',
-  '분리대두단백 (ISP)': 'slow'
+  '분리·농축 대두단백': 'slow'
 };
-
-// 사전 매칭은 먼저 걸리는 항목이 이긴다. '분리대두단백분말'·'대두단백'은 '두부/자연대두'(키워드 '대두')에
-// 먼저 잡혀 대두단백 항목까지 가지 못한다. CleanRadar 점수 체계를 건드리지 않고 흡수 속도만 바로잡기 위해
-// 원재료 원문을 한 번 더 본다.
-const ABSORPTION_RAW_OVERRIDE = [
-  { match: ['분리대두단백', 'isp'], name: '분리대두단백 (ISP)', speed: 'slow' },
-  { match: ['대두단백'], name: '대두단백', speed: 'slow' }
-];
-
-// 대두레시틴(유화제)·대두유도 '대두' 키워드에 걸려 단백질 원천으로 잡힌다. 흡수 속도 판정에서는 뺀다.
-const ABSORPTION_RAW_EXCLUDE = ['레시틴', '대두유'];
 
 export const ABSORPTION_ORDER = { fast: 0, medium: 1, slow: 2, unknown: 3 };
 
@@ -749,28 +759,10 @@ export function absorptionRank(item) {
  */
 export function classifyAbsorption(tokens) {
   const list = Array.isArray(tokens) ? tokens : [];
-  const hits = list
-    .filter(t => t && t.category === 'protein' && ABSORPTION_BY_PROTEIN_NAME[t.name])
-    .filter(t => {
-      const raw = String(t.raw || '').toLowerCase();
-      return !ABSORPTION_RAW_EXCLUDE.some(kw => raw.includes(kw));
-    })
-    .map(t => {
-      const raw = String(t.raw || '').toLowerCase();
-      // 사전이 '두부/자연대두'로 잡은 것만 교정한다. '패티[돼지고기, 소고기, 대두단백]' 처럼
-      // 원육이 주인 복합 토큰까지 뒤집으면 버거가 '느린 흡수'가 된다.
-      const override = t.name === '두부/자연대두'
-        ? ABSORPTION_RAW_OVERRIDE.find(o => o.match.some(kw => raw.includes(kw)))
-        : null;
-      return override
-        ? { name: override.name, speed: override.speed }
-        : { name: t.name, speed: ABSORPTION_BY_PROTEIN_NAME[t.name] };
-    });
+  const main = list.find(t => t && t.category === 'protein' && ABSORPTION_BY_PROTEIN_NAME[t.name]);
 
-  if (hits.length === 0) return { absorption: 'unknown', absorption_basis: [] };
-
-  const main = hits[0];
-  return { absorption: main.speed, absorption_basis: [main.name] };
+  if (!main) return { absorption: 'unknown', absorption_basis: [] };
+  return { absorption: ABSORPTION_BY_PROTEIN_NAME[main.name], absorption_basis: [main.name] };
 }
 
 export function buildUnavailableReport() {
