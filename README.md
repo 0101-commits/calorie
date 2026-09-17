@@ -1,7 +1,7 @@
 # 프로틴레이더 (Protein Radar)
 
 > 편의점·외식 프랜차이즈·마트 제품의 단백질 가성비와 영양을 검증하고, 1끼 단품·조합을 추천하는 웹 서비스
-> **기준 문서:** 프로틴레이더 PRD v1.1(2026-09-15) + 고도화 기획안 v2.0(2026-09-16)
+> **기준 문서:** 프로틴레이더 PRD v1.1(2026-09-15) + 고도화 기획안 v2.0(2026-09-16) + 운동 타이밍 기획서(2026-09-17)
 
 라이브: https://0101-commits.github.io/calorie/
 
@@ -57,6 +57,17 @@
   - 등급 보류 건은 기본 노출에서 빠지고 `정보 부족만` 필터로 볼 수 있다(제보 유입 동선)
 - **내 기준** — Mifflin-St Jeor → TDEE → 목적 보정 → 1끼 타깃 → 단품/조합 Top 5
   - 조합은 1끼의 정의를 지킨다: 음료 1개 이하, 식사류 최소 1개, 나트륨 1끼 목표 150% 이하
+  - **타이밍**(운동 전 · 운동 후 · 운동 안 한 날)을 고르면 1끼 타깃의 단백질·탄수와 Fit 가중치가 바뀐다.
+    선택은 저장하지 않는다(방문할 때마다 미선택에서 시작). 열량·나트륨은 끼니 선택 값을 그대로 둔다
+- **타이밍 수치의 출처** — 1회 20~40g·0.25g/kg, 1일 1.4~2.0g/kg, 3~4시간 분배는 [ISSN Position Stand: protein and exercise(2017)](https://pmc.ncbi.nlm.nih.gov/articles/PMC5477153/),
+  운동 전 탄수 1~4g/kg/day와 운동 후 탄수 0.6~1.0g/kg·직후~2시간은 [ISSN Position Stand: nutrient timing(2017)](https://pmc.ncbi.nlm.nih.gov/articles/PMC5596471/)에서 가져왔다.
+  운동 전 탄수 `0.75 g/kg`은 앞 범위의 하단을 3끼로 나눈 **내부 환산값**이며 화면에도 환산이라고 적는다.
+  지방·식이섬유 제한은 두 문헌에 수치가 없어 점수에 넣지 않는다
+
+- **흡수 속도**(`absorption`) — `fast`/`medium`/`slow`/`unknown`. 원재료 문자열로만 정하고 제품명으로 추정하지 않는다.
+  **점수에 넣지 않는다** — 운동 후 추천에서 Fit이 같을 때 순서를 정하는 2차 기준과 카드 배지로만 쓴다(미확보가 347건이라 판정 근거로 쓰기엔 약하다).
+  판정은 **가장 앞에 적힌 단백질 원천 하나**로만 한다 — 원재료는 많이 쓴 순서로 적으므로, 뒤에 붙은 미량 결착제가 원육 판정을 뒤집지 못한다
+
 - **상세** — 「이 등급이 나온 이유」(대입 과정·감점 내역·판정 못 한 항목), 워싱 조항별 배점, 원재료 판정과 근거, 영양표(결측은 `—`), 출처 원본 링크
 
 ---
@@ -69,20 +80,20 @@ css/app.css             SEED 토큰 브리지 + 컴포넌트 (다크모드 포�
 js/
   app.js                화면·상태·렌더 (인덱스 선로드 → 전체 데이터 지연 로드)
   score.js              PPR·CPD·NPI·PW·등급·보류 판정
-  calc.js               BMR·TDEE·1끼 타깃·Fit Score
+  calc.js               BMR·TDEE·1끼 타깃·타이밍 보정·Fit Score
   combo.js              조합 생성·제약·다양성
-  clean_radar.js        원재료 사전(41종)·4단계 분류·teardown
+  clean_radar.js        원재료 사전(41종)·4단계 분류·teardown·흡수 속도 분류
   search.js  scan.js  qa.js
-rules/rule_v1.1.json    룰 단일 원천 (지표·페널티·워싱·추천·enum·신선도)
+rules/rule_v1.1.json    룰 단일 원천 (지표·페널티·워싱·추천·타이밍·enum·신선도)
 data/
-  seed.json             원본 데이터 (517건)
+  seed.json             원본 데이터 (826건)
   brand_codes.json      브랜드 정규화 사전
   sources.json          T1~T3 수집 레지스트리 (미검증 URL 게이트)
   quarantine/           게시 중단분 (사유 기록)
   photo_queue.json      촬영 대기 큐
 scripts/
   normalize.js          정규화 + 필드 신뢰도 부여
-  build.js              QA → 지표 → data.json + data_index.json (게이트 G1·G2·G3·G5)
+  build.js              QA → 지표 → data.json + data_index.json (게이트 G1·G2·G3·G5·G8)
   detect_new.js  stale_sweep.js  collect_site.js  check_deploy_hygiene.js
 worker/worker.js        /api/barcode /report /submit /identify /health
 migrations/002_schema_v2.sql   D1 스키마 v2
@@ -94,7 +105,7 @@ migrations/002_schema_v2.sql   D1 스키마 v2
 
 ```bash
 npm run pipeline   # 격리 → 정규화 → 빌드 (data.json · data_index.json · data_meta.json)
-npm test           # 단위 테스트 30건
+npm test           # 단위 테스트 38건
 npm run site       # 공개 배포 산출물 수집(_site) + 배포 위생 게이트 G7
 npm run serve      # http://localhost:8080
 ```
@@ -110,23 +121,26 @@ npm run serve      # http://localhost:8080
 | G1 | 값이 0인데 `measured`로 적힌 플레이스홀더 | build.js |
 | G2 | 출처 4필드 결측, 재확인 불가한 URL | qa.js (R5) |
 | G3 | `channel`·`category`·`cooking` enum 밖 값 | build.js |
-| G5 | 룰 파일과 코드 기본값 불일치 | build.js + tests/rules.test.js |
+| G5 | 룰 파일과 코드 기본값 불일치(지표·추천·타이밍) | build.js + tests/rules.test.js + tests/timing.test.js |
 | G7 | 배포 산출물의 시크릿·내부 도구·개발 부산물 | check_deploy_hygiene.js |
+| G8 | 원재료 없이 내려진 흡수 속도 판정 | build.js |
 | — | 근거 없는 기피 판정, 효능 단정 어휘, 성분 날조 | tests/ingredients.test.js |
 
 ---
 
-## 데이터 현황 (2026-09-16)
+## 데이터 현황 (2026-09-17)
 
-517건 · 판정 495 / 보류 22 · A 20.4% · B 28.7% · C 35.8% · D 15.2%
-채널: 편의점 200 · 외식 173 · 마트 94 · 온라인 50
-워싱: 검증 212 · 조건부 22 · 워싱 38 · 대상 아님 245
+826건 · 판정 787 / 보류 39 · A 13.0% · B 19.3% · C 42.6% · D 25.2%
+채널: 편의점 509 · 외식 173 · 마트 94 · 온라인 50
+워싱: 검증 214 · 조건부 18 · 워싱 40 · 대상 아님 554
+흡수 속도: 빠름 49 · 보통 345 · 느림 85 · 미확보 347
 
 **알려진 한계**
 - 제품 이미지 0건. 타사 CDN 핫링크 167건을 내렸고 촬영 큐(`data/photo_queue.json`)로 남겼다
 - 트랜스지방·식이섬유·출시일 결측. 트랜스지방 페널티와 식이섬유 보너스는 데이터가 들어오기 전까지 발동하지 않는다
 - 알레르기 정보 없음. 안전에 직결되므로 커버리지 90% 전에는 필터를 열지 않는다
-- 가격 22건이 추정값(공공DB에 가격이 없다). 해당 건은 등급 보류 상태다
+- 가격 37건이 추정값(공공DB에 가격이 없다). 해당 건은 등급 보류 상태다
+- 원재료 미확보 309건. 흡수 속도 판정도 347건이 보류이며, 커버리지가 올라오기 전에는 점수에 넣지 않는다
 - D1 미배포. 제보·정정이 실제로 돌 때 켠다(기획안 D14)
 
 ---
