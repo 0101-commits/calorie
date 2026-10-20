@@ -70,7 +70,9 @@ jobs:
 
       - name: 보도자료 가격 수집 (주 1회)
         if: github.event.schedule == '0 5 * * 1' || github.event.inputs.job == 'detect' || github.event.inputs.job == 'all'
+        # npm ci 없이는 node_modules 에 puppeteer 가 없어 import 가 실패했다(매주 월요일 ERR_MODULE_NOT_FOUND)
         run: |
+          npm ci
           npx puppeteer browsers install chrome
           node scripts/collect_press.js
           node scripts/apply_press_prices.js
