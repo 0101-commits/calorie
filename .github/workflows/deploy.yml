@@ -28,6 +28,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+          check-latest: true
 
       # G7 배포 위생 게이트 — 공개 산출물만 _site/ 로 모은다.
       # scripts/ · scratch/ · data/ · *.sql · audit_gallery.html 은 배포하지 않는다.

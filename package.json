@@ -27,6 +27,6 @@
   "author": "0101-commits",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^25.11.0"
+    "puppeteer": "^25.16.0"
   }
 }
