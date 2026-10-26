@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "brand_code": "lotteria",
+    "brand": "롯데리아",
+    "source_url": "https://www.lotteeatz.com/upload/stg/etc/ria/items.html",
+    "detected_at": "2026-10-26T10:43:44.378Z",
+    "status": "감지",
+    "note": "공식 페이지 내용 변경 (5000c7ff76b482d9 → 4b841cda9f19f824)"
+  },
+  {
+    "brand_code": "dominos",
+    "brand": "도미노피자",
+    "source_url": "https://web.dominos.co.kr/contents/ingredient",
+    "detected_at": "2026-10-26T10:43:50.662Z",
+    "status": "감지",
+    "note": "공식 페이지 내용 변경 (bff98173f348c7bf → 56ebe0937a9899c2)"
+  },
+  {
+    "brand_code": "pizzahut",
+    "brand": "피자헛",
+    "source_url": "https://www.pizzahut.co.kr/popup/popup_nutrition.do",
+    "detected_at": "2026-10-26T10:44:02.390Z",
+    "status": "감지",
+    "note": "공식 페이지 내용 변경 (42075c1c4d1a1c2b → f71898955b5695bc)"
+  },
+  {
+    "brand_code": "paris",
+    "brand": "파리바게뜨",
+    "source_url": "https://www.paris.co.kr/products/",
+    "detected_at": "2026-10-26T10:44:08.883Z",
+    "status": "감지",
+    "note": "공식 페이지 내용 변경 (a2a47cba6446cecc → accbceebf1284e03)"
+  },
+  {
+    "brand_code": "hsd",
+    "brand": "한솥도시락",
+    "source_url": "https://www.hsd.co.kr/menu/menu_list",
+    "detected_at": "2026-10-26T10:44:15.069Z",
+    "status": "감지",
+    "note": "공식 페이지 내용 변경 (45faf9634721b4c0 → 0c95169411749678)"
+  }
+]

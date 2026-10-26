@@ -32,8 +32,8 @@
       "evidence": "2026-09-16 HTTP 200 · 52,960 bytes · 'kcal' 50건. 예: 한우불고기버거 572kcal 단백질 23g 나트륨 800mg",
       "crawl_delay_sec": 5,
       "visit_time_utc": null,
-      "last_hash": "5000c7ff76b482d9",
-      "last_checked_at": "2026-09-16"
+      "last_hash": "4b841cda9f19f824",
+      "last_checked_at": "2026-10-26"
     },
     {
       "brand_code": "dominos",
@@ -48,8 +48,8 @@
       "note": "원문 인코딩이 EUC-KR 계열 — 파싱 시 인코딩 지정 필요. 배달 메뉴용 /contents/deliveryIngredient 도 동일 형식",
       "crawl_delay_sec": 5,
       "visit_time_utc": null,
-      "last_hash": "bff98173f348c7bf",
-      "last_checked_at": "2026-09-16"
+      "last_hash": "56ebe0937a9899c2",
+      "last_checked_at": "2026-10-26"
     },
     {
       "brand_code": "pizzahut",
@@ -63,8 +63,8 @@
       "evidence": "2026-09-16 HTTP 200 · 188,299 bytes · 'kcal' 24건. 예: 베이컨포테이토(L) 350kcal 나트륨 769.1mg",
       "crawl_delay_sec": 5,
       "visit_time_utc": null,
-      "last_hash": "42075c1c4d1a1c2b",
-      "last_checked_at": "2026-09-16"
+      "last_hash": "f71898955b5695bc",
+      "last_checked_at": "2026-10-26"
     },
     {
       "brand_code": "paris",
@@ -79,8 +79,8 @@
       "note": "통합 영양정보 페이지가 없다. 이 목록은 신상 감지용이고, 영양 수치는 개별 상품 페이지(/product/<slug>/)에 리스트 형태로 있다",
       "crawl_delay_sec": 5,
       "visit_time_utc": null,
-      "last_hash": "a2a47cba6446cecc",
-      "last_checked_at": "2026-09-16"
+      "last_hash": "accbceebf1284e03",
+      "last_checked_at": "2026-10-26"
     },
     {
       "brand_code": "hsd",
@@ -95,8 +95,8 @@
       "note": "목록에는 수치가 없고 개별 메뉴 페이지(/menu/menu_view/<id>)에 열량·알레르기·원산지가 있다. 나트륨·당류는 공개하지 않아 T4 촬영 병행이 필요하다",
       "crawl_delay_sec": 5,
       "visit_time_utc": null,
-      "last_hash": "45faf9634721b4c0",
-      "last_checked_at": "2026-09-16"
+      "last_hash": "0c95169411749678",
+      "last_checked_at": "2026-10-26"
     },
     {
       "brand_code": "subway",
@@ -236,8 +236,8 @@
       "evidence": "2026-09-16 확인 · 검색 필터만 렌더되고 기사 목록은 본문에 없음. 개별 기사(/press/view/?id=N)는 정상",
       "crawl_delay_sec": 5,
       "visit_time_utc": null,
-      "last_hash": null,
-      "last_checked_at": null,
+      "last_hash": "6e894e135dd4ecca",
+      "last_checked_at": "2026-10-26",
       "note": "목록은 JS 렌더이나 puppeteer 로 링크(press/view/?id=N)와 본문이 정상 추출된다. 2026-09-16 최신 기사 확인."
     },
     {
