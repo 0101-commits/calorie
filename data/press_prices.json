@@ -50,5 +50,44 @@
     "published_at": "2026-09-08",
     "detected_at": "2026-09-16T11:08:09.299Z",
     "status": "감지"
+  },
+  {
+    "brand_code": "cu",
+    "brand": "CU",
+    "name": "랑그리 소금우유샌드",
+    "price_krw": 5000,
+    "confidence": "quoted",
+    "price_source_type": "T3",
+    "source_url": "https://www.bgfretail.com/press/view/?id=2075",
+    "article_title": "BGF 리테일",
+    "published_at": "2026-10-22",
+    "detected_at": "2026-11-02T13:05:08.403Z",
+    "status": "감지"
+  },
+  {
+    "brand_code": "cu",
+    "brand": "CU",
+    "name": "죽순마을 초코과자",
+    "price_krw": 4500,
+    "confidence": "quoted",
+    "price_source_type": "T3",
+    "source_url": "https://www.bgfretail.com/press/view/?id=2075",
+    "article_title": "BGF 리테일",
+    "published_at": "2026-10-22",
+    "detected_at": "2026-11-02T13:05:08.403Z",
+    "status": "감지"
+  },
+  {
+    "brand_code": "cu",
+    "brand": "CU",
+    "name": "버터와플",
+    "price_krw": 7700,
+    "confidence": "dictionary",
+    "price_source_type": "T3",
+    "source_url": "https://www.bgfretail.com/press/view/?id=2075",
+    "article_title": "BGF 리테일",
+    "published_at": "2026-10-22",
+    "detected_at": "2026-11-02T13:05:08.403Z",
+    "status": "감지"
   }
 ]
