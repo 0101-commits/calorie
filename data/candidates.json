@@ -70,5 +70,13 @@
     "detected_at": "2026-11-02T13:02:48.577Z",
     "status": "감지",
     "note": "공식 페이지 내용 변경 (0c95169411749678 → aaad66a13f0101d8)"
+  },
+  {
+    "brand_code": "paris",
+    "brand": "파리바게뜨",
+    "source_url": "https://www.paris.co.kr/products/",
+    "detected_at": "2026-11-09T13:35:07.361Z",
+    "status": "감지",
+    "note": "공식 페이지 내용 변경 (1058666ff0da8af7 → bbba17ad4818a90e)"
   }
 ]

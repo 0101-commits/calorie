@@ -33,7 +33,7 @@
       "crawl_delay_sec": 5,
       "visit_time_utc": null,
       "last_hash": "1f5ba2dc523886a2",
-      "last_checked_at": "2026-11-02"
+      "last_checked_at": "2026-11-09"
     },
     {
       "brand_code": "dominos",
@@ -49,7 +49,7 @@
       "crawl_delay_sec": 5,
       "visit_time_utc": null,
       "last_hash": "56ebe0937a9899c2",
-      "last_checked_at": "2026-11-02"
+      "last_checked_at": "2026-11-09"
     },
     {
       "brand_code": "pizzahut",
@@ -64,7 +64,7 @@
       "crawl_delay_sec": 5,
       "visit_time_utc": null,
       "last_hash": "b16d017455e7c59c",
-      "last_checked_at": "2026-11-02"
+      "last_checked_at": "2026-11-09"
     },
     {
       "brand_code": "paris",
@@ -79,8 +79,8 @@
       "note": "통합 영양정보 페이지가 없다. 이 목록은 신상 감지용이고, 영양 수치는 개별 상품 페이지(/product/<slug>/)에 리스트 형태로 있다",
       "crawl_delay_sec": 5,
       "visit_time_utc": null,
-      "last_hash": "1058666ff0da8af7",
-      "last_checked_at": "2026-11-02"
+      "last_hash": "bbba17ad4818a90e",
+      "last_checked_at": "2026-11-09"
     },
     {
       "brand_code": "hsd",
@@ -96,7 +96,7 @@
       "crawl_delay_sec": 5,
       "visit_time_utc": null,
       "last_hash": "aaad66a13f0101d8",
-      "last_checked_at": "2026-11-02"
+      "last_checked_at": "2026-11-09"
     },
     {
       "brand_code": "subway",
@@ -237,7 +237,7 @@
       "crawl_delay_sec": 5,
       "visit_time_utc": null,
       "last_hash": "6e894e135dd4ecca",
-      "last_checked_at": "2026-11-02",
+      "last_checked_at": "2026-11-09",
       "note": "목록은 JS 렌더이나 puppeteer 로 링크(press/view/?id=N)와 본문이 정상 추출된다. 2026-09-16 최신 기사 확인."
     },
     {
