@@ -89,5 +89,31 @@
     "published_at": "2026-10-22",
     "detected_at": "2026-11-02T13:05:08.403Z",
     "status": "감지"
+  },
+  {
+    "brand_code": "cu",
+    "brand": "CU",
+    "name": "행운을 담은 찹쌀떡 6입",
+    "price_krw": 9900,
+    "confidence": "quoted",
+    "price_source_type": "T3",
+    "source_url": "https://www.bgfretail.com/press/view/?id=2102",
+    "article_title": "BGF 리테일",
+    "published_at": "2026-11-16",
+    "detected_at": "2026-11-16T13:20:57.917Z",
+    "status": "감지"
+  },
+  {
+    "brand_code": "cu",
+    "brand": "CU",
+    "name": "합격기원 찹쌀떡 3입",
+    "price_krw": 3400,
+    "confidence": "quoted",
+    "price_source_type": "T3",
+    "source_url": "https://www.bgfretail.com/press/view/?id=2102",
+    "article_title": "BGF 리테일",
+    "published_at": "2026-11-16",
+    "detected_at": "2026-11-16T13:20:57.917Z",
+    "status": "감지"
   }
 ]
