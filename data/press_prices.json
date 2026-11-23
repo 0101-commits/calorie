@@ -115,5 +115,18 @@
     "published_at": "2026-11-16",
     "detected_at": "2026-11-16T13:20:57.917Z",
     "status": "감지"
+  },
+  {
+    "brand_code": "cu",
+    "brand": "CU",
+    "name": "수향미 장조림김밥",
+    "price_krw": 3500,
+    "confidence": "quoted",
+    "price_source_type": "T3",
+    "source_url": "https://www.bgfretail.com/press/view/?id=2111",
+    "article_title": "BGF 리테일",
+    "published_at": "2026-11-23",
+    "detected_at": "2026-11-23T15:39:59.876Z",
+    "status": "감지"
   }
 ]
